@@ -1,0 +1,35 @@
+h3.sc-options-title {
+	margin: 25px 10px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:1.6em;
+	font-weight:normal;
+	color:#5a5a5a;
+}
+
+#options-table th,
+#options-table td {
+	padding: 10px;
+}
+
+#options-table th label {
+	display: block;
+	width: 175px;
+}
+#options-table .input-text {
+	display: block;
+	min-height: 24px;
+}
+#options-table .input-help {
+	color: #888888;
+	display: block;
+	font-size: 11px;
+	padding: 5px;
+}
+
+#options-table .select_wrapper span {
+	display: none;
+}
+.buttons-wrapper {
+	overflow:hidden;
+	margin:25px 0 25px 10px;
+	}

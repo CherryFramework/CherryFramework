@@ -1,0 +1,323 @@
+/* #Header
+================================================== */
+.header {
+	position: relative;
+	z-index: 99;
+	padding: 30px 0;
+	border-bottom: 1px solid lighten(@grayLight, 25%);
+	background: @grayLighter;
+}
+
+/* Logo
+---------------------------------------- */
+.logo {
+	position: relative;
+	z-index: 99;
+	@media (min-width: 768px) and (max-width: 979px) {
+		width: 60%;
+	}
+
+	&_h {
+
+		// Text Based Logo
+		&__txt {
+			margin:0;
+		}
+
+		// Image Based Logo
+		&__img {
+
+		}
+
+	}
+	&_link {
+		color: @blue;
+		text-decoration: none;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	
+	// Logo Tagline
+	&_tagline {
+		text-transform: uppercase;
+		font-size: 10px;
+	}
+}
+/* /Logo */
+
+/* Social Networks
+---------------------------------------- */
+.social { 
+	margin: 0;
+
+	&_li {
+	}
+	&_link {
+		.transition(0.25s);
+	}
+	&_link:hover {
+		.opacity(50);
+	}
+	&_ico {
+		display: inline-block;
+		vertical-align: top;
+	}
+	&_label {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	// Row view
+	&__row {
+		& li {
+			float: left;
+			margin-left: 5px;
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+		& a {
+			float: left;
+		}
+	}
+
+	// List mode
+	&__list {
+		& li {
+			margin-bottom: 5px;
+		}
+		& a {
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+}
+/* /Social Networks */
+
+/* Search Form
+---------------------------------------- */
+.search-form {
+	& form {
+		position: relative;
+	}
+	
+	input[type="text"]&_it {
+		padding: 5px 6px;
+		height: 16px;
+		vertical-align: top;
+		line-height: 16px;
+		// .box-sizing(border-box);
+	}
+	input[type="submit"]&_is {
+		vertical-align: top;
+	}
+
+	// Header Search Form
+	.header &{ 
+
+	}
+	// Sidebar Search Form
+	.sidebar &{
+
+	}
+	// No result Search Form
+	.no-results &{
+
+	}
+	//404 Search Form
+	.error404 &{
+
+	}
+
+	// Portrait tablet to landscape and desktop
+	@media (min-width: 768px) and (max-width: 979px) {
+		.sidebar &_it { 
+			width: 130px;
+		}
+	}
+
+}
+/* /Search Form */
+
+
+/* #Navigation
+---------------------------------------- */
+.nav {
+
+}
+.nav__primary {
+	position:relative;
+	z-index:2;
+}
+
+/* Essential styles for dropdown menu */
+.sf-menu, .sf-menu * {
+	margin:	0;
+	padding: 0;
+	list-style:	none;
+}
+.sf-menu {
+	line-height: 1.0;
+}
+.sf-menu ul {
+	display: none;
+	position: absolute;
+	top: -999em;
+	width: 10em; /* left offset of submenus need to match (see below) */
+}
+.sf-menu ul li {
+	width: 100%;
+}
+.sf-menu li:hover {
+	visibility:	inherit; /* fixes IE7 'sticky bug' */
+}
+.sf-menu li {
+	position: relative;
+	float: left;
+}
+.sf-menu a {
+	position: relative;
+	display: block;
+}
+.sf-menu li:hover ul,
+.sf-menu li.sfHover ul {
+	top: 100%; /* match top ul list item height */
+	left: 0;
+	z-index: 99;
+}
+ul.sf-menu li:hover li ul,
+ul.sf-menu li.sfHover li ul {
+	top: -999em;
+}
+ul.sf-menu li li:hover ul,
+ul.sf-menu li li.sfHover ul {
+	top: 0;
+	left: 100%; /* match ul width */
+}
+ul.sf-menu li li:hover li ul,
+ul.sf-menu li li.sfHover li ul {
+	top: -999em;
+}
+ul.sf-menu li li li:hover ul,
+ul.sf-menu li li li.sfHover ul {
+	top: 0;
+	left: 10em; /* match ul width */
+}
+
+
+/* Our skin for dropdown menu */
+.sf-menu {
+	float: right;
+}
+.sf-menu > li {
+	background:	#ddd;
+	text-align: center;
+}
+.sf-menu > li > a {
+	padding: 10px 12px;
+	border-top:	1px solid #eee;
+	border-left: 1px solid #fff;
+	color: #13a;
+	text-decoration: none;
+}
+.sf-menu li .desc {
+	display: block;
+	font-size: 0.9em;
+}
+.sf-menu li li {
+	background:	#AABDE6;
+}
+.sf-menu li li a {
+	padding: 10px 12px;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #fff;
+	color: #13a;
+	text-decoration: none;
+}
+.sf-menu > li > a:hover, 
+.sf-menu > li.sfHover> a,
+.sf-menu > li.current-menu-item > a,
+.sf-menu > li.current_page_item > a {
+	background:	#CFDEFF;
+}
+.sf-menu li li > a:hover, 
+.sf-menu li li.sfHover > a,
+.sf-menu li li.current-menu-item > a,
+.sf-menu li li.current_page_item > a  {
+	background:	#CFDEFF;
+}
+
+/*** arrows **/
+.sf-menu a.sf-with-ul {
+	padding-right: 2.25em;
+	min-width: 1px; /* trigger IE7 hasLayout so spans position accurately */
+}
+.sf-sub-indicator {
+	position: absolute;
+	top: 1.05em; /* IE6 only */
+	right: .75em;
+	display: block;
+	overflow: hidden;
+	width: 10px;
+	height:	10px;
+	background:	url(../images/arrows-ffffff.png) no-repeat -10px -100px; /* 8-bit indexed alpha png. IE6 gets solid image only */
+	text-indent: -999em;
+}
+a > .sf-sub-indicator {
+	background-position: 0 -100px; /* use translucent arrow for modern browsers*/  /* give all except IE6 the correct values */
+	top: .8em;
+}
+/* apply hovers to modern browsers */
+a:focus > .sf-sub-indicator,
+a:hover > .sf-sub-indicator,
+a:active > .sf-sub-indicator,
+li:hover > a > .sf-sub-indicator,
+li.sfHover > a > .sf-sub-indicator {
+	background-position: -10px -100px; /* arrow hovers for modern browsers*/
+}
+
+/* point right for anchors in subs */
+.sf-menu ul .sf-sub-indicator { background-position:  -10px 0; }
+.sf-menu ul a > .sf-sub-indicator { background-position:  0 0; }
+/* apply hovers to modern browsers */
+.sf-menu ul a:focus > .sf-sub-indicator,
+.sf-menu ul a:hover > .sf-sub-indicator,
+.sf-menu ul a:active > .sf-sub-indicator,
+.sf-menu ul li:hover > a > .sf-sub-indicator,
+.sf-menu ul li.sfHover > a > .sf-sub-indicator {
+	background-position: -10px 0; /* arrow hovers for modern browsers*/
+}
+	/* Landscape phone to portrait tablet */
+	@media (max-width: 767px) {
+		.sf-menu {
+			display: none;
+		}
+	}
+
+/* Navigation select styling */
+.select-menu {
+	display: none;
+	margin: 0;
+	padding: 5px;
+	width: 100%;
+	height: 30px;
+	outline: none;
+	border: 1px solid #c8c8c8;
+	background-color: #e4e4e4;
+	line-height: 18px;
+	cursor: pointer;
+	.border-radius(4px);
+	&:focus {
+		border-color: #999;
+		outline: none;
+	}
+	option {
+		padding: 5px;
+		cursor: pointer;
+		&.main_item {
+			font-weight: bold;
+		}
+	}
+}

@@ -1,0 +1,190 @@
+/* #Widgets
+================================================== */
+/* General for Widget */
+.widget {
+	margin-bottom:30px;
+}
+
+/* Standard Widgets
+---------------------------------------- */
+
+/* Calendar */
+#calendar_wrap {
+	padding:0;
+}
+	#wp-calendar {
+		width:100%;
+	}
+		#wp-calendar td {
+			padding:6px 0;
+			border:none;
+			text-align:center;
+		}
+		#wp-calendar caption {
+			margin-bottom:5px;
+			padding:4px 0;
+			color:#000;
+			font-weight:bold;
+			font-size:16px;
+			text-align:center;
+		}
+		#wp-calendar thead th {
+			padding:7px 0;
+			background:#fff;
+			color:#000;
+			text-align:center;
+			font-size:14px;
+		}
+		#wp-calendar #prev {
+			text-align:left;
+		}
+		#wp-calendar #next {
+			text-align:right;
+		}
+		
+/*/ Calendar */
+
+/* Text Widget */
+.textwidget {
+	word-wrap: break-word;
+}
+/*/ Text Widget */
+
+
+/* Custom Widgets
+---------------------------------------- */				
+
+/* Custom Recent Comments */
+.comments-custom {
+	
+	& li {
+		overflow:hidden;
+		margin:0;
+		padding:25px 0 25px 0;
+		border-bottom:none;
+		background:none;
+	}
+	& li:first-child {
+		padding-top:0;
+		border-top:none;
+	}
+	&_txt {
+		padding:15px 0 0 0;
+	}
+		&_txt a {
+			text-decoration: none;
+		}
+		&_txt a:hover {
+			text-decoration: underline;
+		}
+	&_h {
+		margin-bottom:.1em;
+	}
+	& time {
+		font-size:11px;
+	}
+
+}
+/*/ Custom Recent Comments */
+
+
+/* Posts List */
+.post-list {
+
+	& li {
+		overflow:hidden;
+		padding-top:1.5em;
+		padding-bottom:1.5em;
+	}
+	& li:first-child{
+		padding-top:0;
+		border:none;
+	}
+	&_h {
+
+	}
+	& .excerpt {
+		margin-bottom: 1em;
+	}
+	&_comment {
+
+	}
+}
+/*/ Posts List */
+
+/* Flickr widget */
+.flickr {
+
+	&_list {
+
+	}
+	&_li {
+		vertical-align: top;
+	}
+		&_li .thumbnail {
+			display: inline-block;
+			margin: 0 0 6px 0;
+		}
+		// &_li:nth-child(3n-2) {
+		// 	margin-left: 0;
+		// }
+		&_li.nomargin {
+			margin-left: 0;
+		}
+
+	/* IE8 */
+	.ie8 &_li.nomargin {
+		margin-left: 0;
+	}
+		.ie8 &_li img {
+			height: 75px;
+		}
+
+	@media (min-width: 768px) and (max-width: 979px) {
+		&_li .thumbnail {
+			display: block;
+		}
+	}
+	@media (max-width: 767px) {
+		&_li {
+			float: left !important;
+			width: auto !important;
+			margin: 0 14px 14px 0;
+		}
+		&_li .thumbnail {
+			display: block;
+			float: left;
+		}
+	}
+
+}		
+/*/ Flickr widget */
+
+
+/* Banners widget
+---------------------------------------- */
+.banners {
+	
+	&_li {
+		float:left;
+		margin:0 3px 3px 0;
+	}
+	&_img {
+		width: 125px;
+		height: auto;
+	}
+
+}
+/*/ Banners widget */
+
+
+/* vCard widget
+---------------------------------------- */			
+.vcard {
+	
+	& span {
+		display: block;
+	}
+}
+
+/*/ vCard widget */		
