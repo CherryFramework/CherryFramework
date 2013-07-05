@@ -2,188 +2,200 @@
 ================================================== */
 
 .comment-holder {
-	padding: 0;
-	margin: 0 0 2em;
+  padding: 0;
+  margin: 0 0 2em;
 }
 
 /* Comment Heading */
 .comments-h {  
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 /* Comment List */
 .comment-list {
-	position: relative;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
+  position: relative;
+  margin:0;
+  padding:0;
+  list-style-type:none;
 }
-.comment {
-	position: relative;
-	margin: 0;
-	padding: 0;
-	background: none;
-	list-style-type: none;
-	text-transform: none;
-}
-.odd {
-}
-.even {
-}
-.comment .comment-body {
-	position: relative;
-	overflow: hidden;
-	margin-top: 10px;
-	padding: 20px;
-	border: 1px solid #eee;
-	background: #eee;
-	zoom: 1;
-}
-.comment.bypostauthor .comment-body {
-	background: #fafafa;
-}
-	.comment .comment-body p {
-	}
-	.author-comment {
-	}
-.comment-author {
-	float: left;
-	margin: 0 20px 0 0;
-}
-.comment-author .author {
-	display: block;
-	padding-top: 6px;
-	width: 65px;
-	text-align: center;
-	text-transform: capitalize;
-	font-weight: bold;
-	font-size: 12px;
-}
-.comment-text {
-}
+  .comment {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background:none;
+    list-style-type:none;
+    text-transform:none;
+  }
+  .odd {
 
-/* Comment meta */
-.comment-meta {
-	float: right;
-}
+  }
+  .even {
 
-	/* Reply */
-	.reply {
-		float: right;
-		margin-left: 28px;
-		a {
-			display: inline-block;
-			text-decoration: none !important;
-			&:hover {
-			}
-		}
-	}
-.waiting-for-approval {
-}
+  }
+  .comment .comment-body {
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    padding: 20px;
+		border: 1px solid #eee;
+    background: #eee;
+    zoom: 1;
+  }
+  .comment.bypostauthor .comment-body {
+    background: #fafafa;
+  }
+    .comment .comment-body p {
+    }
+  .author-comment {
 
-#trackbacks {
-}
+  }
+  .comment-author {
+    float: left;
+    margin: 0 20px 0 0;
+  }
+  .comment-author .author {
+    display: block;
+    padding-top: 6px;
+    width:65px;
+    text-align:center;
+    text-transform:capitalize;
+    font-weight: bold;
+    font-size:12px;
+  }
+  .comment-text {
 
-li.trackback {
-}
+  }
+	
+	/* Comment meta */
+  .comment-meta {
+    float: right;
+  }
 
-p#no-comments {
-}
+		/* Reply */
+    .reply {
+      float: right;
+      margin-left: 28px;
+    }
+    .reply a {
+      display:inline-block;
+      text-decoration:none !important;
+    }
+     .reply a:hover {
+      
+    }
 
-.allowed_tags {
-	padding: 15px;
-	background: #eee;
-	color: #666;
-	font-size: 11px;
-	font-family: "Courier New", Courier, monospace;
-	strong {
-		font-family:Tahoma, Geneva, sans-serif;
-	}
-}
+  .waiting-for-approval {
 
-#respond {
-	padding-top: 25px;
-	& h3 {
-		}
-	}
+  }
 
-.cancel-comment-reply a {
-	&:hover {
-	}
-}
+ #trackbacks {
 
-@media (min-width: 768px) and (max-width: 979px) {
-	.comment-list ul.children {
-		margin: 0;
-	}
-}
-@media (max-width: 767px) {
-	.comment-list ul.children {
-		margin: 0;
-	}
-}
+ }
+  li.trackback {
+
+  }
+ p#no-comments {
+
+ }
+
+  .allowed_tags {
+    padding:15px;
+    background:#eee;
+    color:#666;
+    font-size:11px;
+    font-family:"Courier New", Courier, monospace;
+  }
+  .allowed_tags strong {
+    font-family:Tahoma, Geneva, sans-serif;
+  }
+  #respond {
+    padding-top: 25px;
+    & h3 {
+    }
+  }
+  .cancel-comment-reply a {
+    
+  }
+  .cancel-comment-reply a:hover {
+    
+  }
+  /* Portrait tablet to landscape and desktop */
+  @media (min-width: 768px) and (max-width: 979px) {
+    .comment-list ul.children {
+      margin: 0;
+    } 
+  }
+  /* Landscape phone to portrait tablet */
+  @media (max-width: 767px) {
+    .comment-list ul.children {
+      margin: 0;
+    }  
+  }
 .nocomments {
-	margin: 0;
+  margin: 0;
 }
 
 
 /* Comment form */
 #commentform {
-	p.field {
-		margin-bottom: 10px;
-	}
-	small {
-		color:#8b8b8b;
-	}
-	label {
-		display:block;
-	}
-	input[type="text"] { 
-		margin: 0;
-		padding: 6px 6px 7px;
-		width: 288px;
-		@media (max-width: 767px) {
-			width: 100%;
-			height: 30px;
-			line-height: 15px;
-			.box-sizing(border-box);
-		}
-	}
-	#commentform input[type="submit"] {
-		&:hover {
-		}
-	}
-	textarea {
-		overflow:auto;
-		margin: 0;
-		padding: 6px 6px 7px;
-		min-width: 530px;
-		min-height:230px;
-		max-width: 530px;
-		width: 530px;
-		height: 230px;
-		line-height: 15px;
-		.children & {
-			min-width: 100px;
-			max-width: 100%;
-			width: 100%;
-			line-height: 15px;
-			.box-sizing(border-box);
-		}
-		@media (min-width: 768px) and (max-width: 979px) {
-			min-width: 100%;
-			max-width: 100%;
-			width: 100%;
-			line-height: 15px;
-			.box-sizing(border-box);
-		}
-		@media (max-width: 767px) {
-			min-width: 100%;
-			max-width: 100%;
-			width: 100%;
-			line-height: 15px;
-			.box-sizing(border-box);
-		}
-	}
+  
 }
+  #commentform p.field {
+    margin-bottom:10px;
+  }
+    #commentform small {
+      color:#8b8b8b;
+    }
+  #commentform label {
+    display:block;
+  }
+  #commentform input[type="text"] { 
+    margin: 0;
+    padding: 6px;
+    width: 288px;
+  }
+  #commentform input[type="submit"] {
+    
+  }
+  #commentform input[type="submit"]:hover {
+    
+  }
+  #commentform textarea {
+    overflow:auto;
+    margin: 0;
+    min-width: 530px;
+    min-height:230px;
+    max-width: 530px;
+    width: 530px;
+    height:230px;
+    .children & {
+      .box-sizing(border-box);
+      width: 100%;
+      max-width: 100%;
+      min-width: 100px;
+    }
+  }
+  /* Portrait tablet to landscape and desktop */
+  @media (min-width: 768px) and (max-width: 979px) {
+    #commentform textarea {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        .box-sizing(border-box);
+    }
+  }
+  /* Landscape phone to portrait tablet */
+  @media (max-width: 767px) {
+    #commentform input[type="text"] {
+      width: 100%;
+      height: 30px;
+      .box-sizing(border-box);
+    }
+    #commentform textarea {
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+      .box-sizing(border-box);
+    }
+  }

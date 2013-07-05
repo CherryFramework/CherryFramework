@@ -181,8 +181,11 @@ if ( !function_exists( 'tz_image' ) ) {
 				$thumb   = get_post_thumbnail_id();
 				$img_url = wp_get_attachment_url( $thumb,'full'); //get img URL
 				$image   = aq_resize( $img_url, 700, 460, true ); //resize & crop img
+				if (!$image) 
+					$image = $img_url;	/* return original if the image can not be resized
+										to the exact dimension specified in the arguments in crop mode */
 
-				if($lightbox) :
+				if ($lightbox) :
 					echo '<figure class="featured-thumbnail thumbnail large"><a class="image-wrap" rel="prettyPhoto" title="'. get_the_title() .'" href="'. $src[0] .'"><img src="'. $image .'" alt="'. get_the_title() .'" /><span class="zoom-icon"></span></a></figure><div class="clear"></div>';
 				else :
 					echo '<figure class="featured-thumbnail thumbnail large"><img src="'. $image .'" alt="'. get_the_title() .'" /></figure><div class="clear"></div>';
@@ -572,7 +575,7 @@ if ( !function_exists( 'mytheme_comment' ) ) {
 if ( !function_exists( 'breadcrumbs' ) ) {
 	function breadcrumbs() {
 
-	$showOnHome  = 0; // 1 - show "breadcrumbs" on home page, 0 - hide
+	$showOnHome  = 1; // 1 - show "breadcrumbs" on home page, 0 - hide
 	$delimiter   = '<li class="divider">/</li>'; // divider
 	$home        = get_the_title( get_option('page_on_front', true) ); // text for link "Home"
 	$showCurrent = 1; // 1 - show title current post/page, 0 - hide
@@ -637,12 +640,14 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 					if ($showCurrent == 1)
 						echo $before . get_the_title() . $after;
 				} else {
-					$cat  = get_the_category(); 
-					$cat  = $cat[0];
-					$cats = get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
-					if ($showCurrent == 0) 
-						$cats = preg_replace("#^(.+)\s$delimiter\s$#", "$1", $cats);
-					echo $cats;
+					$cat  = get_the_category();
+					if (!empty($cat)) {
+						$cat  = $cat[0];
+						$cats = get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
+						if ($showCurrent == 0) 
+							$cats = preg_replace("#^(.+)\s$delimiter\s$#", "$1", $cats);
+						echo $cats;
+					}
 					if ($showCurrent == 1) 
 						echo $before . get_the_title() . $after;
 				}
@@ -695,5 +700,5 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 			}
 			echo '</ul>';
 		}
-	} // end breadcrumbs() 
+	} // end breadcrumbs()
 }?>

@@ -203,7 +203,7 @@
 	include_once (CHILD_DIR . '/includes/register-plugins.php');
 
 	// Framework Data Management
-	include_once (PARENT_DIR . '/includes/data_management/data_management_interface.php');
+	include_once (PARENT_DIR . '/admin/data_management/data_management_interface.php');
 	
 	// WP Pointers
 	include_once (PARENT_DIR . '/includes/class.wp-help-pointers.php');

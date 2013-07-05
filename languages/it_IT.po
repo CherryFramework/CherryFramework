@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ru_RU\n"
-"POT-Creation-Date: 2013-06-26 14:47+0200\n"
-"PO-Revision-Date: 2013-06-26 15:16+0200\n"
+"POT-Creation-Date: 2013-06-27 11:39+0200\n"
+"PO-Revision-Date: 2013-06-27 11:46+0200\n"
 "Last-Translator: \n"
 "Language-Team:  <demolink@info.org>\n"
 "MIME-Version: 1.0\n"
@@ -239,7 +239,7 @@ msgstr "Terminare"
 msgid "Skip"
 msgstr "Salta"
 
-#: ../includes/locals.php:28 ../includes/widgets/widgets-context.php:290
+#: ../includes/locals.php:28
 msgid "None"
 msgstr "Nessuno"
 
@@ -1778,11 +1778,11 @@ msgstr "FAQ"
 msgid "Our Team"
 msgstr "Il Nostro Team"
 
-#: ../includes/locals.php:414 ../includes/widgets/widgets-context.php:193
+#: ../includes/locals.php:414
 msgid "Category"
 msgstr "Categoria"
 
-#: ../includes/locals.php:415 ../includes/widgets/widgets-context.php:194
+#: ../includes/locals.php:415
 msgid "Tag"
 msgstr "Tag"
 
@@ -1981,7 +1981,6 @@ msgid "Put your quote in this field."
 msgstr "Metti il tuo preventivo in questo campo."
 
 #: ../includes/locals.php:476 ../includes/locals.php:751
-#: ../includes/widgets/widgets-context.php:196
 msgid "Author"
 msgstr "Autore"
 
@@ -3355,7 +3354,7 @@ msgstr "Archivio per Categoria "
 msgid "Tag Archive for"
 msgstr "Tag Archivio per"
 
-#: ../includes/locals.php:878 ../includes/widgets/widgets-context.php:195
+#: ../includes/locals.php:878 ../includes/locals.php:921
 msgid "Archive"
 msgstr "Archivio"
 
@@ -3445,156 +3444,157 @@ msgstr ""
 msgid "Theme Options Media"
 msgstr "Opzioni del tema supporti "
 
-#: ../includes/widgets/widgets-context.php:177
+#: ../includes/locals.php:911
 msgid "Visibility"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:180
-msgid "Visible at: "
+#: ../includes/locals.php:912
+msgid "Visible at"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:182
+#: ../includes/locals.php:913
+msgid "Visible on"
+msgstr ""
+
+#: ../includes/locals.php:914
+msgid "Visible for"
+msgstr ""
+
+#: ../includes/locals.php:915
 msgid "All pages"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:183
-msgid "All pages expecting:"
+#: ../includes/locals.php:916
+msgid "All pages expecting"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:184
-msgid "No pages expecting:"
+#: ../includes/locals.php:917
+msgid "No pages expecting"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:188
-msgid "Select page to add"
-msgstr ""
-
-#: ../includes/widgets/widgets-context.php:190
+#: ../includes/locals.php:918
 msgid "Homepage"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:191
+#: ../includes/locals.php:919
 #, fuzzy
 msgid "Page"
 msgstr "Pagina"
 
-#: ../includes/widgets/widgets-context.php:192
+#: ../includes/locals.php:920
 #, fuzzy
 msgid "Post"
 msgstr "Messaggi"
 
-#: ../includes/widgets/widgets-context.php:197
+#: ../includes/locals.php:922
 #, fuzzy
 msgid "Page Template"
 msgstr "Sito url"
 
-#: ../includes/widgets/widgets-context.php:198
+#: ../includes/locals.php:923
 #, fuzzy
 msgid "Search page"
 msgstr "Cerca "
 
-#: ../includes/widgets/widgets-context.php:199
+#: ../includes/locals.php:924
 msgid "404 page"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:201
-msgid "Page ID/Title/slug:"
-msgstr ""
-
-#: ../includes/widgets/widgets-context.php:202
+#: ../includes/locals.php:925
 #, fuzzy
-msgid "Post ID/Title/slug:"
+msgid "Page ID/Title/slug"
 msgstr "Titolo del post"
 
-#: ../includes/widgets/widgets-context.php:203
+#: ../includes/locals.php:926
 #, fuzzy
-msgid "Category ID/Name/slug:"
+msgid "Post ID/Title/slug"
+msgstr "Titolo del post"
+
+#: ../includes/locals.php:927
+#, fuzzy
+msgid "Category ID/Name/slug"
 msgstr "Categorie Slug:"
 
-#: ../includes/widgets/widgets-context.php:204
-msgid "Tag ID/Name:"
-msgstr ""
-
-#: ../includes/widgets/widgets-context.php:205
+#: ../includes/locals.php:928
 #, fuzzy
-msgid "Author:"
-msgstr "Autore"
+msgid "Tag ID/Name"
+msgstr "Categorie Slug:"
 
-#: ../includes/widgets/widgets-context.php:206
+#: ../includes/locals.php:929
 #, fuzzy
-msgid "Template:"
+msgid "Template"
 msgstr "Sito url"
 
-#: ../includes/widgets/widgets-context.php:207
+#: ../includes/locals.php:930
 msgid "Add page"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:210
+#: ../includes/locals.php:931
 msgid "Selected pages"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:211
+#: ../includes/locals.php:932
 msgid "No pages"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:294
+#: ../includes/locals.php:933
 #, fuzzy
 msgid "All devices"
 msgstr "Servizi"
 
-#: ../includes/widgets/widgets-context.php:295
+#: ../includes/locals.php:934
 msgid "Desktops"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:296
+#: ../includes/locals.php:935
 #, fuzzy
 msgid "Tablets"
 msgstr "Tavolo"
 
-#: ../includes/widgets/widgets-context.php:297
+#: ../includes/locals.php:936
 msgid "Phones"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:298
+#: ../includes/locals.php:937
 msgid "Desktops/Tablets"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:299
+#: ../includes/locals.php:938
 msgid "Tablets/Phones"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:300
+#: ../includes/locals.php:939
 msgid "Desktops/Phones"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:303
-msgid "Visible on: "
-msgstr ""
-
-#: ../includes/widgets/widgets-context.php:312
+#: ../includes/locals.php:940
 msgid "All users"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:313
+#: ../includes/locals.php:941
 msgid "Only guests"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:314
+#: ../includes/locals.php:942
 msgid "Only registered users"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:315
+#: ../includes/locals.php:943
 msgid "Only administrator"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:318
-msgid "Visible for: "
+#: ../includes/locals.php:944
+msgid "Select page to add"
 msgstr ""
 
-#: ../includes/widgets/widgets-context.php:325
+#: ../includes/locals.php:945
 #, fuzzy
-msgid "Custom CSS class: "
+msgid "Custom CSS class"
 msgstr "CSS personalizzato"
+
+#, fuzzy
+#~ msgid "Author:"
+#~ msgstr "Autore"
 
 #~ msgid "Show all"
 #~ msgstr "Mostra tutti"

@@ -34,20 +34,31 @@
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo( 'name' ); ?>" href="<?php bloginfo( 'rss2_url' ); ?>" />
 	<link rel="alternate" type="application/atom+xml" title="<?php bloginfo( 'name' ); ?>" href="<?php bloginfo( 'atom_url' ); ?>" />
-	<?php 	
-	/* The HTML5 Shim is required for older browsers, mainly older versions IE */ ?>
-	<!--[if lt IE 8]>
-	<div style=' clear: both; text-align:center; position: relative;'>
-    	<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt="" /></a>
-    </div>
-	<![endif]-->
-	
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_directory_uri(); ?>/bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_directory_uri(); ?>/bootstrap/css/responsive.css" />	
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/css/prettyPhoto.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/css/camera.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-	
+	<style type="text/css">
+		<?php echo of_get_option('custom_css'); ?>
+
+		<?php $background = of_get_option('body_background');
+			if ($background != '') {
+				if ($background['image'] != '') {
+					echo 'body { background-image:url('.$background['image']. '); background-repeat:'.$background['repeat'].'; background-position:'.$background['position'].';  background-attachment:'.$background['attachment'].'; }';
+				}
+				if($background['color'] != '') {
+					echo 'body { background-color:'.$background['color']. '}';
+				}
+			};
+		?>
+		
+		<?php $header_styling = of_get_option('header_color'); 
+			if($header_styling != '') {
+				echo '.header {background-color:'.$header_styling.'}';
+			}
+		?>
+	</style>
 	<?php		
 		/* Always have wp_head() just before the closing </head>
 		 * tag of your theme, or you will break many plugins, which
@@ -56,7 +67,13 @@
 		 */
 		wp_head();
 	?>
-	  
+	<?php 	
+	/* The HTML5 Shim is required for older browsers, mainly older versions IE */ ?>
+	<!--[if lt IE 8]>
+	<div style=' clear: both; text-align:center; position: relative;'>
+    	<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt="" /></a>
+    </div>
+	<![endif]-->
 	<!--[if (gt IE 9)|!(IE)]><!-->
 	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.mobile.customized.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
@@ -65,7 +82,6 @@
 		});
 	</script>
 	<!--<![endif]-->
-  
 	<script type="text/javascript">
 		// Init navigation menu
 		jQuery(function(){
@@ -95,27 +111,6 @@
 			scaleFix();
 		})
 	</script>
-  
-	<style type="text/css">
-		<?php echo of_get_option('custom_css'); ?>
-
-		<?php $background = of_get_option('body_background');
-			if ($background != '') {
-				if ($background['image'] != '') {
-					echo 'body { background-image:url('.$background['image']. '); background-repeat:'.$background['repeat'].'; background-position:'.$background['position'].';  background-attachment:'.$background['attachment'].'; }';
-				}
-				if($background['color'] != '') {
-					echo 'body { background-color:'.$background['color']. '}';
-				}
-			};
-		?>
-		
-		<?php $header_styling = of_get_option('header_color'); 
-			if($header_styling != '') {
-				echo '.header {background-color:'.$header_styling.'}';
-			}
-		?>
-	</style>
 </head>
 
 <body <?php body_class(); ?>>

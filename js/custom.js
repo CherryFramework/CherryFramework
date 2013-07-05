@@ -1,3 +1,6 @@
+// ---------------------------------------------------------
+// !!!!!!!!!!!!!!!!!document ready!!!!!!!!!!!!!!!!!!!!!!!!!!
+// ---------------------------------------------------------
 $(document).ready(function(){
 // ---------------------------------------------------------
 // Prettyphoto
@@ -67,5 +70,27 @@ $(document).ready(function(){
 				} 
 			})
 		}
+	}
+// ---------------------------------------------------------
+// images loader
+// ---------------------------------------------------------
+	$(window).bind('resize', img_loader).bind('scroll', img_loader).trigger('scroll');
+	function img_loader(){
+		var get_img = $('img[data-src]').eq(0)
+		if(get_img[0]){
+			var visible_height = $(window).scrollTop() + $(window).height(),
+				img_top_position = get_img.offset().top, 
+				img_src = get_img.attr('data-src');
+
+			if(img_top_position<visible_height){
+				get_img.fadeOut(0).attr({'src':img_src}).removeAttr('data-src').bind('load', img_load_complete);
+			};
+		}else{
+			$(window).unbind('resize', img_loader).unbind('scroll', img_loader);
+		}
+	}
+	function img_load_complete(){
+		$(this).unbind('load').fadeIn(500)
+		img_loader();
 	}
 });

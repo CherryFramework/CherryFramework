@@ -59,12 +59,12 @@
 		query_posts("post_type=slider&posts_per_page=-1&post_status=publish&orderby=name&order=ASC");
 		while ( have_posts() ) : the_post();
 
-		$custom             = get_post_custom($post->ID);
-		$url                = get_post_custom_values("my_slider_url");
-		$caption            = get_post_custom_values("my_slider_caption");
-		$sl_image_url       = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'slider-post-thumbnail');
+		$custom = get_post_custom($post->ID);
+		$url = get_post_custom_values("my_slider_url");
+		$caption = get_post_custom_values("my_slider_caption");
+		$sl_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'slider-post-thumbnail');
 		$sl_small_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'slider-thumb');
-		$banner_animation   = of_get_option('sl_banner');
+		$banner_animation = of_get_option('sl_banner');
 
 		if(has_post_thumbnail()){
 
@@ -94,6 +94,7 @@
 				<?php }
 				}
 		echo "</div>";
+
 		}
 	endwhile;
 	wp_reset_query(); ?>

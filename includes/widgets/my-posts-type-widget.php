@@ -108,7 +108,7 @@ function widget($args, $instance) {
       }		
    
       if ( $instance['date'] ) : ?>
-        <time datetime="<?php the_time('Y-m-d\TH:i'); ?>"><?php the_time('F j, Y'); ?> <?php the_time() ?></time>
+        <time datetime="<?php the_time('Y-m-d\TH:i'); ?>"><?php the_time('F j, Y'); ?><?php the_time() ?></time>
       <?php endif; ?>
       
       <?php if ( $instance['comment_num'] ) : ?>

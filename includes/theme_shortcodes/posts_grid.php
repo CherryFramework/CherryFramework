@@ -7,20 +7,21 @@ if (!function_exists('posts_grid_shortcode')) {
 
 	function posts_grid_shortcode($atts, $content = null) {
 		extract(shortcode_atts(array(
-			'type'          => '',
-			'columns'       => '3',
-			'rows'          => '3',
-			'order_by'      => 'date',
-			'order'         => 'DESC',
-			'thumb_width'   => '370',
-			'thumb_height'  => '250',
-			'meta'          => '',
-			'excerpt_count' => '15',
-			'link'          => 'yes',
-			'link_text'     => theme_locals('read_more'),
-			'custom_class'  => ''
+				'type'            => 'post',
+				'category'        => '',
+				'custom_category' => '',
+				'columns'         => '3',
+				'rows'            => '3',
+				'order_by'        => 'date',
+				'order'           => 'DESC',
+				'thumb_width'     => '370',
+				'thumb_height'    => '250',
+				'meta'            => '',
+				'excerpt_count'   => '15',
+				'link'            => 'yes',
+				'link_text'       => theme_locals('read_more'),
+				'custom_class'    => ''
 		), $atts));
-
 
 		$spans = $columns;
 		$rand  = rand();
@@ -84,17 +85,23 @@ if (!function_exists('posts_grid_shortcode')) {
 			global $my_string_limit_words;
 
 			$numb = $columns * $rows;
+
+			// WPML filter
+			$suppress_filters = get_option('suppress_filters');
 							
 			$args = array(
-				'post_type'   => $type,
-				'numberposts' => $numb,
-				'orderby'     => $order_by,
-				'order'       => $order
+				'post_type'         => $type,
+				'category_name'     => $category,
+				$type . '_category' => $custom_category,
+				'numberposts'       => $numb,
+				'orderby'           => $order_by,
+				'order'             => $order,
+				'suppress_filters'  => $suppress_filters
 			);		
 
-			$posts = get_posts($args);
-			$i = 0;
-			$count = 1;
+			$posts      = get_posts($args);
+			$i          = 0;
+			$count      = 1;
 			$output_end = '';
 			if ($numb > count($posts)) {
 				$output_end = '</ul>';
@@ -103,6 +110,17 @@ if (!function_exists('posts_grid_shortcode')) {
 			$output = '<ul class="posts-grid row-fluid unstyled '. $custom_class .'">';
 
 			for ( $j=0; $j < count($posts); $j++ ) {
+				// Unset not translated posts
+				if ( function_exists( 'wpml_get_language_information' ) ) {
+					global $sitepress;
+
+					$check              = wpml_get_language_information( $posts[$j]->ID );
+					$language_code      = substr( $check['locale'], 0, 2 );
+					if ( $language_code != $sitepress->get_current_language() ) unset( $posts[$j] );
+
+					// Post ID is different in a second language Solution
+					if ( function_exists( 'icl_object_id' ) ) $posts[$j] = get_post( icl_object_id( $posts[$j]->ID, $type, true ) );
+				}
 				$post_id        = $posts[$j]->ID;
 				setup_postdata($posts[$j]);
 				$excerpt        = get_the_excerpt();
@@ -132,13 +150,13 @@ if (!function_exists('posts_grid_shortcode')) {
 						$thumbid = get_post_thumbnail_id($post_id);
 										
 						$images = get_children( array(
-							'orderby' => 'menu_order',
-							'order' => 'ASC',
-							'post_type' => 'attachment',
-							'post_parent' => $post_id,
+							'orderby'        => 'menu_order',
+							'order'          => 'ASC',
+							'post_type'      => 'attachment',
+							'post_parent'    => $post_id,
 							'post_mime_type' => 'image',
-							'post_status' => null,
-							'numberposts' => -1
+							'post_status'    => null,
+							'numberposts'    => -1
 						) ); 
 
 						if ( $images ) {

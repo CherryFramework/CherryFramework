@@ -32,7 +32,7 @@ function optionsframework_rolescheck () {
 		// If the user can edit theme options, let the fun begin!
 		add_action( 'admin_menu', 'optionsframework_add_page');
 		add_action( 'admin_menu', 'optionsframework_add_subpage1');
-		// add_action( 'admin_menu', 'optionsframework_add_subpage2');
+		add_action( 'admin_menu', 'optionsframework_add_subpage2');
 		add_action( 'admin_menu', 'optionsframework_add_subpage3');
 		add_action( 'admin_init', 'optionsframework_init' );
 		add_action( 'admin_init', 'optionsframework_mlu_init' );

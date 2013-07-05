@@ -50,7 +50,7 @@ function my_post_type_slider() {
 			'menu_icon' => get_template_directory_uri() . '/includes/images/icon_slides.png',
 			'supports'  => array(
 							'title',
-							'custom-fields',
+							// 'custom-fields',
 							'thumbnail'
 			)
 		)
@@ -80,11 +80,11 @@ function my_post_type_portfolio() {
 						'editor',
 						'thumbnail',
 						'excerpt',
-						'custom-fields',
+						// 'custom-fields',
 						'comments')
 					) 
 				);
-	register_taxonomy('portfolio_category', 'portfolio', array('hierarchical' => true, 'label' => theme_locals("categories"), 'singular_name' => theme_locals("category"), "rewrite" => true, "query_var" => true));
+	register_taxonomy('portfolio_category', 'portfolio', array('hierarchical' => true, 'label' => theme_locals("categories"), 'singular_name' => theme_locals("category"), 'rewrite' => true, 'query_var' => true));
 	register_taxonomy('portfolio_tag', 'portfolio', array('hierarchical' => false, 'label' => theme_locals("tags"), 'singular_name' => theme_locals("tag"), 'rewrite' => true, 'query_var' => true));
 }
 add_action('init', 'my_post_type_portfolio');
@@ -104,7 +104,7 @@ function my_post_type_testi() {
 				),
 				'supports' => array(
 						'title',
-						'custom-fields',
+						// 'custom-fields',
 						'thumbnail',
 						'editor')
 					) 
@@ -176,7 +176,7 @@ function my_post_type_team() {
 				),
 				'supports' => array(
 						'title',
-						'custom-fields',
+						// 'custom-fields',
 						'editor',
 						'thumbnail')
 					) 

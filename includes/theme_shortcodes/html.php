@@ -332,7 +332,7 @@ function icon_shortcode($atts, $content = null) {
             $icon_font_size = (int) $icon_font_size . "px";
         }
         $icon_font_color = ($icon_font_color != '')? $icon_font_color : "#00000";
-        $output = '<figure class="align'. $align ." ".$custom_class.'"><i class="'.$icon_font.'" style="color:'.$icon_font_color.'; font-size:'.$icon_font_size.'; line-height:1.2em;"></i></figure>';
+        $output = '<figure class="align'.$align.' aligntext'.$align.' "><i class="'.$icon_font.' '.$custom_class.'" style="color:'.$icon_font_color.'; font-size:'.$icon_font_size.'; line-height:1.2em;"></i></figure>';
         return $output;
     }
 }

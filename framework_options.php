@@ -535,6 +535,13 @@
 								"class" => "small", //mini, tiny, small
 								"options" => $single_image_size_array);
 
+			$options['load_image'] = array( "name" => theme_locals('load_image_name'),
+								"desc" => theme_locals('load_image_desc'),
+								"id" => "load_image",
+								"std" => "true",
+								"type" => "radio",
+								"options" => $true_false_array);
+
 			$options['post_meta'] = array( "name" => theme_locals('meta_name'),
 								"desc" => theme_locals('meta_desc'),
 								"id" => "post_meta",
