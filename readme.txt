@@ -1,5 +1,3 @@
-= cherry =
+= Cherry Framework v.2.1 =
 
-* by the Template_Help.com, http://info.template-help.com/help/
-
-== ABOUT cherry ==
+Version in development
