@@ -401,7 +401,7 @@ if (!function_exists('shortcode_recenttesti')) {
 
 		$testi = get_posts('post_type=testi&orderby=post_date&numberposts='.$num);
 
-		$output = '<div class="testimonials">';
+		$output = '<div class="testimonials '.$custom_class.'">';
 		
 		global $post;
 		global $my_string_limit_words;
