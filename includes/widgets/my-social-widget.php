@@ -9,85 +9,87 @@ class My_SocialNetworksWidget extends WP_Widget {
 
 	function widget( $args, $instance ) {
 		extract($args);
-		$title = apply_filters('widget_title', $instance['title']);
+		$title = apply_filters( 'widget_title', empty($instance['title']) ? '' : $instance['title'], $instance );
 		
-		$networks['Twitter']['link'] = $instance['twitter'];
-		$networks['Facebook']['link'] = $instance['facebook'];
-		$networks['Flickr']['link'] = $instance['flickr'];
-		$networks['Feed']['link'] = $instance['feed'];
-		$networks['Linkedin']['link'] = $instance['linkedin'];
-		$networks['Delicious']['link'] = $instance['delicious'];
-		$networks['Youtube']['link'] = $instance['youtube'];
-		$networks['Google+']['link'] = $instance['google'];
+		$networks['Twitter']['link']    = $instance['twitter'];
+		$networks['Facebook']['link']   = $instance['facebook'];
+		$networks['Flickr']['link']     = $instance['flickr'];
+		$networks['Feed']['link']       = $instance['feed'];
+		$networks['Linkedin']['link']   = $instance['linkedin'];
+		$networks['Delicious']['link']  = $instance['delicious'];
+		$networks['Youtube']['link']    = $instance['youtube'];
+		$networks['Google+']['link']    = $instance['google'];
 		
-		$networks['Twitter']['label'] = $instance['twitter_label'];
-		$networks['Facebook']['label'] = $instance['facebook_label'];
-		$networks['Flickr']['label'] = $instance['flickr_label'];
-		$networks['Feed']['label'] = $instance['feed_label'];
-		$networks['Linkedin']['label'] = $instance['linkedin_label'];
+		$networks['Twitter']['label']   = $instance['twitter_label'];
+		$networks['Facebook']['label']  = $instance['facebook_label'];
+		$networks['Flickr']['label']    = $instance['flickr_label'];
+		$networks['Feed']['label']      = $instance['feed_label'];
+		$networks['Linkedin']['label']  = $instance['linkedin_label'];
 		$networks['Delicious']['label'] = $instance['delicious_label'];
-		$networks['Youtube']['label'] = $instance['youtube_label'];
-		$networks['Google+']['label'] = $instance['google_label'];
+		$networks['Youtube']['label']   = $instance['youtube_label'];
+		$networks['Google+']['label']   = $instance['google_label'];
 
 		$display = $instance['display'];
 		
 		echo $before_widget;
-		if ( $title )
-			echo $before_title . $title . $after_title;
-		?>
-			<!-- BEGIN SOCIAL NETWORKS -->
-			<?php if ($display == "both" or $display =="labels") {
-				$addClass = "social__list";
-			} elseif ($display == "icons") { 
-				$addClass = "social__row clearfix";
-			} ?>
+		if( $title ) {
+			echo $before_title;
+				echo $title;
+			echo $after_title;
+		} ?>
+		
+		<!-- BEGIN SOCIAL NETWORKS -->
+		<?php if ($display == "both" or $display =="labels") {
+			$addClass = "social__list";
+		} elseif ($display == "icons") { 
+			$addClass = "social__row clearfix";
+		} ?>
+		
+		<ul class="social <?php echo $addClass ?> unstyled">
 			
-			<ul class="social <?php echo $addClass ?> unstyled">
-				
-			<?php foreach(array("Facebook", "Twitter", "Flickr", "Feed", "Linkedin", "Delicious", "Youtube", "Google+") as $network) : ?>
-	    		<?php if (!empty($networks[$network]['link'])) : ?>
-				<li class="social_li">
-					<a class="social_link social_link__<?php echo strtolower($network); ?>" rel="tooltip" data-original-title="<?php echo strtolower($network); ?>" href="<?php echo $networks[$network]['link']; ?>">
-				    	<?php if (($display == "both") or ($display =="icons")) { ?>
-							<span class="social_ico"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/<?php echo strtolower($network);?>.png" alt=""></span>
-						<?php } if (($display == "labels") or ($display == "both")) { ?> 
-							<span class="social_label"><?php if (($networks[$network]['label'])!=="") { echo $networks[$network]['label']; } else { echo $network; } ?></span>
-						<?php } ?>
-					</a>
-				</li>
-				<?php endif; ?>
-			<?php endforeach; ?>
+		<?php foreach(array("Facebook", "Twitter", "Flickr", "Feed", "Linkedin", "Delicious", "Youtube", "Google+") as $network) : ?>
+			<?php if (!empty($networks[$network]['link'])) : ?>
+			<li class="social_li">
+				<a class="social_link social_link__<?php echo strtolower($network); ?>" rel="tooltip" data-original-title="<?php echo strtolower($network); ?>" href="<?php echo $networks[$network]['link']; ?>">
+					<?php if (($display == "both") or ($display =="icons")) { ?>
+						<span class="social_ico"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icons/<?php echo strtolower($network);?>.png" alt=""></span>
+					<?php } if (($display == "labels") or ($display == "both")) { ?> 
+						<span class="social_label"><?php if (($networks[$network]['label'])!=="") { echo $networks[$network]['label']; } else { echo $network; } ?></span>
+					<?php } ?>
+				</a>
+			</li>
+			<?php endif; ?>
+		<?php endforeach; ?>
 			  
 		</ul>
-		<!-- END SOCIAL NETWORKS -->
-	  
+		<!-- END SOCIAL NETWORKS -->	  
 		<?php
 		echo $after_widget;
 	}
 
 	function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-		$instance['title'] = strip_tags($new_instance['title']);
+		$instance                    = $old_instance;
+		$instance['title']           = strip_tags($new_instance['title']);
 		
-		$instance['twitter'] = $new_instance['twitter'];
-		$instance['facebook'] = $new_instance['facebook'];
-		$instance['flickr'] = $new_instance['flickr'];
-		$instance['feed'] = $new_instance['feed'];
-		$instance['linkedin'] = $new_instance['linkedin'];
-		$instance['delicious'] = $new_instance['delicious'];
-		$instance['youtube'] = $new_instance['youtube'];
-		$instance['google'] = $new_instance['google'];
+		$instance['twitter']         = $new_instance['twitter'];
+		$instance['facebook']        = $new_instance['facebook'];
+		$instance['flickr']          = $new_instance['flickr'];
+		$instance['feed']            = $new_instance['feed'];
+		$instance['linkedin']        = $new_instance['linkedin'];
+		$instance['delicious']       = $new_instance['delicious'];
+		$instance['youtube']         = $new_instance['youtube'];
+		$instance['google']          = $new_instance['google'];
 		
-		$instance['twitter_label'] = $new_instance['twitter_label'];
-		$instance['facebook_label'] = $new_instance['facebook_label'];
-		$instance['flickr_label'] = $new_instance['flickr_label'];
-		$instance['feed_label'] = $new_instance['feed_label'];
-		$instance['linkedin_label'] = $new_instance['linkedin_label'];
+		$instance['twitter_label']   = $new_instance['twitter_label'];
+		$instance['facebook_label']  = $new_instance['facebook_label'];
+		$instance['flickr_label']    = $new_instance['flickr_label'];
+		$instance['feed_label']      = $new_instance['feed_label'];
+		$instance['linkedin_label']  = $new_instance['linkedin_label'];
 		$instance['delicious_label'] = $new_instance['delicious_label'];
-		$instance['youtube_label'] = $new_instance['youtube_label'];
-		$instance['google_label'] = $new_instance['google_label'];
-
-		$instance['display'] = $new_instance['display'];
+		$instance['youtube_label']   = $new_instance['youtube_label'];
+		$instance['google_label']    = $new_instance['google_label'];
+		
+		$instance['display']         = $new_instance['display'];
 
 		return $instance;
 	}
@@ -97,27 +99,27 @@ class My_SocialNetworksWidget extends WP_Widget {
 		$defaults = array( 'title' => '', 'twitter' => '', 'twitter_label' => '', 'facebook' => '', 'facebook_label' => '', 'flickr' => '', 'flickr_label' => '', 'feed' => '', 'feed_label' => '', 'linkedin' => '', 'linkedin_label' => '', 'delicious' => '', 'delicious_label' => '', 'youtube' => '', 'youtube_label' => '', 'google' => '', 'google_label' => '', 'display' => 'icons', 'text' => '');
 		$instance = wp_parse_args( (array) $instance, $defaults );
 			
-		$twitter = $instance['twitter'];		
-		$facebook = $instance['facebook'];
-		$flickr = $instance['flickr'];		
-		$feed = $instance['feed'];
-		$linkedin = $instance['linkedin'];	
-		$delicious = $instance['delicious'];
-		$youtube = $instance['youtube'];
-		$google = $instance['google'];
+		$twitter         = $instance['twitter'];
+		$facebook        = $instance['facebook'];
+		$flickr          = $instance['flickr'];
+		$feed            = $instance['feed'];
+		$linkedin        = $instance['linkedin'];
+		$delicious       = $instance['delicious'];
+		$youtube         = $instance['youtube'];
+		$google          = $instance['google'];
 		
-		$twitter_label = $instance['twitter_label'];
-		$facebook_label = $instance['facebook_label'];
-		$flickr_label = $instance['flickr_label'];
-		$feed_label = $instance['feed_label'];
-		$linkedin_label = $instance['linkedin_label'];
+		$twitter_label   = $instance['twitter_label'];
+		$facebook_label  = $instance['facebook_label'];
+		$flickr_label    = $instance['flickr_label'];
+		$feed_label      = $instance['feed_label'];
+		$linkedin_label  = $instance['linkedin_label'];
 		$delicious_label = $instance['delicious_label'];
-		$youtube_label = $instance['youtube_label'];
-		$google_label = $instance['google_label'];
-
-		$display = $instance['display'];		
-		$title = strip_tags($instance['title']);
-		$text = format_to_edit($instance['text']);
+		$youtube_label   = $instance['youtube_label'];
+		$google_label    = $instance['google_label'];
+		
+		$display         = $instance['display'];		
+		$title           = strip_tags($instance['title']);
+		$text            = format_to_edit($instance['text']);
 ?>
 	<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php theme_locals("title") ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
@@ -199,11 +201,6 @@ class My_SocialNetworksWidget extends WP_Widget {
 		<label for="<?php echo $this->get_field_id('icons'); ?>"><input type="radio" name="<?php echo $this->get_field_name('display'); ?>" value="icons" id="<?php echo $this->get_field_id('icons'); ?>" <?php checked($display, "icons"); ?>></input>  <?php echo theme_locals("icons") ?></label>
 		<label for="<?php echo $this->get_field_id('labels'); ?>"><input type="radio" name="<?php echo $this->get_field_name('display'); ?>" value="labels" id="<?php echo $this->get_field_id('labels'); ?>" <?php checked($display, "labels"); ?>></input> <?php echo theme_locals("labels") ?></label>
 		<label for="<?php echo $this->get_field_id('both'); ?>"><input type="radio" name="<?php echo $this->get_field_name('display'); ?>" value="both" id="<?php echo $this->get_field_id('both'); ?>" <?php checked($display, "both"); ?>></input> <?php echo theme_locals("both") ?></label>
-
-
 <?php
 	}
-}
-
-add_action('widgets_init', create_function('', 'return register_widget("My_SocialNetworksWidget");'));
-?>
+}?>

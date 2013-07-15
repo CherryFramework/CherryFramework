@@ -7,14 +7,14 @@ if (!function_exists('mini_posts_grid_shortcode')) {
 
 	function mini_posts_grid_shortcode($atts, $content = null) {
 		extract(shortcode_atts(array(
-			'type' => '',
-			'numb' => '8',
-			'thumbs' => '',
-			'thumb_width' => '',
+			'type'         => 'post',
+			'numb'         => '8',
+			'thumbs'       => '',
+			'thumb_width'  => '',
 			'thumb_height' => '',
-			'order_by' => 'date',
-			'order' => 'DESC',
-			'align' => '',
+			'order_by'     => 'date',
+			'order'        => 'DESC',
+			'align'        => '',
 			'custom_class' => ''
 		), $atts));
 
@@ -68,54 +68,69 @@ if (!function_exists('mini_posts_grid_shortcode')) {
 					$thumb_y = 60;
 					break;
 			}
-		}	
+		}
 
 			global $post;
 			global $my_string_limit_words;
-							
+
+			// WPML filter
+			$suppress_filters = get_option('suppress_filters');
+
 			$args = array(
-				'post_type' => $type,
-				'numberposts' => $numb,
-				'orderby' => $order_by,
-				'order' => $order
-			);		
+				'post_type'        => $type,
+				'numberposts'      => $numb,
+				'orderby'          => $order_by,
+				'order'            => $order,
+				'suppress_filters' => $suppress_filters
+			);
 
 			$posts = get_posts($args);
 			$i = 0;
 
 			$output = '<ul class="mini-posts-grid grid-align-'.$align.' unstyled '.$custom_class.'">';
 			
-			foreach($posts as $post) {
+			foreach($posts as $key => $post) {
+				// Unset not translated posts
+				if ( function_exists( 'wpml_get_language_information' ) ) {
+					global $sitepress;
+
+					$check              = wpml_get_language_information( $post->ID );
+					$language_code      = substr( $check['locale'], 0, 2 );
+					if ( $language_code != $sitepress->get_current_language() ) unset( $posts[$key] );
+
+					// Post ID is different in a second language Solution
+					if ( function_exists( 'icl_object_id' ) ) $post = get_post( icl_object_id( $post->ID, $type, true ) );
+				}
 				setup_postdata($post);
-				$excerpt = get_the_excerpt();
+				$excerpt        = get_the_excerpt();
 				$attachment_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
-				$url = $attachment_url['0'];
-				$image = aq_resize($url, $thumb_x, $thumb_y, true);
-				$mediaType = get_post_meta($post->ID, 'tz_portfolio_type', true);
-				$prettyType = 0;
+				$url            = $attachment_url['0'];
+				$image          = aq_resize($url, $thumb_x, $thumb_y, true);
+				$mediaType      = get_post_meta($post->ID, 'tz_portfolio_type', true);
+				$prettyType     = 0;
 
 					$output .= '<li class="'.$thumbs.'">';
 						if(has_post_thumbnail($post->ID) && $mediaType == 'Image') {
-												
-							$prettyType = 'prettyPhoto';									
+
+							$prettyType = 'prettyPhoto';
 
 							$output .= '<figure class="featured-thumbnail thumbnail">';
 							$output .= '<a href="'.$url.'" title="'.get_the_title($post->ID).'" rel="' .$prettyType.'">';
 							$output .= '<img  src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
 							$output .= '<span class="zoom-icon"></span></a></figure>';
-						} elseif ($mediaType != 'Video' && $mediaType != 'Audio') {							
+						} elseif ($mediaType != 'Video' && $mediaType != 'Audio') {
 
 							$thumbid = 0;
 							$thumbid = get_post_thumbnail_id($post->ID);
-											
+
 							$images = get_children( array(
-								'orderby' => 'menu_order',
-								'order' => 'ASC',
-								'post_type' => 'attachment',
-								'post_parent' => $post->ID,
+								'orderby'        => 'menu_order',
+								'order'          => 'ASC',
+								'post_type'      => 'attachment',
+								'post_parent'    => $post->ID,
 								'post_mime_type' => 'image',
-								'post_status' => null,
-								'numberposts' => -1
+								'post_status'    => null,
+								'numberposts'    => -1
 							) ); 
 
 							if ( $images ) {
@@ -123,7 +138,7 @@ if (!function_exists('mini_posts_grid_shortcode')) {
 								$k = 0;
 								//looping through the images
 								foreach ( $images as $attachment_id => $attachment ) {
-									$prettyType = "prettyPhoto[gallery".$i."]";								
+									$prettyType = "prettyPhoto[gallery".$i."]";
 									//if( $attachment->ID == $thumbid ) continue;
 
 									$image_attributes = wp_get_attachment_image_src( $attachment_id, 'full' ); // returns an array
@@ -140,15 +155,14 @@ if (!function_exists('mini_posts_grid_shortcode')) {
 											$output .= '<figure class="featured-thumbnail thumbnail">';
 											$output .= '<a href="'.$image_attributes[0].'" title="'.get_the_title($post->ID).'" rel="' .$prettyType.'">';
 											$output .= '<img  src="'.$img.'" alt="'.get_the_title($post->ID).'" />';
-										}	
+										}
 									} else {
 										$output .= '<figure class="featured-thumbnail thumbnail" style="display:none;">';
 										$output .= '<a href="'.$image_attributes[0].'" title="'.get_the_title($post->ID).'" rel="' .$prettyType.'">';
-										$output .= '<img  src="'.$img.'" alt="'.get_the_title($post->ID).'" />';
 									}
 									$output .= '<span class="zoom-icon"></span></a></figure>';
 									$k++;
-								}					
+								}
 							} elseif (has_post_thumbnail($post->ID)) {
 								$prettyType = 'prettyPhoto';
 								$output .= '<figure class="featured-thumbnail thumbnail">';
@@ -171,13 +185,13 @@ if (!function_exists('mini_posts_grid_shortcode')) {
 						}
 
 						$output .= '</li>';
-				$i++;		
+				$i++;
 
 			} // end foreach
-			$output .= '</ul><!-- .posts-grid (end) -->';		
+			$output .= '</ul><!-- .posts-grid (end) -->';
 		$output .= '<div class="clear"></div>';
 		return $output;
-	} 
+	}
 	add_shortcode('mini_posts_grid', 'mini_posts_grid_shortcode');
-	
+
 }?>

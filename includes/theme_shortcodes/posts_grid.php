@@ -7,20 +7,21 @@ if (!function_exists('posts_grid_shortcode')) {
 
 	function posts_grid_shortcode($atts, $content = null) {
 		extract(shortcode_atts(array(
-			'type'          => '',
-			'columns'       => '3',
-			'rows'          => '3',
-			'order_by'      => 'date',
-			'order'         => 'DESC',
-			'thumb_width'   => '370',
-			'thumb_height'  => '250',
-			'meta'          => '',
-			'excerpt_count' => '15',
-			'link'          => 'yes',
-			'link_text'     => theme_locals('read_more'),
-			'custom_class'  => ''
+			'type'            => 'post',
+			'category'        => '',
+			'custom_category' => '',
+			'columns'         => '3',
+			'rows'            => '3',
+			'order_by'        => 'date',
+			'order'           => 'DESC',
+			'thumb_width'     => '370',
+			'thumb_height'    => '250',
+			'meta'            => '',
+			'excerpt_count'   => '15',
+			'link'            => 'yes',
+			'link_text'       => theme_locals('read_more'),
+			'custom_class'    => ''
 		), $atts));
-
 
 		$spans = $columns;
 		$rand  = rand();
@@ -84,17 +85,23 @@ if (!function_exists('posts_grid_shortcode')) {
 			global $my_string_limit_words;
 
 			$numb = $columns * $rows;
-							
-			$args = array(
-				'post_type'   => $type,
-				'numberposts' => $numb,
-				'orderby'     => $order_by,
-				'order'       => $order
-			);		
 
-			$posts = get_posts($args);
-			$i = 0;
-			$count = 1;
+			// WPML filter
+			$suppress_filters = get_option('suppress_filters');
+
+			$args = array(
+				'post_type'         => $type,
+				'category_name'     => $category,
+				$type . '_category' => $custom_category,
+				'numberposts'       => $numb,
+				'orderby'           => $order_by,
+				'order'             => $order,
+				'suppress_filters'  => $suppress_filters
+			);
+
+			$posts      = get_posts($args);
+			$i          = 0;
+			$count      = 1;
 			$output_end = '';
 			if ($numb > count($posts)) {
 				$output_end = '</ul>';
@@ -103,6 +110,17 @@ if (!function_exists('posts_grid_shortcode')) {
 			$output = '<ul class="posts-grid row-fluid unstyled '. $custom_class .'">';
 
 			for ( $j=0; $j < count($posts); $j++ ) {
+				// Unset not translated posts
+				if ( function_exists( 'wpml_get_language_information' ) ) {
+					global $sitepress;
+
+					$check              = wpml_get_language_information( $posts[$j]->ID );
+					$language_code      = substr( $check['locale'], 0, 2 );
+					if ( $language_code != $sitepress->get_current_language() ) unset( $posts[$j] );
+
+					// Post ID is different in a second language Solution
+					if ( function_exists( 'icl_object_id' ) ) $posts[$j] = get_post( icl_object_id( $posts[$j]->ID, $type, true ) );
+				}
 				$post_id        = $posts[$j]->ID;
 				setup_postdata($posts[$j]);
 				$excerpt        = get_the_excerpt();
@@ -119,26 +137,26 @@ if (!function_exists('posts_grid_shortcode')) {
 
 				$output .= '<li class="'. $spans .'">';
 					if(has_post_thumbnail($post_id) && $mediaType == 'Image') {
-											
-						$prettyType = 'prettyPhoto-'.$rand;									
+
+						$prettyType = 'prettyPhoto-'.$rand;
 
 						$output .= '<figure class="featured-thumbnail thumbnail">';
 						$output .= '<a href="'.$url.'" title="'.get_the_title($post_id).'" rel="' .$prettyType.'">';
 						$output .= '<img  src="'.$image.'" alt="'.get_the_title($post_id).'" />';
 						$output .= '<span class="zoom-icon"></span></a></figure>';
-					} elseif ($mediaType != 'Video' && $mediaType != 'Audio') {					
+					} elseif ($mediaType != 'Video' && $mediaType != 'Audio') {
 
 						$thumbid = 0;
 						$thumbid = get_post_thumbnail_id($post_id);
-										
+
 						$images = get_children( array(
-							'orderby' => 'menu_order',
-							'order' => 'ASC',
-							'post_type' => 'attachment',
-							'post_parent' => $post_id,
+							'orderby'        => 'menu_order',
+							'order'          => 'ASC',
+							'post_type'      => 'attachment',
+							'post_parent'    => $post_id,
 							'post_mime_type' => 'image',
-							'post_status' => null,
-							'numberposts' => -1
+							'post_status'    => null,
+							'numberposts'    => -1
 						) ); 
 
 						if ( $images ) {
@@ -146,7 +164,7 @@ if (!function_exists('posts_grid_shortcode')) {
 							$k = 0;
 							//looping through the images
 							foreach ( $images as $attachment_id => $attachment ) {
-								$prettyType = "prettyPhoto-".$rand ."[gallery".$i."]";								
+								$prettyType = "prettyPhoto-".$rand ."[gallery".$i."]";
 								//if( $attachment->ID == $thumbid ) continue;
 
 								$image_attributes = wp_get_attachment_image_src( $attachment_id, 'full' ); // returns an array
@@ -167,11 +185,10 @@ if (!function_exists('posts_grid_shortcode')) {
 								} else {
 									$output .= '<figure class="featured-thumbnail thumbnail" style="display:none;">';
 									$output .= '<a href="'.$image_attributes[0].'" title="'.get_the_title($post_id).'" rel="' .$prettyType.'">';
-									$output .= '<img  src="'.$img.'" alt="'.get_the_title($post_id).'" />';
 								}
 								$output .= '<span class="zoom-icon"></span></a></figure>';
 								$k++;
-							}					
+							}
 						} elseif (has_post_thumbnail($post_id)) {
 							$prettyType = 'prettyPhoto-'.$rand;
 							$output .= '<figure class="featured-thumbnail thumbnail">';
@@ -232,7 +249,7 @@ if (!function_exists('posts_grid_shortcode')) {
 							$output .= '</span>';
 
 							// post comment count
-							$num = 0;						
+							$num = 0;
 							$queried_post = get_post($post_id);
 							$cc = $queried_post->comment_count;
 							if( $cc == $num || $cc > 1 ) : $cc = $cc.' Comments';
@@ -265,11 +282,11 @@ if (!function_exists('posts_grid_shortcode')) {
 					$output .= '</ul><!-- .posts-grid (end) -->';
 				}
 			$count++;
-			$i++;		
+			$i++;
 
 		} // end for
-		
+
 		return $output;
-	}	 
-	add_shortcode('posts_grid', 'posts_grid_shortcode');	
+	}
+	add_shortcode('posts_grid', 'posts_grid_shortcode');
 }?>

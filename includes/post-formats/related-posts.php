@@ -3,17 +3,21 @@
 // we are using this function to get an array of tags assigned to current post
 $tags = wp_get_post_tags($post->ID);
 
+// WPML filter
+$suppress_filters = get_option('suppress_filters');
+
 if ($tags) {
 
 	$tag_ids = array();
 			
-	foreach($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
-		$args=array(
-			'tag__in' => $tag_ids,
-			'post__not_in' => array($post->ID),
-			'showposts' => 4, // these are the number of related posts we want to display
-			'ignore_sticky_posts' => 1 // to exclude the sticky post
-		);
+	foreach ($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
+		$args = array(
+			'tag__in'             => $tag_ids,
+			'post__not_in'        => array($post->ID),
+			'showposts'           => 4, // these are the number of related posts we want to display
+			'ignore_sticky_posts' => 1, // to exclude the sticky post
+			'suppress_filters'    => $suppress_filters
+			);
 
 	// WP_Query takes the same arguments as query_posts
 	$related_query = new WP_Query($args);
@@ -35,9 +39,12 @@ if ($tags) {
 					<li class="related-posts_item">
 						<?php if(has_post_thumbnail()) { ?>
 							<?php
-								$thumb = get_post_thumbnail_id();
+								$thumb   = get_post_thumbnail_id();
 								$img_url = wp_get_attachment_url( $thumb,'full'); //get img URL
-								$image = aq_resize( $img_url, 200, 120, true ); //resize & crop img
+								$image   = aq_resize( $img_url, 200, 120, true ); //resize & crop img
+								if (!$image) 
+									$image = $img_url;	/* return original if the image can not be resized
+														to the exact dimension specified in the arguments in crop mode */
 							?>
 							<figure class="thumbnail featured-thumbnail">
 								<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><img src="<?php echo $image ?>" alt="<?php the_title(); ?>" /></a>

@@ -81,7 +81,7 @@
 			if ( get_option($option_name) ) {
 				$options = get_option($option_name);
 			}
-				
+			
 			if ( isset($options[$name]) ) {
 				return $options[$name];
 			} else {
@@ -141,7 +141,8 @@
 	//Widget and Sidebar
 	include_once (CHILD_DIR . '/includes/sidebar-init.php');
 	include_once (PARENT_DIR . '/includes/register-widgets.php');
-	
+	include_once (PARENT_DIR . '/includes/widgets/widgets-manager.php');
+
 	//Theme initialization
 	include_once (CHILD_DIR . '/includes/theme-init.php');
 	
@@ -203,7 +204,7 @@
 	include_once (CHILD_DIR . '/includes/register-plugins.php');
 
 	// Framework Data Management
-	include_once (PARENT_DIR . '/includes/data_management/data_management_interface.php');
+	include_once (PARENT_DIR . '/admin/data_management/data_management_interface.php');
 	
 	// WP Pointers
 	include_once (PARENT_DIR . '/includes/class.wp-help-pointers.php');
@@ -288,7 +289,7 @@
 		function custom_excerpt_more($more) {
 			return theme_locals("read_more").' &raquo;';
 		}
-		add_filter('excerpt_more', 'custom_excerpt_more');	
+		add_filter('excerpt_more', 'custom_excerpt_more');
 	}
 	
 	// no more jumping for read more link

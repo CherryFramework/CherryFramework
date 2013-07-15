@@ -8,7 +8,7 @@ if (!function_exists('categories_shortcode')) {
 	function categories_shortcode($atts, $content = null) {
 		extract(shortcode_atts(
 			array(
-				'type' => '',
+				'type'  => '',
 				'class' => 'check'
 			), $atts));
 
@@ -22,8 +22,8 @@ if (!function_exists('categories_shortcode')) {
 		}
 
 		$args = array(
-			'type'			=> 'post',
-			'taxonomy'		=> $taxonomy_value . 'category'
+			'type'     => 'post',
+			'taxonomy' => $taxonomy_value . 'category'
 		);
 
 		$categories = get_categories($args); 

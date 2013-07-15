@@ -1,7 +1,7 @@
 <?php
 // =============================== My Flickr widget  ======================================
 class MY_FlickrWidget extends WP_Widget {
-	/** constructor */
+	/* constructor */
 	function MY_FlickrWidget() {
 		parent::WP_Widget(false, $name = theme_locals("flickr"));
 	}
@@ -27,15 +27,21 @@ class MY_FlickrWidget extends WP_Widget {
 			qstrings: {
 				id: '<?php echo $flickr_id ?>'
 			},
-			itemTemplate: '<li class="flickr_li span4"><a class="thumbnail" rel="prettyPhoto[flickr]" href="{{image_b}}" title="{{title}}"><img class="flickr_img" src="{{image_s}}" alt="{{title}}" /></a></li>'
+			itemTemplate: '<li class="flickr_li span4"><a class="thumbnail" rel="prettyPhoto[gallery]" href="{{image_b}}" title="{{title}}"><img class="flickr_img" src="{{image_s}}" alt="{{title}}" /></a></li>'
 		}, function(data) {
-			$('#flickr a').prettyPhoto({
-				animation_speed: 'normal',
-				slideshow: 5000,
-				autoplay_slideshow: false,
-				overlay_gallery: false
+			$("#flickr a").magnificPopup({
+				type: 'image',
+				removalDelay: 500,
+				mainClass: 'mfp-zoom-in',
+				callbacks: {
+					beforeOpen: function() {
+						// just a hack that adds mfp-anim class to markup 
+						this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+					}
+				},
+				gallery:{enabled:true}
 			});
-			$(".flickr_li:nth-child(3n-2)").addClass("nomargin");	
+			$(".flickr_li:nth-child(3n-2)").addClass("nomargin");
 		});
 	</script>
 
@@ -65,5 +71,4 @@ class MY_FlickrWidget extends WP_Widget {
 		<p><label for="<?php echo $this->get_field_id('image_amount'); ?>"><?php echo theme_locals("images_count"); ?> <input class="widefat" id="<?php echo $this->get_field_id('image_amount'); ?>" name="<?php echo $this->get_field_name('image_amount'); ?>" type="text" value="<?php echo $amount; ?>" /></label></p>	
 	<p><label for="<?php echo $this->get_field_id('linktext'); ?>"><?php echo theme_locals("link_text"); ?> <input class="widefat" id="<?php echo $this->get_field_id('linktext'); ?>" name="<?php echo $this->get_field_name('linktext'); ?>" type="text" value="<?php echo $linktext; ?>" /></label></p>
 <?php }
-} // class  Widget
-?>
+} ?>
