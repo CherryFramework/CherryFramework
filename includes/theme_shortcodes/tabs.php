@@ -5,57 +5,57 @@
  */
 if (!function_exists('tabs_shortcode')) {
 
-    function tabs_shortcode($atts, $content = null) {
-        $output = '<div class="tabs-wrapper">';
-        $output .= '<ul class="nav nav-tabs">';
-            
-        //Create unique ID for this tab set
-        $id = rand();
+	function tabs_shortcode($atts, $content = null) {
+		$output = '<div class="tabs-wrapper">';
+		$output .= '<ul class="nav nav-tabs">';
+			
+		//Create unique ID for this tab set
+		$id = rand();
 
-        //Build tab menu
-        $numTabs = count($atts);
+		//Build tab menu
+		$numTabs = count($atts);
 
-        for($i = 1; $i <= $numTabs; $i++){
+		for($i = 1; $i <= $numTabs; $i++){
 
-            if($i==1) { 
-                $addclass = "active";
-            }       
-                        
-            $output .= '<li class="'.$addclass.'"><a href="#tab-'.$id.'-'.$i.'" data-toggle="tab">'.$atts['tab'.$i].'</a></li>';
-                    
-            $addclass = "";
-        }
+			if($i==1) { 
+				$addclass = "active";
+			}
 
-        $output .= '</ul>';
-        $output .= '<div class="tab-content">';
+			$output .= '<li class="'.$addclass.'"><a href="#tab-'.$id.'-'.$i.'" data-toggle="tab">'.$atts['tab'.$i].'</a></li>';
 
-        //Build content of tabs
-        $i = 1;
-        $tabContent = do_shortcode($content);
-        $find = array();
-        $replace = array();
-        foreach($atts as $key => $value){
-            if($i==1) { 
-                $addclass = "in active";
-            }   
-            $find[] = '['.$key.']';
-            $find[] = '[/'.$key.']';
-            $replace[] = '<div id="tab-'.$id.'-'.$i.'" class="tab-pane fade '.$addclass.'">';
-            $replace[] = '</div><!-- .tab (end) -->';
-            $i++;
-            $addclass = "";
-        }
+			$addclass = "";
+		}
 
-        $tabContent = str_replace($find, $replace, $tabContent);
+		$output .= '</ul>';
+		$output .= '<div class="tab-content">';
 
-        $output .= $tabContent;
+		//Build content of tabs
+		$i = 1;
+		$tabContent = do_shortcode($content);
+		$find = array();
+		$replace = array();
+		foreach($atts as $key => $value){
+			if($i==1) { 
+				$addclass = "in active";
+			}
+			$find[] = '['.$key.']';
+			$find[] = '[/'.$key.']';
+			$replace[] = '<div id="tab-'.$id.'-'.$i.'" class="tab-pane fade '.$addclass.'">';
+			$replace[] = '</div><!-- .tab (end) -->';
+			$i++;
+			$addclass = "";
+		}
 
-        $output .= '</div><!-- .tab-content (end) -->';
-        $output .= '</div><!-- .tabs-wrapper (end) -->';
+		$tabContent = str_replace($find, $replace, $tabContent);
 
-        return $output;
+		$output .= $tabContent;
 
-    }
-    add_shortcode('tabs', 'tabs_shortcode');
+		$output .= '</div><!-- .tab-content (end) -->';
+		$output .= '</div><!-- .tabs-wrapper (end) -->';
+
+		return $output;
+
+	}
+	add_shortcode('tabs', 'tabs_shortcode');
 
 }?>

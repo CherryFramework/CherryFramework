@@ -4,13 +4,13 @@
  */
  if (!function_exists('shortcode_alert_box')) {
 
- 	function shortcode_alert_box($atts, $content = null) {
+	function shortcode_alert_box($atts, $content = null) {
 		extract(shortcode_atts(
-	        array(
+			array(
 				'style' => '',
 				'close' => '',
 				'custom_class' => ''
-	    ), $atts));
+		), $atts));
 
 		$output =  '<div class="alert alert-'.$style.' fade in '.$custom_class.'">';
 		if ($close == 'yes') {
@@ -22,4 +22,4 @@
 	}
 	add_shortcode('alert_box', 'shortcode_alert_box');
 	
- }?>
+}?>

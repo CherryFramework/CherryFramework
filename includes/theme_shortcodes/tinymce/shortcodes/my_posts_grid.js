@@ -66,6 +66,16 @@ frameworkShortcodeAtts={
 				help:"Text for the link."
 			},
 			{
+				label:"Which category to pull from? (for Blog posts)",
+				id:"category",
+				help:"Enter the slug of the category you'd like to pull posts from. Leave blank if you'd like to pull from all categories."
+			},
+			{
+				label:"Which category to pull from? (for Custom posts)",
+				id:"custom_category",
+				help:"Enter the slug of the category you'd like to pull posts from. Leave blank if you'd like to pull from all categories."
+			},
+			{
 				label:"Custom class",
 				id:"custom_class",
 				help:"Use this field if you want to use a custom class for posts."

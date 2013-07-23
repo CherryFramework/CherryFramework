@@ -1,0 +1,147 @@
+/**
+ *
+ * Styles for the widget's page
+ *
+ **/
+.gk-unvisible {
+	display: none;
+}
+
+.gk_widget_rules_btn {
+	margin: 10px 0!important;
+}
+
+.gk_widget_rules_btn ~ hr {
+	background: #ddd;
+	border: none;
+	clear: both;
+	display: block;
+	height: 1px;
+}
+
+.gk_widget_rules_wrapper {
+	clear: both;
+	display: none;
+}
+
+.gk_widget_rules_wrapper.active {
+	display: block;
+}
+
+.gk_widget_rules_select {
+	/*width: 150px;	*/
+}
+
+.gk_widget_rules_form_select {
+	width: 100%;
+}
+
+.gk_widget_rules_form_select + p {
+	margin: 10px 0!important;
+}
+
+.gk_widget_rules_form input {
+	margin-left: 10px;
+	width: 110px;
+}
+
+.gk_widget_rules_form,
+.gk_widget_rules_pages {
+	/*background: #fff;*/
+	border: 1px solid #dfdfdf;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin: 0 0 10px 0;
+	padding: 10px;
+}
+
+.gk_widget_rules_pages {
+	border: none;
+	border-top: 1px solid #dfdfdf;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 10px 0;
+	margin: 10px 0 0 0;
+	clear: both;
+	width: 100%;
+}
+
+.gk_widget_rules_form legend,
+.gk_widget_rules_pages legend { 
+	margin: 0 0 0 -5px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.gk_widget_rules_form label,
+.gk_widget_rules_nopages {
+	display: none;
+}
+
+.gk_widget_rules_pages div span {
+	display: block;
+	float: left;
+	margin: 0 5px 5px 0;
+	height: 18px;
+	line-height: 17px;
+	font-size: 11px;
+	font-family: sans-serif;
+	color: #fff;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 0 5px;
+}
+
+.gk_widget_rules_pages div span strong {
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 0 0 0 3px;
+}
+
+.gk_widget_rules_pages div span.homepage {
+	background: #049cdb;
+}
+
+.gk_widget_rules_pages div span.page {
+	background: #0064cd;
+}
+
+.gk_widget_rules_pages div span.post {
+	background: #7a43b6;
+}
+
+.gk_widget_rules_pages div span.category {
+	background: #9d261d;
+}
+
+.gk_widget_rules_pages div span.tag {
+	background: #ffc40d;
+}
+
+.gk_widget_rules_pages div span.archive {
+	background: #f89406;
+}
+
+.gk_widget_rules_pages div span.author {
+	background: #c3325f;
+}
+
+.gk_widget_rules_pages div span.search {
+	background: #46a546;
+}
+
+.gk_widget_rules_pages div span.page404 {
+	background: #222;
+}
+
+.gk_widget_rules_pages div span.template {
+	background-color: #999;
+}
+
+.gk_widget_rules_output {
+	display: none;
+}

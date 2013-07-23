@@ -43,6 +43,7 @@
 		text-transform: uppercase;
 		font-size: 10px;
 	}
+
 }
 /* /Logo */
 
@@ -95,7 +96,7 @@
 	}
 }
 /* /Social Networks */
-
+			
 /* Search Form
 ---------------------------------------- */
 .search-form {
@@ -103,14 +104,10 @@
 		position: relative;
 	}
 	
-	input[type="text"]&_it {
-		padding: 5px 6px;
-		height: 16px;
+	&_it {
 		vertical-align: top;
-		line-height: 16px;
-		// .box-sizing(border-box);
 	}
-	input[type="submit"]&_is {
+	&_is {
 		vertical-align: top;
 	}
 
@@ -133,9 +130,9 @@
 
 	// Portrait tablet to landscape and desktop
 	@media (min-width: 768px) and (max-width: 979px) {
-		.sidebar &_it { 
-			width: 130px;
-		}
+	   .sidebar &_it { 
+	   	width: 130px;
+	  	}
 	}
 
 }
@@ -267,7 +264,7 @@ ul.sf-menu li li li.sfHover ul {
 }
 a > .sf-sub-indicator {
 	background-position: 0 -100px; /* use translucent arrow for modern browsers*/  /* give all except IE6 the correct values */
-	top: .8em;
+	// top: .8em;
 }
 /* apply hovers to modern browsers */
 a:focus > .sf-sub-indicator,
@@ -299,25 +296,23 @@ li.sfHover > a > .sf-sub-indicator {
 /* Navigation select styling */
 .select-menu {
 	display: none;
-	margin: 0;
-	padding: 5px;
-	width: 100%;
-	height: 30px;
-	outline: none;
 	border: 1px solid #c8c8c8;
 	background-color: #e4e4e4;
-	line-height: 18px;
+	width: 100%;
+	height: 30px;
+	padding: 5px;
+	margin: 0;
 	cursor: pointer;
+	outline: none;
 	.border-radius(4px);
-	&:focus {
-		border-color: #999;
-		outline: none;
-	}
-	option {
-		padding: 5px;
-		cursor: pointer;
-		&.main_item {
-			font-weight: bold;
-		}
-	}
+}
+.select-menu:focus {
+	border-color: #999;
+}
+.select-menu option {
+	padding: 5px;
+	cursor: pointer;
+}
+.select-menu option.main_item {
+	font-weight: bold;
 }

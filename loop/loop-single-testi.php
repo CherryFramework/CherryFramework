@@ -1,25 +1,24 @@
 <?php /* Loop Name: Single Testi */ ?>
 <div class="page-header">
 	<h1><?php the_title(); ?></h1>
-</div>          
+</div>
 <?php if (have_posts()) : while (have_posts()) : the_post();
-	$custom = get_post_custom($post->ID);
-	$testiname = $custom["my_testi_caption"][0];
-	$testiurl = $custom["my_testi_url"][0];
-	$testiinfo = $custom["my_testi_info"][0];
+	$testiname = get_post_meta($post->ID, 'my_testi_caption', true);
+	$testiurl  = get_post_meta($post->ID, 'my_testi_url', true);
+	$testiinfo = get_post_meta($post->ID, 'my_testi_info', true);
 ?>
 <article id="post-<?php the_ID(); ?>" class="testimonial">
 	<blockquote class="testimonial_bq">
 		<?php if(has_post_thumbnail()) {
-				$thumb = get_post_thumbnail_id();
+				$thumb   = get_post_thumbnail_id();
 				$img_url = wp_get_attachment_url( $thumb,'full'); //get img URL
-				$image = aq_resize( $img_url, 120, 120, true ); //resize & crop img
+				$image   = aq_resize( $img_url, 120, 120, true ); //resize & crop img
 			?>
 			<figure class="featured-thumbnail thumbnail hidden-phone">
 				<img src="<?php echo $image ?>" alt="<?php the_title(); ?>" />
 			</figure>
 		<?php } ?>  
-		<div class="testimonial_content">               
+		<div class="testimonial_content">
 			<?php the_content(); ?>
 			<small>
 			<?php if($testiname) { ?>
@@ -34,7 +33,7 @@
 			</small>
 		</div>
 	</blockquote>
-</article>          
+</article>
 <?php endwhile; else: ?>
 <div class="no-results">
 	<?php echo '<p><strong>' . theme_locals("there_has") . '</strong></p>'; ?>

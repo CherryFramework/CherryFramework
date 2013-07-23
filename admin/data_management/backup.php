@@ -1,21 +1,26 @@
 <?php
 	include_once ('../../../../../wp-load.php');
-	include_once (PARENT_DIR . '/includes/data_management/pclzip.lib.php');
-	$file_counter = 0;
-	$all_file = 0;
+	include_once (ABSPATH . '/wp-admin/includes/class-pclzip.php');
 	if (isset($_GET["theme_folder"])){ 
 		$theme_folder = $_GET["theme_folder"];
 	}
-
 	create_zip ($theme_folder);
 
 	function create_zip ($themeName){
-		global $all_file;
 		$all_themes_dir = str_replace('\\', '/', get_theme_root());
 		$backup_dir = str_replace('\\', '/', WP_CONTENT_DIR).'/themes_backup';
-		$zip_name = $backup_dir.$themeName.'.zip';
-		$file_string = scan_dir($all_themes_dir.$themeName, array('.', '..', '.svn', 'thumbs.db'));
-		$all_file = substr_count($file_string, ",");
+		$zip_name = $backup_dir."/".$themeName.'.zip';
+		$backup_date = date("F d Y");
+		
+		if(is_dir($all_themes_dir."/".$themeName)){
+			$file_string = scan_dir($all_themes_dir."/".$themeName, array('.', '..', '.svn', 'thumbs.db', '!sources'));
+		}
+
+		if ( function_exists('wp_get_theme') ) {
+			$backup_version = wp_get_theme($themeName)->Version;
+		} else {
+			$backup_version = get_current_theme($themeName)->Version;
+		}
 
 		if(!is_dir($backup_dir)){
 			if(mkdir($backup_dir, 0700)){
@@ -27,9 +32,14 @@
 		}
 
 		$zip = new PclZip($zip_name);
-		if ($zip->create($file_string, PCLZIP_OPT_REMOVE_PATH, $all_themes_dir.$themeName) == 0) {
+		if ($zip->create($file_string, PCLZIP_OPT_REMOVE_PATH, $all_themes_dir."/".$themeName) == 0) {
 			die("Error : ".$zip->errorInfo(true)); 
 		}
+
+		update_option($themeName."_date_backup", $backup_date, '', 'yes');
+		update_option($themeName."_version_backup", $backup_version, '', 'yes');
+		
+		echo $backup_date.",".$backup_version;
 	}
 	function scan_dir ($dir, $exceptions_array){
 		$scand_dir = scandir($dir);

@@ -3,6 +3,8 @@
  * Bootstrap I/O files
  * 
  */
+if (!FILE_WRITEABLE) return;
+
 if ( CURRENT_THEME == 'cherry' ) {
 	$bootstrapInput		= PARENT_DIR .'/less/bootstrap.less';
 } else {

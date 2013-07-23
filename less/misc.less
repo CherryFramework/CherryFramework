@@ -25,15 +25,27 @@
 .alignleft {
 	float:left;
 	margin:5px 20px 10px 0;
+
+	}
+.aligntextleft {
+	text-align: left;
 	}
 .alignright {
 	float:right;
 	margin:5px 0 10px 20px;
+	text-align: right;
+	}
+.aligntextright {
+	text-align: right;
 	}
 .aligncenter,
 div.aligncenter {
 	display: block;
 	margin: 5px auto 10px;
+	text-align: center;
+	}
+.aligntextcenter {
+	text-align: center;
 	}
 .alignnone {
 	display: block;
@@ -348,9 +360,9 @@ pre {
 }
 
 /* Google Map */
-.google-map {
+.google-map, .preloader {
 	margin-bottom:20px;
-	background-image:url(../images/loading-map.gif);
+	background-image:url(../images/loading.gif);
 	background-position:50% 50%;
 	background-repeat:no-repeat;
 }
@@ -515,59 +527,59 @@ div.jp-video object {
 	height: 100%;
 	background-color: #000;
 }
-div.jp-audio {width:100%;} 
+div.jp-audio { width:100%; } 
 div.jp-video.fullwidth .jp-type-list-parent {
-	position:relative;
-	overflow:hidden;
-	padding-bottom:56.25%;
-	width:100%;
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 56.25%;
+	width: 100%;
 	height:0;
 }
 div.jp-video.fullwidth.playlist {
-	padding-bottom:0;
-	height:auto;
+	padding-bottom: 0;
+	height: auto;
 }
 div.jp-video.fullwidth .jp-type-single, 
 div.jp-video.fullwidth .jp-type-list {
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 div.jp-video-full {
-	position:static !important;
-	position:relative;
-	width:100%;
-	height:100%;
-}
-div.jp-video-full div.jp-jplayer {
-	position:fixed;
-	top:0;
-	left:0;
-	z-index:9999999;
-	overflow:hidden;
-}
-div.jp-video-full div.jp-gui {
-	position:fixed;
-	top:0;
-	left:0;
-	z-index:9999999;
-	width:100%;
-	height:100%;
-}
-div.jp-video-full div.jp-interface {
-	position:absolute;
-	bottom:0;
-	left:0;
-	z-index:1000;
+	position: static !important;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	div.jp-jplayer {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 9999999;
+		overflow: hidden;
+	}
+	div.jp-gui {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 9999999;
+		width: 100%;
+		height: 100%;
+	}
+	div.jp-interface {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: 1000;
+	}
 }
 div.jp-interface {
-	position:relative;
-	overflow:hidden;
-	width:100%;
-	height:35px;
-	border-bottom:1px solid #020202;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 35px;
+	border-bottom: 1px solid #020202;
 	-webkit-transition:opacity .5s ease-in-out, margin .5s ease-in-out;
 	-moz-transition:opacity .5s ease-in-out, margin .5s ease-in-out;
 	-ms-transition:opacity .5s ease-in-out, margin .5s ease-in-out;
@@ -577,55 +589,57 @@ div.jp-interface {
 }
 div.jp-interface li {padding-left:0;}
 div.jp-video div.jp-interface {
-	margin:0;
-	opacity:0;
-	filter:alpha(opacity=0);
+	margin: 0;
+	// opacity: 0;
+	// filter:alpha(opacity=0);
+	.opacity(0);
 }
 div.jp-video:hover div.jp-interface {
-	margin:-36px 0 0;
-	opacity:1;
-	filter:alpha(opacity=100);
+	margin: -36px 0 0;
+	// opacity: 1;
+	// filter: alpha(opacity=100);
+	.opacity(100);
 }
 div.jp-controls-holder {
-	position:absolute;
-	top:7px;
-	left:0;
-	overflow:hidden;
-	width:100%;
+	position: absolute;
+	top: 7px;
+	left: 0;
+	overflow: hidden;
+	width: 100%;
 }
 div.jp-interface ul.jp-controls {
-	overflow:hidden;
-	margin:0;
+	overflow: hidden;
+	margin: 0;
 	padding: 0;
-	list-style-type:none;
+	list-style-type: none;
 }
 ul.jp-controls, 
 div.jp-interface ul.jp-controls li {
-	display:inline;
-	float:left;
-}
-div.jp-interface ul.jp-controls a {
-	display:block;
-	overflow:hidden;
-	padding-right:2px;
-	background:url(../images/jp_spacer.png) 100% 1px no-repeat;
-	text-indent:-9999px;
-}
-div.jp-interface ul.jp-controls a span {
-	display:block;
-	overflow:hidden;
-	text-indent:-9999px;
+	display: inline;
+	float: left;
+	a {
+		display: block;
+		overflow: hidden;
+		padding-right: 2px;
+		background: url(../images/jp_spacer.png) 100% 1px no-repeat;
+		text-indent: -9999px;
+		span {
+			display: block;
+			overflow: hidden;
+			text-indent: -9999px;
+		}
+	}
 }
 a.jp-play span, 
 a.jp-pause span {
 	width:28px;
 	height:28px;
 }
-a.jp-play span {background:url(../images/jp_sprite.png) 0 0 no-repeat;}
-a.jp-play:hover span {background-position:-28px 0;}
+a.jp-play span {background: url(../images/jp_sprite.png) 0 0 no-repeat;}
+a.jp-play:hover span {background-position: -28px 0;}
 a.jp-pause span {
-	display:none;
-	background:url(../images/jp_sprite.png) 0 -28px no-repeat;
+	display: none;
+	background: url(../images/jp_sprite.png) 0 -28px no-repeat;
 }
 a.jp-pause:hover span {background-position:-28px -28px;}
 a.jp-stop span, 
@@ -641,51 +655,52 @@ a.jp-previous:hover span {background-position:-84px -28px;}
 a.jp-next span {background:url(../images/jp_sprite.png) -56px 0 no-repeat;}
 a.jp-next:hover span {background-position:-84px 0;}
 div.jp-progress {
-	position:absolute;
-	top:0;
-	left:0;
-	overflow:hidden;
-	width:100%;
-	height:7px;
-	border-bottom:1px solid #605f60;
-	background-color:#303030;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	width: 100%;
+	height: 7px;
+	border-bottom: 1px solid #605f60;
+	background-color: #303030;
 }
 div.jp-seek-bar {
-	width:0;
-	height:100%;
-	-webkit-box-shadow:inset 0 0 2px #464444;
-	-moz-box-shadow:inset 0 0 2px #464444;
-	box-shadow:inset 0 0 2px #464444;
-	cursor:pointer;
+	width: 0;
+	height: 100%;
+	// -webkit-box-shadow: inset 0 0 2px #464444;
+	// -moz-box-shadow: inset 0 0 2px #464444;
+	// box-shadow: inset 0 0 2px #464444;
+	cursor: pointer;
+	.box-shadow(inset 0 0 2px #464444);
 }
 div.jp-play-bar {
-	width:0;
-	height:100%;
+	width: 0;
+	height: 100%;
 	#gradient > .vertical(#cecece, #9d9d9d);
 }
-div.jp-seeking-bg {background:url(../images/jp_load.gif) 0 0 repeat-x;}
+div.jp-seeking-bg { background: url(../images/jp_load.gif) 0 0 repeat-x; }
 a.jp-mute, 
 a.jp-unmute, 
-a.jp-volume-max {position:relative;}
+a.jp-volume-max { position: relative; }
 a.jp-mute, 
-a.jp-unmute {margin:0 60px 0 0;}
-a.jp-mute span {background:url(../images/jp_sprite.png) 0 -84px no-repeat;}
-a.jp-mute:hover span {background-position:-28px -84px;}
+a.jp-unmute {margin: 0 60px 0 0;}
+a.jp-mute span {background: url(../images/jp_sprite.png) 0 -84px no-repeat;}
+a.jp-mute:hover span {background-position: -28px -84px;}
 a.jp-unmute span {
-	display:none;
-	background:url(../images/jp_sprite.png) 0 -112px no-repeat;
+	display: none;
+	background: url(../images/jp_sprite.png) 0 -112px no-repeat;
 }
 a.jp-unmute:hover span {background-position:-28px -112px;}
 div.jp-volume-bar {
-	position:absolute;
-	top:10px;
-	right:8px;
-	z-index:2;
-	overflow:hidden;
-	width:50px;
-	height:7px;
-	background-color:#202020;
-	cursor:pointer;
+	position: absolute;
+	top: 10px;
+	right: 8px;
+	z-index: 2;
+	overflow: hidden;
+	width: 50px;
+	height: 7px;
+	background-color: #202020;
+	cursor: pointer;
 	.box-shadow(1px 1px 0 #464444);
 	.border-radius(3px);
 }
@@ -699,28 +714,28 @@ div.jp-volume-bar-value {
 div.jp-current-time, 
 div.jp-time-sep, 
 div.jp-duration {
-	margin-top:6px;
-	font-size:0.85em;
+	margin-top: 6px;
+	font-size: 0.85em;
 }
 div.jp-current-time {
-	display:inline;
-	float:right;
-	color:#ffffff;
+	display: inline;
+	float: right;
+	color: #ffffff;
 }
 div.jp-time-sep {
-	display:inline;
-	float:right;
-	margin-right:5px;
-	margin-left:5px;
-	text-align:center;
+	display: inline;
+	float: right;
+	margin-right: 5px;
+	margin-left: 5px;
+	text-align: center;
 }
 div.jp-duration {
-	display:inline;
-	float:right;
-	margin-right:130px;
-	text-align:right;
+	display: inline;
+	float: right;
+	margin-right: 130px;
+	text-align: right;
 }
-div.jp-audio div.jp-duration {margin-right:100px;}
+div.jp-audio div.jp-duration {margin-right: 100px;}
 	@media (max-width: 480px) {
 		div.jp-volume-bar,
 		.jp-toggles,
@@ -729,40 +744,40 @@ div.jp-audio div.jp-duration {margin-right:100px;}
 		}
 	}
 div.jp-title {
-	color:#fff;
-	text-align:center;
+	color: #fff;
+	text-align: center;
 }
 div.jp-title, 
 div.jp-playlist {
-	width:100%;
+	width: 100%;
 }
 div.jp-type-single div.jp-title, 
 div.jp-type-playlist div.jp-title, 
-div.jp-type-single div.jp-playlist {border-top:none;}
+div.jp-type-single div.jp-playlist {border-top: none;}
 div.jp-title ul, 
 div.jp-playlist ul {
-	margin:0;
-	padding:0;
-	list-style-type:none;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
 }
 div.jp-title li {
-	padding:5px 0 0;
-	font-weight:bold;
+	padding: 5px 0 0;
+	font-weight: bold;
 }
 div.jp-video-full div.jp-title li {padding:1px 0;}
 div.jp-playlist li {
 	position: relative;
-	background:#222;
-	border-top:1px solid #6c6c6c;
-	margin:0;
-	padding:0;
-	height:33px;
+	background: #222;
+	border-top: 1px solid #6c6c6c;
+	margin: 0;
+	padding: 0;
+	height: 33px;
 }
 div.jp-playlist li:first-child {border:none;}
 div.jp-playlist li a {
 	display: block;
-	padding:6px 25px;
-	text-decoration:none;
+	padding: 6px 25px;
+	text-decoration: none;
 }
 div.jp-playlist li a.jp-playlist-current {background: url(../images/jp_playlist_li_cur.png) no-repeat scroll 10px center transparent;}
 div.jp-playlist li a:hover, div.jp-playlist li.jp-playlist-current a {color: #8C8C8C;}

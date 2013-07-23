@@ -1,19 +1,29 @@
+// ---------------------------------------------------------
+// Magnific Popup Init
+// ---------------------------------------------------------
+function magnific_popup_init(item) {
+	item.magnificPopup({
+		delegate: 'a[rel^="prettyPhoto"]',
+		type: 'image',
+		removalDelay: 500,
+		mainClass: 'mfp-zoom-in',
+		callbacks: {
+			beforeOpen: function() {
+				// just a hack that adds mfp-anim class to markup 
+				this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+			}
+		},
+		gallery: {enabled:true}
+	});
+}
+// ---------------------------------------------------------
+// !!!!!!!!!!!!!!!!!document ready!!!!!!!!!!!!!!!!!!!!!!!!!!
+// ---------------------------------------------------------
 $(document).ready(function(){
 // ---------------------------------------------------------
-// Prettyphoto
+// Call Magnific Popup
 // ---------------------------------------------------------
-	var viewportWidth = $('body').innerWidth();
-	$("a[rel^='prettyPhoto']").prettyPhoto({
-		overlay_gallery: true,
-		theme: 'pp_default',
-		social_tools: false,
-	 	changepicturecallback: function(){
-			// 767px is presumed here to be the widest mobile device. Adjust at will.
-			if (viewportWidth < 767) {
-			   $(".pp_pic_holder.pp_default").css("top",window.pageYOffset+"px");
-			}
-		}
-	});
+	$(".thumbnail").parent().each(function(){magnific_popup_init($(this))});
 // ---------------------------------------------------------
 // Tooltip
 // ---------------------------------------------------------
@@ -38,11 +48,11 @@ $(document).ready(function(){
 // Add accordion active class
 // ---------------------------------------------------------
 	$('.accordion').on('show', function (e) {
-        $(e.target).prev('.accordion-heading').find('.accordion-toggle').addClass('active');
-    });
-    $('.accordion').on('hide', function (e) {
-        $(this).find('.accordion-toggle').not($(e.target)).removeClass('active');
-    });
+		$(e.target).prev('.accordion-heading').find('.accordion-toggle').addClass('active');
+	});
+	$('.accordion').on('hide', function (e) {
+		$(this).find('.accordion-toggle').not($(e.target)).removeClass('active');
+	});
 // ---------------------------------------------------------
 // Isotope Init
 // ---------------------------------------------------------
@@ -67,5 +77,27 @@ $(document).ready(function(){
 				} 
 			})
 		}
+	}
+// ---------------------------------------------------------
+// images loader
+// ---------------------------------------------------------
+	$(window).bind('resize', img_loader).bind('scroll', img_loader).trigger('scroll');
+	function img_loader(){
+		var get_img = $('img[data-src]').eq(0)
+		if(get_img[0]){
+			var visible_height = $(window).scrollTop() + $(window).height(),
+				img_top_position = get_img.offset().top, 
+				img_src = get_img.attr('data-src');
+
+			if(img_top_position<visible_height){
+				get_img.fadeOut(0).attr({'src':img_src}).removeAttr('data-src').bind('load', img_load_complete);
+			};
+		}else{
+			$(window).unbind('resize', img_loader).unbind('scroll', img_loader);
+		}
+	}
+	function img_load_complete(){
+		$(this).unbind('load').fadeIn(500)
+		img_loader();
 	}
 });

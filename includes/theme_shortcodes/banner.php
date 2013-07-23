@@ -6,18 +6,18 @@
 if (!function_exists('banner_shortcode')) {
 
 	function banner_shortcode($atts, $content = null) {
- 	    extract(shortcode_atts(
-	        array(
-				'img' => '',
-				'banner_link' => '',
-				'title' => '',
-				'text' => '',
-				'btn_text' => '',
-				'target' => '',
+		extract(shortcode_atts(
+			array(
+				'img'          => '',
+				'banner_link'  => '',
+				'title'        => '',
+				'text'         => '',
+				'btn_text'     => '',
+				'target'       => '',
 				'custom_class' => ''
-	    ), $atts));
-	 
-	 	// get site URL
+		), $atts));
+
+		// get site URL
 		$home_url = home_url();
 
 		$output =  '<div class="banner-wrap '.$custom_class.'">'; 
@@ -30,7 +30,7 @@ if (!function_exists('banner_shortcode')) {
 			}
 			$output .= '</a></figure>';
 		}
-	 
+
 		if ($title!="") {
 			$output .= '<h5>';
 			$output .= $title;
@@ -43,17 +43,17 @@ if (!function_exists('banner_shortcode')) {
 			$output .= '</p>';
 		}
 		
-		if ($btn_text!="") {	
+		if ($btn_text!="") {
 			$output .=  '<div class="link-align"><a href="'.$banner_link.'" title="'.$btn_text.'" class="btn btn-link" target="'.$target.'">';
 			$output .= $btn_text;
 			$output .= '</a></div>';
 		}
-	 
+
 		$output .= '</div><!-- .banner-wrap (end) -->';
-	 
-	    return $output;
-	 
-	} 
+
+		return $output;
+
+	}
 	add_shortcode('banner', 'banner_shortcode');
 	
 }?>

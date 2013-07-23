@@ -791,6 +791,7 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								c=b.addMenu({title:"<?php echo theme_locals("audio_video"); ?>"});b.addSeparator();
 										a.addWithDialog(c,"<?php echo theme_locals("audio"); ?>","audio");
 										a.addWithDialog(c,"<?php echo theme_locals("video"); ?>","video");
+										a.addWithDialog(c,"<?php echo theme_locals("video_preview"); ?>","video_preview");
 								c=b.addMenu({title:"<?php echo theme_locals("misc"); ?>"});
 										a.addWithDialog(c,"<?php echo theme_locals("alert_box"); ?>","alert_box");
 										a.addWithDialog(c,"<?php echo theme_locals("close"); ?>","close");
