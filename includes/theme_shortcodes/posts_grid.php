@@ -226,7 +226,7 @@ if (!function_exists('posts_grid_shortcode')) {
 										$output .= join( ', ', $out );
 								}
 							} else {
-								$categories = get_the_category();
+								$categories = get_the_category($post_id);
 								if($categories){
 									$out = array();
 									$output .= '<em>Posted in </em>';
