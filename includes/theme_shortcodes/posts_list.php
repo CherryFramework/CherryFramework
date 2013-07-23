@@ -7,17 +7,17 @@ if (!function_exists('posts_list_shortcode')) {
 
 	function posts_list_shortcode($atts, $content = null) {
 		extract(shortcode_atts(array(
-			'type'         => 'post',
-			'thumbs'       => '',
-			'thumb_width'  => '',
+			'type' => '',
+			'thumbs' => '',
+			'thumb_width' => '',
 			'thumb_height' => '',
 			'post_content' => '',
-			'numb'         => '5',
-			'order_by'     => '',
-			'order'        => '',
-			'link'         => '',
-			'link_text'    => theme_locals('read_more'),
-			'tags'         => '',
+			'numb' => '5',
+			'order_by' => '',
+			'order' => '',
+			'link' => '',
+			'link_text' => theme_locals('read_more'),
+			'tags' => '',
 			'custom_class' => ''
 		), $atts));
 
@@ -50,16 +50,12 @@ if (!function_exists('posts_list_shortcode')) {
 		global $post;
 		global $my_string_limit_words;
 		global $_wp_additional_image_sizes;
-
-		// WPML filter
-			$suppress_filters = get_option('suppress_filters');
-
+						
 		$args = array(
-			'post_type'        => $type,
-			'numberposts'      => $numb,
-			'orderby'          => $order_by,
-			'order'            => $order,
-			'suppress_filters' => $suppress_filters
+			'post_type' => $type,
+			'numberposts' => $numb,
+			'orderby' => $order_by,
+			'order' => $order
 		);
 
 		$posts = get_posts($args);
@@ -83,22 +79,11 @@ if (!function_exists('posts_list_shortcode')) {
 
 		$output = '<div class="posts-list '.$custom_class.'">';
 		
-		foreach($posts as $key => $post) {
-			// Unset not translated posts
-			if ( function_exists( 'wpml_get_language_information' ) ) {
-				global $sitepress;
-
-				$check              = wpml_get_language_information( $post->ID );
-				$language_code      = substr( $check['locale'], 0, 2 );
-				if ( $language_code != $sitepress->get_current_language() ) unset( $posts[$key] );
-
-				// Post ID is different in a second language Solution
-				if ( function_exists( 'icl_object_id' ) ) $post = get_post( icl_object_id( $post->ID, $type, true ) );
-			}
+		foreach($posts as $post) {
 			setup_postdata($post);
-			$excerpt        = get_the_excerpt();
+			$excerpt = get_the_excerpt();
 			$attachment_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
-			$url            = $attachment_url['0'];
+			$url = $attachment_url['0'];
 			if (($thumb_width != '') && ($thumb_height != ''))
 				$image = aq_resize($url, $thumb_width, $thumb_height, true);
 			else
@@ -175,20 +160,20 @@ if (!function_exists('posts_list_shortcode')) {
 						$output .= '<figure class="featured-thumbnail thumbnail '.$thumbs_class.'">';
 						$output .= '<a href="'.get_permalink($post->ID).'" title="'.get_the_title($post->ID).'">';
 						$output .= '<img src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
-						$output .= '</a></figure>';
+						$output .= '</a></figure>';					
 
-					} elseif ($mediaType != 'Video' && $mediaType != 'Audio') {
+					} elseif ($mediaType != 'Video' && $mediaType != 'Audio') {							
 
 						$thumbid = 0;
 						$thumbid = get_post_thumbnail_id($post->ID);
 						$images = get_children( array(
-							'orderby'        => 'menu_order',
-							'order'          => 'ASC',
-							'post_type'      => 'attachment',
-							'post_parent'    => $post->ID,
+							'orderby' => 'menu_order',
+							'order' => 'ASC',
+							'post_type' => 'attachment',
+							'post_parent' => $post->ID,
 							'post_mime_type' => 'image',
-							'post_status'    => null,
-							'numberposts'    => -1
+							'post_status' => null,
+							'numberposts' => -1
 						) ); 
 
 						if ( $images ) {
@@ -203,8 +188,8 @@ if (!function_exists('posts_list_shortcode')) {
 									$img = aq_resize($image_attributes[0], $thumb_width, $thumb_height, true);  //resize & crop img
 								} else {
 									$img = aq_resize($url, $thumb_x, $thumb_y, true);
-								}
-	
+								}					
+									
 								$alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
 								$image_title = $attachment->post_title;
 
@@ -215,19 +200,19 @@ if (!function_exists('posts_list_shortcode')) {
 								}
 								$output .= '</a></figure>';
 								break;
-							}
+							}					
 						} elseif (has_post_thumbnail($post->ID)) {
 							$output .= '<figure class="featured-thumbnail thumbnail '.$thumbs_class.'">';
 							$output .= '<a href="'.get_permalink($post->ID).'" title="'.get_the_title($post->ID).'">';
 							if (($thumb_width != '') && ($thumb_height != ''))
-								$output .= '<img src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
+								$output .= '<img  src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
 							else {
 								if ($thumbs == 'normal') {
 									$output .= get_the_post_thumbnail($post->ID);
 								} else {
-									$output .= '<img src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
+									$output .= '<img  src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
 								}
-							}
+							}						
 							$output .= '</a></figure>';
 						}
 					} else {
@@ -235,14 +220,14 @@ if (!function_exists('posts_list_shortcode')) {
 						// for Video and Audio post format - no lightbox
 						$output .= '<figure class="featured-thumbnail thumbnail '.$thumbs_class.'"><a href="'.get_permalink($post->ID).'" title="'.get_the_title($post->ID).'">';
 						if (($thumb_width != '') && ($thumb_height != ''))
-							$output .= '<img src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
+							$output .= '<img  src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
 						else {
 							if ($thumbs == 'normal') {
 								$output .= get_the_post_thumbnail($post->ID);
 							} else {
-								$output .= '<img src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
+								$output .= '<img  src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
 							}
-						}
+						}					
 						$output .= '</a></figure>';
 					}
 
@@ -275,7 +260,7 @@ if (!function_exists('posts_list_shortcode')) {
 
 					//post footer
 					if ($tags == 'yes') {
-						$posttags = get_the_tags();
+						$posttags = get_the_tags();						
 						if ($posttags) {
 							$output .= '<footer class="post_footer">'.theme_locals('tags').": ";
 							  foreach($posttags as $tag) {
@@ -283,7 +268,7 @@ if (!function_exists('posts_list_shortcode')) {
 							 }
 							 $output .= '</footer>';
 						}
-					}
+					}						
 
 					$output .= '</article>';
 					$output .= '</div><!-- .row-fluid (end) -->';
@@ -291,9 +276,9 @@ if (!function_exists('posts_list_shortcode')) {
 					$i++;
 
 			} // end foreach
-		$output .= '</div><!-- .posts-list (end) -->';
+		$output .= '</div><!-- .posts-list (end) -->';	
 		return $output;
 	} 
 	add_shortcode('posts_list', 'posts_list_shortcode');
-
+	
 }?>

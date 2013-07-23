@@ -1,27 +1,27 @@
 <?php
 	function theme_locals($label) {
 		$domain = CURRENT_THEME;
-		$locals = array(
-			//general
-			'no' => __('No', $domain),
-			'yes' => __('Yes', $domain),
-			'slow_speed' => __('Slow', $domain),
-			'normal_speed' => __('Normal', $domain),
-			'fast_speed' => __('Fast', $domain),
-			'normal_size' => __('Normal size', $domain),
-			'large_size' => __('Large size', $domain),
-			'font_size' => __('Font Size', $domain),
-			'lineheight' => __('Lineheight', $domain),
-			'font_face' => __('Font Face', $domain),
-			'character_sets' => __('Character Sets', $domain),
-			'font_style' => __('Font Style', $domain),
-			'color' => __('Color', $domain),
-			'import' => __('Import', $domain),
-			'export' => __('Export', $domain),
-			'done' => __('Done', $domain),
-			'error' => __('Error', $domain),
-			'success' => __('success', $domain),
-			'upload' => __('Upload', $domain),
+	    $locals = array(
+	    	//general
+	    	'no' => __('No', $domain),
+	    	'yes' => __('Yes', $domain),
+	    	'slow_speed' => __('Slow', $domain),
+	    	'normal_speed' => __('Normal', $domain),
+	    	'fast_speed' => __('Fast', $domain),
+	    	'normal_size' => __('Normal size', $domain),
+	    	'large_size' => __('Large size', $domain),
+	    	'font_size' => __('Font Size', $domain),
+	    	'lineheight' => __('Lineheight', $domain),
+	    	'font_face' => __('Font Face', $domain),
+	    	'character_sets' => __('Character Sets', $domain),
+	    	'font_style' => __('Font Style', $domain),
+	    	'color' => __('Color', $domain),
+	    	'import' => __('Import', $domain),
+	    	'export' => __('Export', $domain),
+	    	'done' => __('Done', $domain),
+	    	'error' => __('Error', $domain),
+	    	'success' => __('success', $domain),
+	    	'upload' => __('Upload', $domain),
 			'try_again' => __('try again', $domain),
 			'finish' => __('Finish', $domain),
 			'skip' => __('Skip', $domain),
@@ -64,8 +64,8 @@
 			'first' => __('First', $domain),
 			
 			//Output Audio
-			'prev' => __('Previous', $domain),
-			'next' => __('Next', $domain),
+  			'prev' => __('Previous', $domain),
+	    	'next' => __('Next', $domain),
 			'play' => __('Play', $domain),
 			'pause' => __('Pause', $domain),
 			'stop' => __('Stop', $domain),
@@ -73,15 +73,15 @@
 			'unmute' => __('Unmute', $domain),
 			'update_required' => __("<span>Update Required. </span>To play the media you will need to either update your browser to a recent version or update your <a href='http://get.adobe.com/flashplayer/' target='_blank'>Flash plugin</a>.", $domain),
 			
-			//Cherry theme options
-			'cherry_options' => __('Cherry Options', $domain),
-			'customize' => __('Customize', $domain),
-			'support' => __('Support', $domain),
-			'documentation' => __('Documentation', $domain),
-			'save_options' => __('Save Options', $domain),
-			'restore_defaults' => __('Restore Defaults', $domain),
-			'restore_defaults_desc' => __('Click OK to reset. Any theme settings will be lost!', $domain),
-			
+	    	//Cherry theme options
+	    	'cherry_options' => __('Cherry Options', $domain),
+	    	'customize' => __('Customize', $domain),
+	    	'support' => __('Support', $domain),
+	    	'documentation' => __('Documentation', $domain),
+	    	'save_options' => __('Save Options', $domain),
+	    	'restore_defaults' => __('Restore Defaults', $domain),
+	    	'restore_defaults_desc' => __('Click OK to reset. Any theme settings will be lost!', $domain),
+	    	
 			//general options
 			'general' => __('General', $domain),
 			'body_name' => __('Body styling', $domain),
@@ -219,7 +219,6 @@
 			'loader_desc' => __('Slider loader', $domain),
 			'pie' => __('Pie', $domain),
 			'bar' => __('Bar', $domain),
-
 			//Accardion Slider Settings options
 			'show_post_name' => __('Slides to display', $domain),
 			'show_post_desc' => __('Select the slides that you want to be displayed on slider. If no slide is selected, all slides will be displayed.', $domain),
@@ -277,8 +276,6 @@
 			'sidebar_desc' => __('Choose sidebar position.', $domain),
 			'image_size_name' => __('Blog image size', $domain),
 			'image_size_desc' => __('Featured image size on the blog.', $domain),
-			'load_image_name' => __('Should images be uploaded on page scroll?', $domain),
-			'load_image_desc' => __('You can enable images load only as you scroll down the page. Otherwise images will load all at once.', $domain),
 			'single_post_image_name' => __('Single post image size', $domain),
 			'single_post_image_desc' => __('Featured image size on the single page.', $domain),
 			'meta_name' => __('Enable Meta for blog posts?', $domain),
@@ -636,7 +633,6 @@
 			'minus_list' => __('Minus List', $domain),
 			'custom_list' => __('Custom List', $domain),
 			'audio_video' => __('Audio & Video', $domain),
-			'video_preview' => __('Video Preview', $domain),
 			'misc' => __('Misc', $domain),
 			'alert_box' => __('Alert Box', $domain),
 			'close' => __('Close icon', $domain),
@@ -663,16 +659,6 @@
 			'recent_comments' => __('Cherry - Recent Comments', $domain),
 			'recent_comments_decs' => __('My Recent Comments', $domain),
 			'go_to_c' => __('Go to this comment', $domain),
-			'comments_count' => __('Number of comments to show', $domain),
-			'display_avatar' => __('Display avatar', $domain),
-			'avatar_size' => __('Avatar size (px)', $domain),
-			'display_author_name' => __('Display the comment author', $domain),
-			'display_date' => __('Display the comment date', $domain),
-			'display_post_title' => __('Display post title', $domain),
-			'meta_format' => __('Meta format', $domain),
-			'comment_date' => __('Date', $domain),
-			'comment_author' => __('Author', $domain),
-			'comment_in' => __('Comment in', $domain),
 			
 			//my-flickr-widget.php
 			'flickr' => __('Cherry - Flickr', $domain),
@@ -732,33 +718,15 @@
 			
 			//my-vcard-widget.php
 			'vCard_name' => __('Cherry - vCard', $domain),
-			'vCard_desc' => __('Use this widget to add a vCard', $domain),
+			'vCard_desc' => __('Use this widget to add a vCard_', $domain),
 			'vCard' => __('vCard', $domain),
 			'street' => __('Street Address:', $domain),
-			'map_url' => __('HTML map code:', $domain),
-			'map_width' => __('Map width:', $domain),
-			'map_height' => __('Map height:', $domain),
-			'gmap_disable' => __('Display map', $domain),
 			'city' => __('City/Locality:', $domain),
 			'state' => __('State/Region:', $domain),
 			'zipcode' => __('Zipcode/Postal Code:', $domain),
 			'telephone' => __('Telephone:', $domain),
 			'email' => __('Email:', $domain),
-
-			//my-facebook-widget.php
-			'facebook_widget_name' => __('Cherry - Facebook Like Box Widget', $domain),
-			'facebook_widget_disc' => __('Cherry - Facebook Like Box Widget', $domain),
-			'facebook_url' => __('Facebook page url', $domain),
-			'facebook_desc' => __('The Like Box only works with <a target="_blank" href="https://www.facebook.com/help/174987089221178/" title="Facebook Pages">Facebook Pages.</a>', $domain),
-			'color_scheme' => __('Color Scheme', $domain),
-			'light' => __('Light', $domain),
-			'dark' => __('Dark', $domain),
-			'display_haeder' => __('Display header', $domain),
-			'display_stream' => __('Display stream', $domain),
-			'display_border' => __('Display border', $domain),
-			'display_faces' => __('Display faces', $domain),
-			'facebook_title' => __('My Facebook Page', $domain),
-
+			
 			//options-framework.php
 			'default_options' => __('Default options restored.', $domain),
 			'options_saved' => __('Options saved.', $domain),
@@ -768,33 +736,6 @@
 			'help_and_supports' => __('Help & Support', $domain),
 			'no_items' => __('No items', $domain),
 			'posted' => __('Posted', $domain),
-
-			//data_management_interface.php
-			'data_management' => __('Data Management', $domain),
-			'cherry_framework' => __('Cherry Framework', $domain),
-			'update_info' => __('Update Info', $domain),
-			'child_theme' => __('Child Theme', $domain),
-			'update' => __('Update', $domain),
-			'backup' => __('Backup', $domain),
-			'restore' => __('Restore', $domain),
-			'download_backup' => __('Download Backup', $domain),
-			'name' => __('Name', $domain),
-			'author' => __('Author', $domain),
-			'your_version' => __('Your Version', $domain),
-			'update_version' => __('Update Version', $domain),
-			'backup_version' => __('Backup Version', $domain),
-			'backup_date' => __('Last Backup Date', $domain),
-			'preview' => __('Preview', $domain),
-			'description' => __('Description', $domain),
-			'no_backup' => __('No backup.', $domain),
-			'not_defined' => __('Not defined', $domain),
-			'unfortunately' => __('Unfortunately theme ', $domain),
-			'please_try' => __(' backup file not found. Please try to create backup once again.', $domain),
-			'info_box_1' => __('Data Management allows to update or backup framework and themes. Framework is regularly updated thus delivering new opportunities for your site.<br> To keep your data safe, you can back up the framework or child theme, to be able to download it later. If necessary, you can restore the framework or your theme using the backup.', $domain),
-			'info_box_2' => __('<b>Warning!</b> Before updating framework you are strongly advised to backup your data.', $domain),
-			'info_box_3' => __('You can back up your theme. If the theme has a backup copy, it is possible to restore it or download. The date of the latest backup copy is displayed in the column <b>Last Backup Date</b>.', $domain),
-
-
 			
 			//options-medialibrary-uploader.php
 			'view_file' => __('View File', $domain),
@@ -935,46 +876,12 @@
 			//options-interface.php
 			'no_lable' => __('No lable.', $domain),
 
-			//other
-			'theme_options_media' => __('Theme Options Media', $domain),
+			//data_management_interface.php
+			'backup' => __('Backup', $domain),
 
-			//widgets-manager.php
-			'visibility'            => __('Visibility', $domain),
-			'visible_at'            => __('Visible at', $domain),
-			'visible_on'            => __('Visible on', $domain),
-			'visible_for'           => __('Visible for', $domain),
-			'all_pages'             => __('All pages', $domain),
-			'all_pages_expecting'   => __('All pages expecting', $domain),
-			'no_pages_expecting'    => __('No pages expecting', $domain),
-			'homepage'              => __('Homepage', $domain),
-			'page'                  => __('Page', $domain),
-			'post'                  => __('Post', $domain),
-			'archive'               => __('Archive', $domain),
-			'page_template'         => __('Page Template', $domain),
-			'search_page'           => __('Search page', $domain),
-			'404_page'              => __('404 page', $domain),
-			'page_id_title_slug'    => __('Page ID/Title/slug', $domain),
-			'post_id_title_slug'    => __('Post ID/Title/slug', $domain),
-			'category_id_name_slug' => __('Category ID/Name/slug', $domain),
-			'tag_id_name'           => __('Tag ID/Name', $domain),
-			'template'              => __('Template', $domain),
-			'add_page'              => __('Add page', $domain),
-			'selected_pages'        => __('Selected pages', $domain),
-			'no_pages'              => __('No pages', $domain),
-			'all_devices'           => __('All devices', $domain),
-			'desktops'              => __('Desktops', $domain),
-			'tablets'               => __('Tablets', $domain),
-			'phones'                => __('Phones', $domain),
-			'desktops_tablets'      => __('Desktops/Tablets', $domain),
-			'tablets_phones'        => __('Tablets/Phones', $domain),
-			'desktops_phones'       => __('Desktops/Phones', $domain),
-			'all_users'             => __('All users', $domain),
-			'only_guests'           => __('Only guests', $domain),
-			'only_registered_users' => __('Only registered users', $domain),
-			'only_administrator'    => __('Only administrator', $domain),
-			'select_page_to_add'    => __('Select page to add', $domain),
-			'custom_css_class'      => __('Custom CSS class', $domain)
-			);
-		return $locals[$label];
+			//other
+			'theme_options_media' => __('Theme Options Media', $domain)
+		);
+	    return $locals[$label];
 	};
 ?>

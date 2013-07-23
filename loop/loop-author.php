@@ -44,26 +44,7 @@
 	<h3><?php echo theme_locals("recent_comments_by"); ?> <?php echo $curauth->display_name; ?></h3>
 	<?php
 		$number = 5; // number of recent comments to display
-
-		if ( function_exists( 'wpml_get_language_information' ) ) {
-			global $sitepress;
-			$sql = "
-				SELECT * FROM {$wpdb->comments}
-				JOIN {$wpdb->prefix}icl_translations 
-				ON {$wpdb->comments}.comment_post_id = {$wpdb->prefix}icl_translations.element_id 
-				AND {$wpdb->prefix}icl_translations.element_type='post_post' 
-				WHERE comment_approved = '1' 
-				AND language_code = '".$sitepress->get_current_language()."' 
-				ORDER BY comment_date_gmt DESC LIMIT {$number}";
-		} else {
-			$sql = "
-				SELECT * FROM $wpdb->comments 
-				WHERE comment_approved = '1' 
-				AND comment_author_email='$curauth->user_email'
-				ORDER BY comment_date_gmt 
-				DESC LIMIT {$number}";
-		}
-		$comments = $wpdb->get_results($sql);
+		$comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_approved = '1' and comment_author_email='$curauth->user_email' ORDER BY comment_date_gmt DESC LIMIT $number");
 	?>
 	<ul>
 		<?php

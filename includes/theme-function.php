@@ -182,7 +182,7 @@ if ( !function_exists( 'tz_image' ) ) {
 				$img_url = wp_get_attachment_url( $thumb,'full'); //get img URL
 				$image   = aq_resize( $img_url, 700, 460, true ); //resize & crop img
 
-				if ($lightbox) :
+				if($lightbox) :
 					echo '<figure class="featured-thumbnail thumbnail large"><a class="image-wrap" rel="prettyPhoto" title="'. get_the_title() .'" href="'. $src[0] .'"><img src="'. $image .'" alt="'. get_the_title() .'" /><span class="zoom-icon"></span></a></figure><div class="clear"></div>';
 				else :
 					echo '<figure class="featured-thumbnail thumbnail large"><img src="'. $image .'" alt="'. get_the_title() .'" /></figure><div class="clear"></div>';
@@ -226,16 +226,18 @@ if ( !function_exists( 'tz_grid_gallery' ) ) {
 					$url            = $attachment_url['0'];
 					$image          = aq_resize($url, 260, 160, true);
 				?>
-				<figure class="gallery_item featured-thumbnail thumbnail single-gallery-item">
-					<?php if($lightbox) : ?>
-					<a href="<?php echo $attachment_url['0'] ?>" class="image-wrap" rel="prettyPhoto[gallery]">
-						<img alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>" src="<?php echo $image ?>" width="260" height="160" />
-						<span class="zoom-icon"></span>
-						</a>
-					<?php else : ?>
-						<img alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>" src="<?php echo $image ?>" width="260" height="160" />
-					<?php endif; ?>
-				</figure>
+				<div class="gallery_item">
+					<figure class="featured-thumbnail single-gallery-item">
+						<?php if($lightbox) : ?>
+						<a href="<?php echo $attachment_url['0'] ?>" class="image-wrap" rel="prettyPhoto[gallery]">
+							<img alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>" src="<?php echo $image ?>" width="260" height="160" />
+							<span class="zoom-icon"></span>
+							</a>
+						<?php else : ?>
+							<img alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>" src="<?php echo $image ?>" width="260" height="160" />
+						<?php endif; ?>
+					</figure>
+				</div>
 			<?php 
 				endforeach;
 			endif; ?>
@@ -570,7 +572,7 @@ if ( !function_exists( 'mytheme_comment' ) ) {
 if ( !function_exists( 'breadcrumbs' ) ) {
 	function breadcrumbs() {
 
-	$showOnHome  = 1; // 1 - show "breadcrumbs" on home page, 0 - hide
+	$showOnHome  = 0; // 1 - show "breadcrumbs" on home page, 0 - hide
 	$delimiter   = '<li class="divider">/</li>'; // divider
 	$home        = get_the_title( get_option('page_on_front', true) ); // text for link "Home"
 	$showCurrent = 1; // 1 - show title current post/page, 0 - hide
@@ -635,14 +637,12 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 					if ($showCurrent == 1)
 						echo $before . get_the_title() . $after;
 				} else {
-					$cat  = get_the_category();
-					if (!empty($cat)) {
-						$cat  = $cat[0];
-						$cats = get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
-						if ($showCurrent == 0) 
-							$cats = preg_replace("#^(.+)\s$delimiter\s$#", "$1", $cats);
-						echo $cats;
-					}
+					$cat  = get_the_category(); 
+					$cat  = $cat[0];
+					$cats = get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
+					if ($showCurrent == 0) 
+						$cats = preg_replace("#^(.+)\s$delimiter\s$#", "$1", $cats);
+					echo $cats;
 					if ($showCurrent == 1) 
 						echo $before . get_the_title() . $after;
 				}
@@ -695,5 +695,5 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 			}
 			echo '</ul>';
 		}
-	} // end breadcrumbs()
+	} // end breadcrumbs() 
 }?>

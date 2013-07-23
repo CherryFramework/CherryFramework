@@ -51,10 +51,10 @@
 					<?php
 						// get the meta information and display if supplied
 						$portfolioClient = get_post_meta($post->ID, 'tz_portfolio_client', true);
-						$portfolioDate   = get_post_meta($post->ID, 'tz_portfolio_date', true);
-						$portfolioInfo   = get_post_meta($post->ID, 'tz_portfolio_info', true);
-						$portfolioURL    = get_post_meta($post->ID, 'tz_portfolio_url', true);
-						$portfolioMeta   = of_get_option('folio_meta');
+						$portfolioDate = get_post_meta($post->ID, 'tz_portfolio_date', true);
+						$portfolioInfo = get_post_meta($post->ID, 'tz_portfolio_info', true);
+						$portfolioURL = get_post_meta($post->ID, 'tz_portfolio_url', true);
+						$portfolioMeta = of_get_option('folio_meta');
 
 						if($portfolioMeta == "yes"){
 							$post_type = get_post_type($post);
@@ -106,7 +106,7 @@
 
 						if (!empty($portfolioClient) || !empty($portfolioDate) || !empty($portfolioInfo) || !empty($portfolioURL)) {
 							echo '</ul>';
-					}?>
+					}?>					
 				</div><!-- END .entry-meta -->
 
 				<?php the_content(); ?>

@@ -1,46 +1,37 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class('post__holder'); ?>>
-	<?php if(!is_singular()) : ?>
-	<header class="post-header">
-		<h2 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php echo theme_locals("permalink_to"); ?> <?php the_title(); ?>"><?php the_title(); ?></a></h2>
+<article id="post-<?php the_ID(); ?>" <?php post_class('post__holder'); ?>>				
+	<?php if(!is_singular()) : ?>	
+	<header class="post-header">				
+		<h2 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php echo theme_locals("permalink_to"); ?> <?php the_title(); ?>"><?php the_title(); ?></a></h2>		
 	</header>
 	<?php endif; ?>
 	<?php 
 		// get video attribute
-		$video_title  = get_post_meta(get_the_ID(), 'tz_video_title', true);
+		$video_title = get_post_meta(get_the_ID(), 'tz_video_title', true);
 		$video_artist = get_post_meta(get_the_ID(), 'tz_video_artist', true);
-		$embed        = get_post_meta(get_the_ID(), 'tz_video_embed', true);
-		$m4v_url      = get_post_meta(get_the_ID(), 'tz_m4v_url', true);
-		$ogv_url      = get_post_meta(get_the_ID(), 'tz_ogv_url', true);
+		$embed = get_post_meta(get_the_ID(), 'tz_video_embed', true);
+		$m4v_url = get_post_meta(get_the_ID(), 'tz_m4v_url', true);
+		$ogv_url = get_post_meta(get_the_ID(), 'tz_ogv_url', true);
 
-		// get content URL
-		$content_url = content_url();
-		$content_str = 'wp-content';
-		
-		$pos1     = strpos($m4v_url, $content_str);
-		if ($pos1 === false) {
-			$file1 = $m4v_url;
-		} else {
-			$m4v_new  = substr($m4v_url, $pos1+strlen($content_str), strlen($m4v_url) - $pos1);
-			$file1    = $content_url.$m4v_new;
-		}
+		// get site URL
+		$home_url = home_url();
 
-		$pos2     = strpos($ogv_url, $content_str);
-		if ($pos2 === false) {
-			$file2 = $ogv_url;
-		} else {
-			$ogv_new  = substr($ogv_url, $pos2+strlen($content_str), strlen($ogv_url) - $pos2);
-			$file2    = $content_url.$ogv_new;
-		}
-		
+		$pos1 = strpos($m4v_url, 'wp-content');
+		$m4v_new = substr($m4v_url, $pos1, strlen($m4v_url) - $pos1);
+		$file1 = $home_url.'/'.$m4v_new;
+
+		$pos2 = strpos($ogv_url, 'wp-content');
+		$ogv_new = substr($ogv_url, $pos2, strlen($ogv_url) - $pos2);
+		$file2 = $home_url.'/'.$ogv_new;
+
 		$html5Class = '';
 		if ($embed == '')
 			$html5Class = 'html5-video';
 		
 		// get thumb
 		if(has_post_thumbnail()) {
-			$thumb   = get_post_thumbnail_id();
+			$thumb = get_post_thumbnail_id();
 			$img_url = wp_get_attachment_url( $thumb,'full'); //get img URL
-			$image   = aq_resize( $img_url, 770, 380, true ); //resize & crop img
+			$image = aq_resize( $img_url, 770, 380, true ); //resize & crop img
 		}
 	?>
 	
@@ -71,7 +62,7 @@
 					});
 				</script>
 				
-				<!-- BEGIN video -->
+				<!-- BEGIN video -->	
 				<div id="jp_container_<?php the_ID(); ?>" class="jp-video fullwidth">
 					<div class="jp-type-list-parent">
 						<div class="jp-type-single">
@@ -108,14 +99,14 @@
 								</div>
 								<div class="jp-no-solution">
 									<?php echo theme_locals("update_required") ?>
-								</div>
+								</div>	
 							</div>
-						</div>
+						</div>			
 					</div>
 				</div><!-- END video -->
 			<?php }
-		?>
-	</div>
+		?>		
+	</div>			
 	<!-- Post Content -->
 	<div class="post_content">
 		<?php the_content(''); ?>
@@ -123,6 +114,6 @@
 	</div>
 	<!-- //Post Content -->
 	
-	<?php get_template_part('includes/post-formats/post-meta'); ?>
-
+	<?php get_template_part('includes/post-formats/post-meta'); ?>        
+ 
 </article><!--//.post__holder-->

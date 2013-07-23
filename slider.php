@@ -1,21 +1,4 @@
-<?php 
-	$motopress_cam_id = uniqid();
-
-	// WPML filter
-	$suppress_filters = get_option('suppress_filters');
-
-	// query
-	$args = array(
-		'post_type'        => 'slider',
-		'posts_per_page'   => -1,
-		'post_status'      => 'publish', 
-		'orderby'          => 'name',
-		'order'            => 'ASC',
-		'suppress_filters' => $suppress_filters
-		);
-	$slides = get_posts($args);
-	if (empty($slides)) return;
-?>
+<?php $motopress_cam_id = uniqid(); ?>
 
 <script type="text/javascript">
 //    jQuery(window).load(function() {
@@ -72,54 +55,46 @@
 </script>
 
 <div id="camera<?php echo $motopress_cam_id; ?>" class="camera_wrap camera">
-	<?php foreach( $slides as $k => $slide ) {
-			// Unset not translated posts
-			if ( function_exists( 'wpml_get_language_information' ) ) {
-				global $sitepress;
+	<?php
+		query_posts("post_type=slider&posts_per_page=-1&post_status=publish&orderby=name&order=ASC");
+		while ( have_posts() ) : the_post();
 
-				$check              = wpml_get_language_information( $slide->ID );
-				$language_code      = substr( $check['locale'], 0, 2 );
-				if ( $language_code != $sitepress->get_current_language() ) unset( $slides[$k] );
+		$custom             = get_post_custom($post->ID);
+		$url                = get_post_custom_values("my_slider_url");
+		$caption            = get_post_custom_values("my_slider_caption");
+		$sl_image_url       = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'slider-post-thumbnail');
+		$sl_small_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'slider-thumb');
+		$banner_animation   = of_get_option('sl_banner');
 
-				// Post ID is different in a second language Solution
-				if ( function_exists( 'icl_object_id' ) ) $slide = get_post( icl_object_id( $slide->ID, 'slider', true ) );
-			}
+		if(has_post_thumbnail()){
 
-			$caption            = get_post_meta($slide->ID, 'my_slider_caption', true);
-			$url                = get_post_meta($slide->ID, 'my_slider_url', true);
-			$sl_image_url       = wp_get_attachment_image_src( get_post_thumbnail_id($slide->ID), 'slider-post-thumbnail');
-			$sl_small_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($slide->ID), 'slider-thumb');
-			$banner_animation   = of_get_option('sl_banner');
-
-			if ( has_post_thumbnail($slide->ID) ) {
-				echo "<div ";
-				if ( $url!="" ) {
-					echo "data-src='";
-					echo $sl_image_url[0];
-					echo "' data-link='". $url ."'";
-					echo "' data-thumb='";
-					echo $sl_small_image_url[0];
-					echo "'>";
-					if ($caption) { ?>
-						<div class="camera_caption <?php echo $banner_animation;?>">
-							<?php echo stripslashes(htmlspecialchars_decode($caption)); ?>
-						</div>
-					<?php }
-				} else {
-					echo "data-src='";
-					echo $sl_image_url[0];
-					echo "' data-thumb='";
-					echo $sl_small_image_url[0];
-					echo "'>";
-					if ($caption) { ?>
-						<div class="camera_caption <?php echo $banner_animation;?>">
-							<?php echo stripslashes(htmlspecialchars_decode($caption)); ?>
-						</div>
-					<?php }
+		echo "<div ";
+			if($url!=""){
+				echo "data-src='";
+				echo $sl_image_url[0];
+				echo "' data-link='". $url[0] ."'";
+				echo " data-thumb='";
+				echo $sl_small_image_url[0];
+				echo "'>";
+				if($caption[0]) { ?>
+					<div class="camera_caption <?php echo $banner_animation;?>">
+						<?php echo stripslashes(htmlspecialchars_decode($caption[0])); ?>
+					</div>
+				<?php }
+			} else {
+				echo "data-src='";
+				echo $sl_image_url[0];
+				echo "' data-thumb='";
+				echo $sl_small_image_url[0];
+				echo "'>";
+				if($caption[0]) { ?>
+					<div class="camera_caption <?php echo $banner_animation;?>">
+						<?php echo stripslashes(htmlspecialchars_decode($caption[0])); ?>
+					</div>
+				<?php }
 				}
-				echo "</div>";
-			}
+		echo "</div>";
 		}
-		wp_reset_postdata();
-	?>
+	endwhile;
+	wp_reset_query(); ?>
 </div>

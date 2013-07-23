@@ -1,2 +1,39 @@
-jQuery(function(a){function c(){window.location.replace("export.php")}function d(){window.location.replace("admin.php?page=options-framework-import&step=2")}a("form#widget-export-settings").submit(function(){window.setTimeout(c,4E3)});a("form#import-widget-data").submit(function(b){b.preventDefault();a.post(ajaxurl,a("#import-widget-data").serialize(),function(a){wpAjax.parseAjaxResponse(a,"notifier")&&window.setTimeout(d,2500)})});var e=a("<div/>").css({}),b=a("#upload-file").wrap(e);b.change(function(){$this=
-a(this);sub=$this.val().lastIndexOf("\\")+1;new_string=$this.val().substring(sub);a("#output-text").text(new_string);a("#output-text").fadeIn("slow")});a("#upload-button").click(function(){b.click()}).show()});
+jQuery( function($) {
+	$('form#widget-export-settings').submit(function() {
+		window.setTimeout(redirect_to_data_export, 4000);
+	});
+	
+	$('form#import-widget-data').submit(function(e){
+		e.preventDefault();
+
+		$.post( ajaxurl, $("#import-widget-data").serialize(), function(r){
+			var res = wpAjax.parseAjaxResponse(r, 'notifier');
+			if( ! res )
+				return;
+
+			window.setTimeout(redirect_to_data_import, 2500);
+		});
+	});
+	
+	var wrapper = $('<div/>').css({});
+	var fileInput = $('#upload-file').wrap(wrapper);
+
+	fileInput.change(function(){
+		$this = $(this);
+		sub = $this.val().lastIndexOf('\\') + 1;
+		new_string = $this.val().substring(sub);
+		$('#output-text').text(new_string);
+		$('#output-text').fadeIn('slow');
+	})
+
+	$('#upload-button').click(function(){
+		fileInput.click();
+	}).show();
+	
+	function redirect_to_data_export() {
+		window.location.replace('export.php');
+	}
+	function redirect_to_data_import() {
+		window.location.replace('admin.php?page=options-framework-import&step=2');
+	}
+});

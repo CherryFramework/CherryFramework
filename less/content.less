@@ -185,7 +185,6 @@
 	
 /* Grid Gallery */
 .grid_gallery {
-	margin-bottom:-1px;
 	position:relative;
 	overflow:hidden;
 	padding:0;
@@ -198,16 +197,14 @@
 	.gallery_item {
 		float:left;
 		width: 33%;
-		margin: 0;
+		margin:0;
 		padding: 0 1px 1px 0;
 
-		&.featured-thumbnail {
-			border: none;
-			.border-radius(0);
-			.box-shadow(none);
+		& .featured-thumbnail {
+			float: none;
 		}
 	}
-
+		
 .single-gallery-item {
 	margin:0 !important;
 }
@@ -457,7 +454,6 @@ html[xmlns] .slides { display: block;}
 	
 /* Filterable Portfolio
 ---------------------------------------- */
-
 .filter-wrapper {
 	strong {
 		display: block;
@@ -515,77 +511,13 @@ html[xmlns] .slides { display: block;}
 		position:relative;
 		display:block;
 		overflow:hidden;
-		background:#f5f5f5 url(../images/loading.gif) 50% 50% no-repeat;
+		background:#f5f5f5 url(../images/loading-folio.gif) 50% 50% no-repeat;
 	}
 }
 .thumbnail__portfolio {
 	margin: 0;
 }
-.video_preview{
-	&.featured-thumbnail{
-		margin: 0 0 10px 0;
-		padding: 0px;
-		width: 100%;
-	}
-	>div{
-		padding: 4px;
-	}
-	a[rel="author"]{
-		display: inline-block;
-	}
-	.post_author{
-		display: block;
-	}
-	.post_date{
-		display: block;
-	}
-	img{
-		width: 100%;
-	}
-	span.hover{
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin: -41px 0 0 -35px;
-		font-size: 80px;
-		color: #FFF;
-		text-decoration: none;
-		opacity: 0.8;	
-		-webkit-perspective: 1000;
-		-moz-perspective: 1000;
-		-ms-perspective: 1000;
-		perspective: 1000;
-		-webkit-transition: all  0.5s ease;
-		-moz-transition: all 0.5s ease;
-		transition: all  0.5s ease;
-	}
-	a:hover span.hover{
-		opacity: 1;
-		-webkit-perspective: 1000;
-		-moz-perspective: 1000;
-		-ms-perspective: 1000;
-		perspective: 1000;
-		-webkit-transform: rotateY(360deg);
-		-moz-transform: rotateY(360deg);
-		-ms-transform: rotateY(360deg);
-		transform: rotateY(360deg);
-		-webkit-transition: all  0.5s ease;
-		-moz-transition: all 0.5s ease;
-		transition: all  0.5s ease;
-	}
-	h4{
-		padding: 0 0 7px 5px;
-		border-bottom: 1px solid #DDD;
-	}
-	.post_author{
-		float: left;
-		padding: 0 0 5px 5px;
-	}
-	.post_date{
-		float: right;
-		padding: 0 5px 5px 0;
-	}
-}	
+		
 /**** Isotope Filtering ****/
 
 .isotope-item {
@@ -642,11 +574,7 @@ html[xmlns] .slides { display: block;}
 	float:left;
 	margin:0 20px 0 0;
 	}
-.single-portfolio{
-	.featured-thumbnail.thumbnail{
-		margin-bottom:0px;
-	}
-}
+	
 	
 /* Author Page
 ---------------------------------------- */
@@ -994,8 +922,8 @@ p.gravatar {
 
 /* Single pager */
 .single-pager {
-	margin: 10px 0 30px;
-	padding: 5px 0;
+	margin: 0 0 30px;
+	padding: .5em 0;
 	border-top: 1px solid @grayLighter;
 	border-bottom: 1px solid @grayLighter;
 	font-size: 11px;

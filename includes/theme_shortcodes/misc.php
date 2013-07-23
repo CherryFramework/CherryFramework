@@ -45,9 +45,9 @@ if (!function_exists('title_shortcode')) {
 	function title_shortcode($atts, $content = null) {
 		extract(shortcode_atts(
 			array(
-				'title'        => '',
-				'subtitle'     => '',
-				'icon'         => '',
+				'title' => '',
+				'subtitle' => '',
+				'icon' => '',
 				'custom_class' => ''
 			), $atts));
 
