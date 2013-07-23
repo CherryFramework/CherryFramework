@@ -31,7 +31,7 @@
 #optionsframework .controls .of-background-position{width:125px;margin-right:5px;float:left}
 #optionsframework .controls .of-background-attachment{width:125px;margin-right:5px;float:left}
 #optionsframework div.section-background .controls input.upload{width:47%;}
-#optionsframework .controls .img_wrapper{float:left;}
+#optionsframework .controls .img_wrapper{float:left;width:107px;}
 #optionsframework .controls .img_title{clear:both;text-align:center;margin-right:5px;}
 #optionsframework .controls .of-radio-img-img{border:3px solid #f9f9f9;margin:0 5px 10px 0;display:none;cursor:pointer;float:left;}
 #optionsframework .controls .of-radio-img-selected{border:3px solid #ccc}

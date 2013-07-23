@@ -79,7 +79,9 @@
 							<p><?php echo theme_locals("info_box_1"); ?></p>
 							<div class="theme_box">
 								<h4><?php echo theme_locals('cherry_framework'); ?></h4>
-								<div class="update-message"><?php echo theme_locals("info_box_2"); ?></div>
+								<?php if(FILE_WRITEABLE){ ?>
+									<div class="update-message"><?php echo theme_locals("info_box_2"); ?></div>
+								<?php } ?>
 								<div class="controls framework_info">
 									<span class="data_label"><?php echo theme_locals("name"); ?>:</span><span class="data_val"><?php echo get_theme_info(PARENT_NAME)->Name; ?></span><br>
 									<span class="data_label"><?php echo theme_locals("author"); ?>:</span><span class="data_val"><?php echo get_theme_info(PARENT_NAME)->Author; ?></span><br>
@@ -90,6 +92,7 @@
 									<span class="data_label"><?php echo theme_locals("description"); ?>:</span><span class="data_val"><?php echo get_theme_info(PARENT_NAME)->Description; ?></span><br>
 									<?php add_radio_button(get_theme_info(PARENT_NAME)->Template, "", true); ?>
 								</div>
+								<?php if ( FILE_WRITEABLE ) { ?>
 								<div class="buttons_controls">
 									<div class="button_wrapper">
 										<?php 
@@ -115,6 +118,9 @@
 										<a class="button-primary download_backup" href="<?php echo PARENT_NAME; ?>" title="<?php echo theme_locals('download_backup'); ?>"><?php echo theme_locals("download_backup"); ?></a>
 									</div>
 								</div>
+								<?php }else{
+									printf('<p><em>'.theme_locals('warning_notice_1').' '.theme_locals('warning_notice_3').'</em></p>');
+								}?>
 							</div>
 							<?php
 								$themes_dir = get_theme_root();
@@ -163,6 +169,7 @@
 										?>
 									</div>
 								</div>
+								<?php if (FILE_WRITEABLE) { ?>
 								<div class="buttons_controls">
 									<div class="button_wrapper">
 										<a class="button-primary backup_theme" href="CherryFramework"  title="<?php echo theme_locals('backup'); ?>"><?php echo theme_locals("backup"); ?></a>
@@ -174,6 +181,9 @@
 										<a class="button-primary download_backup" href="CherryFramework" title="<?php echo theme_locals('download_backup'); ?>"><?php echo theme_locals("download_backup"); ?></a>
 									</div>
 								</div>
+								<?php }else{
+									printf('<p><em>'.theme_locals('warning_notice_1').' '.theme_locals('warning_notice_3').'</em></p>');
+								}?>
 							</div>
 							<?php
 								}

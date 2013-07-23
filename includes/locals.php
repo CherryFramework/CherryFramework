@@ -281,10 +281,33 @@
 			'load_image_desc' => __('You can enable images load only as you scroll down the page. Otherwise images will load all at once.', $domain),
 			'single_post_image_name' => __('Single post image size', $domain),
 			'single_post_image_desc' => __('Featured image size on the single page.', $domain),
-			'meta_name' => __('Enable Meta for blog posts?', $domain),
-			'meta_desc' => __('Enable or Disable meta information for blog posts.', $domain),
+			'meta_name' => __('View meta of the blog.', $domain),
+			'meta_desc' => __('Select meta block type which will be displayed on blog and post pages.', $domain),
 			'excerpt_name' => __('Enable excerpt for blog posts?', $domain),
 			'excerpt_desc' => __('Enable or Disable excerpt for blog posts.', $domain),
+			'hide' => __('Do not show.', $domain),
+			'line' => __('Lines.', $domain),
+			'grid' => __('Columns.', $domain),
+			'icon' => __('Icons.', $domain),
+			'post_date_name' => __('Post publication date.', $domain),
+			'post_date_desc' => __('Should the post publication date be displayed?', $domain),
+			'post_author_name' => __('Author of the post.', $domain),
+			'post_author_desc' => __('Display the author of the post?', $domain),
+			'post_permalink_name' => __('Direct link to the post.', $domain),
+			'post_permalink_desc' => __('Should the direct link to the post be displayed? ', $domain),
+			'post_category_name' => __('Post categories.', $domain),
+			'post_category_desc' => __('Should the post categories be displayed?', $domain),
+			'post_tag_name' => __('Tags be displayed.', $domain),
+			'post_tag_desc' => __('Should the tags be displayed?', $domain),
+			'post_comment_name' => __('Number of comments.', $domain),
+			'post_comment_desc' => __('Should the number of comments be displayed?', $domain),
+			'post_views_name' => __('Number of view.', $domain),
+			'post_views_desc' => __('Should the number of view be displayed?', $domain),
+			'post_like_name' => __('Number of likes.', $domain),
+			'post_like_desc' => __('Should the number of likes be displayed?', $domain),
+			'post_dislike_name' => __('Number of dislikes.', $domain),
+			'post_dislike_desc' => __('Should the number of dislikes be displayed?', $domain),
+			//'' => __('', $domain),
 			
 			//Portfolio options
 			'portfolio' => __('Portfolio', $domain),
@@ -405,6 +428,9 @@
 
 			//function.php
 			'login_error' => __('The login information you have entered is incorrect.', $domain),
+			'warning_notice_1' => __('You need to enable write permissions on your server to use these functions.', $domain),
+			'warning_notice_2' => __('Cherry Framework is not able to perform necessary changes for the correct work with your child theme.', $domain),
+			'warning_notice_3' => __('See <a target="_blank" href="http://codex.wordpress.org/Changing_File_Permissions">the Codex</a> for more information.', $domain),
 			
 			//theme-init.php
 			'header_menu' => __('Header Menu', $domain),
@@ -578,6 +604,12 @@
 			'comments' => __('comments', $domain),
 			'comments_link' => __('comments-link', $domain),
 			'comments_closed' => __('Comments are closed', $domain),
+			'has_not_tags' => __('No tags', $domain),
+			'number_views' => __('Number of view.', $domain),
+			'like' => __('I like it.', $domain),
+			'dislike' => __('I don\'t like.', $domain),
+			'not_voting' => __('Only registered users can vote!', $domain),
+			'have_voting' => __('You have already voted.', $domain),
 			
 			//post-nav.php
 			'older' => __('&laquo; Older Entries', $domain),
@@ -701,7 +733,7 @@
 			'default_read_more' => __('(default: "Read more")', $domain),
 			'link_class' => __('Link class', $domain),
 			'default_link' => __('(default: "link")', $domain),
-			'thumbnail_dimensions' => __('Thumbnail dimensions_', $domain),
+			'thumbnail_dimensions' => __('Thumbnail dimensions', $domain),
 			'show_post_thumbnail' => __('Show post thumbnail', $domain),
 			'thumbnail_as_link' => __('Thumbnail as link', $domain),
 			'all_posts_link' => __('Link to all posts', $domain),
@@ -768,6 +800,7 @@
 			'help_and_supports' => __('Help & Support', $domain),
 			'no_items' => __('No items', $domain),
 			'posted' => __('Posted', $domain),
+			'all_templates' => __('All templates', $domain),
 
 			//data_management_interface.php
 			'data_management' => __('Data Management', $domain),

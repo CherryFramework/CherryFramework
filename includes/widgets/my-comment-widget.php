@@ -13,11 +13,11 @@ class MY_CommentWidget extends WP_Widget_Recent_Comments {
 		$title = apply_filters('widget_title', empty($instance['title']) ? theme_locals("recent_comments_decs") : $instance['title']);
 		$comments_count = apply_filters('widget_title', empty($instance['comments_count']) ? 5 : $instance['comments_count']);
 		$display_avatar = apply_filters('widget_display_avatar', empty($instance['display_avatar']) ? '' : 'on' );
-		$avatar_size = apply_filters('widget_avatar_size', empty($instance['display_avatar']) ? '48' : $instance['display_avatar']);
+		$avatar_size = apply_filters('widget_avatar_size', empty($instance['avatar_size']) ? '48' : $instance['avatar_size']);
 		$display_author_name = apply_filters('widget_display_author_name', empty($instance['display_author_name']) ? '' : 'on' );
 		$display_date = apply_filters('widget_display_date', empty($instance['display_date']) ? '' : 'on' );
 		$display_post_title = apply_filters('widget_display_post_title', empty($instance['display_post_title']) ? '' : 'on' );
-		$meta_format = apply_filters('widget_meta_format', $instance['meta_format']);
+		$meta_format = apply_filters('widget_meta_format', empty($instance['meta_format']) ? 'none' : $instance['meta_format'] );
 
 		if ( $comments_count < 1 ){
 			$comments_count = 1;
@@ -92,7 +92,7 @@ class MY_CommentWidget extends WP_Widget_Recent_Comments {
 					}
 					$comment_date = get_comment_date();
 					$comment_time = get_comment_time();
-					echo '<div class="meta_format">'.$title_date.'<time>'.$comment_date.' '.$comment_time.'</time></div>';
+					echo '<div class="meta_format">'.$title_date.'<time datetime="'.date('Y-m-d\TH:i:s', strtotime($comment_date.$comment_time)).'">'.$comment_date.' '.$comment_time.'</time></div>';
 				}?>
 			<div class="clear"></div>
 				<div class="comments-custom_txt">

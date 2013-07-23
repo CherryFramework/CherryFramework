@@ -9,7 +9,7 @@
 		var $container = jQuery('#portfolio-grid'),
 			items_count = jQuery(".portfolio_item").size();
 		
-		$container.imagesLoaded( function(){	
+		$container.imagesLoaded( function(){
 			setColumnWidth();
 			$container.isotope({
 				itemSelector : '.portfolio_item',
@@ -17,7 +17,7 @@
 				resizable : false,
 				transformsEnabled : true,
 				layoutMode: '<?php echo $layout_mode; ?>'
-			});		
+			});
 		});
 		
 		function getNumColumns(){
@@ -25,21 +25,21 @@
 			var $folioWrapper = jQuery('#portfolio-grid').data('cols');
 			
 			if($folioWrapper == '1col') {
-				var winWidth = jQuery("#portfolio-grid").width();		
-				var column = 1;		
+				var winWidth = jQuery("#portfolio-grid").width(),
+					column = 1;
 				return column;
 			}
 			
 			if($folioWrapper == '2cols') {
 				var winWidth = jQuery("#portfolio-grid").width(),
-					column = 2;		
+					column = 2;
 				if (winWidth<380) column = 1;
 				return column;
 			}
 			
 			else if ($folioWrapper == '3cols') {
 				var winWidth = jQuery("#portfolio-grid").width(),
-					column = 3;		
+					column = 3;
 				if (winWidth<380) column = 1;
 				else if(winWidth>=380 && winWidth<788)  column = 2;
 				else if(winWidth>=788 && winWidth<1160)  column = 3;
@@ -48,37 +48,36 @@
 			}
 			
 			else if ($folioWrapper == '4cols') {
-				var winWidth = jQuery("#portfolio-grid").width(),	
-					column = 4;		
+				var winWidth = jQuery("#portfolio-grid").width(),
+					column = 4;
 				if (winWidth<380) column = 1;
 				else if(winWidth>=380 && winWidth<788)  column = 2;
 				else if(winWidth>=788 && winWidth<1160)  column = 3;
-				else if(winWidth>=1160) column = 4;		
+				else if(winWidth>=1160) column = 4;
 				return column;
 			}
 		}
 		
 		function setColumnWidth(){
-			var columns = getNumColumns(),		
+			var columns = getNumColumns(),
 				containerWidth = jQuery("#portfolio-grid").width(),
 				postWidth = containerWidth/columns;
 			postWidth = Math.floor(postWidth);
-	 		
+
 			jQuery(".portfolio_item").each(function(index){
-				jQuery(this).css({"width":postWidth+"px"});				
+				jQuery(this).css({"width":postWidth+"px"});
 			});
 		}
-			
+
 		function arrange(){
-			setColumnWidth();		
-			$container.isotope('reLayout');	
+			setColumnWidth();
+			$container.isotope('reLayout');
 		}
-			
-		jQuery(window).on("debouncedresize", function( event ) {	
-			arrange();		
+
+		jQuery(window).on("debouncedresize", function( event ) {
+			arrange();
 		});
-		
-		
+
 		// Filter projects
 		$('.filter a').click(function(){
 			var $this = $(this).parent('li');
@@ -104,7 +103,7 @@
 			});
 
 			showenItems = items_count - hiddenItems;
-			if ( ($(this).attr('data-count')) > showenItems ) {				
+			if ( ($(this).attr('data-count')) > showenItems ) {
 				jQuery(".pagination__posts").css({"display" : "block"});
 			} else {
 				jQuery(".pagination__posts").css({"display" : "none"});
@@ -115,33 +114,34 @@
 </script>
 
 <?php 
-	$i=1;
-	if ( have_posts() ) while ( have_posts() ) : the_post(); 
+	$i = 1;
+	if ( have_posts() ) while ( have_posts() ) : the_post();
+
+	// post ID is different in a second language solution
+	if ( function_exists( 'icl_object_id' ) ) $post = get_post( icl_object_id( $post->ID, 'portfolio', true ) );
 	
 	// Get categories
-	$portfolio_cats = wp_get_object_terms($post->ID, 'portfolio_category');
-
+	$portfolio_cats      = wp_get_object_terms($post->ID, 'portfolio_category');
+	
 	// Get tags
-	$portfolio_tags = wp_get_object_terms($post->ID, 'portfolio_tag');
-
+	$portfolio_tags      = !is_wp_error( wp_get_object_terms($post->ID, 'portfolio_tag')) ? wp_get_object_terms($post->ID, 'portfolio_tag') : array();
+	//var_dump($portfolio_tags);
 	// Theme Options vars
-	$folio_filter = of_get_option('folio_filter');
-	$folio_title = of_get_option('folio_title');
-	$folio_btn = of_get_option('folio_btn');
-	$folio_excerpt = of_get_option('folio_excerpt');
+	$folio_filter        = of_get_option('folio_filter');
+	$folio_title         = of_get_option('folio_title');
+	$folio_btn           = of_get_option('folio_btn');
+	$folio_excerpt       = of_get_option('folio_excerpt');
 	$folio_excerpt_count = of_get_option('folio_excerpt_count');
 	
-	$custom = get_post_custom($post->ID);
-	
-	$thumb = get_post_thumbnail_id();
-	$img_url = wp_get_attachment_url( $thumb,'full'); //get img URL
-	$image = aq_resize( $img_url, 600, 380, true ); //resize & crop img
+	$thumb               = get_post_thumbnail_id();
+	$img_url             = wp_get_attachment_url( $thumb,'full'); //get img URL
+	$image               = aq_resize( $img_url, 600, 380, true ); //resize & crop img
 	
 	//mediaType init
-	$mediaType = get_post_meta($post->ID, 'tz_portfolio_type', true);
+	$mediaType           = get_post_meta($post->ID, 'tz_portfolio_type', true);
 	?>
 	
-	<li class="portfolio_item <?php foreach( $portfolio_cats as $portfolio_cat ) { echo $portfolio_cat->slug.' ';} ?> <?php foreach( $portfolio_tags as $portfolio_tag ) { echo $portfolio_tag->slug.' ';} ?>">
+	<li class="portfolio_item <?php foreach( $portfolio_cats as $portfolio_cat ) { echo str_replace(' ', '-', mb_strtolower($portfolio_cat->name, 'UTF-8')).' ';} ?> <?php foreach( $portfolio_tags as $portfolio_tag ) { echo str_replace(' ', '-', mb_strtolower($portfolio_tag->name, 'UTF-8')).' ';} ?>">
 		<div class="portfolio_item_holder">
 		
 			<?php
@@ -154,27 +154,27 @@
 				} else { 
 					$prettyType = 'prettyPhoto';
 				}
-				?>
+			?>
 			
 				<figure class="thumbnail thumbnail__portfolio">
 					<a class="image-wrap" href="<?php echo $img_url;?>" rel="<?php echo $prettyType; ?>" title="<?php the_title();?>"><img src="<?php echo $image ?>" alt="<?php the_title(); ?>" /><span class="zoom-icon"></span></a>
 				</figure>
 				
 				
-				<?php
+			<?php
 				$thumbid = 0;
 				$thumbid = get_post_thumbnail_id($post->ID);
 			
 				$images = get_children( array(
-					'orderby' => 'menu_order',
-					'order' => 'ASC',
-					'post_type' => 'attachment',
-					'post_parent' => $post->ID,
+					'orderby'        => 'menu_order',
+					'order'          => 'ASC',
+					'post_type'      => 'attachment',
+					'post_parent'    => $post->ID,
 					'post_mime_type' => 'image',
-					'post_status' => null,
-					'numberposts' => -1
+					'post_status'    => null,
+					'numberposts'    => -1
 				) );
-						
+
 				/* $images is now a object that contains all images (related to post id 1) and their information ordered like the gallery interface. */
 				if ( $images ) {
 					//looping through the images
@@ -183,18 +183,18 @@
 						$image_attributes = wp_get_attachment_image_src( $attachment_id, 'full' ); // returns an array
 						$alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
 						$image_title = $attachment->post_title;
-						?>
-							
-						<a href="<?php echo $image_attributes[0]; ?>" title="<?php the_title(); ?>" rel="<?php echo $prettyType; ?>" style="display:none;"></a>
+					?>
+
+					<a href="<?php echo $image_attributes[0]; ?>" title="<?php the_title(); ?>" rel="<?php echo $prettyType; ?>" style="display:none;"></a>
 
 					<?php
 					}
-				} 
-			} else { ?>				
+				}
+			} else { ?>
 				<figure class="thumbnail thumbnail__portfolio">
 					<a class="image-wrap" href="<?php the_permalink() ?>" title="<?php echo theme_locals("permanent_link_to"); ?> <?php the_title_attribute(); ?>" ><img src="<?php echo $image ?>" alt="<?php the_title(); ?>" /></a>
-				</figure>				
-			<?php } ?>		
+				</figure>
+			<?php } ?>
 			
 			<!-- Caption -->
 			<div class="caption caption__portfolio">
@@ -211,5 +211,5 @@
 				<?php } ?>
 			</div><!-- /Caption -->
 		</div>
-	</li>	
+	</li>
 	<?php $i++; endwhile; ?>

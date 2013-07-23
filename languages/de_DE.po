@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: de_DE\n"
-"POT-Creation-Date: 2013-07-02 10:42+0200\n"
-"PO-Revision-Date: 2013-07-02 10:44+0200\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2013-07-18 11:03+0200\n"
+"PO-Revision-Date: 2013-07-18 11:03+0200\n"
+"Last-Translator: Nataly <charlykushu@gmail.com>\n"
 "Language-Team:  <demolink@info.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,57 +89,57 @@ msgstr "1.5"
 msgid "2"
 msgstr "2"
 
-#: ../admin/options-sanitize.php:391 ../includes/locals.php:804
+#: ../admin/options-sanitize.php:391 ../includes/locals.php:805
 msgid "Latin"
 msgstr "Latein"
 
-#: ../admin/options-sanitize.php:392 ../includes/locals.php:805
+#: ../admin/options-sanitize.php:392 ../includes/locals.php:806
 msgid "Latin Extended"
 msgstr "Erweitertes Lateinisch"
 
-#: ../admin/options-sanitize.php:393 ../includes/locals.php:806
+#: ../admin/options-sanitize.php:393 ../includes/locals.php:807
 msgid "Greek"
 msgstr "Griechisch"
 
-#: ../admin/options-sanitize.php:394 ../includes/locals.php:807
+#: ../admin/options-sanitize.php:394 ../includes/locals.php:808
 msgid "Greek Extended"
 msgstr "Erweitertes Griechisch"
 
-#: ../admin/options-sanitize.php:395 ../includes/locals.php:808
+#: ../admin/options-sanitize.php:395 ../includes/locals.php:809
 msgid "Cyrillic"
 msgstr "Kyrillisch "
 
-#: ../admin/options-sanitize.php:396 ../includes/locals.php:809
+#: ../admin/options-sanitize.php:396 ../includes/locals.php:810
 msgid "Cyrillic Extended"
 msgstr "Erweitertes Kyrillisch "
 
-#: ../admin/options-sanitize.php:397 ../includes/locals.php:810
+#: ../admin/options-sanitize.php:397 ../includes/locals.php:811
 msgid "Vietnamese"
 msgstr "Vietnamesisch"
 
 #: ../admin/options-sanitize.php:414 ../includes/locals.php:9
-#: ../includes/locals.php:811
+#: ../includes/locals.php:812
 msgid "Normal"
 msgstr "Normal"
 
-#: ../admin/options-sanitize.php:415 ../includes/locals.php:812
+#: ../admin/options-sanitize.php:415 ../includes/locals.php:813
 msgid "Italic"
 msgstr "kursiv "
 
-#: ../admin/options-sanitize.php:416 ../includes/locals.php:813
+#: ../admin/options-sanitize.php:416 ../includes/locals.php:814
 msgid "Bold"
 msgstr "Fett "
 
-#: ../admin/options-sanitize.php:417 ../includes/locals.php:814
+#: ../admin/options-sanitize.php:417 ../includes/locals.php:815
 msgid "Bold Italic"
 msgstr "Fettkursiv "
 
 #: ../admin/parsers.php:43 ../admin/parsers.php:75 ../admin/parsers.php:83
-#: ../includes/locals.php:817 ../includes/locals.php:819
+#: ../includes/locals.php:818 ../includes/locals.php:820
 msgid "There was an error when reading this WXR file"
 msgstr "Es gab einen Fehler beim Lesen dieser WXR Datei"
 
-#: ../admin/parsers.php:44 ../includes/locals.php:818
+#: ../admin/parsers.php:44 ../includes/locals.php:819
 msgid ""
 "Details are shown above. The importer will now try again with a different "
 "parser..."
@@ -148,7 +148,7 @@ msgstr ""
 "einem anderen Parser... "
 
 #: ../admin/parsers.php:87 ../admin/parsers.php:92 ../admin/parsers.php:284
-#: ../admin/parsers.php:475 ../includes/locals.php:820
+#: ../admin/parsers.php:475 ../includes/locals.php:821
 msgid ""
 "This does not appear to be a WXR file, missing/invalid WXR version number"
 msgstr ""
@@ -1276,13 +1276,15 @@ msgstr "Vorschaubild-größe im Blog"
 
 #: ../includes/locals.php:280
 msgid "Should images be uploaded on page scroll?"
-msgstr ""
+msgstr "Sollen die Bilder auf der Seitenchronik hochgeladen werden?"
 
 #: ../includes/locals.php:281
 msgid ""
 "You can enable images load only as you scroll down the page. Otherwise "
 "images will load all at once."
 msgstr ""
+"Das Laden der Bilder kannst du aktivieren nur wenn du auf der Seite runter "
+"scrollst. Sonst werden alle Bilder gleichzeitig geladen."
 
 #: ../includes/locals.php:282
 msgid "Single post image size"
@@ -1780,7 +1782,7 @@ msgstr ""
 
 #: ../includes/locals.php:407
 msgid "The login information you have entered is incorrect."
-msgstr ""
+msgstr "Die angegebenen Anmeldeinformationen sind fehlerhaft. "
 
 #: ../includes/locals.php:410
 msgid "Header Menu"
@@ -1980,8 +1982,8 @@ msgstr "Testimonial Optionen"
 msgid "Please fill additional fields for testimonial."
 msgstr "Füll bitte zusäzliche Felde für Testimonial ein"
 
-#: ../includes/locals.php:470 ../includes/locals.php:781
-#: ../includes/locals.php:846
+#: ../includes/locals.php:470 ../includes/locals.php:782
+#: ../includes/locals.php:847
 msgid "Name"
 msgstr "Name"
 
@@ -2010,7 +2012,7 @@ msgid "Put your quote in this field."
 msgstr "Gib ein Zitat in diesem Feld ein. "
 
 #: ../includes/locals.php:479 ../includes/locals.php:674
-#: ../includes/locals.php:782
+#: ../includes/locals.php:783
 msgid "Author"
 msgstr "Autor"
 
@@ -2229,7 +2231,7 @@ msgstr "Zurück zum Dashboard"
 msgid "The following plugin was activated successfully: %s."
 msgstr "Das folgende Plugin wurde erfolgreich aktiviert:%s."
 
-#: ../includes/locals.php:522 ../includes/locals.php:830
+#: ../includes/locals.php:522 ../includes/locals.php:831
 msgid "Dismiss this notice"
 msgstr "Ignoriere diese Benachrichtigung"
 
@@ -2672,7 +2674,7 @@ msgstr "Audio und Video"
 
 #: ../includes/locals.php:639
 msgid "Video Preview"
-msgstr ""
+msgstr "Video-Vorschau"
 
 #: ../includes/locals.php:640
 msgid "Misc"
@@ -2763,43 +2765,36 @@ msgid "Go to this comment"
 msgstr "Kommentare ansehen"
 
 #: ../includes/locals.php:666
-#, fuzzy
 msgid "Number of comments to show"
-msgstr "Anzahl der Artikel zu zeigen:"
+msgstr "Anzahl der Kommentare zu zeigen"
 
 #: ../includes/locals.php:667
-#, fuzzy
 msgid "Display avatar"
-msgstr "Soll Seitennummerierung angezeigt werden?"
+msgstr "Avatar anzeigen"
 
 #: ../includes/locals.php:668
 msgid "Avatar size (px)"
-msgstr ""
+msgstr "Avatargröße (px)"
 
 #: ../includes/locals.php:669
-#, fuzzy
 msgid "Display the comment author"
-msgstr "Soll das Footer-Menü angezeigt werden?"
+msgstr "Den Autor des Kommentars anzeigen"
 
 #: ../includes/locals.php:670
-#, fuzzy
 msgid "Display the comment date"
-msgstr "Sollen Thumbnails angezeigt werden?"
+msgstr "Das Datum des Kommentars anzeigen"
 
 #: ../includes/locals.php:671
-#, fuzzy
 msgid "Display post title"
-msgstr "Titel des Artikels anzeigen"
+msgstr "Den Artikeltitel anzeigen"
 
 #: ../includes/locals.php:672
-#, fuzzy
 msgid "Meta format"
-msgstr "Artikel Formate:"
+msgstr "Metaformat "
 
 #: ../includes/locals.php:675
-#, fuzzy
 msgid "Comment in"
-msgstr "Anzahl Kommentare"
+msgstr " Kommentar in"
 
 #: ../includes/locals.php:678
 msgid "Cherry - Flickr"
@@ -2902,7 +2897,8 @@ msgid "(default: \"link\")"
 msgstr "(default: \"Link\")"
 
 #: ../includes/locals.php:704
-msgid "Thumbnail dimensions_"
+#, fuzzy
+msgid "Thumbnail dimensions"
 msgstr "Thumbnail-Dimensionen_"
 
 #: ../includes/locals.php:705
@@ -2990,9 +2986,8 @@ msgid "Cherry - vCard"
 msgstr "Cherry - vCard"
 
 #: ../includes/locals.php:735
-#, fuzzy
 msgid "Use this widget to add a vCard"
-msgstr "Nimm dieses Widget, um eine vCard hinzuzufügen"
+msgstr "Verwende dieses Widget, um eine vCard hinzuzufügen"
 
 #: ../includes/locals.php:736
 msgid "vCard"
@@ -3004,21 +2999,19 @@ msgstr "Straße:"
 
 #: ../includes/locals.php:738
 msgid "HTML map code:"
-msgstr ""
+msgstr "HTML-Code der Karte:"
 
 #: ../includes/locals.php:739
 msgid "Map width:"
-msgstr ""
+msgstr "Breite der Karte:"
 
 #: ../includes/locals.php:740
-#, fuzzy
 msgid "Map height:"
-msgstr "Rechts-oben"
+msgstr "Höhe der Karte:"
 
 #: ../includes/locals.php:741
-#, fuzzy
 msgid "Display map"
-msgstr "Display:"
+msgstr "Zeige eine Karte"
 
 #: ../includes/locals.php:742
 msgid "City/Locality:"
@@ -3042,11 +3035,11 @@ msgstr "E-Mail:"
 
 #: ../includes/locals.php:749 ../includes/locals.php:750
 msgid "Cherry - Facebook Like Box Widget"
-msgstr ""
+msgstr "Cherry - Facebook Like Box Widget"
 
 #: ../includes/locals.php:751
 msgid "Facebook page url"
-msgstr ""
+msgstr "URL der Facebook-Seite"
 
 #: ../includes/locals.php:752
 msgid ""
@@ -3054,43 +3047,41 @@ msgid ""
 "facebook.com/help/174987089221178/\" title=\"Facebook Pages\">Facebook Pages."
 "</a>"
 msgstr ""
+"Die Like-Box funktioniert nur mit <a target=\"_blank\" href=\"https://www."
+"facebook.com/help/174987089221178/\" title=\"Facebook Pages\">Facebook "
+"Seiten.</a>"
 
 #: ../includes/locals.php:753
 msgid "Color Scheme"
-msgstr ""
+msgstr "Farbschema"
 
 #: ../includes/locals.php:754
-#, fuzzy
 msgid "Light"
-msgstr "Höhe"
+msgstr "Hell"
 
 #: ../includes/locals.php:755
 msgid "Dark"
-msgstr ""
+msgstr "Dunkel"
 
 #: ../includes/locals.php:756
-#, fuzzy
 msgid "Display header"
-msgstr "Sollen Breadcrumbs angezeigt werden?"
+msgstr "Den Header anzeigen"
 
 #: ../includes/locals.php:757
-#, fuzzy
 msgid "Display stream"
-msgstr "Sollen Breadcrumbs angezeigt werden?"
+msgstr "Stream anzeigen"
 
 #: ../includes/locals.php:758
-#, fuzzy
 msgid "Display border"
-msgstr "Sollen Breadcrumbs angezeigt werden?"
+msgstr "Rahmen anzeigen"
 
 #: ../includes/locals.php:759
-#, fuzzy
 msgid "Display faces"
-msgstr "Sollen Breadcrumbs angezeigt werden?"
+msgstr "Gesicht zeigen"
 
 #: ../includes/locals.php:760
 msgid "My Facebook Page"
-msgstr ""
+msgstr "Meine Facebook-Seite"
 
 #: ../includes/locals.php:763
 msgid "Default options restored."
@@ -3124,86 +3115,83 @@ msgstr "Keine Dateien"
 msgid "Posted"
 msgstr "Veröffentlicht "
 
-#: ../includes/locals.php:773
-msgid "Data Management"
-msgstr ""
+#: ../includes/locals.php:771
+msgid "All templates"
+msgstr "Alle sjablonen"
 
 #: ../includes/locals.php:774
-#, fuzzy
-msgid "Cherry Framework"
-msgstr "Cherry - Soziale Netzwerke"
+msgid "Data Management"
+msgstr "Daten-Verwaltung"
 
 #: ../includes/locals.php:775
-#, fuzzy
-msgid "Update Info"
-msgstr "aktualisiert"
+msgid "Cherry Framework"
+msgstr "Cherry Framework"
 
 #: ../includes/locals.php:776
-msgid "Child Theme"
-msgstr ""
+msgid "Update Info"
+msgstr "Information aktualisieren"
 
 #: ../includes/locals.php:777
-#, fuzzy
-msgid "Update"
-msgstr "aktualisiert"
+msgid "Child Theme"
+msgstr "Child-Theme"
 
 #: ../includes/locals.php:778
-msgid "Backup"
-msgstr ""
+msgid "Update"
+msgstr "aktualisieren"
 
 #: ../includes/locals.php:779
-#, fuzzy
-msgid "Restore"
-msgstr "Standard wiederherstellen"
+msgid "Backup"
+msgstr "Backup"
 
 #: ../includes/locals.php:780
-msgid "Download Backup"
-msgstr ""
+msgid "Restore"
+msgstr "Wiederherstellen"
 
-#: ../includes/locals.php:783
-msgid "Your Version"
-msgstr ""
+#: ../includes/locals.php:781
+msgid "Download Backup"
+msgstr "Backup herunterladen"
 
 #: ../includes/locals.php:784
-msgid "Update Version"
-msgstr ""
+msgid "Your Version"
+msgstr "Ihre Version"
 
 #: ../includes/locals.php:785
-msgid "Backup Version"
-msgstr ""
+msgid "Update Version"
+msgstr "Version aktualisieren"
 
 #: ../includes/locals.php:786
-msgid "Last Backup Date"
-msgstr ""
+msgid "Backup Version"
+msgstr "Backup-Versionen"
 
 #: ../includes/locals.php:787
-#, fuzzy
-msgid "Preview"
-msgstr "Vorherige"
+msgid "Last Backup Date"
+msgstr "Letztes Datum der Sicherung"
 
 #: ../includes/locals.php:788
-#, fuzzy
-msgid "Description"
-msgstr "Position "
+msgid "Preview"
+msgstr "Vorschau"
 
 #: ../includes/locals.php:789
-msgid "No backup."
-msgstr ""
+msgid "Description"
+msgstr "Beschreibung"
 
 #: ../includes/locals.php:790
-#, fuzzy
-msgid "Not defined"
-msgstr "Nicht gefunden"
+msgid "No backup."
+msgstr "Kein Backup"
 
 #: ../includes/locals.php:791
-msgid "Unfortunately theme "
-msgstr ""
+msgid "Not defined"
+msgstr "Nicht definiert"
 
 #: ../includes/locals.php:792
-msgid " backup file not found. Please try to create backup once again."
-msgstr ""
+msgid "Unfortunately theme "
+msgstr "Entschuldigen, die Theme"
 
 #: ../includes/locals.php:793
+msgid " backup file not found. Please try to create backup once again."
+msgstr "Backups nicht gefunden. Erstellen Sie bitte neues Backup."
+
+#: ../includes/locals.php:794
 msgid ""
 "Data Management allows to update or backup framework and themes. Framework "
 "is regularly updated thus delivering new opportunities for your site.<br> To "
@@ -3211,29 +3199,41 @@ msgid ""
 "able to download it later. If necessary, you can restore the framework or "
 "your theme using the backup."
 msgstr ""
+"Mit der Daten-Verwaltung kann man ein Framework und Themes aktualisieren "
+"oder sichern. Framework wird regelmäßig aktualisiert damit du neue "
+"Möglichkeiten für die Website hast.<br> Damit deine Daten gesichert werden, "
+"mache ein Backup des Frameworks oder der Child-Theme, um es/sie später "
+"herunterzuladen. Wenn notwendig, können Sie das Framework oder Ihre Theme "
+"mit Hilfe vom Backup weiterherstellen. "
 
-#: ../includes/locals.php:794
+#: ../includes/locals.php:795
 msgid ""
 "<b>Warning!</b> Before updating framework you are strongly advised to backup "
 "your data."
 msgstr ""
+"<b>Warnung!</b> Vor dem Update des Frameworks empfehlen wir Ihnen die Daten "
+"zu sichern."
 
-#: ../includes/locals.php:795
+#: ../includes/locals.php:796
 msgid ""
 "You can back up your theme. If the theme has a backup copy, it is possible "
 "to restore it or download. The date of the latest backup copy is displayed "
 "in the column <b>Last Backup Date</b>."
 msgstr ""
+"Sie können die Theme sichern. Wenn die Theme eine Sicherungskopie hat, kann "
+"man die weiterherstellen oder herunterladen. Das Datum von letzter "
+"Sicherungskopie wird in der Spalte <b>Letztes Datum der Sicherungs</b> "
+"angezeigt"
 
-#: ../includes/locals.php:800
+#: ../includes/locals.php:801
 msgid "View File"
 msgstr "Datei ansehen"
 
-#: ../includes/locals.php:801
+#: ../includes/locals.php:802
 msgid "Previously Uploaded"
 msgstr "Vorher geladen"
 
-#: ../includes/locals.php:823
+#: ../includes/locals.php:824
 msgid ""
 "<p>An Unexpected HTTP Error occurred during the API request.</p><p><a "
 "href='#' onclick='document.location.reload(); return false;'>Try again</a></"
@@ -3243,192 +3243,192 @@ msgstr ""
 "p><p><a href='#' onclick='document.location.reload(); return false;'>Versuch "
 "es noch mal</a></p>"
 
-#: ../includes/locals.php:824
+#: ../includes/locals.php:825
 msgid "An unknown error occurred"
 msgstr "Ein unbekannter Fehler ist aufgetreten"
 
-#: ../includes/locals.php:825
-msgid "There is a new version of Cherry framework available"
-msgstr ""
-
 #: ../includes/locals.php:826
-msgid "View version "
-msgstr ""
+msgid "There is a new version of Cherry framework available"
+msgstr "Eine neue Version von Charry Framework ist verfügbar"
 
 #: ../includes/locals.php:827
+msgid "View version "
+msgstr "Version ansehen"
+
+#: ../includes/locals.php:828
 msgid " details"
 msgstr " details"
 
-#: ../includes/locals.php:828
-msgid "or"
-msgstr ""
-
 #: ../includes/locals.php:829
+msgid "or"
+msgstr "oder"
+
+#: ../includes/locals.php:830
 msgid "update now."
 msgstr "aktualisiert"
 
-#: ../includes/locals.php:833
+#: ../includes/locals.php:834
 msgid "Please do not load this page directly. Thanks!"
 msgstr "Bitte lade nicht diese Seite direkt. Danke!"
 
-#: ../includes/locals.php:834
+#: ../includes/locals.php:835
 msgid "This post is password protected. Enter the password to view comments."
 msgstr ""
 "Dieser Artikel ist passwortgeschützt. Gib das Passwort ein, um die "
 "Kommentare zu sehen."
 
-#: ../includes/locals.php:835
+#: ../includes/locals.php:836
 msgid "1 Response"
 msgstr "1 Antwort"
 
-#: ../includes/locals.php:836
+#: ../includes/locals.php:837
 #, php-format
 msgid "%1$s Responses"
 msgstr "%1$s Antworten"
 
-#: ../includes/locals.php:837
+#: ../includes/locals.php:838
 msgid "No Comments Yet."
 msgstr "Noch keine Kommentare bis jetzt"
 
-#: ../includes/locals.php:838
+#: ../includes/locals.php:839
 msgid "Comments are closed."
 msgstr "Kommentare sind deaktiviert"
 
-#: ../includes/locals.php:839
+#: ../includes/locals.php:840
 msgid "Leave a comment"
 msgstr "Einen Kommentar schreiben"
 
-#: ../includes/locals.php:840
+#: ../includes/locals.php:841
 msgid "You must be"
 msgstr "Du musst"
 
-#: ../includes/locals.php:841
+#: ../includes/locals.php:842
 msgid "to post a comment."
 msgstr "sein um hier zu kommentieren"
 
-#: ../includes/locals.php:842
+#: ../includes/locals.php:843
 msgid "Logged in"
 msgstr "angemeldet"
 
-#: ../includes/locals.php:843
+#: ../includes/locals.php:844
 msgid "Logged in as"
 msgstr "Angemeldet als"
 
-#: ../includes/locals.php:844
+#: ../includes/locals.php:845
 msgid "Log out of this account;"
 msgstr "Jetzt abmelden;"
 
-#: ../includes/locals.php:845
+#: ../includes/locals.php:846
 msgid "Log out &raquo;"
 msgstr "Abmelden &raquo;"
 
-#: ../includes/locals.php:847
+#: ../includes/locals.php:848
 msgid "Email (will not be published)"
 msgstr "E-Mail (wird nicht veröffentlicht)"
 
-#: ../includes/locals.php:848
+#: ../includes/locals.php:849
 msgid "Website"
 msgstr "Webseite"
 
-#: ../includes/locals.php:849
+#: ../includes/locals.php:850
 msgid "Your comment*"
 msgstr "Ihr Kommentar*"
 
-#: ../includes/locals.php:850
+#: ../includes/locals.php:851
 msgid "Submit Comment"
 msgstr "Kommentar senden"
 
-#: ../includes/locals.php:853
+#: ../includes/locals.php:854
 msgid "Tweet this article"
 msgstr "Diesen Artikel bei Twitter verbreiten"
 
-#: ../includes/locals.php:856
+#: ../includes/locals.php:857
 msgid "Continue Reading"
 msgstr "Weiter lesen"
 
-#: ../includes/locals.php:857
+#: ../includes/locals.php:858
 msgid "Pages:"
 msgstr "Seiten:"
 
-#: ../includes/locals.php:858
+#: ../includes/locals.php:859
 msgid "Last 30 Posts"
 msgstr "Letzte 30 Artikel"
 
-#: ../includes/locals.php:859
+#: ../includes/locals.php:860
 msgid "Archives by Month:"
 msgstr "Archive von Monat:"
 
-#: ../includes/locals.php:860
+#: ../includes/locals.php:861
 msgid "Archives by Subject:"
 msgstr "Archiv nach  Betreff:"
 
-#: ../includes/locals.php:863
+#: ../includes/locals.php:864
 msgid "About:"
 msgstr "Über:"
 
-#: ../includes/locals.php:864
+#: ../includes/locals.php:865
 msgid "Recent Posts by"
 msgstr "Letzte Artikel von"
 
-#: ../includes/locals.php:865
+#: ../includes/locals.php:866
 msgid "No post yet"
 msgstr "Noch keinen Artikel bis jetzt"
 
-#: ../includes/locals.php:866
+#: ../includes/locals.php:867
 msgid "Recent Comments by"
 msgstr "Letzte Kommentare von"
 
-#: ../includes/locals.php:867
+#: ../includes/locals.php:868
 #, php-format
 msgid "%1$s on %2$s"
 msgstr "%1$s auf %2$s"
 
-#: ../includes/locals.php:868
+#: ../includes/locals.php:869
 msgid "No comments by"
 msgstr "Keine Kommentare von"
 
-#: ../includes/locals.php:869
+#: ../includes/locals.php:870
 msgid "yet."
 msgstr "noch"
 
-#: ../includes/locals.php:872
+#: ../includes/locals.php:873
 msgid "There has been an error."
 msgstr "Es ist ein Fehler aufgetreten"
 
-#: ../includes/locals.php:873
+#: ../includes/locals.php:874
 msgid "We apologize for any inconvenience, please"
 msgstr ""
 "Wir möchten uns bei dir für die Unannehmlichkeiten entschuldigen, bitte"
 
-#: ../includes/locals.php:874
+#: ../includes/locals.php:875
 msgid "return to the home page"
 msgstr "kehre zur Startseite zurück "
 
-#: ../includes/locals.php:875
+#: ../includes/locals.php:876
 msgid "or use the search form below."
 msgstr "nutze bitte die untenstehende Suchmaske. "
 
-#: ../includes/locals.php:878
+#: ../includes/locals.php:879
 msgid "Q?"
 msgstr "F?"
 
-#: ../includes/locals.php:879
+#: ../includes/locals.php:880
 msgid "A."
 msgstr "A."
 
-#: ../includes/locals.php:882
+#: ../includes/locals.php:883
 msgid "Written by"
 msgstr "Geschrieben von"
 
-#: ../includes/locals.php:883
+#: ../includes/locals.php:884
 msgid "View all posts by"
 msgstr "Zeige alle Artikel von"
 
-#: ../includes/locals.php:886
+#: ../includes/locals.php:887
 msgid "Not Found"
 msgstr "Nicht gefunden"
 
-#: ../includes/locals.php:887
+#: ../includes/locals.php:888
 msgid ""
 "Apologies, but no results were found for the requested archive. Perhaps "
 "searching will help find a related post."
@@ -3436,87 +3436,87 @@ msgstr ""
 "Entschuldigung, aber die Seite konnte nicht gefunden werden. Vielleicht "
 "hilft die Suchfunktion den benötigen Artikel zu finden."
 
-#: ../includes/locals.php:890
+#: ../includes/locals.php:891
 msgid "is proudly powered by"
 msgstr "wird angetrieben von"
 
-#: ../includes/locals.php:891
+#: ../includes/locals.php:892
 msgid "Entries (RSS)"
 msgstr "Einträge (RSS)"
 
-#: ../includes/locals.php:892
+#: ../includes/locals.php:893
 msgid "Comments (RSS)"
 msgstr "Kommentare (RSS)"
 
-#: ../includes/locals.php:893
+#: ../includes/locals.php:894
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
-#: ../includes/locals.php:896
+#: ../includes/locals.php:897
 msgid "Category Archives"
 msgstr "Kategorie Archive"
 
-#: ../includes/locals.php:897
+#: ../includes/locals.php:898
 msgid "Portfolio Category"
 msgstr "Portfolio Kategorie"
 
-#: ../includes/locals.php:898
+#: ../includes/locals.php:899
 msgid "Search for"
 msgstr "Such nach"
 
-#: ../includes/locals.php:899
+#: ../includes/locals.php:900
 msgid "Daily Archives"
 msgstr "Tages-Archive"
 
-#: ../includes/locals.php:900
+#: ../includes/locals.php:901
 msgid "Monthly Archives"
 msgstr "Monats-Archive"
 
-#: ../includes/locals.php:901
+#: ../includes/locals.php:902
 msgid "Yearly Archives"
 msgstr "Jährliche Archive: %s"
 
-#: ../includes/locals.php:902
+#: ../includes/locals.php:903
 msgid "by "
 msgstr "von"
 
-#: ../includes/locals.php:903
+#: ../includes/locals.php:904
 msgid "Tag Archives"
 msgstr "Schlagwort-Archive"
 
-#: ../includes/locals.php:904
+#: ../includes/locals.php:905
 msgid "Portfolio Tag"
 msgstr "Portfolio-Tag"
 
-#: ../includes/locals.php:907
+#: ../includes/locals.php:908
 msgid "Category Archive for"
 msgstr "Kategorie Archiv für "
 
-#: ../includes/locals.php:908
+#: ../includes/locals.php:909
 msgid "Tag Archive for"
 msgstr "Tag Archiv für "
 
-#: ../includes/locals.php:909 ../includes/locals.php:952
+#: ../includes/locals.php:910 ../includes/locals.php:953
 msgid "Archive"
 msgstr "Archiv"
 
-#: ../includes/locals.php:910
+#: ../includes/locals.php:911
 msgid "Error 404 Not Found"
 msgstr "Fehler 404 Nicht gefunden"
 
-#: ../includes/locals.php:913
+#: ../includes/locals.php:914
 msgid "Launch Project"
 msgstr "Projekt starten"
 
-#: ../includes/locals.php:916
+#: ../includes/locals.php:917
 msgid "Sorry!"
 msgstr "Entschuldigung!"
 
-#: ../includes/locals.php:917
+#: ../includes/locals.php:918
 msgid "Page Not Found"
 msgstr "Seite nicht gefunden"
 
-#: ../includes/locals.php:918
+#: ../includes/locals.php:919
 msgid ""
 "The page you are looking for might have been removed, had its name changed, "
 "or is temporarily unavailable."
@@ -3524,26 +3524,26 @@ msgstr ""
 "Die Seite, nach der du suchst, wurde vielleicht entfernt, hat einen anderen "
 "Namen erhalten oder ist temporär nicht verfügbar."
 
-#: ../includes/locals.php:919
+#: ../includes/locals.php:920
 msgid ""
 "Please try using our search box below to look for information on the "
 "internet."
 msgstr ""
 "Bitte versuch über unsere Suchfelder unten Information im Internet zu finden"
 
-#: ../includes/locals.php:922
+#: ../includes/locals.php:923
 msgid "Posted in"
 msgstr "Posted in"
 
-#: ../includes/locals.php:925
+#: ../includes/locals.php:926
 msgid "Featured"
 msgstr "Hervorgehoben"
 
-#: ../includes/locals.php:929
+#: ../includes/locals.php:930
 msgid "Submit Permalink Structure"
 msgstr "Permalink Struktur festlegen"
 
-#: ../includes/locals.php:930
+#: ../includes/locals.php:931
 msgid ""
 "This way of links configuration can be used by not only our blog followers "
 "but will help in SEO-optimisation as well. The effectiveness and main "
@@ -3555,11 +3555,11 @@ msgstr ""
 "Information über Effektivität und wichtige Funktionen dieser Method "
 "erreichst du <a href='http://codex.wordpress.org/Using_Permalinks'>hier</a>"
 
-#: ../includes/locals.php:931
+#: ../includes/locals.php:932
 msgid "Import Sample Data"
 msgstr "Beispieldateien importieren"
 
-#: ../includes/locals.php:932
+#: ../includes/locals.php:933
 msgid ""
 "If you want to install sample data from livedemo you need to go to "
 "<strong>Cherry Options</strong> > <strong>Import</strong> and follow the "
@@ -3569,7 +3569,7 @@ msgstr ""
 "<strong>Cherry Options/Cherry Optionen</strong> > <strong>Import/"
 "Importieren</strong> und folge bitte den Tipps."
 
-#: ../includes/locals.php:933
+#: ../includes/locals.php:934
 msgid ""
 "If you want to install sample data from livedemo you need to go to "
 "<strong>Import</strong> and follow the tips."
@@ -3577,159 +3577,149 @@ msgstr ""
 "Wenn Sie die Beispieldateien von Live-Demo installieren möchtest, geh auf "
 "<strong>Import/Importieren</strong> und folge bitte den Tipps."
 
-#: ../includes/locals.php:936
+#: ../includes/locals.php:937
 msgid "No lable."
 msgstr "Kein Titel"
 
-#: ../includes/locals.php:939
+#: ../includes/locals.php:940
 msgid "Theme Options Media"
 msgstr "Theme Optionen Media"
 
-#: ../includes/locals.php:942
-msgid "Visibility"
-msgstr ""
-
 #: ../includes/locals.php:943
-msgid "Visible at"
-msgstr ""
+msgid "Visibility"
+msgstr "Sichtbarkeit"
 
 #: ../includes/locals.php:944
-msgid "Visible on"
-msgstr ""
+msgid "Visible at"
+msgstr "Sichtbar an"
 
 #: ../includes/locals.php:945
-msgid "Visible for"
-msgstr ""
+msgid "Visible on"
+msgstr "Sichtbar auf"
 
 #: ../includes/locals.php:946
-msgid "All pages"
-msgstr ""
+msgid "Visible for"
+msgstr "Sichtbar für"
 
 #: ../includes/locals.php:947
-msgid "All pages expecting"
-msgstr ""
+msgid "All pages"
+msgstr "Alle Seiten"
 
 #: ../includes/locals.php:948
-msgid "No pages expecting"
-msgstr ""
+msgid "All pages expecting"
+msgstr "Alle Seiten werden erwartet"
 
 #: ../includes/locals.php:949
-msgid "Homepage"
-msgstr ""
+msgid "No pages expecting"
+msgstr "Keine Seite wird erwartet"
 
 #: ../includes/locals.php:950
-#, fuzzy
-msgid "Page"
-msgstr "Seiten:"
+msgid "Homepage"
+msgstr "Startseite"
 
 #: ../includes/locals.php:951
-#, fuzzy
-msgid "Post"
-msgstr "Artikel"
+msgid "Page"
+msgstr "Seite"
 
-#: ../includes/locals.php:953
-#, fuzzy
-msgid "Page Template"
-msgstr "Neueste Templates"
+#: ../includes/locals.php:952
+msgid "Post"
+msgstr "Beitrag"
 
 #: ../includes/locals.php:954
-#, fuzzy
-msgid "Search page"
-msgstr "Such nach"
+msgid "Page Template"
+msgstr "Seitenvorlage"
 
 #: ../includes/locals.php:955
-msgid "404 page"
-msgstr ""
+msgid "Search page"
+msgstr "Die Seite suchen"
 
 #: ../includes/locals.php:956
-msgid "Page ID/Title/slug"
-msgstr ""
+msgid "404 page"
+msgstr "404 Seite"
 
 #: ../includes/locals.php:957
-#, fuzzy
-msgid "Post ID/Title/slug"
-msgstr "Titel des Artikels"
+msgid "Page ID/Title/slug"
+msgstr "Seite ID/Titel/Slug "
 
 #: ../includes/locals.php:958
-#, fuzzy
-msgid "Category ID/Name/slug"
-msgstr "Titelform der Kategorie (in URLs):"
+msgid "Post ID/Title/slug"
+msgstr "Artikel ID/Titel/Slug "
 
 #: ../includes/locals.php:959
-msgid "Tag ID/Name"
-msgstr ""
+msgid "Category ID/Name/slug"
+msgstr "Kategorie ID/Name/Slug"
 
 #: ../includes/locals.php:960
-#, fuzzy
-msgid "Template"
-msgstr "Template URL"
+msgid "Tag ID/Name"
+msgstr "Tag-ID/Name"
 
 #: ../includes/locals.php:961
-msgid "Add page"
-msgstr ""
+msgid "Template"
+msgstr "Vorlage"
 
 #: ../includes/locals.php:962
-msgid "Selected pages"
-msgstr ""
+msgid "Add page"
+msgstr "Eine Seite hinzufügen"
 
 #: ../includes/locals.php:963
-msgid "No pages"
-msgstr ""
+msgid "Selected pages"
+msgstr "Ausgewählte Seiten"
 
 #: ../includes/locals.php:964
-#, fuzzy
-msgid "All devices"
-msgstr "Dienstleistungen"
+msgid "No pages"
+msgstr "Keine Seiten"
 
 #: ../includes/locals.php:965
-msgid "Desktops"
-msgstr ""
+msgid "All devices"
+msgstr "Alle Geräte"
 
 #: ../includes/locals.php:966
-#, fuzzy
-msgid "Tablets"
-msgstr "Tabelle"
+msgid "Desktops"
+msgstr "Desktops"
 
 #: ../includes/locals.php:967
-msgid "Phones"
-msgstr ""
+msgid "Tablets"
+msgstr "Tablets"
 
 #: ../includes/locals.php:968
-msgid "Desktops/Tablets"
-msgstr ""
+msgid "Phones"
+msgstr "Smartphones "
 
 #: ../includes/locals.php:969
-msgid "Tablets/Phones"
-msgstr ""
+msgid "Desktops/Tablets"
+msgstr "Desktops/Tablets"
 
 #: ../includes/locals.php:970
-msgid "Desktops/Phones"
-msgstr ""
+msgid "Tablets/Phones"
+msgstr "Tablets/Smartphones "
 
 #: ../includes/locals.php:971
-msgid "All users"
-msgstr ""
+msgid "Desktops/Phones"
+msgstr "Desktops/Smartphones "
 
 #: ../includes/locals.php:972
-msgid "Only guests"
-msgstr ""
+msgid "All users"
+msgstr "Alle Benutzer"
 
 #: ../includes/locals.php:973
-msgid "Only registered users"
-msgstr ""
+msgid "Only guests"
+msgstr "Nur Gäste"
 
 #: ../includes/locals.php:974
-msgid "Only administrator"
-msgstr ""
+msgid "Only registered users"
+msgstr "Nur registrierte Benutzer"
 
 #: ../includes/locals.php:975
-msgid "Select page to add"
-msgstr ""
+msgid "Only administrator"
+msgstr "Nur Administrator "
 
 #: ../includes/locals.php:976
-#, fuzzy
+msgid "Select page to add"
+msgstr "Wählen eine Seite aus, um hinzuzufügen"
+
+#: ../includes/locals.php:977
 msgid "Custom CSS class"
-msgstr "Eigenes CSS"
+msgstr "Eigene CSS-Klasse"
 
 #~ msgid "Show all"
 #~ msgstr "Alle anzeigen"

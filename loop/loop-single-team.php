@@ -1,12 +1,7 @@
 <?php /* Loop Name: Single Team */ ?>
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-	$custom = get_post_custom($post->ID);
-	if ( isset($custom["my_team_pos"][0]))  {
-		$teampos = $custom["my_team_pos"][0];
-	}
-	if ( isset($custom["my_team_info"][0])) {
-		$teaminfo = $custom["my_team_info"][0];
-	}
+	$teampos  = get_post_meta($post->ID, 'my_team_pos', true);
+	$teaminfo = get_post_meta($post->ID, 'my_team_info', true);
 ?>
 <div id="post-<?php the_ID(); ?>" <?php post_class('post'); ?>>
 	<article class="team-holder single-post">
@@ -17,9 +12,9 @@
 			<?php } ?>
 		</div>
 		<?php if(has_post_thumbnail()) {
-			$thumb = get_post_thumbnail_id();
+			$thumb   = get_post_thumbnail_id();
 			$img_url = wp_get_attachment_url( $thumb,'thumbnail'); //get img URL
-			$image = aq_resize( $img_url, 120, 120, true ); //resize & crop img
+			$image   = aq_resize( $img_url, 120, 120, true ); //resize & crop img
 		?>
 		<figure class="featured-thumbnail">
 			<img src="<?php echo $image ?>" alt="<?php the_title(); ?>" />

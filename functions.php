@@ -9,7 +9,7 @@
 	@define( 'CHILD_URL', get_stylesheet_directory_uri() );
 
 	@define( 'CURRENT_THEME', getCurrentTheme() );
-
+	@define( 'FILE_WRITEABLE', is_writeable(PARENT_DIR.'/style.css'));
 	/*
 	 * Variables array init
 	 *
@@ -81,7 +81,7 @@
 			if ( get_option($option_name) ) {
 				$options = get_option($option_name);
 			}
-				
+			
 			if ( isset($options[$name]) ) {
 				return $options[$name];
 			} else {
@@ -108,7 +108,7 @@
 		if (file_exists($cacheFile2)) unlink($cacheFile2);
 	}
 
-	if ( (is_admin() && isset($_GET['activated'] )) || (is_admin() && ($pagenow == "themes.php")) ) {
+	if (( (is_admin() && isset($_GET['activated'] )) || (is_admin() && ($pagenow == "themes.php")) ) && FILE_WRITEABLE) {
 		clean_less_cache();
 
 		if ( CURRENT_THEME != 'cherry' ) childComment();
@@ -141,7 +141,8 @@
 	//Widget and Sidebar
 	include_once (CHILD_DIR . '/includes/sidebar-init.php');
 	include_once (PARENT_DIR . '/includes/register-widgets.php');
-	
+	include_once (PARENT_DIR . '/includes/widgets/widgets-manager.php');
+
 	//Theme initialization
 	include_once (CHILD_DIR . '/includes/theme-init.php');
 	
@@ -288,7 +289,7 @@
 		function custom_excerpt_more($more) {
 			return theme_locals("read_more").' &raquo;';
 		}
-		add_filter('excerpt_more', 'custom_excerpt_more');	
+		add_filter('excerpt_more', 'custom_excerpt_more');
 	}
 	
 	// no more jumping for read more link
@@ -315,8 +316,7 @@
 	
 	// Threaded Comments
 	if(!function_exists('enable_threaded_comments')) {
-		function enable_threaded_comments()
-		{
+		function enable_threaded_comments() {
 			if (!is_admin()) {
 				if (is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
 					wp_enqueue_script('comment-reply');
@@ -930,6 +930,14 @@
 		}
 	}
 //------------------------------------------------------
-//  end slider function
+//  Warning notice
 //------------------------------------------------------
+add_action( 'admin_notices', 'warning_notice' );
+function warning_notice() {
+	global $pagenow;
+	$pageHidden = array('admin.php');
+    if (!get_user_meta(get_current_user_id(), '_wp_hide_notice', true) && is_admin() && !FILE_WRITEABLE && !in_array($pagenow, $pageHidden)) {
+        printf('<div class="updated"><strong><p>'.theme_locals('warning_notice_2').'</p><p>'.theme_locals('warning_notice_3').'</p><p><a href="'.esc_url(add_query_arg( 'wp_nag', wp_create_nonce( 'wp_nag' ))).'">'.theme_locals('dismiss_notice').'</a></p></strong></div>');
+    }
+}
 ?>

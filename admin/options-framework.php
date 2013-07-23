@@ -472,7 +472,7 @@ if ( ! function_exists( 'admin_screen_store' ) ) {
 					<div class="store">
 						<h4><?php echo theme_locals("latest_templates"); ?></h4>
 						<div id="jsbanner"></div>
-						<div class="align-right"><a class="button-primary" href="http://www.templatemonster.com/wordpress-themes.php" target="_blank">all templates</a></div>
+						<div class="align-right"><a class="button-primary" href="http://www.templatemonster.com/wordpress-themes.php" target="_blank"><?php echo theme_locals("all_templates"); ?></a></div>
 						<div class="info-holder clearfix">
 							<div class="col col-1">
 								<h4><?php echo theme_locals("news_and_updates"); ?></h4>

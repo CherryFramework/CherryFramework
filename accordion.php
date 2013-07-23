@@ -1,18 +1,34 @@
-<?php 	$motopress_cam_id = uniqid();
-		$sliderHeight = "389px";
- ?>
+<?php
+	$motopress_cam_id = uniqid();
+	$sliderHeight = "389px";
+
+	// WPML filter
+	$suppress_filters = get_option('suppress_filters');
+
+	// query
+	$args = array(
+		'post_type'        => 'slider',
+		'posts_per_page'   => -1,
+		'post_status'      => 'publish', 
+		'orderby'          => 'name',
+		'order'            => 'ASC',
+		'suppress_filters' => $suppress_filters
+		);
+	$slides = get_posts($args);
+	if (empty($slides)) return;
+?>
 
 <script type="text/javascript">
 		jQuery(document).ready(function() {
-			var myAccordion = jQuery('#accordion<?php echo $motopress_cam_id; ?>'),
+			var myAccordion 	= jQuery('#accordion<?php echo $motopress_cam_id; ?>'),
 				myAccordionList = jQuery('ul', myAccordion),
-				sliderImg = jQuery(".slider_img", myAccordionList),
-				imagesCount = sliderImg.length,
-				imagesLoaded = 0,
-				startingSlide = <?php echo of_get_option('acc_starting_slide')-1; ?>,
-				easing = "<?php echo (of_get_option('acc_easing')!="") ? of_get_option('acc_easing') : 'easeOutCubic'; ?>",
-				speed = <?php echo (of_get_option('acc_animation_speed')!="") ? of_get_option('acc_animation_speed') : 700; ?>,
-				auto = <?php echo (of_get_option('acc_slideshow')!="") ? of_get_option('acc_slideshow') : true; ?>;
+				sliderImg       = jQuery(".slider_img", myAccordionList),
+				imagesCount     = sliderImg.length,
+				imagesLoaded    = 0,
+				startingSlide   = <?php echo of_get_option('acc_starting_slide')-1; ?>,
+				easing          = "<?php echo (of_get_option('acc_easing')!="") ? of_get_option('acc_easing') : 'easeOutCubic'; ?>",
+				speed           = <?php echo (of_get_option('acc_animation_speed')!="") ? of_get_option('acc_animation_speed') : 700; ?>,
+				auto            = <?php echo (of_get_option('acc_slideshow')!="") ? of_get_option('acc_slideshow') : true; ?>;
 			if(auto && startingSlide<0){
 				startingSlide = 0;
 			}
@@ -27,7 +43,6 @@
 							resizeWindow();
 						},
 						1000);
-						
 					}
 				}
 				function resizeWindow(){
@@ -87,42 +102,52 @@
 <div id="accordion<?php echo $motopress_cam_id; ?>" class="accordion_wrap accordion" style=" height: <?php echo $sliderHeight; ?>; ">
 	<ul>
 		<?php
-			$post_array = of_get_option('acc_show_post');
-			query_posts("post_type=slider&posts_per_page=-1&post_status=publish&orderby=name&order=ASC");
-			while ( have_posts() ) : the_post();
-				if(isset($post_array) && in_array("1", $post_array)){
-					if(current($post_array) == 1){
-						addItem($post);
+			$post_array = (of_get_option('acc_show_post')=="") ? array() : of_get_option('acc_show_post');
+
+			foreach( $slides as $k => $slide ) {
+				// Unset not translated posts
+				if ( function_exists( 'wpml_get_language_information' ) ) {
+					global $sitepress;
+
+					$check              = wpml_get_language_information( $slide->ID );
+					$language_code      = substr( $check['locale'], 0, 2 );
+					if ( $language_code != $sitepress->get_current_language() ) unset( $slides[$k] );
+
+					// Post ID is different in a second language Solution
+					if ( function_exists( 'icl_object_id' ) ) $slide = get_post( icl_object_id( $slide->ID, 'slider', true ) );
+				}
+
+				if(in_array("1", $post_array)){
+					if($post_array[$slide -> ID] == 1){
+						addItem($slide);
 					}
 				}else{
-					addItem($post);
+					addItem($slide);
 				}
-				next($post_array);
-			endwhile;
-			wp_reset_query(); 
+			}
+			wp_reset_postdata();
 
-			function addItem($post){
-				$custom = get_post_custom($post->ID);
-				$url = get_post_custom_values("my_slider_url");
-				$caption = get_post_custom_values("my_slider_caption");
-				$sl_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'slider-post-thumbnail');
-				$img_class = "";
+			function addItem($slide){
+				$url          = get_post_meta($slide->ID, 'my_slider_url', true);
+				$caption      = get_post_meta($slide->ID, 'my_slider_caption', true);
+				$sl_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($slide->ID), 'slider-post-thumbnail');
+				$img_class    = "";
 
 				if($sl_image_url[0]==""){
 					$sl_image_url[0] = PARENT_URL."/images/blank.gif";
 					$img_class = 'max_height';
 				}
-				if($url[0]!=""){
-					$url[0] = '<a href="'.$url[0].'" title="'.theme_locals('read_more').'" class="btn btn-primary" >'.theme_locals('read_more').'</a>';
+				if($url!=""){
+					$url = '<a href="'.$url.'" title="'.theme_locals('read_more').'" class="btn btn-primary" >'.theme_locals('read_more').'</a>';
 				}
-				if ($caption[0]!="") {
-					$caption[0] = '<p>'.stripslashes(htmlspecialchars_decode($caption[0])).'</p>';
+				if ($caption) {
+					$caption = stripslashes(htmlspecialchars_decode($caption));
 				}
 				echo '<li>';
-				echo '<img src="'.$sl_image_url[0].'" width="100%" height="auto" class="slider_img '.$img_class.'" alt="">';
-				if($caption[0]!="" || $url[0]!=""){
-					echo '<div class="accordion_caption">'.$caption[0].$url[0].'</div>';
-				}
+					echo '<img src="'.$sl_image_url[0].'" width="100%" height="auto" class="slider_img '.$img_class.'" alt="">';
+					if($caption!="" || $url!=""){
+						echo '<div class="accordion_caption">'.$caption.$url.'</div>';
+					}
 				echo '</li>';
 			}
 		?>
