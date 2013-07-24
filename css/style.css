@@ -1124,6 +1124,7 @@ p.gravatar {
 .flickr_li .thumbnail {
 	position:relative;
 	margin:0 0 6px 0;
+	display:inline-block;
 }
 .flickr_li:nth-child(3n-2) { margin-left:0; }
 .flickr_li.nomargin { margin-left:0; }
