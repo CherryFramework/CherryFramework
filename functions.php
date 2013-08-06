@@ -125,11 +125,20 @@
 	}
 	include_once (PARENT_DIR . '/includes/locals.php');
 	
-	// WPML filter  for correct posts IDs for the current language Solution
+	// WPML compatibility
+	// WPML filter for correct posts IDs for the current language Solution
 	if ( function_exists( 'wpml_get_language_information' )) {
 		update_option('suppress_filters', 0);
 	} else {
 		update_option('suppress_filters', 1);
+	}
+	// Register Flickr and recent posts widgets link label for translation
+	function wpml_link_text_filter( $link_text, $widget_title ) {
+		icl_translate( 'cherry', 'link_text_' . $widget_title, $link_text );
+	}
+	// Check if WPML is activated
+	if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
+		add_filter( 'widget_linktext', 'wpml_link_text_filter', 10, 2 );
 	}
 
 	//Loading Custom function

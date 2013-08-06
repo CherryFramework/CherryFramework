@@ -125,7 +125,7 @@
 	
 	// Get tags
 	$portfolio_tags      = !is_wp_error( wp_get_object_terms($post->ID, 'portfolio_tag')) ? wp_get_object_terms($post->ID, 'portfolio_tag') : array();
-	//var_dump($portfolio_tags);
+	
 	// Theme Options vars
 	$folio_filter        = of_get_option('folio_filter');
 	$folio_title         = of_get_option('folio_title');

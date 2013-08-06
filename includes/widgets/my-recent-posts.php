@@ -12,7 +12,7 @@ class MY_PostWidget extends WP_Widget {
 		$title         = apply_filters( 'widget_title', empty($instance['title']) ? '' : $instance['title'], $instance );
 		$category      = apply_filters('widget_category', $instance['category']);
 		$post_format   = apply_filters('widget_post_format', $instance['post_format']);
-		$linktext      = apply_filters('widget_linktext', $instance['linktext']);
+		$linktext      = apply_filters('widget_linktext', $instance['linktext'], $instance['title']);
 		$linkurl       = apply_filters('widget_linkurl', $instance['linkurl']);
 		$count         = apply_filters('widget_count', $instance['count']);
 		$sort_by       = apply_filters('widget_sort_by', $instance['sort_by']);
