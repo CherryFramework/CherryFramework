@@ -1,4 +1,4 @@
-/*Content
+/*#Content
 ================================================== */
 .content-holder {
 	position:relative;
@@ -239,12 +239,13 @@
 	background:url(../images/magnify-alt.png) 50% 50% no-repeat;
 	content:"";
 	}
-.image-wrap:hover .zoom-icon,
-.featured-thumbnail a:hover .zoom-icon {
+.featured-thumbnail a:hover .zoom-icon,
+.thumbnail:hover .zoom-icon {
 	opacity:1;
 }
 .no-rgba .image-wrap:hover .zoom-icon,
-.featured-thumbnail a:hover .zoom-icon {
+.featured-thumbnail a:hover .zoom-icon,
+.thumbnail:hover .zoom-icon {
 	visibility:visible;
 }
 
@@ -634,18 +635,6 @@ html[xmlns] .slides { display: block;}
        -o-transition-duration: 0s;
           transition-duration: 0s;
 }
-
-
-/* Portfolio 1 col */
-.portfolio-1col .image-wrap {
-	float:left;
-	margin:0 20px 0 0;
-	}
-.single-portfolio{
-	.featured-thumbnail.thumbnail{
-		margin-bottom:0px;
-	}
-}
 /* Author Page
 ---------------------------------------- */
 .post-author {
@@ -767,22 +756,19 @@ html[xmlns] .slides { display: block;}
 
 		/* Landscape phones and down */
 		@media (max-width: 480px) {
-			& {
-				font-size: 120px;
-				
-			}
+			font-size: 120px;
 		}
 	}//404 number
 
-	& hgroup {
+	.hgroup_404 {
 		margin:0 0 2em 0;
 		padding-top:50px;
 
-		& h1 {
+		h1 {
 			margin-bottom:.2em;
 			font-size:3em;
 		}
-	}//hgroup	
+	}//.hgroup_404	
 }//404 holder
 
 
@@ -1190,7 +1176,7 @@ p.gravatar {
 	padding:10px 0;
 	width:100%;
 	height: 21px;
-	& span, li {
+	span, li {
 		display:block;
 		float:left;
 		width:90px;
