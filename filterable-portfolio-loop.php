@@ -141,9 +141,9 @@
 	$mediaType           = get_post_meta($post->ID, 'tz_portfolio_type', true);
 	?>
 	
-	<li class="portfolio_item <?php foreach( $portfolio_cats as $portfolio_cat ) { echo str_replace(' ', '-', mb_strtolower($portfolio_cat->name, 'UTF-8')).' ';} ?> <?php foreach( $portfolio_tags as $portfolio_tag ) { echo str_replace(' ', '-', mb_strtolower($portfolio_tag->name, 'UTF-8')).' ';} ?>">
-		<div class="portfolio_item_holder">
+	<li class="portfolio_item <?php foreach( $portfolio_cats as $portfolio_cat ) { echo ' term_id_' . $portfolio_cat->term_id; } ?> <?php foreach( $portfolio_tags as $portfolio_tag ) { echo ' term_id_' . $portfolio_tag->term_id; } ?>">
 		
+		<div class="portfolio_item_holder">
 			<?php
 			//check thumb and media type
 			if(has_post_thumbnail($post->ID) && $mediaType != 'Video' && $mediaType != 'Audio'){ 

@@ -33,7 +33,6 @@ function optionsframework_rolescheck () {
 		add_action( 'admin_menu', 'optionsframework_add_page');
 		add_action( 'admin_menu', 'optionsframework_add_subpage1');
 		add_action( 'admin_menu', 'optionsframework_add_subpage2');
-		add_action( 'admin_menu', 'optionsframework_add_subpage3');
 		add_action( 'admin_init', 'optionsframework_init' );
 		add_action( 'admin_init', 'optionsframework_mlu_init' );
 		add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
@@ -206,14 +205,6 @@ if ( !function_exists( 'optionsframework_add_subpage2' ) ) {
 	}
 }
 
-/* Add a subpage called "Customize" to the Cherry Options. */
-
-if ( !function_exists( 'optionsframework_add_subpage3' ) ) {
-	function optionsframework_add_subpage3 () {
-		$of_page = add_submenu_page('options-framework', theme_locals("customize"), theme_locals("customize"), 'administrator', 'customize.php');
-	}
-}
-
 /* Loads the CSS */
 
 function optionsframework_load_styles() {
@@ -240,13 +231,11 @@ function optionsframework_load_scripts() {
 }
 
 function optionsframework_load_scripts_store() {
-	
 	// Enqueued scripts
 	wp_enqueue_script('core', 'http://www.templatehelp.com/codes/jsbanner/a04/js/core.js', array('jquery'));
 	wp_enqueue_script('jcarousel', 'http://www.templatehelp.com/codes/jsbanner/a04/js/jquery.jcarousel.min.js', array('jquery'));
 	wp_enqueue_script('ajaxbanner', 'http://www.templatehelp.com/codes/jsbanner/a04/js/ajaxbanner.js', array('jquery'));
-	wp_enqueue_script('ajaxbannerjquery', 'http://www.templatehelp.com/codes/jsbanner/a04/ajaxbanner.php?banner_id=jsbanner&features=cherry-framework&property[2553][0]=42645&type=17&category=&package=&types=17&orientation=horizontal&skin=blue&pr_code=yB4zGJx5Q0cY73K5N8GC8r3n6BI91a&unbranded=0&size=5&count=30', array('jquery'));
-	
+	wp_enqueue_script('ajaxbannerjquery', 'http://www.templatehelp.com/codes/jsbanner/a04/ajaxbanner.php?banner_id=jsbanner&features=cherry-framework&property[2553][0]=42645&type=17&category=&package=&types=17&orientation=horizontal&skin=blue&pr_code=yB4zGJx5Q0cY73K5N8GC8r3n6BI91a&unbranded=0&size=5&count=30&pr_code=4j5VV9LLkf2aUvBh1TnnTxwbf3xX1C', array('jquery'));
 	
 	// Inline scripts from options-interface.php
 	add_action('admin_head', 'of_admin_head');
