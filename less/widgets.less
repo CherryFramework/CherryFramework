@@ -3,19 +3,6 @@
 /* General for Widget */
 .widget {
 	margin-bottom:30px;
-	&.visible-all-devices,
-	&.visible-desktop,
-	&.visible-tablet,
-	&.visible-phone,
-	&.hidden-phone,
-	&.hidden-desktop,
-	&.hidden-table {
-		position: relative;
-		top: 0;
-		left: 0;
-		right: auto;
-		width: auto;
-	}
 }
 
 /* Standard Widgets
@@ -153,12 +140,12 @@
 		vertical-align: top;
 	}
 		&_li .thumbnail {
-			position: relative;
+			display: inline-block;
 			margin: 0 0 6px 0;
 		}
-		&_li:nth-child(3n-2) {
-			margin-left: 0;
-		}
+		// &_li:nth-child(3n-2) {
+		// 	margin-left: 0;
+		// }
 		&_li.nomargin {
 			margin-left: 0;
 		}
@@ -168,7 +155,7 @@
 		margin-left: 0;
 	}
 		.ie8 &_li img {
-			height: 60px;
+			height: 75px;
 		}
 
 	@media (min-width: 768px) and (max-width: 979px) {
@@ -188,7 +175,7 @@
 		}
 	}
 
-}
+}		
 /*/ Flickr widget */
 
 

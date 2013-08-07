@@ -53,7 +53,7 @@ add_action('wp_enqueue_scripts', 'cherry_scripts');
 /*	Register and load stylesheet
 /*-----------------------------------------------------------------------------------*/
 function cherry_stylesheets() {
-	wp_enqueue_style('stylesheet', '//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css', false, '3.1.1', 'all');
+	wp_enqueue_style('stylesheet', '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', false, '3.2.1', 'all');
 	wp_enqueue_style('magnific-popup', get_template_directory_uri().'/css/magnific-popup.css', false, '0.9.3', 'all');
 }
 add_action('wp_enqueue_scripts', 'cherry_stylesheets');

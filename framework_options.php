@@ -9,8 +9,8 @@
 			$optionsframework_settings['id'] = $themename;
 			update_option('optionsframework', $optionsframework_settings);
 		}
+		
 	}
-
 	/**
 	 * Defines an array of options that will be used to generate the settings page and be saved in the database.
 	 * When creating the "id" fields, make sure to use all lowercase and no spaces.
@@ -314,7 +314,7 @@
 	        $options['sl_columns'] = array( "name" => theme_locals('columns_name'),
 	                            "desc" => theme_locals('columns_desc'),
 	                            "id" => "sl_columns",
-	                            "std" => "12",
+	                            "std" => "6",
 	                            "type" => "select",
 	                            "class" => "small slider_type_1", //mini, tiny, small
 	                            "options" => $sl_columns_array);
@@ -324,7 +324,7 @@
 	        $options['sl_rows'] = array( "name" => theme_locals('rows_name'),
 	                            "desc" => theme_locals('rows_desc'),
 	                            "id" => "sl_rows",
-	                            "std" => "8",
+	                            "std" => "6",
 	                            "type" => "select",
 	                            "class" => "small slider_type_1", //mini, tiny, small
 	                            "options" => $sl_rows_array);
@@ -469,7 +469,7 @@
 		                        "type" => "select",
 		                        "class" => "tiny slider_type_2", //mini, tiny, small
 		                        "options" => $acc_easing);
-	    // Accordion trigger    
+	   		// Accordion trigger    
 			$acc_trigger = array("click" => theme_locals("click"), "mouseover" => theme_locals("mouseover"), "dblclick" => theme_locals("dblclick"));
 
 	        $options['acc_trigger'] = array( "name" => theme_locals('trigger_name'),
@@ -542,19 +542,91 @@
 								"type" => "radio",
 								"options" => $true_false_array);
 
-			$options['post_meta'] = array( "name" => theme_locals('meta_name'),
-								"desc" => theme_locals('meta_desc'),
-								"id" => "post_meta",
-								"std" => "true",
-								"type" => "radio",
-								"options" => $true_false_array);
-			
 			$options['post_excerpt'] = array( "name" => theme_locals('excerpt_name'),
 								"desc" => theme_locals('excerpt_desc'),
 								"id" => "post_excerpt",
 								"std" => "true",
 								"type" => "radio",
 								"options" => $true_false_array);
+
+			$options['post_meta'] = array( "name" => theme_locals('meta_name'),
+								"desc" => theme_locals('meta_desc'),
+								"id" => "post_meta",
+								"std" => "line",
+								"type" => "radio",
+								"options" => array('false' => theme_locals('hide'), 'line' => theme_locals('line'), 'icon' => theme_locals('icons')));
+
+			$options['post_date'] = array( "name" => theme_locals('post_date_name'),
+								"desc" => theme_locals('post_date_desc'),
+								"id" => "post_date",
+								"std" => "yes",
+								"class" => "post_meta_options",
+								"type" => "radio",
+								"options" => $yes_no_array);
+
+			$options['post_author'] = array( "name" => theme_locals('post_author_name'),
+								"desc" => theme_locals('post_author_desc'),
+								"id" => "post_author",
+								"std" => "yes",
+								"class" => "post_meta_options",
+								"type" => "radio",
+								"options" => $yes_no_array);
+
+			$options['post_permalink'] = array( "name" => theme_locals('post_permalink_name'),
+								"desc" => theme_locals('post_permalink_desc'),
+								"id" => "post_permalink",
+								"std" => "yes",
+								"class" => "post_meta_options",
+								"type" => "radio",
+								"options" => $yes_no_array);
+
+			$options['post_category'] = array( "name" => theme_locals('post_category_name'),
+								"desc" => theme_locals('post_category_desc'),
+								"id" => "post_category",
+								"std" => "yes",
+								"class" => "post_meta_options",
+								"type" => "radio",
+								"options" => $yes_no_array);			
+
+			$options['post_tag'] = array( "name" => theme_locals('post_tag_name'),
+								"desc" => theme_locals('post_tag_desc'),
+								"id" => "post_tag",
+								"std" => "yes",
+								"class" => "post_meta_options",
+								"type" => "radio",
+								"options" => $yes_no_array);			
+
+			$options['post_comment'] = array( "name" => theme_locals('post_comment_name'),
+								"desc" => theme_locals('post_comment_desc'),
+								"id" => "post_comment",
+								"std" => "yes",
+								"class" => "post_meta_options",
+								"type" => "radio",
+								"options" => $yes_no_array);
+			
+			$options['post_views'] = array( "name" => theme_locals('post_views_name'),
+								"desc" => theme_locals('post_views_desc'),
+								"id" => "post_views",
+								"std" => "yes",
+								"class" => "post_meta_options",
+								"type" => "radio",
+								"options" => $yes_no_array);	
+
+			$options['post_like'] = array( "name" => theme_locals('post_like_name'),
+								"desc" => theme_locals('post_like_desc'),
+								"id" => "post_like",
+								"std" => "yes",
+								"class" => "post_meta_options",
+								"type" => "radio",
+								"options" => $yes_no_array);	
+										
+			$options['post_dislike'] = array( "name" => theme_locals('post_dislike_name'),
+								"desc" => theme_locals('post_dislike_desc'),
+								"id" => "post_dislike",
+								"std" => "yes",
+								"class" => "post_meta_options",
+								"type" => "radio",
+								"options" => $yes_no_array);
 
 // ---------------------------------------------------------
 // Portfolio

@@ -81,23 +81,52 @@ $(document).ready(function(){
 // ---------------------------------------------------------
 // images loader
 // ---------------------------------------------------------
+	var MSIE8 = ($.browser.msie) && ($.browser.version == 8);
+	$('img[data-src]').bind('load', img_load_complete);
 	$(window).bind('resize', img_loader).bind('scroll', img_loader).trigger('scroll');
+	
 	function img_loader(){
 		var get_img = $('img[data-src]').eq(0)
 		if(get_img[0]){
 			var visible_height = $(window).scrollTop() + $(window).height(),
-				img_top_position = get_img.offset().top, 
-				img_src = get_img.attr('data-src');
+				img_top_position = get_img.offset().top;
 
 			if(img_top_position<visible_height){
-				get_img.fadeOut(0).attr({'src':img_src}).removeAttr('data-src').bind('load', img_load_complete);
+				get_img.attr({'src':get_img.attr('data-src')}).removeAttr('data-src');
+				if(!MSIE8){
+					get_img.fadeOut(0)
+				}
 			};
 		}else{
 			$(window).unbind('resize', img_loader).unbind('scroll', img_loader);
 		}
 	}
 	function img_load_complete(){
-		$(this).unbind('load').fadeIn(500)
+		$(this).unbind('load');
+		if(!MSIE8){
+			$(this).fadeIn(500)
+		}
 		img_loader();
+	}
+// ---------------------------------------------------------
+// set voting post JS
+// ---------------------------------------------------------
+	$('.ajax_voting').bind('click', voitng);
+	function voitng(){
+		var item= $(this),
+			item_parent = item.parents('[class*="meta_type"]'),
+			type = item.attr('date-type'),
+			item_class='user_'+type,
+			count = parseInt($('.voting_count', item).text()),
+			top_position = (type==='like') ? -18 : 18 ,
+			mark = (type==='like') ? '+' : '-', 
+			post_url = item.attr('href');
+
+		$('.post_like>a, .post_dislike>a', item_parent).unbind('click', voitng).removeAttr('href date-type').removeClass('ajax_voting').addClass('user_voting');
+		item.removeClass('user_voting').addClass(item_class).find('.voting_count').text(++count).append('<span class="animation_item">'+mark+'1</span>');
+		$('.animation_item', item).stop(true).animate({'top':top_position, opacity:'0'}, 500, 'easeOutCubic', function(){$(this).remove()});
+
+		$.post(post_url);
+		return false;
 	}
 });
