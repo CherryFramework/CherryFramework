@@ -125,11 +125,20 @@
 	}
 	include_once (PARENT_DIR . '/includes/locals.php');
 	
-	// WPML filter  for correct posts IDs for the current language Solution
+	// WPML compatibility
+	// WPML filter for correct posts IDs for the current language Solution
 	if ( function_exists( 'wpml_get_language_information' )) {
 		update_option('suppress_filters', 0);
 	} else {
 		update_option('suppress_filters', 1);
+	}
+	// Register Flickr and recent posts widgets link label for translation
+	function wpml_link_text_filter( $link_text, $widget_title ) {
+		icl_translate( 'cherry', 'link_text_' . $widget_title, $link_text );
+	}
+	// Check if WPML is activated
+	if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
+		add_filter( 'widget_linktext', 'wpml_link_text_filter', 10, 2 );
 	}
 
 	//Loading Custom function
@@ -335,7 +344,7 @@
 	 */
 	if (! class_exists('description_walker')) {
 		class description_walker extends Walker_Nav_Menu {
-			function start_el(&$output, $item, $depth, $args) {
+			function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 				global $wp_query;
 				$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
@@ -940,4 +949,212 @@ function warning_notice() {
         printf('<div class="updated"><strong><p>'.theme_locals('warning_notice_2').'</p><p>'.theme_locals('warning_notice_3').'</p><p><a href="'.esc_url(add_query_arg( 'wp_nag', wp_create_nonce( 'wp_nag' ))).'">'.theme_locals('dismiss_notice').'</a></p></strong></div>');
     }
 }
+//------------------------------------------------------
+//  Post Meta
+//------------------------------------------------------
+	$global_meta_elements = array();
+	function get_post_metadata( $args = array() ) {
+		global $global_meta_elements;
+		if(array_key_exists('meta_elements', $args)){
+			$global_meta_elements = array_unique(array_merge($global_meta_elements, $args['meta_elements']));
+		}
+
+		$meta_elements_empty  = isset($args['meta_elements']) ? false : true ;
+		$defaults = array(
+						'meta_elements' =>  array('start_unite', 'date', 'author', 'permalink', 'end_unite', 'start_unite', 'categories', 'tags', 'end_unite', 'start_unite', 'comment', 'views', 'like', 'dislike', 'end_unite'),
+						'meta_class' => 'post_meta',
+						'meta_before' => '',
+						'meta_after'  => ''
+					);
+		$args = wp_parse_args( $args, $defaults );
+		$post_meta_type = (of_get_option('post_meta') == 'true' || of_get_option('post_meta') == '') ? 'line' : of_get_option('post_meta');
+		if($meta_elements_empty){
+			foreach ($global_meta_elements as $key) {
+				if($key != 'end_unite || start_unite'){
+				unset($args['meta_elements'][array_search($key, $args['meta_elements'])]);
+				}
+			}	
+		}
+
+
+		if($post_meta_type!='false'){
+			$post_ID = get_the_ID();
+			$post_type = get_post_type($post_ID);
+			$icon_tips_before = ($post_meta_type == 'icon') ? '<div class="tips">' : '';
+			$icon_tips_after = ($post_meta_type == 'icon') ? '</div>' : '';
+
+			$user_login = is_user_logged_in() ? true : false;
+			$user_id = $user_login ? get_current_user_id() : "";
+			$voting_class = $user_login ? 'ajax_voting ' : 'not_voting ';
+			$voting_url = PARENT_URL.'/includes/voting.php?post_ID='.$post_ID.'&amp;get_user_ID='.$user_id;
+			$get_voting_array = getPostVoting($post_ID, $user_id);
+			$user_voting = $get_voting_array['user_voting'];
+
+			echo $args['meta_before'].'<div class="'.$args['meta_class'].' meta_type_'.$post_meta_type.'">';
+				foreach ($args['meta_elements'] as $value) {
+					switch ($value) {
+						case 'date':
+							if(of_get_option('post_date') != 'no'){ ?>
+								<div class="post_date">
+									<i class="icon-calendar"></i>
+									<?php echo $icon_tips_before . '<time datetime="' . get_the_time('Y-m-d\TH:i:s') . '">' . get_the_time('F j, Y') . '</time>' . $icon_tips_after; ?>
+								</div>
+								<?php
+							}
+							break;
+						case 'author':
+							if(of_get_option('post_author') != 'no'){ ?>
+								<div class="post_author">
+									<i class="icon-user"></i>
+									<?php 
+									echo $icon_tips_before;
+									the_author_posts_link();
+									echo $icon_tips_after;
+									?>
+								</div>
+								<?php
+							}
+							break;
+						case 'permalink':
+							if(of_get_option('post_permalink') != 'no'){ ?>
+								<div class="post_permalink">
+									<i class="icon-link"></i>
+									<?php echo $icon_tips_before.'<a href="'.get_permalink().'" title="'.get_the_title().'">'.theme_locals('permalink_to').'</a>'.$icon_tips_after; ?>
+								</div>
+								<?php 
+							}
+							break;
+						case 'categories':
+							if(of_get_option('post_category') != 'no'){ ?>
+								<div class="post_category">
+									<i class="icon-bookmark"></i>
+									<?php 
+										echo $icon_tips_before;
+										($post_type != 'post') ? the_terms($post_ID, $post_type.'_category','',', ') : the_category(', ');
+										echo $icon_tips_after;
+									?>
+								</div>
+								<?php
+							}
+							break;
+						case 'tags':
+							if(of_get_option('post_tag') != 'no'){ ?>
+								<div class="post_tag">
+									<i class="icon-tag"></i>
+									<?php 
+										echo $icon_tips_before;
+										if(get_the_tags() || has_term('', $post_type.'_tag', $post_ID)){
+											echo ($post_type != 'post') ? the_terms($post_ID, $post_type.'_tag','',', ') : the_tags('', ', ');
+										} else {
+											echo theme_locals('has_not_tags');
+										}
+										echo $icon_tips_after;
+									 ?>
+								</div>
+								<?php
+							}
+							break;
+						case 'comment':
+							if(of_get_option('post_comment') != 'no'){ ?>
+								<div class="post_comment">
+									<i class="icon-comments"></i>
+									<?php 
+										echo $icon_tips_before;
+										comments_popup_link(theme_locals('no_comments'), theme_locals('comment'), '% '.theme_locals('comments'), theme_locals('comments_link'), theme_locals('comments_closed'));
+										echo $icon_tips_after;
+									 ?>
+								</div>
+								<?php 
+							}
+							break;
+						case 'views':
+							if(of_get_option('post_views') != 'no'){ ?>
+								<div class="post_views" title="<?php echo theme_locals('number_views'); ?>">
+									<i class="icon-eye-open"></i>
+									<?php echo $icon_tips_before.getPostViews($post_ID).$icon_tips_after; ?>
+								</div>
+								<?php 
+							}
+							break;
+						case 'dislike':
+							if(of_get_option('post_dislike') != 'no'){ 
+								$dislike_url = ($user_login && $user_voting=='none') ? 'href="'.$voting_url.'&amp;voting=dislike"' : '';
+								$dislike_count = $get_voting_array['dislike_count'];
+								$dislike_title = $user_login ? theme_locals('dislike') : theme_locals('not_voting');
+								$dislike_class = ($user_voting == 'dislike') ? 'user_dislike ' : '';
+								if($user_voting!='none'){
+									$voting_class = "user_voting ";
+								}
+							?>
+								<div class="post_dislike">
+									<a <?php echo $dislike_url; ?> class="<?php echo $voting_class.$dislike_class; ?>" title="<?php echo $dislike_title; ?>" date-type="dislike" >
+										<i class="icon-thumbs-down"></i>
+										<?php echo $icon_tips_before.'<span class="voting_count">'.$dislike_count.'</span>'.$icon_tips_after; ?>
+									</a>
+								</div>
+								<?php 
+							}
+							break;
+						case 'like':
+							if(of_get_option('post_like') != 'no'){
+								$like_url = ($user_login && $user_voting=='none') ? 'href="'.$voting_url.'&amp;voting=like"' : '';
+								$like_count = $get_voting_array['like_count'];
+								$like_title = $user_login ? theme_locals('like') : theme_locals('not_voting');
+								$like_class = ($user_voting == 'like') ? 'user_like ' : '';
+								if($user_voting!='none'){
+									$voting_class = "user_voting ";
+								}
+							?>
+								<div class="post_like">
+									<a <?php echo $like_url; ?> class="<?php echo $voting_class.$like_class; ?>" title="<?php echo $like_title; ?>" date-type="like" >
+										<i class="icon-thumbs-up"></i>
+										<?php echo $icon_tips_before.'<span class="voting_count">'.$like_count.'</span>'.$icon_tips_after; ?>
+									</a>
+								</div>
+								<?php 
+							}
+						break;
+						case 'start_unite':
+							echo '<div class="post_meta_unite clearfix">';
+						break;
+						case 'end_unite':
+							echo '</div>';
+						break;
+					}
+				}
+			echo '</div>'.$args['meta_after'];
+		}
+	}
+//------------------------------------------------------
+//  Post Views
+//------------------------------------------------------
+	function getPostViews($postID){
+		return (get_post_meta($postID, 'post_views_count', true) == '') ? "0" : get_post_meta($postID, 'post_views_count', true);
+	}
+	function setPostViews($postID){
+		$count_key = 'post_views_count';
+		$count = get_post_meta($postID, $count_key, true);
+		if($count==''){
+			$count = 1;
+		}else{
+			$count++;
+		} 
+		update_post_meta($postID, $count_key, $count);
+	}
+//------------------------------------------------------
+//  Post voting
+//------------------------------------------------------
+	function getPostVoting($postID, $user_id){
+		$like_count = (get_post_meta($postID, 'post_like', true) == false) ? "0" : get_post_meta($postID, 'post_like', true);
+		$dislike_count = (get_post_meta($postID, 'post_dislike', true) == false) ? "0" : get_post_meta($postID, 'post_dislike', true);
+		$user_like_array = get_post_meta($postID, 'user_like');
+		$user_dislike_array = get_post_meta($postID, 'user_dislike');
+		$user_voting = 'none';
+		if(in_array($user_id, $user_like_array)){
+			$user_voting = 'like';
+		}else if(in_array($user_id, $user_dislike_array)){
+			$user_voting = 'dislike';
+		}
+		return array('like_count' => $like_count, 'dislike_count' => $dislike_count, 'user_voting' => $user_voting);
+	}
 ?>

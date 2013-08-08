@@ -93,16 +93,18 @@
 -----------------------------------------*/
 .posts-grid {
 	margin: 0;
-	li {
+
+	& li {
 		margin-bottom: 25px;
-		.featured-thumbnail {
-			margin: 0;
-			img {
-				width: 100%;
-				max-width: none;
-			}
+	}
+
+	& li .featured-thumbnail {
+		margin: 0;
+		img {
+			width: 100%;
 		}
 	}
+
 }
 
 
@@ -628,3 +630,63 @@
 	}
 }
 /*/ Native Wordpress Gallery */
+// shortcode site map
+.site_map{
+	margin-bottom: 10px;
+	.icon-sitemap{
+		padding-right:10px;
+	}
+	h2{
+		border-bottom: 1px solid #eaeaea;
+		padding-bottom: 15px;
+	}
+	&_title{
+		text-transform: capitalize;
+	}
+	ul{
+		list-style: none;
+		margin: 15px 0 0 5px;
+		li{
+			word-break: break-word;
+			padding-bottom: 5px;
+			@media (max-width: 480px) {
+				float: none;
+				width: 100%;
+				padding-right: 0%;
+			}
+		}
+	}
+	.group{
+		display: inline-block;
+		padding-bottom: 20px;
+		width: 102%;
+		margin-left: -2%;
+		.grid{
+			width: 23%;
+			margin-left: 2%;
+			float: left;
+			@media (max-width: 480px) {
+				float: none;
+				width: 100%;
+				margin-left: 0%;
+			}
+		}
+	}
+	.line{
+		margin-bottom: 10px;
+		ul{
+			li{
+				width: 18%;
+				margin-right: 2%;
+				display: inline-block;
+				vertical-align: top;
+				@media (max-width: 480px) {
+					float: none;
+					width: 100%;
+					margin-right: 0%;
+				}
+			}
+		}
+	}
+}
+// end shortcode site map

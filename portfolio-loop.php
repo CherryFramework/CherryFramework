@@ -69,14 +69,14 @@ if ( !$category_value ) {
 								$terms = get_the_terms( $post_id, 'portfolio_category');
 								if ( $terms && ! is_wp_error( $terms ) ) {
 									foreach ( $terms as $term )
-										$filter_array[$term->name] = $term;
+										$filter_array[$term->slug] = $term;
+									ksort($filter_array);
 								}
 							endwhile;
 
 							foreach ($filter_array as $key => $value)
 								if ( isset($value->count) ) {
-									$k = str_replace(' ', '-', mb_strtolower($key, 'UTF-8'));
-									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".'.$k.'">' . $value->name . '</a></li>';
+									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".term_id_'.$value->term_id.', .'.$key.'">' . $value->name . '</a></li>';
 								}
 							wp_reset_postdata();
 						?>
@@ -123,7 +123,7 @@ if ( !$category_value ) {
 							$filter_array = array();
 							$portfolio_tags = get_terms('portfolio_tag');
 							foreach($portfolio_tags as $portfolio_tag) {
-								$filter_array[$portfolio_tag->name] = $portfolio_tag->count;
+								$filter_array[$portfolio_tag->slug] = $portfolio_tag->count;
 							}
 
 							if ($paged == 0) $paged = 1;
@@ -144,14 +144,14 @@ if ( !$category_value ) {
 								$terms = get_the_terms( $post_id, 'portfolio_tag');
 								if ( $terms && ! is_wp_error( $terms ) ) {
 									foreach ( $terms as $term )
-										$filter_array[$term->name] = $term;
+										$filter_array[$term->slug] = $term;
+									ksort($filter_array);
 								}
 							endwhile;
 
 							foreach ($filter_array as $key => $value)
 								if ( isset($value->count) ) {
-									$k = str_replace(' ', '-', mb_strtolower($key, 'UTF-8'));
-									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".'.$k.'">' . $value->name . '</a></li>';
+									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".term_id_'.$value->term_id.', .'.$key.'">' . $value->name . '</a></li>';
 								}
 							wp_reset_postdata();
 						?>

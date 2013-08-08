@@ -93,15 +93,6 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		public $menu = 'install-required-plugins';
 
 		/**
-		 * Text domain for localization support.
-		 *
-		 * @since 1.1.0
-		 *
-		 * @var string
-		 */
-		public $domain = 'tgmpa';
-
-		/**
 		 * Default absolute path to folder containing pre-packaged plugin zip files.
 		 *
 		 * @since 2.0.0
@@ -173,11 +164,14 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				'notice_cannot_activate'          => _n_noop( theme_locals("notice_cannot_activate"), theme_locals("notice_cannot_activate_2")),
 				'notice_ask_to_update'            => _n_noop( theme_locals("notice_ask_to_update"), theme_locals("notice_ask_to_update_2")),
 				'notice_cannot_update'            => _n_noop( theme_locals("notice_cannot_update"), theme_locals("notice_cannot_update_2")),
-				'install_link' 					  => _n_noop( theme_locals("install_link"), theme_locals("install_link_2")),
-				'activate_link' 				  => _n_noop( theme_locals("activate_link"), theme_locals("activate_link_2")),
+				'install_link'                    => _n_noop( theme_locals("install_link"), theme_locals("install_link_2")),
+				'activate_link'                   => _n_noop( theme_locals("activate_link"), theme_locals("activate_link_2")),
 				'return'                          => theme_locals("return"),
+				'dashboard'                       => __( 'Return to the dashboard', 'cherry' ),
 				'plugin_activated'                => theme_locals("plugin_activated"),
+				'activated_successfully'          => __( 'The following plugin was activated successfully:', 'cherry' ),
 				'complete'                        => theme_locals("complete"),
+				'dismiss'                         => __( 'Dismiss this notice', 'cherry' ),
 			);
 
 			/** Annouce that the class is ready, and pass the object (for advanced use) */
@@ -1974,7 +1968,7 @@ if ( ! class_exists( 'WP_Upgrader' ) && ( isset( $_GET[sanitize_key( 'page' )] )
 	 		 *
 	 		 * @since 2.2.0
 	 		 */
-			public function before() {
+			public function before($title='') {
 
 				/** We are currently in the plugin installation loop, so set to true */
 				$this->in_loop = true;
@@ -1996,7 +1990,7 @@ if ( ! class_exists( 'WP_Upgrader' ) && ( isset( $_GET[sanitize_key( 'page' )] )
 	 		 *
 	 		 * @since 2.2.0
 	 		 */
-			public function after() {
+			public function after($title='') {
 
 				/** Close install strings */
 				echo '</p></div>';

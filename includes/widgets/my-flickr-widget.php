@@ -12,7 +12,7 @@ class MY_FlickrWidget extends WP_Widget {
 		$title     = apply_filters('widget_title', $instance['title']);
 		$flickr_id = apply_filters('flickr_id', $instance['flickr_id']);
 		$amount    = apply_filters('flickr_image_amount', $instance['image_amount']);
-		$linktext  = apply_filters('widget_linktext', $instance['linktext']);
+		$linktext  = apply_filters('widget_linktext', $instance['linktext'], $instance['title']);
 		$suf       = rand(100000, 999999);
 
 	echo $before_widget; 

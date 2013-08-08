@@ -788,10 +788,6 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 										a.addWithDialog(c,"<?php echo theme_locals("plus_list"); ?>","plus_list");
 										a.addWithDialog(c,"<?php echo theme_locals("minus_list"); ?>","minus_list");
 										a.addWithDialog(c,"<?php echo theme_locals("custom_list"); ?>","custom_list");
-								c=b.addMenu({title:"<?php echo theme_locals("audio_video"); ?>"});b.addSeparator();
-										a.addWithDialog(c,"<?php echo theme_locals("audio"); ?>","audio");
-										a.addWithDialog(c,"<?php echo theme_locals("video"); ?>","video");
-										a.addWithDialog(c,"<?php echo theme_locals("video_preview"); ?>","video_preview");
 								c=b.addMenu({title:"<?php echo theme_locals("misc"); ?>"});
 										a.addWithDialog(c,"<?php echo theme_locals("alert_box"); ?>","alert_box");
 										a.addWithDialog(c,"<?php echo theme_locals("close"); ?>","close");
@@ -799,6 +795,7 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 										a.addWithDialog(c,"<?php echo theme_locals("small"); ?>","small");
 										a.addWithDialog(c,"<?php echo theme_locals("title"); ?>","title");
 										a.addWithDialog(c,"<?php echo theme_locals("template_url"); ?>","template_url");
+								a.addWithDialog(b,"<?php echo theme_locals("video_preview"); ?>","video_preview");
 								a.addWithDialog(b,"<?php echo theme_locals("tabs"); ?>","tabs");
 								a.addWithDialog(b,"<?php echo theme_locals("accordions"); ?>","accordions");
 								a.addWithDialog(b,"<?php echo theme_locals("table"); ?>","table");

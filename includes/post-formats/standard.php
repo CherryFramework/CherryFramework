@@ -4,7 +4,7 @@
 		<?php if(is_sticky()) : ?>
 			<h5 class="post-label"><?php echo theme_locals("featured");?></h5>
 		<?php endif; ?>
-		<h2 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php echo theme_locals("permalink_to"); ?><?php the_title(); ?>"><?php the_title(); ?></a></h2>
+		<h2 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
 	</header>
 	<?php endif; ?>
 	<?php get_template_part('includes/post-formats/post-thumb'); ?>

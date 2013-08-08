@@ -12,10 +12,11 @@
 			)); ?>
 		</nav>
 <?php } else {
-	echo '<ul class="sf-menu">';
+	echo '<nav class="nav nav__primary clearfix"><ul class="sf-menu">';
 		wp_list_pages( array(
-			'depth' => 0,
-			'title_li' => '')
+			'depth'    => 0,
+			'title_li' => ''
+			)
 		);
-	echo '</ul>';
+	echo '</ul></nav>';
 } ?><!-- END MAIN NAVIGATION -->

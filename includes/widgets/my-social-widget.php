@@ -29,6 +29,14 @@ class My_SocialNetworksWidget extends WP_Widget {
 		$networks['Youtube']['label']   = $instance['youtube_label'];
 		$networks['Google+']['label']   = $instance['google_label'];
 
+		// WPML compatibility
+		// Check if WPML is activated, then reigster labels for translation
+		if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
+			foreach( $networks as $label => $val ) {
+				$networks[$label]['label'] = icl_translate( 'cherry', 'social_widget_label_' . $label, $val['label'] );
+			}
+		}
+
 		$display = $instance['display'];
 		
 		echo $before_widget;

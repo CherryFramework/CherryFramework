@@ -1,5 +1,9 @@
 <?php /* Loop Name: Faq */ ?>
 <?php
+	// WPML filter
+	$suppress_filters = get_option('suppress_filters');
+
+	//query
 	$temp     = $wp_query;
 	$wp_query = null;
 	$args = array(
