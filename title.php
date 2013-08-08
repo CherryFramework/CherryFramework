@@ -43,9 +43,9 @@
 			<small><?php echo single_tag_title( '', false ); ?> </small>
 <!--Begin shop-->
 		<?php } elseif (function_exists( 'is_shop' ) && is_shop()) {
-				if (class_exists( 'Woocommerce' )){
+				if (class_exists( 'Woocommerce' ) && !is_single()){
 					$page_id = woocommerce_get_page_id('shop');
-				} elseif (function_exists( 'jigoshop_init' )){
+				} elseif (function_exists( 'jigoshop_init' ) && !is_single()){
 					$page_id = jigoshop_get_page_id('shop');
 				}
 				echo get_page($page_id)->post_title;
