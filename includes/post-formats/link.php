@@ -3,7 +3,7 @@
 	<?php if(!is_singular()) : ?>
 	<header class="post-header">
 		<h2 class="post-title">
-			<a target="_blank" href="<?php echo $url; ?>" title="<?php echo theme_locals("permalink_to");?> <?php echo $url; ?>"><span><?php the_title(); ?></span></a>
+			<a target="_blank" href="<?php echo $url; ?>" title="<?php echo $url; ?>"><span><?php the_title(); ?></span></a>
 		</h2>
 	</header>
 	<?php endif; ?>

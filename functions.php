@@ -1019,7 +1019,7 @@ function warning_notice() {
 							if(of_get_option('post_permalink') != 'no'){ ?>
 								<div class="post_permalink">
 									<i class="icon-link"></i>
-									<?php echo $icon_tips_before.'<a href="'.get_permalink().'" title="'.theme_locals('permalink_to').' '.get_the_title().'">'.theme_locals('permalink_to').'</a>'.$icon_tips_after; ?>
+									<?php echo $icon_tips_before.'<a href="'.get_permalink().'" title="'.get_the_title().'">'.theme_locals('permalink_to').'</a>'.$icon_tips_after; ?>
 								</div>
 								<?php 
 							}
