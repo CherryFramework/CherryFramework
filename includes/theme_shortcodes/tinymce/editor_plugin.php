@@ -795,6 +795,7 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 										a.addWithDialog(c,"<?php echo theme_locals("small"); ?>","small");
 										a.addWithDialog(c,"<?php echo theme_locals("title"); ?>","title");
 										a.addWithDialog(c,"<?php echo theme_locals("template_url"); ?>","template_url");
+										a.addWithDialog(c,"<?php echo theme_locals("site_map"); ?>","site_map");
 								a.addWithDialog(b,"<?php echo theme_locals("video_preview"); ?>","video_preview");
 								a.addWithDialog(b,"<?php echo theme_locals("tabs"); ?>","tabs");
 								a.addWithDialog(b,"<?php echo theme_locals("accordions"); ?>","accordions");

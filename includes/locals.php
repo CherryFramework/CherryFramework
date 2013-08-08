@@ -680,6 +680,7 @@
 			'accordions' => __('Accordion', $domain),
 			'table' => __('Table', $domain),
 			'map' => __('Google Map', $domain),
+			'site_map' => __('Sitemap', $domain),
 			
 			//my-banners-widget.php
 			'add_125_125' => __('Add 125x125 ads.', $domain),

@@ -120,7 +120,7 @@ body {
 	background-color:#fff;
 }
 a {
-	color:#0088cc;
+	color:#08c;
 	text-decoration:none;
 }
 a:hover, a:focus {
@@ -1232,11 +1232,11 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 	text-decoration:none;
 	color:#fff;
 	background-color:#0081c2;
-	background-image:-moz-linear-gradient(top,#0088cc,#0077b3);
-	background-image:-webkit-gradient(linear,0 0,0 100%,from(#0088cc),to(#0077b3));
-	background-image:-webkit-linear-gradient(top,#0088cc,#0077b3);
-	background-image:-o-linear-gradient(top,#0088cc,#0077b3);
-	background-image:linear-gradient(to bottom,#0088cc,#0077b3);
+	background-image:-moz-linear-gradient(top,#08c,#0077b3);
+	background-image:-webkit-gradient(linear,0 0,0 100%,from(#08c),to(#0077b3));
+	background-image:-webkit-linear-gradient(top,#08c,#0077b3);
+	background-image:-o-linear-gradient(top,#08c,#0077b3);
+	background-image:linear-gradient(to bottom,#08c,#0077b3);
 	background-repeat:repeat-x;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0076b2', GradientType=0);
 }
@@ -1245,11 +1245,11 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 	text-decoration:none;
 	outline:0;
 	background-color:#0081c2;
-	background-image:-moz-linear-gradient(top,#0088cc,#0077b3);
-	background-image:-webkit-gradient(linear,0 0,0 100%,from(#0088cc),to(#0077b3));
-	background-image:-webkit-linear-gradient(top,#0088cc,#0077b3);
-	background-image:-o-linear-gradient(top,#0088cc,#0077b3);
-	background-image:linear-gradient(to bottom,#0088cc,#0077b3);
+	background-image:-moz-linear-gradient(top,#08c,#0077b3);
+	background-image:-webkit-gradient(linear,0 0,0 100%,from(#08c),to(#0077b3));
+	background-image:-webkit-linear-gradient(top,#08c,#0077b3);
+	background-image:-o-linear-gradient(top,#08c,#0077b3);
+	background-image:linear-gradient(to bottom,#08c,#0077b3);
 	background-repeat:repeat-x;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0076b2', GradientType=0);
 }
@@ -1514,11 +1514,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	color:#fff;
 	text-shadow:0 -1px 0 rgba(0,0,0,0.25);
 	background-color:#006dcc;
-	background-image:-moz-linear-gradient(top,#0088cc,#0044cc);
-	background-image:-webkit-gradient(linear,0 0,0 100%,from(#0088cc),to(#0044cc));
-	background-image:-webkit-linear-gradient(top,#0088cc,#0044cc);
-	background-image:-o-linear-gradient(top,#0088cc,#0044cc);
-	background-image:linear-gradient(to bottom,#0088cc,#0044cc);
+	background-image:-moz-linear-gradient(top,#08c,#0044cc);
+	background-image:-webkit-gradient(linear,0 0,0 100%,from(#08c),to(#0044cc));
+	background-image:-webkit-linear-gradient(top,#08c,#0044cc);
+	background-image:-o-linear-gradient(top,#08c,#0044cc);
+	background-image:linear-gradient(to bottom,#08c,#0044cc);
 	background-repeat:repeat-x;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0043cc', GradientType=0);
 	border-color:#0044cc #0044cc #002a80;
@@ -1672,7 +1672,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 .btn-link {
 	border-color:transparent;
 	cursor:pointer;
-	color:#0088cc;
+	color:#08c;
 	-webkit-border-radius:0;
 	-moz-border-radius:0;
 	border-radius:0;
@@ -1921,7 +1921,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 .nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
 	color:#fff;
 	text-shadow:0 -1px 0 rgba(0,0,0,0.2);
-	background-color:#0088cc;
+	background-color:#08c;
 }
 .nav-list [class^="icon-"], .nav-list [class*=" icon-"] { margin-right:2px; }
 .nav-list .divider {
@@ -1977,7 +1977,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 }
 .nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
 	color:#fff;
-	background-color:#0088cc;
+	background-color:#08c;
 }
 .nav-stacked > li { float:none; }
 .nav-stacked > li > a { margin-right:0; }
@@ -2021,8 +2021,8 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	border-radius:6px;
 }
 .nav .dropdown-toggle .caret {
-	border-top-color:#0088cc;
-	border-bottom-color:#0088cc;
+	border-top-color:#08c;
+	border-bottom-color:#08c;
 	margin-top:6px;
 }
 .nav .dropdown-toggle:hover .caret, .nav .dropdown-toggle:focus .caret {
@@ -2960,7 +2960,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	transition:all .2s ease-in-out;
 }
 a.thumbnail:hover, a.thumbnail:focus {
-	border-color:#0088cc;
+	border-color:#08c;
 	-webkit-box-shadow:0 1px 4px rgba(0,105,214,0.25);
 	-moz-box-shadow:0 1px 4px rgba(0,105,214,0.25);
 	box-shadow:0 1px 4px rgba(0,105,214,0.25);
