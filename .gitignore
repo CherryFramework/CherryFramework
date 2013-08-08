@@ -1,6 +1,6 @@
 # ignore cache files
 *.cache
 # ignore css/style.css
-*css/style.css
+css/style.css
 # ignore bootstrap/css/style.css
-*bootstrap/css/style.css
+bootstrap/css/style.css
