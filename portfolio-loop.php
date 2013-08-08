@@ -69,13 +69,14 @@ if ( !$category_value ) {
 								$terms = get_the_terms( $post_id, 'portfolio_category');
 								if ( $terms && ! is_wp_error( $terms ) ) {
 									foreach ( $terms as $term )
-										$filter_array['term_id_' . $term->term_id] = $term;
+										$filter_array[$term->slug] = $term;
+									ksort($filter_array);
 								}
 							endwhile;
 
 							foreach ($filter_array as $key => $value)
 								if ( isset($value->count) ) {
-									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".'.$key.', .'.$value->slug.'">' . $value->name . '</a></li>';
+									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".term_id_'.$value->term_id.', .'.$key.'">' . $value->name . '</a></li>';
 								}
 							wp_reset_postdata();
 						?>
@@ -143,13 +144,14 @@ if ( !$category_value ) {
 								$terms = get_the_terms( $post_id, 'portfolio_tag');
 								if ( $terms && ! is_wp_error( $terms ) ) {
 									foreach ( $terms as $term )
-										$filter_array['term_id_' . $term->term_id] = $term;
+										$filter_array[$term->slug] = $term;
+									ksort($filter_array);
 								}
 							endwhile;
 
 							foreach ($filter_array as $key => $value)
 								if ( isset($value->count) ) {
-									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".'.$key.', .'.$value->slug.'">' . $value->name . '</a></li>';
+									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".term_id_'.$value->term_id.', .'.$key.'">' . $value->name . '</a></li>';
 								}
 							wp_reset_postdata();
 						?>
