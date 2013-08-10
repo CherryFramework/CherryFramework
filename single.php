@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<?php setPostViews(get_the_ID()); ?>
+<?php cherry_setPostViews(get_the_ID()); ?>
 <div class="motopress-wrapper content-holder clearfix">
 	<div class="container">
 		<div class="row">

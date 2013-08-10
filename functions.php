@@ -987,7 +987,7 @@ function warning_notice() {
 			$user_id = $user_login ? get_current_user_id() : "";
 			$voting_class = $user_login ? 'ajax_voting ' : 'not_voting ';
 			$voting_url = PARENT_URL.'/includes/voting.php?post_ID='.$post_ID.'&amp;get_user_ID='.$user_id;
-			$get_voting_array = getPostVoting($post_ID, $user_id);
+			$get_voting_array = cherry_getPostVoting($post_ID, $user_id);
 			$user_voting = $get_voting_array['user_voting'];
 
 			echo $args['meta_before'].'<div class="'.$args['meta_class'].' meta_type_'.$post_meta_type.'">';
@@ -1071,7 +1071,7 @@ function warning_notice() {
 							if(of_get_option('post_views') != 'no'){ ?>
 								<div class="post_views" title="<?php echo theme_locals('number_views'); ?>">
 									<i class="icon-eye-open"></i>
-									<?php echo $icon_tips_before.getPostViews($post_ID).$icon_tips_after; ?>
+									<?php echo $icon_tips_before.cherry_getPostViews($post_ID).$icon_tips_after; ?>
 								</div>
 								<?php 
 							}
@@ -1128,10 +1128,10 @@ function warning_notice() {
 //------------------------------------------------------
 //  Post Views
 //------------------------------------------------------
-	function getPostViews($postID){
+	function cherry_getPostViews($postID){
 		return (get_post_meta($postID, 'post_views_count', true) == '') ? "0" : get_post_meta($postID, 'post_views_count', true);
 	}
-	function setPostViews($postID){
+	function cherry_setPostViews($postID){
 		$count_key = 'post_views_count';
 		$count = get_post_meta($postID, $count_key, true);
 		if($count==''){
@@ -1144,7 +1144,7 @@ function warning_notice() {
 //------------------------------------------------------
 //  Post voting
 //------------------------------------------------------
-	function getPostVoting($postID, $user_id){
+	function cherry_getPostVoting($postID, $user_id){
 		$like_count = (get_post_meta($postID, 'post_like', true) == false) ? "0" : get_post_meta($postID, 'post_like', true);
 		$dislike_count = (get_post_meta($postID, 'post_dislike', true) == false) ? "0" : get_post_meta($postID, 'post_dislike', true);
 		$user_like_array = get_post_meta($postID, 'user_like');
