@@ -214,6 +214,9 @@
 
 	// Framework Data Management
 	include_once (PARENT_DIR . '/admin/data_management/data_management_interface.php');
+
+	// SEO Settings
+	include_once (PARENT_DIR . '/admin/seo/seo_settings_page.php');
 	
 	// WP Pointers
 	include_once (PARENT_DIR . '/includes/class.wp-help-pointers.php');

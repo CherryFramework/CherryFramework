@@ -2,21 +2,20 @@
 .m0{margin:0 !important;}
 .wrap{margin:0;padding:0;}
 .updated{max-width:764px;margin-bottom:0px !important;}
-#optionsframework{position:relative;z-index:0;max-width:780px;background:#fff;}
 #optionsframework > form{margin:0;}
 #optionsframework h3{cursor:default;}
 #optionsframework .submit{margin:0;}
 #optionsframework .section{padding:10px 10px 0;}
-#optionsframework .group{padding-bottom:40px;display:none;}
+#optionsframework .group{padding-bottom:20px;display:none;}
 #optionsframework .section .heading{padding:10px 0px;margin:0 0 15px;border-bottom:1px solid #dfdfdf;}
 #optionsframework .section .controls{float:left;min-width:350px;width:70%;margin-right:2%;}
-#optionsframework .section .explain{font-size:12px;line-height:16px;color:#929292;overflow:hidden;}
+#optionsframework .section .explain{font-size:12px;vertical-align: top;color:#929292;overflow:hidden; line-height: 16px;}
 #optionsframework .section-checkbox .controls{width:98%;}
 #optionsframework .section-checkbox .explain{max-width:94%;}
 #optionsframework .section-color .controls{min-width:125px;width:125px}
 #optionsframework .controls input, #optionsframework .controls select, #optionsframework .controls textarea{margin-bottom:10px;width:100%;outline:none;}
 #optionsframework .section-multicheck .controls, #optionsframework .data_management .controls{max-height:150px;overflow-y:scroll;background:#fff;border:1px solid #DDD;padding-top:8px;padding-bottom:0 !important;}
-#optionsframework .section-radio label, #optionsframework .section-multicheck .controls label , #optionsframework .data_management label{float:left;max-width:90%;line-height:16px;margin-bottom:5px;}
+#optionsframework .section-radio label, #optionsframework .section-multicheck .controls label , #optionsframework .data_management label, .checkbox_label{float:left;max-width:90%;line-height:16px;margin-bottom:5px;}
 #optionsframework input.checkbox, #optionsframework input.of-radio{width:30px;margin-top:2px;float:left;clear:both;}
 #optionsframework .controls .of-color{float:left;width:60px;margin-left:5px;margin-right:5px;}
 #optionsframework .controls .field{overflow:hidden;float:left;margin-right:3px;padding:0 2px;}
@@ -31,7 +30,7 @@
 #optionsframework .controls .of-background-position{width:125px;margin-right:5px;float:left}
 #optionsframework .controls .of-background-attachment{width:125px;margin-right:5px;float:left}
 #optionsframework div.section-background .controls input.upload{width:47%;}
-#optionsframework .controls .img_wrapper{float:left;width:107px;}
+#optionsframework .controls .img_wrapper{float:left;}
 #optionsframework .controls .img_title{clear:both;text-align:center;margin-right:5px;}
 #optionsframework .controls .of-radio-img-img{border:3px solid #f9f9f9;margin:0 5px 10px 0;display:none;cursor:pointer;float:left;}
 #optionsframework .controls .of-radio-img-selected{border:3px solid #ccc}
@@ -54,7 +53,7 @@
 #optionsframework .screenshot .no_image .mlu_remove{bottom:0px;}
 #optionsframework .reset-button{float:left;cursor:pointer;}
 #optionsframework-submit{padding:7px 10px;border-top:1px solid #ECECEC;background-color:#F1F1F1;background-image:-moz-linear-gradient(center top , #F9F9F9, #ECECEC);}
-#optionsframework .button-primary{float:right;}
+#optionsframework .button-primary, .fright{float:right;}
 #optionsframework .section:before, #optionsframework .section:after{content:"";display:table;}
 #optionsframework .section:after{clear:both;}
 #icon-settings, #icon-import-export{background-attachment:scroll;background-clip:border-box;background-color:transparent;background-origin:padding-box;background-repeat:no-repeat;background-size:auto auto;}
@@ -144,7 +143,7 @@ h2 .nav-tab{font-size:18px;}
 #optionsframework-wrap .nav-tab:hover{background:#efefef;border-color:#ddd;}
 #optionsframework-wrap .nav-tab-active,
 #optionsframework-wrap .nav-tab-active:hover{background:#85b9de;color:#fff;border-color:#85b9de;text-shadow:none;outline:none;}
-#optionsframework{background:#fefefe;border:1px solid #e5e5e5;max-width:786px;}
+#optionsframework{background:#fefefe;border:1px solid #e5e5e5;max-width:786px;position: relative;z-index: 0;}
 #optionsframework-wrap #optionsframework-metabox{padding-top:13px;}
 #optionsframework h3{border-bottom-color:#e5e5e5;background:#fafafa;background:#fafafa -moz-linear-gradient(top, #fafafa, #f4f4f4 100%);background:#fafafa -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#f4f4f4));background:#fafafa -webkit-linear-gradient(top, #fafafa 0%,#f4f4f4 100%);background:#fafafa -o-linear-gradient(top, #fafafa 0%,#f4f4f4 100%);background:#fafafa -ms-linear-gradient(top, #fafafa 0%,#f4f4f4 100%);background:#fafafa linear-gradient(top, #fafafa 0%,#f4f4f4 100%);font-size:18px;line-height:1em;color:#576570;padding:12px 17px;margin:0;font-family:Arial, Helvetica, sans-serif;font-weight:normal;}
 #optionsframework h4.head{font-size:20px;line-height:30px;font-weight:normal;color:#585858;margin:0 0 15px;}
@@ -242,7 +241,7 @@ h4.title{color:#888;}
 .align-right{text-align:right;overflow:hidden;}
 .align-right .button-primary{margin-right:45px;}
 #optionsframework>.wrap>.data_management>.theme_box>.buttons_controls{margin-left:-12px;}
-#optionsframework .wrap .data_management .button_wrapper{display:inline-block;position:relative;margin-left:12px;}
+.button_wrapper{display:inline-block;position:relative;margin-left:12px;}
 #optionsframework .wrap .data_management .button_wrapper .cap{position:absolute;top:0;left:0;width:100%;height:100%;background:url("../images/blank.gif");}
 #optionsframework .wrap .data_management .controls{overflow:hidden;padding:8px;margin-bottom:10px;border-radius:3px;}
 #optionsframework .wrap .data_management .controls.child_theme{max-height:371px;height:371px;}
@@ -270,3 +269,19 @@ h4.title{color:#888;}
 .clearfix:before, .clearfix:after{display:table;content:"";line-height:0;}
 .clearfix:after{clear:both;}
 .update-message{padding: 10px; background: #FFE4E4; font-weight: bold; border: 1px solid #dfdfdf; border-radius: 3px; margin: 5px 0 10px 0;}
+.group_options{overflow: hidden; margin-bottom: 10px;}
+.group_options .unitu:first-child{margin-left: 0; min-width: 150px;}
+.group_options .unitu{display: inline-block; float: left; margin-left:15px; min-width: 100px}
+#optionsframework .group_options>.unitu>input.checkbox , #optionsframework .group_options>.unitu>label.explain, #optionsframework .group_options>.unitu>select {margin-bottom: 0;}
+#optionsframework .group_options>.unitu>label.explain{margin-top: 5px;}
+#optionsframework .group_options>.unitu>input.checkbox {margin-top: 7px;}
+header.group_options{padding: 10px 5px; background: #FAFAFA;}
+#optionsframework hr{border: none; background: none; border-bottom: 1px solid #DFDFDF;}
+#generator_sitemap{margin:10px 0 0 0;}
+#optionsframework .checkbox_label [class^="icon_"]{display: inline-block; width: 16px; height: 16px; margin-right: 7px;}
+.icon_googl{ background: url('../images/icons.png') 0 0 no-repeat;}
+.icon_yandex{ background: url('../images/icons.png') -16px 0 no-repeat;}
+.icon_yahoo{ background: url('../images/icons.png') -32px 0 no-repeat;}
+.icon_bing{ background: url('../images/icons.png') -48px 0 no-repeat;}
+.icon_ask{ background: url('../images/icons.png') -64px 0 no-repeat;}
+.icon_tagoo{ background: url('../images/icons.png') -80px 0 no-repeat;}
