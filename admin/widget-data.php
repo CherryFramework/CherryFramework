@@ -11,7 +11,7 @@
 			wp_enqueue_script( 'widget_data' );
 			$widgets_url = get_admin_url(false, 'widgets.php');
 			wp_localize_script( 'widget_data', 'widgets_url', $widgets_url);
-		}		
+		}
 
 		function export_settings_page() {
 			$sidebar_widgets = $this->order_sidebar_widgets(wp_get_sidebars_widgets());
@@ -69,7 +69,7 @@
 		function import_settings_page() {
 			?>
 			<div class="widget-data import-widget-settings">
-				<h4 class="head"><?php echo theme_locals("step_1_import_widget"); ?></h4>					
+				<h4 class="head"><?php echo theme_locals("step_1_import_widget"); ?></h4>
 				
 				<?php if (isset($_FILES['upload-file'])) : ?>
 				<div class="import-wrapper">
@@ -90,15 +90,15 @@
 						?>
 						<input type="hidden" name="import_file" value="<?php echo esc_attr( $json_file ); ?>"/>
 						<input type="hidden" name="action" value="import_widget_data"/>
-						
-						<?php							
+
+						<?php
 						if (isset ($json_data[0])) : ?>
 							<div class="sidebars indent-bot">
 							<?php foreach ($this->order_sidebar_widgets($json_data[0]) as $sidebar_name=>$widget_list) :
 									if (count($widget_list) == 0)
 										continue;
 
-									$sidebar_info = $this->get_sidebar_info($sidebar_name);?>									
+									$sidebar_info = $this->get_sidebar_info($sidebar_name);?>
 									<?php if ($sidebar_info) : ?>
 										<div class="sidebar">
 											<h4><?php echo $sidebar_info['name']; ?></h4>
@@ -134,7 +134,7 @@
 											</div> <!-- end widgets -->
 										</div> <!-- end sidebar -->
 									<?php endif; ?>
-								<?php endforeach; ?>							
+								<?php endforeach; ?>
 							</div> <!-- end sidebars -->
 							<input class="button-primary" type="submit" name="import-widgets" id="import-widgets" value="<?php echo theme_locals("import_settings"); ?>">
 							<?php else :
@@ -214,7 +214,7 @@
 
 				foreach ( $import_widgets as $import_widget ) :
 					//if the sidebar exists
-					if ( isset( $current_sidebars[$import_sidebar] ) ) :
+					//!!!!!!!!!!!!!!!!!if ( isset( $current_sidebars[$import_sidebar] ) ) :
 						$title = trim( substr( $import_widget, 0, strrpos( $import_widget, '-' ) ) );
 						$index = trim( substr( $import_widget, strrpos( $import_widget, '-' ) + 1 ) );
 						$current_widget_data = get_option( 'widget_' . $title );
@@ -242,7 +242,7 @@
 							$new_widgets[$title] = $current_widget_data;
 						}
 
-					endif;
+					//!!!!!!!!!!!!!!!!!!endif;
 				endforeach;
 			endforeach;
 
