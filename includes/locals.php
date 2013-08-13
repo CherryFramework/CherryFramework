@@ -587,6 +587,9 @@
 			'oops_2' => __('Something went wrong with the plugin API._', $domain),
 			'updated' => __('updated', $domain),
 
+			//class.wp-help-pointers.php
+			'pointer_close' => __('Close', $domain),
+
 			//sidebar-init.php
 			'sidebar' => __('Sidebar', $domain),
 			'sidebar_desc' => __('Located at the right side of pages.', $domain),
