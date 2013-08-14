@@ -1,12 +1,9 @@
 <?php
 	if(!function_exists('optionsframework_option_name')) {
 		function optionsframework_option_name() {
-			// This gets the theme name from the stylesheet (lowercase and without spaces)
-			$themename = CURRENT_THEME;
-			$themename = preg_replace("/\W/", "_", strtolower($themename) );
-			
+			// This gets the theme name from the stylesheet (lowercase and without spaces)			
 			$optionsframework_settings = get_option('optionsframework');
-			$optionsframework_settings['id'] = $themename;
+			$optionsframework_settings['id'] = CURRENT_THEME;
 			update_option('optionsframework', $optionsframework_settings);
 		}
 		

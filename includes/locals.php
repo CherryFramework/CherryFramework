@@ -683,6 +683,7 @@
 			'accordions' => __('Accordion', $domain),
 			'table' => __('Table', $domain),
 			'map' => __('Google Map', $domain),
+			'site_map' => __('Sitemap', $domain),
 			
 			//my-banners-widget.php
 			'add_125_125' => __('Add 125x125 ads.', $domain),
@@ -829,7 +830,7 @@
 			'info_box_1' => __('Data Management allows to update or backup framework and themes. Framework is regularly updated thus delivering new opportunities for your site.<br> To keep your data safe, you can back up the framework or child theme, to be able to download it later. If necessary, you can restore the framework or your theme using the backup.', $domain),
 			'info_box_2' => __('<b>Warning!</b> Before updating framework you are strongly advised to backup your data.', $domain),
 			'info_box_3' => __('You can back up your theme. If the theme has a backup copy, it is possible to restore it or download. The date of the latest backup copy is displayed in the column <b>Last Backup Date</b>.', $domain),
-
+			'info_box_4' => __('<b style="color:red;">Warning!</b> Before updating framework you are strongly advised to <a href="admin.php?page=options-framework-data-management">backup</a> your data.', $domain),
 
 			
 			//options-medialibrary-uploader.php
