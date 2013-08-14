@@ -381,7 +381,7 @@
 			'step_1_import_widget' => __('<span>Step <i>1</i></span> Widget Settings Import', $domain),
 			'import_settings' => __('Import Settings', $domain),
 			'please_try_again' => __("Incorrect file. Please, <a href='admin.php?page=options-framework-import&amp;step=1'>try again</a>.", $domain),
-			'select_the_file' => __('Select the file that contains Widget Settings (e.g. <b>widgets.json</b>)', $domain),
+			'select_the_file' => __('Select the file that contains Widget Settings (e.g. <b>your_template_package/sources/sample_data/widgets.json</b>)', $domain),
 			'show_widget_settings' => __('Show Widget Settings', $domain),
 			
 			//wordpress-importer.php
@@ -586,6 +586,9 @@
 			'skin_before_update_header_2' => __('Installing Plugin %1$s (%2$d/%3$d)', $domain),
 			'oops_2' => __('Something went wrong with the plugin API._', $domain),
 			'updated' => __('updated', $domain),
+
+			//class.wp-help-pointers.php
+			'pointer_close' => __('Close', $domain),
 
 			//sidebar-init.php
 			'sidebar' => __('Sidebar', $domain),

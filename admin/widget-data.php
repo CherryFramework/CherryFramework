@@ -148,10 +148,10 @@
 								<p class="text-style"><?php echo theme_locals("select_the_file"); ?></p>
 									<input type="file" name="upload-file" id="upload-file" size="25">
 								</div>
-							<input type="submit" name="button-upload" class="button-primary" value="<?php echo theme_locals("show_widget_settings"); ?>" disabled="disabled">
+							<input type="submit" name="button-upload" class="button-primary" value="<?php echo theme_locals("next"); ?>" disabled="disabled">
 						</form>
-						<form enctype="multipart/form-data" id="skip-import-widget" method="post" action="admin.php?page=options-framework-import&step=2">
-							<p class="submit"><input type="submit" class="button" value="<?php echo theme_locals("skip"); ?>"></p>
+						<form enctype="multipart/form-data" id="skip-import-widget" method="post" action="admin.php?page=options-framework-import&amp;step=2">
+							<p class="submit"><input type="submit" class="btn-link" value="<?php echo theme_locals("skip"); ?>"></p>
 						</form>
 					<?php endif; ?>
 			</div> <!-- end import-widget-settings -->
