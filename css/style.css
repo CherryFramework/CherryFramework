@@ -749,7 +749,10 @@ html[xmlns] .slides { display:block; }
 	width:100%;
 }
 @media (max-width: 480px) {
-	.post .featured-thumbnail { width:120px; }
+	.post .featured-thumbnail {
+		width:120px;
+		height:auto;
+	}
 }
 @media (max-width: 480px) {
 	.post .featured-thumbnail.large { width:auto; }
