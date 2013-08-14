@@ -37,6 +37,7 @@
 		} else {
 			$theme_name = get_current_theme();
 		}
+		$theme_name = preg_replace("/\W/", "_", strtolower($theme_name) );
 		return $theme_name;
 	}
 
