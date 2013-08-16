@@ -179,6 +179,7 @@
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/hero_unit.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/roundabout.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/categories.php');
+	include_once (PARENT_DIR . '/includes/theme_shortcodes/media.php');
 	
 	//tinyMCE includes
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/tinymce/tinymce_shortcodes.php');
