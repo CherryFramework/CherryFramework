@@ -279,7 +279,7 @@ header.group_options{padding: 10px 5px; background: #FAFAFA;}
 #optionsframework hr{border: none; background: none; border-bottom: 1px solid #DFDFDF;}
 #generator_sitemap{margin:10px 0 0 0;}
 #optionsframework .checkbox_label [class^="icon_"]{display: inline-block; width: 16px; height: 16px; margin-right: 7px;}
-.icon_googl{ background: url('../images/icons.png') 0 0 no-repeat;}
+.icon_google{ background: url('../images/icons.png') 0 0 no-repeat;}
 .icon_yandex{ background: url('../images/icons.png') -16px 0 no-repeat;}
 .icon_yahoo{ background: url('../images/icons.png') -32px 0 no-repeat;}
 .icon_bing{ background: url('../images/icons.png') -48px 0 no-repeat;}

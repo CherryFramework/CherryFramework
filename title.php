@@ -42,10 +42,10 @@
 			<?php echo theme_locals("portfolio_tag").": "; ?>
 			<small><?php echo single_tag_title( '', false ); ?> </small>
 <!--Begin shop-->
-		<?php } elseif (function_exists( 'is_shop' ) && is_shop()) {
+		<?php } elseif (function_exists( 'is_shop' ) && is_singular()) {
 				if (class_exists( 'Woocommerce' ) && !is_single()){
 					$page_id = woocommerce_get_page_id('shop');
-				} elseif (function_exists( 'jigoshop_init' ) && !is_single()){
+				} elseif (function_exists( 'jigoshop_init' ) && !is_singular()){
 					$page_id = jigoshop_get_page_id('shop');
 				}
 				echo get_page($page_id)->post_title;
