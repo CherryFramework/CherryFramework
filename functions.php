@@ -180,6 +180,7 @@
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/hero_unit.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/roundabout.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/categories.php');
+	include_once (PARENT_DIR . '/includes/theme_shortcodes/media.php');
 	
 	//tinyMCE includes
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/tinymce/tinymce_shortcodes.php');
@@ -223,7 +224,9 @@
 	include_once (PARENT_DIR . '/includes/class.wp-help-pointers.php');
 
 	// Embedding LESS compile
-	include_once (PARENT_DIR .'/includes/lessc.inc.php');
+	if ( !class_exists('lessc') ) {
+		include_once (PARENT_DIR .'/includes/lessc.inc.php');
+	}
 	include_once (PARENT_DIR .'/includes/less-compile.php');
 	
 	// include shop
