@@ -997,7 +997,7 @@ function warning_notice() {
 							if(of_get_option('post_date') != 'no'){ ?>
 								<div class="post_date">
 									<i class="icon-calendar"></i>
-									<?php echo $icon_tips_before . '<time datetime="' . get_the_time('Y-m-d\TH:i:s') . '">' . get_the_time('F j, Y') . '</time>' . $icon_tips_after; ?>
+									<?php echo $icon_tips_before . '<time datetime="' . get_the_time('Y-m-d\TH:i:s') . '">' . get_the_date() . '</time>' . $icon_tips_after; ?>
 								</div>
 								<?php
 							}
