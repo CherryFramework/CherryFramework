@@ -39,7 +39,7 @@
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/css/camera.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 	<style type="text/css">
-		<?php echo of_get_option('custom_css'); ?>
+		<?php echo htmlspecialchars_decode(of_get_option('custom_css')); ?>
 
 		<?php $background = of_get_option('body_background');
 			if ($background != '') {
