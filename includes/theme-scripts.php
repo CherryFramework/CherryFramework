@@ -71,7 +71,7 @@ add_action('wp_enqueue_scripts', 'cherry_scripts');
 /*	Register and load stylesheet
 /*-----------------------------------------------------------------------------------*/
 function cherry_stylesheets() {
-	wp_enqueue_style('font-awesome', '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', false, '3.2.1', 'all');
+	wp_enqueue_style('font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', false, '3.2.1', 'all');
 	wp_register_style('magnific-popup', PARENT_URL.'/css/magnific-popup.css', false, '0.9.3', 'all');
 	wp_enqueue_style('magnific-popup');
 	// only child theme's when overwrite flickr widget

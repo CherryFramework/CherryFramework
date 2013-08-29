@@ -1,21 +1,57 @@
 <?php 
 	include_once (PARENT_DIR . '/admin/seo/sitemap-generator.php');
+	include_once (PARENT_DIR . '/admin/seo/seo-function.php');
 
 	if (!function_exists('seo_settings_page')) {
 		function seo_settings_page () { ?>
 			<div id="optionsframework-wrap" class="wrap">
 				<div id="icon-generic" class="icon32"><br></div><h2><?php echo 'SEO'//theme_locals("data_management"); ?></h2>
 				<h2 class="nav-tab-wrapper">
-					<!--a class="nav-tab" title="General settings" href="#general"><?php echo 'General'//theme_locals("data_management"); ?></a-->
+					<a class="nav-tab" title="General settings" href="#general"><?php echo 'General'//theme_locals("data_management"); ?></a>
 					<a class="nav-tab" title="Settings sitemap XML" href="#sitemap-xml"><?php echo 'Sitemap XML'//theme_locals("data_management"); ?></a>
 					<!--a id="" class="nav-tab nav-tab-active" title="" href="">Breadcrumbs</a-->
 				</h2>
 				<div id="optionsframework-metabox">
 					<div id="optionsframework" class="postbox store-holder">
 						<form id='options'>
-							<!--div id="general" class="group">
+							<div id="general" class="group">
 								<h3><?php echo 'General'//theme_locals("data_management"); ?></h3>
-							</div-->
+								<div class="section">
+									<h4 class="heading">Index settings</h4>
+									<div class="option clearfix">
+										<div class="controls">
+										<?php
+											$index_settings = array(
+												'admin_index' => array('title' => 'No Index wordpress sistem files (recommend)', 'checked' => true), 
+												'plagin_index' => array('title' => 'No Index plagin files (recommend)', 'checked' => true),
+												'theme_index' => array('title' => 'No Index theme files (recommend)', 'checked' => true),
+												'media_index' => array('title' => 'No Index media files (no recommend)', 'checked' => false)
+											);
+											foreach( $index_settings as $key => $val ) {
+												$checked = (get_option($key) == "on" || $val['checked'] == true && get_option($key) != "off") ? 'checked' : '' ;
+												echo '<input id="'.$key.'" class="checkbox of-input" type="checkbox" '.$checked.' name="'.$key.'"><label class="explain checkbox_label" for="'.$key.'">'.$val['title'].'</label><br>';
+											}
+										?>
+										</div>
+										<div class="explain">...</div>
+									</div>
+									<h4 class="heading">Link settings</h4>
+									<div class="option clearfix">
+										<div class="controls">
+										<?php
+											$content_settings = array(
+												'add_nofollow' => array('title' => 'Added no follow', 'checked' => false), 
+											);
+											foreach( $content_settings as $key => $val ) {
+												$checked = (get_option($key) == "on" || $val['checked'] == true && get_option($key) != "off") ? 'checked' : '' ;
+												echo '<input id="'.$key.'" class="checkbox of-input" type="checkbox" '.$checked.' name="'.$key.'"><label class="explain checkbox_label" for="'.$key.'">'.$val['title'].'</label><br>';
+											}
+										?>
+										</div>
+										<div class="explain">...</div>
+									</div>
+								</div>
+							</div>
 							<div id="sitemap-xml" class="group">
 								<h3><?php echo 'Sitemap XML'//theme_locals("data_management"); ?></h3>
 								<div class="section">
@@ -61,17 +97,12 @@
 									<h4 class="heading">Send</h4>
 									<div class="option">
 										<div class="controls">
-										<?php 
-										$checked = (get_option('google_ping') == "on") ? 'checked' : '' ;
-											echo '<input id="google" class="checkbox of-input" type="checkbox" '.$checked.' name="google_ping"><label class="explain checkbox_label" for="google"><span class="icon_googl"></span>Google</label><br>';
-										$checked = (get_option('yandex_ping') == "on") ? 'checked' : '' ;
-											echo '<input id="yandex" class="checkbox of-input" type="checkbox" '.$checked.' name="yandex_ping"><label class="explain checkbox_label" for="yandex"><span class="icon_yandex"></span>Yandex</label><br>';
-										$checked = (get_option('yahoo_ping') == "on") ? 'checked' : '' ;
-											echo '<input id="yahoo" class="checkbox of-input" type="checkbox" '.$checked.' name="yahoo_ping"><label class="explain checkbox_label" for="yahoo"><span class="icon_yahoo"></span>Yahoo!</label><br>';
-										$checked = (get_option('bing_ping') == "on") ? 'checked' : '' ;
-											echo '<input id="bing" class="checkbox of-input" type="checkbox" '.$checked.' name="bing_ping"><label class="explain checkbox_label" for="bing"><span class="icon_bing"></span>Bing</label><br>';
-										$checked = (get_option('ask_ping') == "on") ? 'checked' : '' ;
-											echo '<input id="ask" class="checkbox of-input" type="checkbox" '.$checked.' name="ask_ping"><label class="explain checkbox_label" for="ask"><span class="icon_ask"></span>Ask.com</label><br>';
+										<?php
+											$search_sistems = array('google' => 'Google', 'yandex' => 'Yandex', 'yahoo' => 'Yahoo!', 'bing' => 'Bing', 'ask' => 'Ask.com');
+											foreach( $search_sistems as $key => $val ) {
+												$checked = (get_option($key.'_ping') == "on") ? 'checked' : '' ;
+												echo '<input id="'.$key.'" class="checkbox of-input" type="checkbox" '.$checked.' name="'.$key.'_ping"><label class="explain checkbox_label" for="'.$key.'"><span class="icon_'.$key.'"></span>'.$val.'</label><br>';
+											}
 										?>
 										</div>
 										<div class="explain">...</div>
@@ -104,6 +135,7 @@
 			foreach ($post_data as $key => $val) {
 				update_option($key, $val);
 			}
+			robot_txt_generate();
 			exit; 
 		} 
 	}
@@ -133,7 +165,7 @@
 				}
 				jQuery('#optionsframework-submit input[name="save_options"]').click(function(){
 					var data = {action: 'save_options'};
-					jQuery('#sitemap-xml input, #sitemap-xml select').each(function(){
+					jQuery('#optionsframework-metabox input, #optionsframework-metabox select, #optionsframework-metabox textarea').not('input[type="submit"]').each(function(){
 						var item = jQuery(this),
 							value = item.val();
 						if(value=='on' && item[0].checked == false){
@@ -158,4 +190,3 @@
 			<?php 
 		}
 	}
-?>
