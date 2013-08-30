@@ -7,6 +7,7 @@
 ?>
 <div class="page_content">
 	<?php the_content(); ?>
+	<div class="clear"></div>
 </div>
 <?php
 if ( !$category_value ) {

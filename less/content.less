@@ -22,6 +22,7 @@
 	.title-header {
 		overflow: hidden;
 		margin-bottom: 1em;
+		.hyphens(auto);
 	}
 	.title-desc {
 		display: block;
@@ -33,18 +34,19 @@
 ---------------------------------------- */
 .breadcrumb__t {
 	margin: 0;
-	& li {
-
-	}
-	& .active {
-
-	}
-	& .divider {
-
-	}
-		& li a {
+	.hyphens(auto);
+	li {
+		display: inline;
+		&.active {
 
 		}
+		&.divider {
+
+		}
+		a {
+
+		}
+	}
 }
 /* /Breadcrumb */
 
@@ -797,8 +799,8 @@ html[xmlns] .slides { display: block;}
 	&_header {
 
 	}
-	&_title {
-
+	&-title {
+		.hyphens(auto);
 	}
 	.featured-thumbnail {
 		@media (max-width: 480px) {
@@ -812,6 +814,7 @@ html[xmlns] .slides { display: block;}
 		}
 	}
 	&_content {
+		.hyphens(auto);
 		padding-bottom: 20px;
 		& .excerpt,
 		& .full-post-content {
