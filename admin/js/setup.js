@@ -1,5 +1,64 @@
-jQuery(function(a){a("#upload-file").change(function(){a("#upload-file").val()?a('#upload-widget-data input[type="submit"]').removeAttr("disabled"):a('#upload-widget-data input[type="submit"]').attr("disabled","disabled")});a("#import-widgets").click(function(){a(".import-widget-settings").closest("#wpbody-content").find(".progress").addClass("active").show().find(".bar").delay(1E3).stop().animate({width:"52.5%"},{duration:2500})});a(".import-widget-settings").closest("#wpbody-content").find(".progress").show().find(".bar").css({width:"0%"});
-a('#import-upload-form input[type="submit"]').attr("disabled","disabled");a("#upload").change(function(){a("#upload").val()?a('#import-upload-form input[type="submit"]').removeAttr("disabled"):a('#import-upload-form input[type="submit"]').attr("disabled","disabled")});a("#user-wrap select").change(function(){currSelectText=a("#user-wrap select :selected").text();selectText=a("#user-wrap option:first-child").text();selectText!=currSelectText?a('#dataForm input[type="submit"]').removeAttr("disabled"):
-a('#dataForm input[type="submit"]').attr("disabled","disabled")});a('#dataForm input[type="submit"]').click(function(){a(".import-data").closest("#wpbody-content").find(".progress").addClass("active").show().find(".bar").stop().css({width:"52.5%"}).animate({width:"100%"},{duration:15E4})});var b;b=window.location.href;b=b.indexOf("step=4")+1||b.indexOf("step=5")+1?!0:!1;b?(a(".import-data").closest("#wpbody-content").find(".progress").show().find(".bar").css({width:"100%"}),a(".import-data").closest("#wpbody-content").find(".progress .step1").removeClass("in-progress").addClass("success"),
-a(".import-data").closest("#wpbody-content").find(".progress .step2").removeClass("in-progress").addClass("success")):(a(".import-data").closest("#wpbody-content").find(".progress").show().find(".bar").css({width:"52.5%"}),a(".import-data").closest("#wpbody-content").find(".progress .step1").removeClass("in-progress").addClass("success"),a(".import-data").closest("#wpbody-content").find(".progress .step2").addClass("in-progress"));b=window.location.href.indexOf("options-permalink.php")+1?!0:!1;b&&
-a("#message").hasClass("updated")});
+jQuery(function(a){
+
+	// IMPORT
+
+	/* data */
+	a("#upload-file").change(function() {
+		a("#upload-file").val() ? a('#upload-widget-data input[type="submit"]').removeAttr("disabled") : a('#upload-widget-data input[type="submit"]').attr("disabled", "disabled")
+	});
+	a('#import-upload-form input[type="submit"]').attr("disabled", "disabled");
+	a('#import-upload-form input[type="submit"]').click(function() {
+		a(".import").find(".progress").addClass("active").find(".bar").animate({width: "25%"}, {duration: 1E3})
+	});
+	a("#upload").change(function() {
+		a("#upload").val() ? a('#import-upload-form input[type="submit"]').removeAttr("disabled") : a('#import-upload-form input[type="submit"]').attr("disabled", "disabled")
+	});
+	a("#user-wrap select").change(function() {
+		currSelectText = a("#user-wrap select :selected").text();
+		selectText = a("#user-wrap option:first-child").text();
+		selectText != currSelectText ? a('#dataForm input[type="submit"]').removeAttr("disabled") : a('#dataForm input[type="submit"]').attr("disabled", "disabled")
+	});
+	a('#dataForm input[type="submit"]').click(function() {
+		a("#user-wrap select").attr("disabled", "disabled"),
+		a(".import").find(".progress").addClass("active").find(".bar").stop().animate({width: "50%"}, {duration: 15E4})
+	});
+
+	/* widgets */
+	a('#upload-widget-data input[type="submit"]').click(function() {
+		a(".import").find(".progress").addClass("active").find(".bar").stop().animate({width: "75%"}, {duration: 2E3})
+	});
+	a("#import-widgets").click(function() {
+		a(".import").find(".progress").addClass("active").find(".bar").stop().animate({width: "100%"}, {duration: 2E3})
+	});
+	var b, n1, n2;
+	b = window.location.href;
+	n1 = b.lastIndexOf('step');
+	n2 = b.lastIndexOf('&');
+	if (n2 > n1) {
+		b = b.substr(n1, (n2-n1));
+	} else {
+		b = b.substr(n1);
+	}
+	switch (b) {
+		case 'step=2':
+			a(".progress").find(".bar").css({width: "27%"}),
+			a(".progress .start").removeClass("in-progress").addClass("success"),
+			a(".progress .step1").addClass("in-progress")
+			break;
+		case 'step=3':
+			a(".progress").find(".bar").css({width: "50%"}),
+			a(".progress .start").removeClass("in-progress").addClass("success"),
+			a(".progress .step1").removeClass("in-progress").addClass("success"),
+			a(".progress .step2").addClass("in-progress")
+			break;
+		case 'step=4':
+			a(".progress").find(".bar").css({width: "75%"}),
+			a(".progress .start").removeClass("in-progress").addClass("success"),
+			a(".progress .step1").removeClass("in-progress").addClass("success"),
+			a(".progress .step2").removeClass("in-progress").addClass("success"),
+			a(".progress .step3").addClass("in-progress")
+			break;
+		default:
+			break;
+	}
+});

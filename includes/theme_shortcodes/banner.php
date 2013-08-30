@@ -47,13 +47,12 @@ if (!function_exists('banner_shortcode')) {
 			$output .= $text;
 			$output .= '</p>';
 		}
-		$output .= '</div><!-- .banner-wrap (end) -->';
-		
 		if ($btn_text!="") {
 			$output .=  '<div class="link-align banner-btn"><a href="'.$banner_link.'" title="'.$btn_text.'" class="btn btn-link" target="'.$target.'">';
 			$output .= $btn_text;
 			$output .= '</a></div>';
 		}
+		$output .= '</div><!-- .banner-wrap (end) -->';
 		return $output;
 
 	}

@@ -3,7 +3,7 @@ jQuery(function(a) {
 		window.location.replace("export.php")
 	}
 	function d() {
-		window.location.replace("admin.php?page=options-framework-import&step=2")
+		window.location.replace("options-permalink.php")
 	}
 	a("form#widget-export-settings").submit(function() {
 		window.setTimeout(c, 4E3)
@@ -16,16 +16,4 @@ jQuery(function(a) {
 			}
 		})
 	});
-	var e = a("<div/>").css({}), b = a("#upload-file").wrap(e);
-	b.change(function() {
-		$this = 
-		a(this);
-		sub = $this.val().lastIndexOf("\\") + 1;
-		new_string = $this.val().substring(sub);
-		a("#output-text").text(new_string);
-		a("#output-text").fadeIn("slow")
-	});
-	a("#upload-button").click(function() {
-		b.click()
-	}).show()
 });

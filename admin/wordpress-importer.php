@@ -1,9 +1,9 @@
 <?php
-// Display verbose errors
-define( 'IMPORT_DEBUG', false );
+if ( ! defined( 'WP_LOAD_IMPORTERS' ) )
+	define( 'WP_LOAD_IMPORTERS', true );
 
 // Load Importer API
-require_once ABSPATH . 'wp-admin/includes/import.php';
+include_once ABSPATH . 'wp-admin/includes/import.php';
 
 if ( ! class_exists( 'WP_Importer' ) ) {
 	$class_wp_importer = ABSPATH . 'wp-admin/includes/class-wp-importer.php';
@@ -12,7 +12,7 @@ if ( ! class_exists( 'WP_Importer' ) ) {
 }
 
 // include WXR file parsers
-require_once dirname( __FILE__ ) . '/parsers.php';
+include_once dirname( __FILE__ ) . '/parsers.php';
 
 /**
  * WordPress Importer class for managing the import process of a WXR file
@@ -49,6 +49,11 @@ if ( class_exists( 'WP_Importer' ) ) {
 			var $url_remap = array();
 			var $featured_images = array();
 
+			var $step1 = 'admin.php?page=options-framework-import&amp;step=1'; // start import data
+			var $step2 = 'admin.php?page=options-framework-import&amp;step=2'; // importing data
+			var $step3 = 'admin.php?page=options-framework-import&amp;step=3'; // start import widget
+			var $step4 = 'admin.php?page=options-framework-import&amp;step=4'; // importing widget
+
 			function WP_Import() {}
 
 			/**
@@ -57,34 +62,41 @@ if ( class_exists( 'WP_Importer' ) ) {
 			 * Manages the three separate stages of the WXR import process
 			 */
 			function dispatch() {
-				$this->header();
-
-				$step = empty( $_GET['step'] ) ? 2 : (int) $_GET['step'];
+				$cherry_widget_data = new myWidget_Data();
+				$step = empty( $_GET['step'] ) ? 1 : (int) $_GET['step'];
 				switch ( $step ) {
-					case 2:
+					case 1:
+						$this->header($step);
 						$this->greet();
+						$this->footer();
 						break;
-					case 3:
+					case 2:
+						$this->header($step);
 						check_admin_referer( 'import-upload' );
 						if ( $this->handle_upload() )
 							$this->import_options();
+						$this->footer();
+						break;
+					case 3:
+						// check_admin_referer( 'import-wordpress' );
+						$this->fetch_attachments = ( ! empty( $_POST['fetch_attachments'] ) && $this->allow_fetch_attachments() );
+						if ( array_key_exists('import_id', $_POST) ) {
+							$this->id = (int) $_POST['import_id'];
+							$file = get_attached_file( $this->id );
+							set_time_limit(0);
+							$this->import( $file );
+							$this->settings();
+						}
+						// call widget settings import 
+						$cherry_widget_data->import_settings_page();
 						break;
 					case 4:
-						check_admin_referer( 'import-wordpress' );
-						$this->fetch_attachments = ( ! empty( $_POST['fetch_attachments'] ) && $this->allow_fetch_attachments() );
-						$this->id = (int) $_POST['import_id'];
-						$file = get_attached_file( $this->id );
-						set_time_limit(0);
-						$this->import( $file );
-						$this->settings();
+						// call widget settings import 
+						$cherry_widget_data->import_settings_page();
 						break;
-					case 5:
-						$this->skip();
-						$this->settings();
+					default:
 						break;
 				}
-
-				$this->footer();
 			}
 
 			/**
@@ -97,7 +109,6 @@ if ( class_exists( 'WP_Importer' ) ) {
 				add_filter( 'http_request_timeout', array( &$this, 'bump_request_timeout' ) );
 
 				$this->import_start( $file );
-
 				$this->get_author_mapping();
 
 				wp_suspend_cache_invalidation( true );
@@ -124,7 +135,9 @@ if ( class_exists( 'WP_Importer' ) ) {
 				if ( ! is_file($file) ) {
 					echo '<p><strong>'.theme_locals('sorry').'</strong></p>';
 					echo theme_locals('not_exist');
-					echo ' <a href="admin.php?page=options-framework-import&amp;step=2">'.theme_locals('try_again').'</a>.';
+					echo ' <a class="btn-link" href="'.$this->step1.'">'.theme_locals('try_again').'</a>.';
+					$this->log(date('Y-m-d H:i:s'));
+					$this->log(theme_locals('not_exist') . theme_locals('try_again') . PHP_EOL);
 					$this->footer();
 					die();
 				}
@@ -134,7 +147,9 @@ if ( class_exists( 'WP_Importer' ) ) {
 				if ( is_wp_error( $import_data ) ) {
 					echo '<p><strong>'.theme_locals('sorry').'</strong></p>';
 					echo esc_html( $import_data->get_error_message() );
-					echo '<a href="admin.php?page=options-framework-import&amp;step=2">'.theme_locals('try_again').'</a>.';
+					echo '<a class="btn-link" href="'.$this->step1.'">'.theme_locals('try_again').'</a>.';
+					$this->log(date('Y-m-d H:i:s'));
+					$this->log(esc_html( $import_data->get_error_message() . PHP_EOL));
 					$this->footer();
 					die();
 				}
@@ -168,10 +183,20 @@ if ( class_exists( 'WP_Importer' ) ) {
 				wp_defer_term_counting( false);
 				wp_defer_comment_counting( false );
 
-				echo '<div class="indent-top"><a class="button-primary fnone" href="' . admin_url() . 'options-permalink.php">' . theme_locals('finish') . '</a></div>';
+				update_option('cherry_sample_data', 1);
 
 				do_action( 'import_end' );
 			}
+
+			/**
+			 * Write to log file
+			 */
+			function log($message) {
+				$log_file = CHILD_DIR . '/install.log';
+				if (is_writable(CHILD_DIR)) {
+					file_put_contents($log_file,  $message . PHP_EOL, FILE_APPEND);
+				}
+			} // End log()
 
 			/**
 			 * Handles the WXR upload and initial parsing of the file to prepare for
@@ -185,12 +210,16 @@ if ( class_exists( 'WP_Importer' ) ) {
 				if ( isset( $file['error'] ) ) {
 					echo '<p><strong>' . theme_locals('sorry') . '</strong><br />';
 					echo esc_html( $file['error'] ) . '</p>';
-					echo '<a href="admin.php?page=options-framework-import&amp;step=2">'.theme_locals('try_again').'</a>.</p>';
+					echo '<a class="btn-link" href="'.$this->step1.'">'.theme_locals('try_again').'</a>.</p>';
+					$this->log(date('Y-m-d H:i:s'));
+					$this->log(esc_html($file['error']) . theme_locals('try_again') . PHP_EOL);
 					return false;
 				} else if ( ! file_exists( $file['file'] ) ) {
 					echo '<p><strong>' . theme_locals('sorry') . '</strong><br />';
 					printf( theme_locals('export_file'), esc_html( $file['file'] ) );
 					echo '</p>';
+					$this->log(date('Y-m-d H:i:s'));
+					$this->log('The export file could not be found at <code>'.esc_html($file['file']).'</code>. It is likely that this was caused by a permissions problem' . PHP_EOL);
 					return false;
 				}
 
@@ -199,7 +228,9 @@ if ( class_exists( 'WP_Importer' ) ) {
 				if ( is_wp_error( $import_data ) ) {
 					echo '<p><strong>' . theme_locals('sorry') . '</strong><br/>';
 					echo esc_html( $import_data->get_error_message() );
-					echo '. '.theme_locals('please').', <a href="admin.php?page=options-framework-import&amp;step=2">'.theme_locals('try_again').'</a>.</p>';
+					echo '. '.theme_locals('please').', <a class="btn-link" href="'.$this->step1.'">'.theme_locals('try_again').'</a>.</p>';
+					$this->log(date('Y-m-d H:i:s'));
+					$this->log(esc_html($import_data->get_error_message()) . '. ' . theme_locals('try_again') . PHP_EOL);
 					return false;
 				}
 
@@ -208,6 +239,8 @@ if ( class_exists( 'WP_Importer' ) ) {
 					echo '<div class="error"><p><strong>';
 					printf(theme_locals('WXR_file'), esc_html($import_data['version']) );
 					echo '</strong></p></div>';
+					$this->log(date('Y-m-d H:i:s'));
+					$this->log('This WXR file (version '.esc_html($import_data["version"]).') may not be supported by this version of the importer. Please consider updating' . PHP_EOL);
 				}
 
 				$this->get_authors_from_import( $import_data );
@@ -231,8 +264,9 @@ if ( class_exists( 'WP_Importer' ) ) {
 					foreach ( $import_data['posts'] as $post ) {
 						$login = sanitize_user( $post['post_author'], true );
 						if ( empty( $login ) ) {
-							printf( theme_locals('import_author'), esc_html( $post['post_author'] ) );
-							echo '<br />';
+							// printf( theme_locals('import_author'), esc_html( $post['post_author'] ) );
+							// echo '<br />';
+							$this->log('Failed to import author '.esc_html($post["post_author"]).'. Their posts will be attributed to the current user');
 							continue;
 						}
 
@@ -250,35 +284,40 @@ if ( class_exists( 'WP_Importer' ) ) {
 			 * fetch attachments
 			 */
 			function import_options() {
+				if ( ini_get('output_buffering') != 1 )
+					echo "<div class='note'><strong>" . theme_locals('note') . ": </strong>" . theme_locals('settings_output_buffering') . "</div>";
 				$j = 0;
-		?>
-		<form action="<?php echo admin_url( 'admin.php?page=options-framework-import&amp;step=4' ); ?>" method="post" id="dataForm">
-			<?php wp_nonce_field( 'import-wordpress' ); ?>
-			<input type="hidden" name="import_id" value="<?php echo $this->id; ?>" />
+				?>
+				<form action="<?php echo admin_url( $this->step3 ); ?>" method="post" id="dataForm" class="clearfix">
+					<?php wp_nonce_field( 'import-wordpress' ); ?>
+					<input type="hidden" name="import_id" value="<?php echo $this->id; ?>" />
 
-		<?php if ( ! empty( $this->authors ) ) : ?>
-			<!--h4><?php echo theme_locals('Assign Authors'); ?></h4-->
-			<p><?php echo theme_locals('To make it easier'); ?></p>
-		<!--<?php if ( $this->allow_create_users() ) : ?>
-			<p><?php printf(theme_locals('If a new user is'), esc_html( get_option('default_role') ) ); ?></p>
-		<?php endif; ?> -->
-			<ol id="authors">
-		<?php foreach ( $this->authors as $author ) : ?>
-				<li><?php $this->author_select( $j++, $author ); ?></li>
-		<?php endforeach; ?>
-			</ol>
-		<?php endif; ?>
+				<?php if ( ! empty( $this->authors ) ) : ?>
+					<!--h4><?php echo theme_locals('Assign Authors'); ?></h4-->
+					<p><?php echo theme_locals('To make it easier'); ?></p>
+				<!--<?php if ( $this->allow_create_users() ) : ?>
+					<p><?php printf(theme_locals('If a new user is'), esc_html( get_option('default_role') ) ); ?></p>
+				<?php endif; ?> -->
+					<ol id="authors">
+				<?php foreach ( $this->authors as $author ) : ?>
+						<li class="clearfix"><?php $this->author_select( $j++, $author ); ?></li>
+				<?php endforeach; ?>
+					</ol>
+				<?php endif; ?>
 
-		<?php if ( $this->allow_fetch_attachments() ) : ?>
-			<div>
-				<input type="checkbox" value="1" name="fetch_attachments" id="import-attachments" checked="checked" />
-				<!--label for="import-attachments"><?php echo theme_locals('Download and import'); ?></label-->
-			</div>
-		<?php endif; ?>
+				<?php if ( $this->allow_fetch_attachments() ) : ?>
+					<div>
+						<input type="checkbox" value="1" name="fetch_attachments" id="import-attachments" checked="checked" />
+						<!--label for="import-attachments"><?php echo theme_locals('Download and import'); ?></label-->
+					</div>
+				<?php endif; ?>
 
-			<input type="submit" class="button-primary" value="<?php echo theme_locals('import_data'); ?>" disabled="disabled" />
-		</form>
-		<?php
+					<input type="submit" class="button-primary" value="<?php echo theme_locals('next'); ?>" disabled="disabled" />
+				</form>
+				<form action="<?php echo $this->step3; ?>" method="post" id="skip-import-data" class="clearfix">
+					<p class="submit"><input type="submit" class="btn-link" value="<?php echo theme_locals("skip"); ?>"></p>
+				</form>
+				<?php
 			}
 
 			/**
@@ -352,10 +391,10 @@ if ( class_exists( 'WP_Importer' ) ) {
 								$this->processed_authors[$old_id] = $user_id;
 							$this->author_mapping[$santized_old_login] = $user_id;
 						} else {
-							printf(theme_locals('create_new_user'), esc_html($this->authors[$old_login]['author_display_name']) );
-							if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-								echo ' ' . $user_id->get_error_message();
-							echo '<br />';
+							// printf(theme_locals('create_new_user'), esc_html($this->authors[$old_login]['author_display_name']) );
+							// echo '<br />';
+							$this->log($user_id->get_error_message());
+							$this->log('Failed to create new user for '.esc_html($this->authors[$old_login]["author_display_name"]).'. Their posts will be attributed to the current user');
 						}
 					}
 
@@ -403,10 +442,10 @@ if ( class_exists( 'WP_Importer' ) ) {
 						if ( isset($cat['term_id']) )
 							$this->processed_terms[intval($cat['term_id'])] = $id;
 					} else {
-						printf( theme_locals('import_category'), esc_html($cat['category_nicename']) );
-						if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-							echo ': ' . $id->get_error_message();
-						echo '<br />';
+						// printf( theme_locals('import_category'), esc_html($cat['category_nicename']) );
+						// echo '<br />';|
+						$this->log($id->get_error_message());
+						$this->log('Failed to import category '.esc_html($cat["category_nicename"]));
 						continue;
 					}
 				}
@@ -443,10 +482,10 @@ if ( class_exists( 'WP_Importer' ) ) {
 						if ( isset($tag['term_id']) )
 							$this->processed_terms[intval($tag['term_id'])] = $id['term_id'];
 					} else {
-						printf( theme_locals('import_post_tag'), esc_html($tag['tag_name']) );
-						if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-							echo ': ' . $id->get_error_message();
-						echo '<br />';
+						// printf( theme_locals('import_post_tag'), esc_html($tag['tag_name']) );
+						// echo '<br />';
+						$this->log($id->get_error_message());
+						$this->log('Failed to import post tag '.esc_html($tag["tag_name"]));
 						continue;
 					}
 				}
@@ -489,10 +528,10 @@ if ( class_exists( 'WP_Importer' ) ) {
 						if ( isset($term['term_id']) )
 							$this->processed_terms[intval($term['term_id'])] = $id['term_id'];
 					} else {
-						printf( theme_locals('failed_to_import'), esc_html($term['term_taxonomy']), esc_html($term['term_name']) );
-						if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-							echo ': ' . $id->get_error_message();
-						echo '<br />';
+						// printf( theme_locals('failed_to_import'), esc_html($term['term_taxonomy']), esc_html($term['term_name']) );
+						// echo '<br />';
+						$this->log($id->get_error_message());
+						$this->log('Failed to import '.esc_html($term["term_taxonomy"]).' '.esc_html($term["term_name"]));
 						continue;
 					}
 				}
@@ -515,9 +554,10 @@ if ( class_exists( 'WP_Importer' ) ) {
 					$post = apply_filters( 'wp_import_post_data_raw', $post );
 
 					if ( ! post_type_exists( $post['post_type'] ) ) {
-						printf( theme_locals('failed_to_import_2'), 
-							esc_html($post['post_title']), esc_html($post['post_type']) );
-						echo '<br />';
+						// printf( theme_locals('failed_to_import_2'), 
+						// 	esc_html($post['post_title']), esc_html($post['post_type']) );
+						// echo '<br />';
+						$this->log('Failed to import "' . esc_html($post["post_title"]) . '": Invalid post type ' . esc_html($post["post_type"]));
 						do_action( 'wp_import_post_exists', $post );
 						continue;
 					}
@@ -537,8 +577,9 @@ if ( class_exists( 'WP_Importer' ) ) {
 
 					$post_exists = post_exists( $post['post_title'], '', $post['post_date'] );
 					if ( $post_exists && get_post_type( $post_exists ) == $post['post_type'] ) {
-						printf( theme_locals('already_exists'), $post_type_object->labels->singular_name, esc_html($post['post_title']) );
-						echo '<br />';
+						// printf( theme_locals('already_exists'), $post_type_object->labels->singular_name, esc_html($post['post_title']) );
+						// echo '<br />';
+						$this->log($post_type_object->labels->singular_name . ' "'. esc_html($post['post_title']) .'" already exists');
 						$comment_post_ID = $post_id = $post_exists;
 					} else {
 						$post_parent = (int) $post['post_parent'];
@@ -596,11 +637,11 @@ if ( class_exists( 'WP_Importer' ) ) {
 						}
 
 						if ( is_wp_error( $post_id ) ) {
-							printf(theme_locals('failed_to_import_3'),
-								$post_type_object->labels->singular_name, esc_html($post['post_title']) );
-							if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-								echo ': ' . $post_id->get_error_message();
-							echo '<br />';
+							// printf(theme_locals('failed_to_import_3'),
+							// 	$post_type_object->labels->singular_name, esc_html($post['post_title']) );
+							// echo '<br />';
+							$this->log($post_id->get_error_message());
+							$this->log('Failed to import '.$post_type_object->labels->singular_name.' "'.esc_html($post["post_title"]).'"');
 							continue;
 						}
 
@@ -630,10 +671,10 @@ if ( class_exists( 'WP_Importer' ) ) {
 									$term_id = $t['term_id'];
 									do_action( 'wp_import_insert_term', $t, $term, $post_id, $post );
 								} else {
-									printf( theme_locals('failed_to_import'), esc_html($taxonomy), esc_html($term['name']) );
-									if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-										echo ': ' . $t->get_error_message();
-									echo '<br />';
+									// printf( theme_locals('failed_to_import'), esc_html($taxonomy), esc_html($term['name']) );
+									// echo '<br />';
+									$this->log($t->get_error_message());
+									$this->log('Failed to import '.esc_html($taxonomy).' '.esc_html($term['name']));
 									do_action( 'wp_import_insert_term_failed', $t, $term, $post_id, $post );
 									continue;
 								}
@@ -747,12 +788,12 @@ if ( class_exists( 'WP_Importer' ) ) {
 				$menus_array = get_terms('nav_menu');
 				$save_array = array();
 				foreach($menus_array as $menu){
-				    if($menu->name == 'Header Menu'){
-				        $save_array['header_menu'] = $menu->term_id;
-				    }else if($menu->name == 'Footer Menu'){
-				        $save_array['footer_menu'] = $menu->term_id;
-				    }
-				}								
+					if($menu->name == 'Header Menu'){
+						$save_array['header_menu'] = $menu->term_id;
+					}else if($menu->name == 'Footer Menu'){
+						$save_array['footer_menu'] = $menu->term_id;
+					}
+				}
 
 				// skip draft, orphaned menu items
 				if ( 'draft' == $item['status'] )
@@ -771,15 +812,17 @@ if ( class_exists( 'WP_Importer' ) ) {
 
 				// no nav_menu term associated with this menu item
 				if ( ! $menu_slug ) {
-					echo theme_locals('menu_item');
-					echo '<br />';
+					// echo theme_locals('menu_item');
+					// echo '<br />';
+					$this->log(theme_locals('menu_item'));
 					return;
 				}
 
 				$menu_id = term_exists( $menu_slug, 'nav_menu' );
 				if ( ! $menu_id ) {
-					printf( theme_locals('menu_item_2'), esc_html( $menu_slug ) );
-					echo '<br />';
+					// printf( theme_locals('menu_item_2'), esc_html( $menu_slug ) );
+					// echo '<br />';
+					$this->log('Menu item skipped due to invalid menu slug: '.esc_html($menu_slug));
 					return;
 				} else {
 					$menu_id = is_array( $menu_id ) ? $menu_id['term_id'] : $menu_id;
@@ -792,7 +835,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 					$_menu_item_object_id = $this->processed_terms[intval($_menu_item_object_id)];
 				} else if ( 'post_type' == $_menu_item_type && isset( $this->processed_posts[intval($_menu_item_object_id)] ) ) {
 					$_menu_item_object_id = $this->processed_posts[intval($_menu_item_object_id)];
-				} else if ( 'custom' != $_menu_item_type ) {					
+				} else if ( 'custom' != $_menu_item_type ) {
 					// associated object is missing or not imported yet, we'll retry later
 					$this->missing_menu_items[] = $item;
 					return;
@@ -811,19 +854,19 @@ if ( class_exists( 'WP_Importer' ) ) {
 					$_menu_item_classes = implode( ' ', $_menu_item_classes );
 
 				$args = array(
-					'menu-item-object-id' => $_menu_item_object_id,
-					'menu-item-object' => $_menu_item_object,
-					'menu-item-parent-id' => $_menu_item_menu_item_parent,
-					'menu-item-position' => intval( $item['menu_order'] ),
-					'menu-item-type' => $_menu_item_type,
-					'menu-item-title' => $item['post_title'],
-					'menu-item-url' => $_menu_item_url,
+					'menu-item-object-id'   => $_menu_item_object_id,
+					'menu-item-object'      => $_menu_item_object,
+					'menu-item-parent-id'   => $_menu_item_menu_item_parent,
+					'menu-item-position'    => intval( $item['menu_order'] ),
+					'menu-item-type'        => $_menu_item_type,
+					'menu-item-title'       => $item['post_title'],
+					'menu-item-url'         => $_menu_item_url,
 					'menu-item-description' => $item['post_content'],
-					'menu-item-attr-title' => $item['post_excerpt'],
-					'menu-item-target' => $_menu_item_target,
-					'menu-item-classes' => $_menu_item_classes,
-					'menu-item-xfn' => $_menu_item_xfn,
-					'menu-item-status' => $item['status']
+					'menu-item-attr-title'  => $item['post_excerpt'],
+					'menu-item-target'      => $_menu_item_target,
+					'menu-item-classes'     => $_menu_item_classes,
+					'menu-item-xfn'         => $_menu_item_xfn,
+					'menu-item-status'      => $item['status']
 				);
 
 				if (!empty($save_array)) {
@@ -832,7 +875,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 					}
 					if ( isset($save_array['footer_menu']) ) {
 						$footer_menu_items = wp_get_nav_menu_items($save_array['footer_menu']);
-					}					
+					}
 					switch ($menu_id) {
 						case $save_array['header_menu']:
 							$page = get_page ($_menu_item_object_id);
@@ -845,7 +888,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 								$id = wp_update_nav_menu_item( $menu_id, 0, $args );
 								if ( $id && ! is_wp_error( $id ) )
 									$this->processed_menu_items[intval($item['post_id'])] = (int) $id;
-							}							
+							}
 							break;
 						case $save_array['footer_menu']:
 							$page = get_page ($_menu_item_object_id);
@@ -858,9 +901,11 @@ if ( class_exists( 'WP_Importer' ) ) {
 								$id = wp_update_nav_menu_item( $menu_id, 0, $args );
 								if ( $id && ! is_wp_error( $id ) )
 									$this->processed_menu_items[intval($item['post_id'])] = (int) $id;
-							}				
+							}
 							break;
-					}					
+						default:
+							break;
+					}
 				} else {
 					$id = wp_update_nav_menu_item( $menu_id, 0, $args );
 					if ( $id && ! is_wp_error( $id ) )
@@ -878,7 +923,6 @@ if ( class_exists( 'WP_Importer' ) ) {
 			function process_attachment( $post, $url ) {
 				if ( ! $this->fetch_attachments )
 					return new WP_Error( 'attachment_processing_error', theme_locals('attachments'));
-						
 
 				// if the URL is absolute, but does not contain address, then upload it assuming base_site_url
 				if ( preg_match( '|^/[\w\W]+$|', $url ) )
@@ -941,6 +985,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 				// make sure the fetch was successful
 				if ( $headers['response'] != '200' ) {
 					@unlink( $upload['file'] );
+					$this->log(theme_locals("remote_2") . esc_html($headers['response']) . get_status_header_desc($headers['response']));
 					return new WP_Error( 'import_file_error', sprintf( theme_locals("remote_2"), esc_html($headers['response']), get_status_header_desc($headers['response']) ) );
 				}
 
@@ -948,17 +993,20 @@ if ( class_exists( 'WP_Importer' ) ) {
 
 				if ( isset( $headers['content-length'] ) && $filesize != $headers['content-length'] ) {
 					@unlink( $upload['file'] );
+					$this->log(theme_locals("remote_3"));
 					return new WP_Error( 'import_file_error', theme_locals("remote_3"));
 				}
 
 				if ( 0 == $filesize ) {
 					@unlink( $upload['file'] );
+					$this->log(theme_locals("zero_size"));
 					return new WP_Error( 'import_file_error', theme_locals("zero_size"));
 				}
 
 				$max_size = (int) $this->max_attachment_size();
 				if ( ! empty( $max_size ) && $filesize > $max_size ) {
 					@unlink( $upload['file'] );
+					$this->log(theme_locals("remote_4") . size_format($max_size));
 					return new WP_Error( 'import_file_error', sprintf(theme_locals("remote_4"), size_format($max_size) ) );
 				}
 
@@ -1055,24 +1103,25 @@ if ( class_exists( 'WP_Importer' ) ) {
 			}
 
 			// Display import page title
-			function header() {
-				echo '<div class="import-data m0">';
-				/*screen_icon();*/
-				echo '<h4 class="head">' . theme_locals("step_2"). '</h4>';
-
-				$updates = get_plugin_updates();
-				$basename = plugin_basename(__FILE__);
-				if ( isset( $updates[$basename] ) ) {
-					$update = $updates[$basename];
-					echo '<div class="error"><p><strong>';
-					printf( theme_locals("A new version of"), $update->update->new_version );
-					echo '</strong></p></div>';
+			function header($step) {
+				echo '<div class="clearfix">';
+				echo '<h4 class="head">';
+				switch ($step) {
+					case 1:
+						echo theme_locals("step_1");
+						break;
+					case 2:
+						echo theme_locals("step_2");
+						break;
+					default:
+						break;
 				}
+				echo '</h4>';
 			}
 
 			// Close div.wrap
 			function footer() {
-				echo '</div>';
+				echo '</div><!--/div.wrap-->';
 			}
 
 			/**
@@ -1081,15 +1130,21 @@ if ( class_exists( 'WP_Importer' ) ) {
 			function greet() {
 				$this->server_settings();
 				echo '<p class="text-style">'.theme_locals("select_xml").'</p>';
-				wp_import_upload_form( 'admin.php?page=options-framework-import&amp;step=3' );
-				echo '<form enctype="multipart/form-data" id="skip-import-data" method="post" action="admin.php?page=options-framework-import&step=5">';
-			 	echo '<p class="submit"><input type="submit" class="button" value="'.theme_locals("skip").'"></p>';
-			 	echo '</form>';
+				if ( get_option('cherry_sample_data') ) {
+					echo "<p class='text-style' style='color:#BD362F'>".theme_locals('sample_data_import_warning')."</p>";
+				}
+				wp_import_upload_form( $this->step2 );
+				echo '<form enctype="multipart/form-data" id="skip-import-data" method="post" action="'.$this->step3.'">';
+				echo '<p class="submit"><input type="submit" class="btn-link" value="'.theme_locals("skip").'"></p>';
+				echo '</form>';
 				echo '<div class="clear"></div>';
 			}
 
 			function skip() {
-				echo '<div class="indent-top"><a class="button-primary fnone" href="' . admin_url() . 'options-permalink.php">' . theme_locals("finish"). '</a></div>';	
+				$this->settings();
+				wp_redirect( admin_url( 'options-permalink.php' ) );
+				exit;
+				// echo '<div class="indent-top"><a class="button-primary fnone" href="' . admin_url() . 'options-permalink.php">' . theme_locals("finish"). '</a></div>';
 			}
 
 			function settings() {
@@ -1097,28 +1152,34 @@ if ( class_exists( 'WP_Importer' ) ) {
 				$menus = get_terms('nav_menu');
 				$save = array();
 				foreach($menus as $menu){
-				    if($menu->name == 'Header Menu'){
-				        $save['header_menu'] = $menu->term_id;
-				    }else if($menu->name == 'Footer Menu'){
-				        $save['footer_menu'] = $menu->term_id;
-				    }
+					if($menu->name == 'Header Menu'){
+						$save['header_menu'] = $menu->term_id;
+					}else if($menu->name == 'Footer Menu'){
+						$save['footer_menu'] = $menu->term_id;
+					}
 				}
 				if($save){
-				    set_theme_mod( 'nav_menu_locations', array_map( 'absint', $save ) );
+					set_theme_mod( 'nav_menu_locations', array_map( 'absint', $save ) );
 				}
 
 				// Set the front page
-				$pages = get_pages(array(
-				    'meta_key' => '_wp_page_template',
-				    'meta_value' => 'page-home.php'
-				));
-				$home = $pages[0]->ID;
-				update_option( 'page_on_front', $home );
-				update_option( 'show_on_front', 'page' );
+				$pages = get_pages(
+					array(
+						'meta_key'   => '_wp_page_template',
+						'meta_value' => 'page-home.php'
+					)
+				);
+				if (!empty($pages)) {
+					$home = $pages[0]->ID;
+					update_option( 'page_on_front', $home );
+					update_option( 'show_on_front', 'page' );
+				}
 
 				// Set the blog page
 				$blog   = get_page_by_title( 'Blog' );
-				update_option( 'page_for_posts', $blog->ID );
+				if ($blog) {
+					update_option( 'page_for_posts', $blog->ID );
+				}
 
 				// Set post count for blog
 				update_option( 'posts_per_page', 4 );
@@ -1126,21 +1187,31 @@ if ( class_exists( 'WP_Importer' ) ) {
 				// Set permalink custom structure
 				update_option( 'permalink_structure', '/%category%/%postname%/' );
 
-				$file = ABSPATH .'/.htaccess'; 
-				$fp = fopen($file, 'a+'); 
-				fwrite($fp, "\n# AddType TYPE/SUBTYPE EXTENSION\n");
-				fwrite($fp, "AddType audio/mpeg mp3\n");
-				fwrite($fp, "AddType audio/mp4 m4a\n");
-				fwrite($fp, "AddType audio/ogg ogg\n");
-				fwrite($fp, "AddType audio/ogg oga\n");
-				fwrite($fp, "AddType audio/webm webma\n");
-				fwrite($fp, "AddType audio/wav wav\n");
-				fwrite($fp, "AddType video/mp4 mp4\n");
-				fwrite($fp, "AddType video/mp4 m4v\n");
-				fwrite($fp, "AddType video/ogg ogv\n");
-				fwrite($fp, "AddType video/webm webm\n");
-				fwrite($fp, "AddType video/webm webmv\n");
-				fclose($fp);
+				// wtite to .htaccess MIME Type
+				$htaccess = ABSPATH .'/.htaccess';
+				$fp = fopen($htaccess, 'a+');
+				if ($fp) {
+					$contents = fread($fp, filesize($htaccess));
+					$pos = strpos('# AddType TYPE/SUBTYPE EXTENSION', $contents);
+					if ( $pos!==false ) {
+						fwrite($fp, "\r\n# AddType TYPE/SUBTYPE EXTENSION\r\n");
+						fwrite($fp, "AddType audio/mpeg mp3\r\n");
+						fwrite($fp, "AddType audio/mp4 m4a\r\n");
+						fwrite($fp, "AddType audio/ogg ogg\r\n");
+						fwrite($fp, "AddType audio/ogg oga\r\n");
+						fwrite($fp, "AddType audio/webm webma\r\n");
+						fwrite($fp, "AddType audio/wav wav\r\n");
+						fwrite($fp, "AddType video/mp4 mp4\r\n");
+						fwrite($fp, "AddType video/mp4 m4v\r\n");
+						fwrite($fp, "AddType video/ogg ogv\r\n");
+						fwrite($fp, "AddType video/webm webm\r\n");
+						fwrite($fp, "AddType video/webm webmv\r\n");
+						fclose($fp);
+					}
+				}
+
+				$this->set_to_draft('hello-world');
+				$this->set_to_draft('sample-page');
 			}
 
 			/**
@@ -1207,13 +1278,13 @@ if ( class_exists( 'WP_Importer' ) ) {
 			function server_settings() {
 				// correct settings for server
 				$must_settings = array(
-					'safe_mode'				=> 'off',
-					'file_uploads'			=> 'on',
-					'memory_limit'			=> 128,
-					'post_max_size'			=> 8,
-					'upload_max_filesize' 	=> 8,
-					'max_input_time'		=> 60,
-					'max_execution_time'	=> 30
+					'safe_mode'           => 'off',
+					'file_uploads'        => 'on',
+					'memory_limit'        => 128,
+					'post_max_size'       => 8,
+					'upload_max_filesize' => 8,
+					'max_input_time'      => 60,
+					'max_execution_time'  => 30
 				);
 				// curret server settings
 				$current_settings = array();
@@ -1221,14 +1292,10 @@ if ( class_exists( 'WP_Importer' ) ) {
 				//result array
 				$result = array();
 
-				if ( ini_get('safe_mode') )
-					$current_settings['safe_mode'] = 'on';
-				else
-					$current_settings['safe_mode'] = 'off';
-				if ( ini_get('file_uploads') )
-					$current_settings['file_uploads'] = 'on';
-				else
-					$current_settings['file_uploads'] = 'off';
+				if ( ini_get('safe_mode') ) $current_settings['safe_mode'] = 'on';
+					else $current_settings['safe_mode'] = 'off';
+				if ( ini_get('file_uploads') ) $current_settings['file_uploads'] = 'on';
+					else $current_settings['file_uploads'] = 'off';
 				$current_settings['memory_limit'] = (int)ini_get('memory_limit');
 				$current_settings['post_max_size'] = (int)ini_get('post_max_size');
 				$current_settings['upload_max_filesize'] = (int)ini_get('upload_max_filesize');
@@ -1249,7 +1316,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 				}
 				if ( !empty($result) ) {
 					echo "<h4 class='title'>" . theme_locals('server_settings_error') . "</h4>";
-					echo "<table width='50%' border='0' cellspacing='0' cellpadding='4' style='border-radius:3px; border-collapse: collapse'>";
+					echo "<table width='50%' border='0' cellspacing='0' cellpadding='4' style='border-radius:3px; border-collapse: collapse;'>";
 					echo "<thead><tr border='0' align='center' bgcolor='#87c1ee' style='color:#fff;'>";
 					echo "<th style='border:1px solid #87c1ee;'>" . theme_locals('server_settings') . "</th>";
 					echo "<th style='border:1px solid #87c1ee;'>" . theme_locals('current') . "</th>";
@@ -1276,9 +1343,28 @@ if ( class_exists( 'WP_Importer' ) ) {
 					}
 					echo "</tbody>";
 					echo "</table>";
-					echo "<div class='note'><strong>" . theme_locals('note') . ": </strong>" . theme_locals('settings_can_not_be_adjusted') . "</div>";
-					echo "<p>" . theme_locals('template_installation') . "</p>";
+					echo "<div class='note'><p><strong>" . theme_locals('note') . ": </strong>" . theme_locals('settings_can_not_be_adjusted') . "</p>" . theme_locals('template_installation') . "</div>";
+					// echo "<p class='text-style'>" . theme_locals('template_installation') . "</p>";
 				}
+			}
+
+			/**
+			 * Set post_status for default WP posts (post_status = draft)
+			 */
+			function set_to_draft($title) {
+				global $wpdb;
+
+				$id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$title'");
+				if ($id) {
+					$default_post = array(
+						'ID'           => $id,
+						'post_status' => 'draft'
+					);
+					// Update the post into the database
+					wp_update_post( $default_post );
+				}
+				$comment_id = $wpdb->get_var("SELECT comment_ID FROM $wpdb->comments WHERE comment_author = 'Mr WordPress'");
+				if ($comment_id) wp_delete_comment($comment_id, false);
 			}
 		}
 
