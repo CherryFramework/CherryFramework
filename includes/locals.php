@@ -385,7 +385,7 @@
 			'select_the_file' => __('Select the file that contains Widget Settings (e.g. <b>your_template_package/sources/sample_data/widgets.json</b>)', $domain),
 			'show_widget_settings' => __('Show Widget Settings', $domain),
 			'no_widget' => __('Your have no widgets. Please, click next to go to the next step.', $domain),
-			'widget_import_warning' => __('Отключите, возможно не нужные Вам виджеты и кликтине Next. По-умолчанию, все указанные виджеты будут экспортированные в файл.', $domain),
+			'widget_import_warning' => __('Отключите, возможно не нужные Вам виджеты и кликтине Next. По-умолчанию, все выбранные виджеты будут импортированы в тему.', $domain),
 			
 			//wordpress-importer.php
 			'sorry' => __('Sorry, there has been an error.', $domain),

@@ -1167,22 +1167,28 @@ if ( class_exists( 'WP_Importer' ) ) {
 				}
 
 				// Set the front page
-				$pages = get_pages(
+				update_option( 'show_on_front', 'page' );
+				$home_pages = get_pages(
 					array(
 						'meta_key'   => '_wp_page_template',
 						'meta_value' => 'page-home.php'
 					)
 				);
-				if (!empty($pages)) {
-					$home = $pages[0]->ID;
+				if (!empty($home_pages)) {
+					$home = $home_pages[0]->ID;
 					update_option( 'page_on_front', $home );
-					update_option( 'show_on_front', 'page' );
 				}
 
 				// Set the blog page
-				$blog   = get_page_by_title( 'Blog' );
-				if ($blog) {
-					update_option( 'page_for_posts', $blog->ID );
+				$default_pages = get_pages(
+					array(
+						'meta_key'   => '_wp_page_template',
+						'meta_value' => 'default'
+					)
+				);
+				if (!empty($default_pages)) {
+					$blog = $default_pages[0]->ID;
+					update_option( 'page_for_posts', $blog );
 				}
 
 				// Set post count for blog
