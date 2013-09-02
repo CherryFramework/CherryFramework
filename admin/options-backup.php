@@ -33,6 +33,7 @@ class OptionsFramework {
 			add_action('admin_menu', array( &$this, 'register_admin_screen' ), 20 );
 			add_action('wp_ajax_import_widget_data', array($cherry_widget_data, 'ajax_import_widget_data'));
 			add_action('load-options-permalink.php', array(&$this, 'hide_setup_wp_pointers'));
+			add_action('load-themes.php', array(&$this, 'unlink_log'));
 		}
 	} // End init()
 	
@@ -85,7 +86,7 @@ class OptionsFramework {
 			<div id="optionsframework" class="postbox">
 				<div class="wrap">
 					<?php if ( array_key_exists('success', $_GET) ) {
-						$this->log('Success...');
+						$this->log('Importing process are finish. Our Congratulations!');
 						$this->success();
 					} else {
 						$step = empty( $_GET['step'] ) ? 1 : (int) $_GET['step']; ?>
@@ -290,6 +291,18 @@ class OptionsFramework {
 		}
 	} // End log()
 
+	/*
+	 *
+	 * Unlink log file
+	 *
+	 */
+	function unlink_log() {
+		if ( (!get_option('cherry_sample_data')) && FILE_WRITEABLE ) {
+			$log_file = CHILD_DIR .'/install.log';
+			if (file_exists($log_file)) 
+				unlink($log_file);
+		}
+	}
 } // End Class
 
 /**

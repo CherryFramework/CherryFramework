@@ -166,6 +166,8 @@ if ( class_exists( 'WP_Importer' ) ) {
 				wp_defer_comment_counting( true );
 
 				do_action( 'import_start' );
+				$this->log(date('Y-m-d H:i:s'));
+				$this->log('Import start' . PHP_EOL);
 			}
 
 			/**
@@ -186,6 +188,8 @@ if ( class_exists( 'WP_Importer' ) ) {
 				update_option('cherry_sample_data', 1);
 
 				do_action( 'import_end' );
+				$this->log(date('Y-m-d H:i:s'));
+				$this->log(PHP_EOL . 'Import end' . PHP_EOL);
 			}
 
 			/**
