@@ -1356,6 +1356,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 					echo "<div class='note'><p><strong>" . theme_locals('note') . ": </strong>" . theme_locals('settings_can_not_be_adjusted') . "</p>" . theme_locals('template_installation') . "</div>";
 					// echo "<p class='text-style'>" . theme_locals('template_installation') . "</p>";
 				}
+				do_action('check_shop_activation');
 			}
 
 			/**
