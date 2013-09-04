@@ -144,49 +144,52 @@
 	<li class="portfolio_item <?php foreach( $portfolio_cats as $portfolio_cat ) { echo ' term_id_' . $portfolio_cat->term_id; } ?> <?php foreach( $portfolio_tags as $portfolio_tag ) { echo ' term_id_' . $portfolio_tag->term_id; } ?>">
 		<div class="portfolio_item_holder">
 		<?php 
-			// get attachments
-			$thumbid = 0;
-			$thumbid = get_post_thumbnail_id($post->ID);
-			$images = get_children( array(
-				'orderby'        => 'menu_order',
-				'order'          => 'ASC',
-				'post_type'      => 'attachment',
-				'post_parent'    => $post->ID,
-				'post_mime_type' => 'image',
-				'post_status'    => null,
-				'numberposts'    => -1
-			) );
-			if ( has_post_thumbnail() || ((count($images) > 1) && ($mediaType == 'Slideshow' || $mediaType == 'Grid Gallery')) ) {
+			if ($lightbox == "yes") :
+				if ($mediaType == 'Image')
+					$prettyType = 'prettyPhoto';
+				else
+					$prettyType = "prettyPhoto[gallery".$i."]";
+				$link_href  = $img_url;
+				$link_title = get_the_title($post->ID);
+				$link_rel   = 'rel="'.$prettyType.'"';
+				$zoom_icon  = '<span class="zoom-icon"></span>';
+			else :
+				$link_href  = get_permalink($post->ID);
+				$link_title = theme_locals("permanent_link_to").' '.get_the_title($post->ID);
+				$link_rel   = '';
+				unset($zoom_icon);
+			endif;
 
-				if ($lightbox == "yes") {
-
-					if ($mediaType == 'Image')
-						$prettyType = 'prettyPhoto';
-					else
-						$prettyType = "prettyPhoto[gallery".$i."]";
-					$link_rel  = 'rel="'.$prettyType.'"';
-					$zoom_icon = '<span class="zoom-icon"></span>';
-				} else {
-					$link_rel = '';
-				}
-
-				if ( ($mediaType == 'Video') || ($mediaType == 'Audio') ) {
-					$link_href  = get_permalink($post->ID);
-					$link_title = theme_locals("permanent_link_to").' '.get_the_title($post->ID);
-					unset($zoom_icon);
-				} else {
-					$link_href  = $img_url;
-					$link_title = get_the_title($post->ID);
-				} ?>
-			<figure class="thumbnail thumbnail__portfolio">
+			// in any for Video and Audio posts no lightbox
+			if ( ($mediaType == 'Video') || ($mediaType == 'Audio') ) {
+				$link_href  = get_permalink($post->ID);
+				$link_title = theme_locals("permanent_link_to").' '.get_the_title($post->ID);
+				$link_rel   = '';
+				unset($zoom_icon);
+			} ?>
 
 			<?php if (has_post_thumbnail()) { ?>
+			<figure class="thumbnail thumbnail__portfolio">
 				<a href="<?php echo $link_href; ?>" class="image-wrap" title="<?php echo $link_title; ?>" <?php echo $link_rel; ?>>
 					<img src="<?php echo $image ?>" alt="<?php the_title(); ?>" />
 					<?php if (isset($zoom_icon)) echo $zoom_icon; ?>
 				</a>
+			</figure><!--/.thumbnail__portfolio-->
 			<?php }
 
+			if ( ($mediaType == 'Slideshow') || ($mediaType == 'Grid Gallery') ) {
+				// get attachments
+				$thumbid = 0;
+				$thumbid = get_post_thumbnail_id($post->ID);
+				$images = get_children( array(
+					'orderby'        => 'menu_order',
+					'order'          => 'ASC',
+					'post_type'      => 'attachment',
+					'post_parent'    => $post->ID,
+					'post_mime_type' => 'image',
+					'post_status'    => null,
+					'numberposts'    => -1
+				) );
 				// output attachments
 				if ( $images ) {
 					$attachment_counter = 0;
@@ -198,19 +201,23 @@
 							$image_title      = $attachment->post_title;
 
 							if (!$attachment_counter && !has_post_thumbnail()) {
-								$link_style = 'display:block';
-								$img_tag    = '<img src="'.$image.'" alt="'.$image_title.'" />';
+								$figure_before = '<figure class="thumbnail thumbnail__portfolio">';
+								$figure_after  = '</figure><!--/.thumbnail__portfolio-->';
+								$link_style    = 'display:block';
+								$img_tag       = '<img src="'.$image.'" alt="'.$image_title.'" />';
 							} else {
+								$figure_before = '';
+								$figure_after  = '';
 								$link_style = 'display:none';
 								unset($img_tag);
 								unset($zoom_icon);
 							} ?>
-				<a href="<?php echo $image_attributes[0]; ?>" class="image-wrap" title="<?php the_title(); ?>" style="<?php echo $link_style; ?>" <?php echo $link_rel; ?>><?php if (isset($img_tag)) echo $img_tag; if (isset($zoom_icon)) echo $zoom_icon; ?></a>
+					<?php echo $figure_before; ?><a href="<?php echo $image_attributes[0]; ?>" class="image-wrap" title="<?php the_title(); ?>" style="<?php echo $link_style; ?>" <?php echo $link_rel; ?>><?php if (isset($img_tag)) echo $img_tag; if (isset($zoom_icon)) echo $zoom_icon; ?></a><?php echo $figure_after; ?>
 					<?php $attachment_counter++;
 					}
-				} ?>
-			</figure><!--/.thumbnail__portfolio-->
-			<?php } ?>
+				}
+			}
+			?>
 
 			<div class="caption caption__portfolio">
 				<?php if($folio_title == "yes"){ ?>
