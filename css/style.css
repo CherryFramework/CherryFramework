@@ -1053,6 +1053,7 @@ p.gravatar {
 	float:left;
 	width:90px;
 }
+.share-buttons iframe { max-width:none; }
 @media (max-width: 480px) {
 	.share-buttons { display:none; }
 }

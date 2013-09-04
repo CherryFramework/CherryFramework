@@ -326,6 +326,7 @@
 			'show_button_desc' => __('Enable or Disable button for portfolio posts.', $domain),
 			'show_meta_name' => __('Show portfolio meta?', $domain),
 			'show_meta_desc' => __('Enable or Disable meta for single portfolio posts.', $domain),
+			'folio_enable_lightbox_desc' => __('Enable or Disable lightbox for portfolio posts.', $domain),
 			'layout_name' => __('Layout', $domain),
 			'layout_desc' => __('Portfolio has different layout modes. You can set and change the layout mode via this option.', $domain),
 			'fit_rows' => __('Fit rows', $domain),

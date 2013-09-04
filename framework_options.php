@@ -680,6 +680,13 @@
 								"type" => "radio",
 								"options" => $yes_no_array);
 
+			$options['folio_lightbox'] = array( "name" => theme_locals("enable_lightbox"),
+								"desc" => theme_locals("folio_enable_lightbox_desc"),
+								"id" => "folio_lightbox",
+								"std" => "yes",
+								"type" => "radio",
+								"options" => $yes_no_array);
+
 			$options['layout_mode'] = array( "name" => theme_locals("layout_name"),
 								"desc" => theme_locals("layout_desc"),
 								"id" => "layout_mode",
