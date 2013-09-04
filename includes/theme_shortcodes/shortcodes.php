@@ -368,6 +368,7 @@ if (!function_exists('shortcode_recent_posts')) {
 									$output .= '</span>';
 							$output .= '</span>';
 					}
+					$output .= cherry_get_post_networks(array('post_id' => $post->ID, 'display_title' => false, 'output_type' => 'return'));
 					if ($excerpt_count >= 1) {
 						$output .= '<div class="excerpt">';
 							$output .= my_string_limit_words($excerpt,$excerpt_count);
@@ -617,8 +618,13 @@ if (!function_exists('video_image')) {
 			if(stripos($url, "youtube")!==false){
 				return "http://img.youtube.com/vi/".$image_id."/0.jpg";
 			} else if(stripos($url, "vimeo")!==false){
-				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/".$image_id.".php"));
-				return $hash[0]["thumbnail_large"];
+				$get_header = @get_headers("http://vimeo.com/api/v2/video/".$image_id.".php");
+				if($get_header[0] == 'HTTP/1.0 200 OK'){
+					$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/".$image_id.".php"));
+					return $hash[0]["thumbnail_large"];
+				}else{
+					return false;
+				}
 			}
 		}else{
 			return false;

@@ -68,7 +68,7 @@
 	position: relative;
 	margin-bottom:35px;
 	padding:30px;
-	border:1px solid @grayLighter;
+	border:1px solid @tableBorder;
 	background:#f5f5f5;
 	font-style:italic;
 	font-family:@serifFontFamily;
@@ -132,7 +132,7 @@
 	margin: 0;
 	padding: 1em 0;
 	border: none;
-	border-top: 1px solid @grayLighter;
+	border-top: 1px solid @tableBorder;
 	span {
 		display: inline-block;
 		line-height: 20px;
@@ -153,8 +153,8 @@
 		margin: 0 0 2em 0;
 		padding: 1em 0;
 		border: none;
-		border-top: 1px solid @grayLighter;
-		border-bottom: 1px solid @grayLighter;
+		border-top: 1px solid @tableBorder;
+		border-bottom: 1px solid @tableBorder;
 		li {
 			margin: .5em 0 0 0;
 			padding: 0;
@@ -575,7 +575,7 @@ html[xmlns] .slides { display: block;}
 	}
 	h4{
 		padding: 0 0 7px 5px;
-		border-bottom: 1px solid #DDD;
+		border-bottom: 1px solid @tableBorder;
 	}
 	.post_author{
 		float: left;
@@ -640,7 +640,7 @@ html[xmlns] .slides { display: block;}
 .post-author {
 	margin-bottom:2em;
 	padding:5px 20px 20px;
-	border:1px solid #dbdbdb;
+	border:1px solid @tableBorder;
 
 	&__page {
 
@@ -657,7 +657,7 @@ html[xmlns] .slides { display: block;}
 		margin:0 20px 0 0;
 		& img {
 			padding:5px;
-			border:1px solid #dbdbdb;
+			border:1px solid @tableBorder;
 			background:#fff;
 		}
 	}
@@ -828,8 +828,8 @@ html[xmlns] .slides { display: block;}
 	overflow:hidden;
 	margin-bottom:1em;
 	padding:.5em 0;
-	border-top:1px solid #eaeaea;
-	border-bottom:1px solid #eaeaea;
+	border-top:1px solid @tableBorder;
+	border-bottom:1px solid @tableBorder;
 	font-size:.92em;
 	div[class^="post_"]{
 		display: inline-block;
@@ -890,7 +890,7 @@ html[xmlns] .slides { display: block;}
 	}
 	&>div&_unite {
 		display: block;
-		border-top:1px solid #eaeaea;
+		border-top:1px solid @tableBorder;
 		padding-top: .5em;
 		margin-top: .5em;
 		&:first-child{
@@ -971,7 +971,7 @@ html[xmlns] .slides { display: block;}
 					height: 0px;
 					border-style: solid;
 					border-width: 0 7px 7px 7px;
-					border-color: transparent transparent #eaeaea transparent;
+					border-color: transparent transparent @tableBorder transparent;
 					position: absolute;
 					margin:-19px 0 0 5px;
 					padding-top: 10px;
@@ -994,7 +994,7 @@ html[xmlns] .slides { display: block;}
 }
 @media (max-width: 768px) {
 	& .post_meta .post_meta_unite{
-		border-top:1px solid #eaeaea;
+		border-top:1px solid @tableBorder;
 		display:block;
 		padding: .5em 0;
 		width: auto;
@@ -1193,8 +1193,8 @@ p.gravatar {
 .single-pager {
 	margin: 10px 0 30px;
 	padding: 5px 0;
-	border-top: 1px solid @grayLighter;
-	border-bottom: 1px solid @grayLighter;
+	border-top: 1px solid @tableBorder;
+	border-bottom: 1px solid @tableBorder;
 	font-size: 11px;
 }	
 

@@ -38,7 +38,7 @@
     overflow: hidden;
     margin-top: 10px;
     padding: 20px;
-		border: 1px solid #eee;
+		border: 1px solid @tableBorder;
     background: #eee;
     zoom: 1;
   }
@@ -169,6 +169,7 @@
     max-width: 530px;
     width: 530px;
     height:230px;
+    border-color:@tableBorder;
     .children & {
       .box-sizing(border-box);
       width: 100%;

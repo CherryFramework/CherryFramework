@@ -5,27 +5,26 @@
 	if (!function_exists('seo_settings_page')) {
 		function seo_settings_page () { ?>
 			<div id="optionsframework-wrap" class="wrap">
-				<div id="icon-generic" class="icon32"><br></div><h2><?php echo 'SEO'//theme_locals("data_management"); ?></h2>
+				<div id="icon-generic" class="icon32"><br></div><h2><?php echo theme_locals("seo"); ?></h2>
 				<h2 class="nav-tab-wrapper">
-					<a class="nav-tab" title="General settings" href="#general"><?php echo 'General'//theme_locals("data_management"); ?></a>
-					<a class="nav-tab" title="Settings sitemap XML" href="#sitemap-xml"><?php echo 'Sitemap XML'//theme_locals("data_management"); ?></a>
-					<!--a id="" class="nav-tab nav-tab-active" title="" href="">Breadcrumbs</a-->
+					<a class="nav-tab" title="General settings" href="#general"><?php echo theme_locals("general"); ?></a>
+					<a class="nav-tab" title="Settings sitemap XML" href="#sitemap-xml"><?php echo theme_locals("sitemap_xml"); ?></a>
 				</h2>
 				<div id="optionsframework-metabox">
 					<div id="optionsframework" class="postbox store-holder">
 						<form id='options'>
 							<div id="general" class="group">
-								<h3><?php echo 'General'//theme_locals("data_management"); ?></h3>
+								<h3><?php echo theme_locals("general"); ?></h3>
 								<div class="section">
-									<h4 class="heading">Index settings</h4>
+									<h4 class="heading"><?php echo theme_locals("index_settings"); ?></h4>
 									<div class="option clearfix">
 										<div class="controls">
 										<?php
 											$index_settings = array(
-												'admin_index' => array('title' => 'No Index wordpress sistem files (recommend)', 'checked' => true), 
-												'plagin_index' => array('title' => 'No Index plagin files (recommend)', 'checked' => true),
-												'theme_index' => array('title' => 'No Index theme files (recommend)', 'checked' => true),
-												'media_index' => array('title' => 'No Index media files (no recommend)', 'checked' => false)
+												'admin_index' => array('title' => theme_locals("admin_index"), 'checked' => true),
+												'plagin_index' => array('title' => theme_locals("plagin_index"), 'checked' => true),
+												'theme_index' => array('title' => theme_locals("theme_index"), 'checked' => true),
+												'media_index' => array('title' => theme_locals("media_index"), 'checked' => false)
 											);
 											foreach( $index_settings as $key => $val ) {
 												$checked = (get_option($key) == "on" || $val['checked'] == true && get_option($key) != "off") ? 'checked' : '' ;
@@ -33,14 +32,21 @@
 											}
 										?>
 										</div>
-										<div class="explain">...</div>
+										<div class="explain">
+											<p>
+												<?php echo theme_locals("forbid"); ?>
+											</p>
+											<p>
+												<?php echo theme_locals("these_settings"); ?>
+											</p>
+										</div>
 									</div>
 									<h4 class="heading">Link settings</h4>
 									<div class="option clearfix">
 										<div class="controls">
 										<?php
 											$content_settings = array(
-												'add_nofollow' => array('title' => 'Added no follow', 'checked' => false), 
+												'add_nofollow' => array('title' => theme_locals("nofollow_name"), 'checked' => false), 
 											);
 											foreach( $content_settings as $key => $val ) {
 												$checked = (get_option($key) == "on" || $val['checked'] == true && get_option($key) != "off") ? 'checked' : '' ;
@@ -48,20 +54,24 @@
 											}
 										?>
 										</div>
-										<div class="explain">...</div>
+										<div class="explain">
+											<p>
+												<?php echo theme_locals("nofollow_desc"); ?>
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
 							<div id="sitemap-xml" class="group">
-								<h3><?php echo 'Sitemap XML'//theme_locals("data_management"); ?></h3>
+								<h3><?php echo theme_locals("sitemap_xml"); ?></h3>
 								<div class="section">
-									<h4 class="heading">Post types settings</h4>
+									<h4 class="heading"><?php echo theme_locals("post_types_settings"); ?></h4>
 									<div class="option">
 										<div class="controls">
 											<header class="group_options">
-												<div class="unitu">Include post types.</div>
-												<div class="unitu">Priority.</div>
-												<div class="unitu">Change freq.</div>
+												<div class="unitu"><?php echo theme_locals("include_post_types"); ?></div>
+												<div class="unitu"><?php echo theme_locals("priority"); ?></div>
+												<div class="unitu"><?php echo theme_locals("change_freq"); ?></div>
 											</header>
 											<?php
 												$post_types = array_merge(array('test' => '', 'page' => '', 'post' => '', 'services' => '', 'portfolio' => '', 'slider' => '', 'team' => '', 'testi' => '', 'faq' => ''), get_post_types(array('public'   => true, '_builtin' => false), 'objects', 'or'));
@@ -90,11 +100,21 @@
 												}
 											?>
 										</div>
-										<div class="explain">...</div>
+										<div class="explain">
+											<p>
+												<?php echo theme_locals("include_post_types_desc"); ?>
+											</p>
+											<p>
+												<?php echo theme_locals("priority_desc"); ?>
+											</p>
+											<p>
+												<?php echo theme_locals("change_freq_desc"); ?>
+											</p>
+										</div>
 									</div>
 								</div>
 								<div class="section">
-									<h4 class="heading">Send</h4>
+									<h4 class="heading"><?php echo theme_locals("ping_sitemap"); ?></h4>
 									<div class="option">
 										<div class="controls">
 										<?php
@@ -105,7 +125,11 @@
 											}
 										?>
 										</div>
-										<div class="explain">...</div>
+										<div class="explain">
+											<p>
+												<?php echo theme_locals("ping_sitemap_desc"); ?>
+											</p>
+										</div>
 									</div>
 								</div>
 								<div class="section">

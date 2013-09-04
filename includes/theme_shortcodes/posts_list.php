@@ -167,6 +167,7 @@ if (!function_exists('posts_list_shortcode')) {
 						$output .= '</span>';
 
 						$output .= '</div>';
+						$output .= cherry_get_post_networks(array('post_id' => $post_id, 'display_title' => false, 'output_type' => 'return'));
 					$output .= '</header>';
 
 					//post thumbnail

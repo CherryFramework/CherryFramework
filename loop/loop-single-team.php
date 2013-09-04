@@ -27,6 +27,7 @@
 					<span class="page-desc"><?php echo $teaminfo; ?></span>
 				<?php }
 			?>
+			<?php cherry_get_post_networks() ?>
 		</div><!--.post-content-->
 	</article>
 </div><!-- #post-## -->

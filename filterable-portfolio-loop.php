@@ -21,14 +21,7 @@
 		});
 		
 		function getNumColumns(){
-			
 			var $folioWrapper = jQuery('#portfolio-grid').data('cols');
-			
-			if($folioWrapper == '1col') {
-				var winWidth = jQuery("#portfolio-grid").width(),
-					column = 1;
-				return column;
-			}
 			
 			if($folioWrapper == '2cols') {
 				var winWidth = jQuery("#portfolio-grid").width(),

@@ -80,12 +80,14 @@ article .post-content img {
 }
 
 /* Featured thumbnail */
+*[class*="thumbnail"]{
+	border-color: @tableBorder;
+}
 .featured-thumbnail {
 	position: relative;
 	float: left;
 	overflow: hidden;
 	margin: 5px 20px 10px 0;
-
 	& a {
 		position: relative;
 		display: block;
@@ -111,7 +113,7 @@ article .post-content img {
 /* Frame styling */
 .frame {
 	padding: 7px;
-	border: 1px solid #dbdbdb;
+	border: 1px solid @tableBorder;
 	background: #fff;
 	text-align: center;
 	.border-radius(5px);
@@ -321,7 +323,7 @@ article .post-content img {
 	overflow: hidden;
 	margin: 20px 0px;
 	height: 1px;
-	background: #eee;
+	background: @tableBorder;
 	font-size: 0;
 	line-height: 0;
 }
@@ -338,7 +340,7 @@ article .post-content img {
 .vertical-divider {
 	margin-left: 20px;
 	padding-left: 40px;
-	border-left: 1px solid #f5f5f5;
+	border-left: 1px solid @tableBorder;
 }
 
 /* Text Highlight */
@@ -456,7 +458,7 @@ span.wpcf7-form-control-wrap {
 	width: auto !important;
 	height: auto !important;
 	background: #F2DEDE !important;
-	border: 1px solid #EED3D7 !important;
+	border: 1px solid @tableBorder !important;
 	color: #B94A48 !important;
 	.border-radius(2px);
 	.box-sizing(border-box);
@@ -467,7 +469,7 @@ span.wpcf7-form-control-wrap {
 div.wpcf7-response-output {
 	margin:20px 0 !important;
 	padding: 8px 35px 8px 14px !important;
-	border: 1px solid #FBEED5 !important;
+	border: 1px solid @tableBorder !important;
 	background-color: #FCF8E3;
 	color: #C09853;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -475,12 +477,12 @@ div.wpcf7-response-output {
 }
 div.wpcf7-validation-errors {
 	background-color: #F2DEDE !important;
-	border-color: #EED3D7 !important;
+	border-color: @tableBorder !important;
 	color: #B94A48 !important;
 }
 div.wpcf7-mail-sent-ok {
 	background: #DFF0D8 !important;
-	border: 1px solid #D6E9C6 !important;
+	border: 1px solid @tableBorder !important;
 	color: #468847 !important;
 }
 
@@ -587,7 +589,7 @@ div.jp-interface {
 	overflow: hidden;
 	width: 100%;
 	height: 35px;
-	border-bottom: 1px solid #020202;
+	border-bottom: 1px solid @tableBorder;
 	-webkit-transition:opacity .5s ease-in-out, margin .5s ease-in-out;
 	-moz-transition:opacity .5s ease-in-out, margin .5s ease-in-out;
 	-ms-transition:opacity .5s ease-in-out, margin .5s ease-in-out;
@@ -669,7 +671,7 @@ div.jp-progress {
 	overflow: hidden;
 	width: 100%;
 	height: 7px;
-	border-bottom: 1px solid #605f60;
+	border-bottom: 1px solid @tableBorder;
 	background-color: #303030;
 }
 div.jp-seek-bar {
@@ -776,7 +778,7 @@ div.jp-video-full div.jp-title li {padding:1px 0;}
 div.jp-playlist li {
 	position: relative;
 	background: #222;
-	border-top: 1px solid #6c6c6c;
+	border-top: 1px solid @tableBorder;
 	margin: 0;
 	padding: 0;
 	height: 33px;
@@ -889,7 +891,7 @@ a.jp-restore-screen:hover span {background-position:-84px -84px;}
 	margin-left:-202px;
 	padding:5px;
 	width:390px;
-	border:2px solid #009be3;
+	border:2px solid @tableBorder;
 	background-color:#404040;
 	color:#000000;
 	font-size:.8em;
@@ -938,4 +940,20 @@ a.jp-restore-screen:hover span {background-position:-84px -84px;}
 	#pp_full_res img { width: 100%!important; height: auto!important; }
 	.pp_details { width: 94%!important; padding-left: 3%; padding-right: 4%; padding-top: 10px; padding-bottom: 10px; background-color: #fff; margin-top: -2px!important; }
 	a.pp_close { right: 10px!important; top: 10px!important; }
+}
+/*Post social networks*/
+.post_networks{
+	h1,h2,h3,h4,h5,h6{
+		border-bottom: 1px solid @tableBorder;
+		padding-bottom: 8px;
+	}
+	>ul{
+		>li{
+			float: left;
+			display: block;
+			span{
+				margin-right: 10px;
+			}
+		}
+	}
 }

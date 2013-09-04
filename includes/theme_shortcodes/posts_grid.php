@@ -259,11 +259,10 @@ if (!function_exists('posts_grid_shortcode')) {
 							$output .= '<span class="post_comment">';
 							$output .= '<a href="'. $permalink . '" class="comments_link">' . $cc . '</a>';
 							$output .= '</span>';
-
 						$output .= '</div>';
 						// end post meta
 					}
-
+					$output .= cherry_get_post_networks(array('post_id' => $post_id, 'display_title' => false, 'output_type' => 'return'));
 					if($excerpt_count >= 1){
 						$output .= '<p class="excerpt">';
 							$output .= my_string_limit_words($excerpt,$excerpt_count);

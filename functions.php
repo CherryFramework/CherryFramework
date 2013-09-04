@@ -1004,7 +1004,7 @@ function warning_notice() {
 							if(of_get_option('post_date') != 'no'){ ?>
 								<div class="post_date">
 									<i class="icon-calendar"></i>
-									<?php echo $icon_tips_before . '<time datetime="' . get_the_time('Y-m-d\TH:i:s') . '">' . get_the_time('F j, Y') . '</time>' . $icon_tips_after; ?>
+									<?php echo $icon_tips_before . '<time datetime="' . get_the_time('Y-m-d\TH:i:s') . '">' . get_the_date() . '</time>' . $icon_tips_after; ?>
 								</div>
 								<?php
 							}
@@ -1163,5 +1163,50 @@ function warning_notice() {
 			$user_voting = 'dislike';
 		}
 		return array('like_count' => $like_count, 'dislike_count' => $dislike_count, 'user_voting' => $user_voting);
+	}
+//------------------------------------------------------
+//  Get team social networks
+//------------------------------------------------------
+	function cherry_get_post_networks($args = array()){
+		global $post;
+		extract(
+			wp_parse_args(
+				$args,
+				array(
+					'post_id' => get_the_ID(),
+					'class' => 'post_networks',
+					'before_title' => '<h4>',
+					'after_title' => '</h4>',
+					'display_title' => true,
+					'output_type' => 'echo'
+				)
+			)
+		);
+		$networks_array = explode(" ", get_option('fields_id_value'.$post_id, ''));
+
+		if($networks_array[0]!=''){
+			$count = 0;
+			$network_title = get_post_meta($post_id, 'network_title', true);
+
+			$output = '<div class="'.$class.'">';
+			$output .= $network_title && $display_title ? $before_title.$network_title.$after_title : '';
+			$output .= '<ul class="clearfix unstyled">';
+			foreach ($networks_array as $networks_id) {
+				$network_array = explode(";", get_option('network_'.$post_id.'_'.$networks_id, array('','','')));
+				$output .= '<li class="network_'.$count.'">';
+				$output .= $network_array[2] ? '<a href="'.$network_array[2].'" title="'.$network_array[1].'">' : '' ;
+				$output .= $network_array[0] ? '<span class="'.$network_array[0].'"></span>' :'';
+				$output .= $network_array[1] ? '<span class="network_title">'.$network_array[1].'</span>' : '' ;
+				$output .= $network_array[2] ? '</a>' : '' ;
+				$output .= '</li>';
+				++$count;
+			}
+			$output .= '</ul></div>';
+			if($output_type == 'echo'){
+				echo $output;
+			}else{
+				return $output;
+			}
+		}
 	}
 ?>

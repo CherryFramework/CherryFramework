@@ -16,10 +16,10 @@
 	if(!function_exists('framework_options')){
 		function framework_options() {
 			global $typography_mixed_fonts;
-				if(count($typography_mixed_fonts)==0){
-					$typography_mixed_fonts = array_merge(options_typography_get_os_fonts() , options_typography_get_google_fonts());
-					asort($typography_mixed_fonts);
-				}
+			if(count($typography_mixed_fonts)==0){
+				$typography_mixed_fonts = array_merge(options_typography_get_os_fonts() , options_typography_get_google_fonts());
+				asort($typography_mixed_fonts);
+			}
 
 	//true/false array
 			$true_false_array = array(

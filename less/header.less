@@ -4,7 +4,7 @@
 	position: relative;
 	z-index: 99;
 	padding: 30px 0;
-	border-bottom: 1px solid lighten(@grayLight, 25%);
+	border-bottom: 1px solid @tableBorder;
 	background: @grayLighter;
 }
 
@@ -214,7 +214,7 @@ ul.sf-menu li li li.sfHover ul {
 }
 .sf-menu > li > a {
 	padding: 10px 12px;
-	border-top:	1px solid #eee;
+	border-top:	1px solid @tableBorder;
 	border-left: 1px solid #fff;
 	color: #13a;
 	text-decoration: none;
@@ -228,7 +228,7 @@ ul.sf-menu li li li.sfHover ul {
 }
 .sf-menu li li a {
 	padding: 10px 12px;
-	border-top: 1px solid #eee;
+	border-top: 1px solid @tableBorder;
 	border-left: 1px solid #fff;
 	color: #13a;
 	text-decoration: none;
@@ -295,7 +295,7 @@ li.sfHover > a > .sf-sub-indicator {
 /* Navigation select styling */
 .select-menu {
 	display: none;
-	border: 1px solid #c8c8c8;
+	border: 1px solid @tableBorder;
 	background-color: #e4e4e4;
 	width: 100%;
 	height: 30px;
@@ -306,7 +306,7 @@ li.sfHover > a > .sf-sub-indicator {
 	.border-radius(4px);
 }
 .select-menu:focus {
-	border-color: #999;
+	border-color: @tableBorder;
 }
 .select-menu option {
 	padding: 5px;

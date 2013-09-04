@@ -62,6 +62,7 @@
 			'uncategorized' => __('Uncategorized', $domain),
 			'last' => __('Last', $domain),
 			'first' => __('First', $domain),
+			'delete' => __('Delete', $domain),
 			
 			//Output Audio
 			'prev' => __('Previous', $domain),
@@ -489,7 +490,13 @@
 			'position' => __('Position', $domain),
 			'position_desc' => __('Input position of the person.', $domain),
 			'info_desc_2' => __('Input additional info.', $domain),
-			
+			's_n' => __('Social Networks', $domain),
+			'page_url' => __('Page URL', $domain),
+			'your_s_n' => __('Your Social Networks.', $domain),
+			'icon_desc' => __('In icon field you need to specify the icon name that can be copied from the <a target="_blank" href="http://fortawesome.github.io/Font-Awesome/icons/#brand">website</a>. E.g. "icon-facebook".', $domain),
+			'network_title' => __('Social Networks Title', $domain),
+			'network_title_desc' => __('Specify the heading for the social networks block.', $domain),
+
 			//theme-testimeta.php
 			'testimonial_options' => __('Testimonial Options', $domain),
 			'testimonial_options_desc' => __('Please fill additional fields for testimonial.', $domain),
@@ -1010,7 +1017,30 @@
 			'only_registered_users' => __('Only registered users', $domain),
 			'only_administrator'    => __('Only administrator', $domain),
 			'select_page_to_add'    => __('Select page to add', $domain),
-			'custom_css_class'      => __('Custom CSS class', $domain)
+			'custom_css_class'      => __('Custom CSS class', $domain),
+
+			//seo_settings_page.php
+			'sitemap_xml' => __('Sitemap XML', $domain),
+			'include_post_types' => __('Include post types.', $domain),
+			'priority' => __('Priority.', $domain),
+			'change_freq' => __('Change freq.', $domain),
+			'post_types_settings' => __('Post types settings.', $domain),
+			'include_post_types_desc' => __('<b>Include post types</b> - specify the post types which will be included into your sitemap.', $domain),
+			'priority_desc' => __('<b>Priority</b> – set post type priorities on your site. For example, if the blog page content is more important for search engines than the portfolio page content, set the priority for blog posts as 1, for portfolio pages as 0.9 and so on.', $domain),
+			'change_freq_desc' => __('<b>Change frequency</b> – specify how often you change certain post types. It helps the search engines to determine how relevant your information is at the moment of search.', $domain),
+			'ping_sitemap_desc' => __('<b>Ping sitemap</b> – choose the search engines which will receive the link to your sitemap.', $domain),
+			'ping_sitemap' => __('Ping sitemap.', $domain),
+			'seo' => __('SEO', $domain),
+			'index_settings' => __('Your website indexation settings.', $domain),
+			'forbid' => __('Forbid the search engines to index the following directories of your site.', $domain),
+			'these_settings' => __('These settings will help reduce the information search range on your site. ', $domain),
+			'admin_index' => __('WordPress engine system files and folders <em>(recommended)</em>', $domain),
+			'plagin_index' => __('Your plugins system files and folders <em>(recommended)</em>', $domain),
+			'theme_index' => __('Your themes system files and folders <em>(recommended)</em>', $domain),
+			'media_index' => __('Media library files (images, video, audio, etc.) <em>(not recommended)</em>', $domain),
+			'nofollow_name' => __('Add the <em>“rel”</em> attribute with the <em>“nofollow”</em> value to content links.', $domain),
+			'nofollow_desc' => __('This option will stop the search engines from going to other sites following the links in your site content.', $domain),
+			'' => __('', $domain)
 			);
 		return $locals[$label];
 	};
