@@ -34,8 +34,8 @@
 				var winWidth = jQuery("#portfolio-grid").width(),
 					column = 3;
 				if (winWidth<380) column = 1;
-				else if(winWidth>=380 && winWidth<788)  column = 2;
-				else if(winWidth>=788 && winWidth<1160)  column = 3;
+				else if(winWidth>=380 && winWidth<788) column = 2;
+				else if(winWidth>=788 && winWidth<1160) column = 3;
 				else if(winWidth>=1160) column = 3;
 				return column;
 			}
@@ -44,8 +44,8 @@
 				var winWidth = jQuery("#portfolio-grid").width(),
 					column = 4;
 				if (winWidth<380) column = 1;
-				else if(winWidth>=380 && winWidth<788)  column = 2;
-				else if(winWidth>=788 && winWidth<1160)  column = 3;
+				else if(winWidth>=380 && winWidth<788) column = 2;
+				else if(winWidth>=788 && winWidth<1160) column = 3;
 				else if(winWidth>=1160) column = 4;
 				return column;
 			}
@@ -114,10 +114,10 @@
 	if ( function_exists( 'icl_object_id' ) ) $post = get_post( icl_object_id( $post->ID, 'portfolio', true ) );
 	
 	// Get categories
-	$portfolio_cats      = wp_get_object_terms($post->ID, 'portfolio_category');
+	$portfolio_cats = wp_get_object_terms($post->ID, 'portfolio_category');
 	
 	// Get tags
-	$portfolio_tags      = !is_wp_error( wp_get_object_terms($post->ID, 'portfolio_tag')) ? wp_get_object_terms($post->ID, 'portfolio_tag') : array();
+	$portfolio_tags = !is_wp_error( wp_get_object_terms($post->ID, 'portfolio_tag')) ? wp_get_object_terms($post->ID, 'portfolio_tag') : array();
 	
 	// Theme Options vars
 	$folio_filter        = of_get_option('folio_filter');
@@ -125,71 +125,93 @@
 	$folio_btn           = of_get_option('folio_btn');
 	$folio_excerpt       = of_get_option('folio_excerpt');
 	$folio_excerpt_count = of_get_option('folio_excerpt_count');
-	
-	$thumb               = get_post_thumbnail_id();
-	$img_url             = wp_get_attachment_url( $thumb,'full'); //get img URL
-	$image               = aq_resize( $img_url, 600, 380, true ); //resize & crop img
+	$lightbox            = (of_get_option('folio_lightbox') != '') ? of_get_option('folio_lightbox') : 'yes';
+
+	// Set size for image
+	$image_size = array(
+		'width'  => 600,
+		'height' => 380
+		);
+
+	// Get img URL, resize & crop
+	$thumb   = get_post_thumbnail_id();
+	$img_url = wp_get_attachment_url( $thumb,'full');
+	$image   = aq_resize( $img_url, $image_size['width'], $image_size['height'], true );
 	
 	//mediaType init
-	$mediaType           = get_post_meta($post->ID, 'tz_portfolio_type', true);
-	?>
-	
+	$mediaType = get_post_meta($post->ID, 'tz_portfolio_type', true);
+?>
 	<li class="portfolio_item <?php foreach( $portfolio_cats as $portfolio_cat ) { echo ' term_id_' . $portfolio_cat->term_id; } ?> <?php foreach( $portfolio_tags as $portfolio_tag ) { echo ' term_id_' . $portfolio_tag->term_id; } ?>">
-		
 		<div class="portfolio_item_holder">
-			<?php
-			//check thumb and media type
-			if(has_post_thumbnail($post->ID) && $mediaType != 'Video' && $mediaType != 'Audio'){ 
-				//Disable overlay_gallery if we have Image post
-				$prettyType = 0;
-				if($mediaType != 'Image') { 
-					$prettyType = "prettyPhoto[gallery".$i."]";
-				} else { 
-					$prettyType = 'prettyPhoto';
-				}
-			?>
-			
-				<figure class="thumbnail thumbnail__portfolio">
-					<a class="image-wrap" href="<?php echo $img_url;?>" rel="<?php echo $prettyType; ?>" title="<?php the_title();?>"><img src="<?php echo $image ?>" alt="<?php the_title(); ?>" /><span class="zoom-icon"></span></a>
-				</figure>
-				
-				
-			<?php
-				$thumbid = 0;
-				$thumbid = get_post_thumbnail_id($post->ID);
-			
-				$images = get_children( array(
-					'orderby'        => 'menu_order',
-					'order'          => 'ASC',
-					'post_type'      => 'attachment',
-					'post_parent'    => $post->ID,
-					'post_mime_type' => 'image',
-					'post_status'    => null,
-					'numberposts'    => -1
-				) );
+		<?php 
+			// get attachments
+			$thumbid = 0;
+			$thumbid = get_post_thumbnail_id($post->ID);
+			$images = get_children( array(
+				'orderby'        => 'menu_order',
+				'order'          => 'ASC',
+				'post_type'      => 'attachment',
+				'post_parent'    => $post->ID,
+				'post_mime_type' => 'image',
+				'post_status'    => null,
+				'numberposts'    => -1
+			) );
+			if ( has_post_thumbnail() || ((count($images) > 1) && ($mediaType == 'Slideshow' || $mediaType == 'Grid Gallery')) ) {
 
-				/* $images is now a object that contains all images (related to post id 1) and their information ordered like the gallery interface. */
+				if ($lightbox == "yes") {
+
+					if ($mediaType == 'Image')
+						$prettyType = 'prettyPhoto';
+					else
+						$prettyType = "prettyPhoto[gallery".$i."]";
+					$link_rel  = 'rel="'.$prettyType.'"';
+					$zoom_icon = '<span class="zoom-icon"></span>';
+				} else {
+					$link_rel = '';
+				}
+
+				if ( ($mediaType == 'Video') || ($mediaType == 'Audio') ) {
+					$link_href  = get_permalink($post->ID);
+					$link_title = theme_locals("permanent_link_to").' '.get_the_title($post->ID);
+					unset($zoom_icon);
+				} else {
+					$link_href  = $img_url;
+					$link_title = get_the_title($post->ID);
+				} ?>
+			<figure class="thumbnail thumbnail__portfolio">
+
+			<?php if (has_post_thumbnail()) { ?>
+				<a href="<?php echo $link_href; ?>" class="image-wrap" title="<?php echo $link_title; ?>" <?php echo $link_rel; ?>>
+					<img src="<?php echo $image ?>" alt="<?php the_title(); ?>" />
+					<?php if (isset($zoom_icon)) echo $zoom_icon; ?>
+				</a>
+			<?php }
+
+				// output attachments
 				if ( $images ) {
-					//looping through the images
+					$attachment_counter = 0;
 					foreach ( $images as $attachment_id => $attachment ) {
-					 if( $attachment->ID == $thumbid ) continue;
-						$image_attributes = wp_get_attachment_image_src( $attachment_id, 'full' ); // returns an array
-						$alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
-						$image_title = $attachment->post_title;
-					?>
+						if ( ($attachment->ID == $thumbid) ) continue;
 
-					<a href="<?php echo $image_attributes[0]; ?>" title="<?php the_title(); ?>" rel="<?php echo $prettyType; ?>" style="display:none;"></a>
+							$image_attributes = wp_get_attachment_image_src( $attachment_id, 'full' ); // returns an array
+							$image            = aq_resize( $image_attributes[0], $image_size['width'], $image_size['height'], true );
+							$image_title      = $attachment->post_title;
 
-					<?php
+							if (!$attachment_counter && !has_post_thumbnail()) {
+								$link_style = 'display:block';
+								$img_tag    = '<img src="'.$image.'" alt="'.$image_title.'" />';
+							} else {
+								$link_style = 'display:none';
+								unset($img_tag);
+								unset($zoom_icon);
+							} ?>
+				<a href="<?php echo $image_attributes[0]; ?>" class="image-wrap" title="<?php the_title(); ?>" style="<?php echo $link_style; ?>" <?php echo $link_rel; ?>><?php if (isset($img_tag)) echo $img_tag; if (isset($zoom_icon)) echo $zoom_icon; ?></a>
+					<?php $attachment_counter++;
 					}
-				}
-			} else { ?>
-				<figure class="thumbnail thumbnail__portfolio">
-					<a class="image-wrap" href="<?php the_permalink() ?>" title="<?php echo theme_locals("permanent_link_to"); ?> <?php the_title_attribute(); ?>" ><img src="<?php echo $image ?>" alt="<?php the_title(); ?>" /></a>
-				</figure>
+				} ?>
+			</figure><!--/.thumbnail__portfolio-->
 			<?php } ?>
-			
-			<!-- Caption -->
+
 			<div class="caption caption__portfolio">
 				<?php if($folio_title == "yes"){ ?>
 					<h3><a href="<?php the_permalink(); ?>"><?php $title = the_title('','',FALSE); echo substr($title, 0, 40); ?></a></h3>
@@ -202,7 +224,8 @@
 				<?php if($folio_btn == "yes"){ ?>
 					<p><a href="<?php the_permalink() ?>" class="btn btn-primary"><?php echo theme_locals("read_more"); ?></a></p>
 				<?php } ?>
-			</div><!-- /Caption -->
-		</div>
-	</li>
+			</div><!--/.caption__portfolio-->
+
+		</div><!--/.portfolio_item_holder-->
+	</li><!--/.portfolio_item-->
 	<?php $i++; endwhile; ?>

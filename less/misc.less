@@ -25,7 +25,6 @@
 .alignleft {
 	float:left;
 	margin:5px 20px 10px 0;
-
 	}
 .aligntextleft {
 	text-align: left;
@@ -33,7 +32,6 @@
 .alignright {
 	float:right;
 	margin:5px 0 10px 20px;
-	text-align: right;
 	}
 .aligntextright {
 	text-align: right;
@@ -48,8 +46,7 @@ div.aligncenter {
 	text-align: center;
 	}
 .alignnone {
-	display: block;
-	margin: 5px 10px 20px 0;
+	margin: 5px 0 10px 0;
 	.thumbnail & {
 		margin: 0;
 	}
@@ -68,15 +65,36 @@ a img.aligncenter {
 	margin-right: auto
 }
 a img.alignnone {
-	margin: 5px 10px 20px 0;
+	margin: 5px 0 10px 0;
 }
 article .post-content img {
 	max-width:100%;
 	}
 
 /* Image caption */
+.wp-caption {
+	max-width: 100%;
+}
 .wp-caption-text {
+	max-width: 96%; /* Image does not overflow the content area */
+	padding: 5px 3px 10px;
 	text-align: center;
+}
+.wp-caption.alignnone {
+	max-width: 100%;
+	margin: 5px 0 10px 0;
+}
+.wp-caption.alignleft {
+	margin: 5px 20px 10px 0;
+}
+.wp-caption.alignright {
+	margin: 5px 0 10px 20px;
+}
+.wp-caption p.wp-caption-text {
+	font-size: 11px;
+	line-height: 17px;
+	margin: 0;
+	padding: 0 4px 5px;
 }
 
 /* Featured thumbnail */
@@ -370,9 +388,10 @@ pre {
 }
 
 
-/*Form Elements */
+/* Form Elements */
 input[type="submit"],
 input[type="reset"] {
+	vertical-align: top;
 	height: 28px;
 	// line-height: 1.2;
 }
@@ -403,6 +422,10 @@ input[type="color"],
 	&:focus {
 		outline: none;
 	}
+}
+/* Password Protected post */
+label[for^=pwbox] {
+	display: inline-block;
 }
 
 /* Contact form */

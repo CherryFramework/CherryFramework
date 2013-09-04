@@ -3,6 +3,7 @@
 <div id="post-<?php the_ID(); ?>" <?php post_class('post-holder'); ?>>
 	<div class="post-content">
 		<?php the_content('<span>'.theme_locals("continue_reading").'</span>'); ?>
+		<div class="clear"></div>
 		<?php wp_link_pages(array('before' => '<p><strong>'.theme_locals("pages").'</strong> ', 'after' => '</p>', 'next_or_number' => 'number')); ?>
 		<div class="archive_lists">
 			<div class="row-fluid">

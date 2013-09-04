@@ -20,6 +20,7 @@
 		<?php } ?>  
 		<div class="testimonial_content">
 			<?php the_content(); ?>
+			<div class="clear"></div>
 			<small>
 			<?php if($testiname) { ?>
 				<span class="user"><?php echo $testiname; ?></span><?php echo ', '; ?>

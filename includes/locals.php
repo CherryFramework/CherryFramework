@@ -24,7 +24,8 @@
 			'upload' => __('Upload', $domain),
 			'try_again' => __('try again', $domain),
 			'finish' => __('Finish', $domain),
-			'skip' => __('Skip', $domain),
+			'skip' => __('Skip this step', $domain),
+			'install_next' => __('next', $domain),
 			'none' => __('None', $domain),
 			'date' => __('Date', $domain),
 			'title' => __('Title', $domain),
@@ -327,6 +328,7 @@
 			'show_button_desc' => __('Enable or Disable button for portfolio posts.', $domain),
 			'show_meta_name' => __('Show portfolio meta?', $domain),
 			'show_meta_desc' => __('Enable or Disable meta for single portfolio posts.', $domain),
+			'folio_enable_lightbox_desc' => __('Enable or Disable lightbox for portfolio posts.', $domain),
 			'layout_name' => __('Layout', $domain),
 			'layout_desc' => __('Portfolio has different layout modes. You can set and change the layout mode via this option.', $domain),
 			'fit_rows' => __('Fit rows', $domain),
@@ -379,11 +381,15 @@
 			'provided_is_invalid.' => __('The import file you\'ve provided is invalid. Please try again.', $domain),
 			
 			'step_1_export_widget' => __('<span>Step <i>1</i></span> Widget Settings Export', $domain),
-			'step_1_import_widget' => __('<span>Step <i>1</i></span> Widget Settings Import', $domain),
+			'step_3' => __('<span>Step <i>3</i></span> Widget Settings Import', $domain),
+			'step_4' => __('<span>Step <i>4</i></span> Widget Settings Import', $domain),
 			'import_settings' => __('Import Settings', $domain),
 			'please_try_again' => __("Incorrect file. Please, <a href='admin.php?page=options-framework-import&amp;step=1'>try again</a>.", $domain),
 			'select_the_file' => __('Select the file that contains Widget Settings (e.g. <b>your_template_package/sources/sample_data/widgets.json</b>)', $domain),
 			'show_widget_settings' => __('Show Widget Settings', $domain),
+			'no_widget' => __('Your have no widgets. Please, click next to go to the next step.', $domain),
+			'widget_import_warning' => __('Disable the widgets you don\'t need and click "Next". All the selected widgets will be imported into the theme by default.', $domain),
+			'go_to_widgets' => __('go to widgets', $domain),
 			
 			//wordpress-importer.php
 			'sorry' => __('Sorry, there has been an error.', $domain),
@@ -416,16 +422,24 @@
 			'remote_3' => __('Remote file is incorrect size ', $domain),
 			'zero_size' => __('Zero size file downloaded ', $domain),
 			'remote_4' => __('Remote file is too large, limit is %s ', $domain),
-			'step_2' => __('<span>Step <i>2</i></span> Data Import', $domain),
+			'step_1' => __('<span>Step <i>1</i></span> Data Import', $domain),
+			'step_2' => __('<span>Step <i>2</i></span> Assign Authors', $domain),
 			'A new version of' => __('A new version of this importer is available. Please update to version %s to ensure compatibility with newer export files. ', $domain),
-			'select_xml' => __('Select (<b>.xml</b>) file to upload sample data.<br>If you do not want to install sample data from livedemo you need to <b>skip</b> this step.', $domain),	
+			'select_xml' => __('Select (<b>.xml</b>) file to upload sample data.<br>If you do not want to install sample data from livedemo you need to <b>skip this step</b>.', $domain),
+			'sample_data_import_warning' => __('Please note that certain content is already installed. You may simply need to skip this step. Otherwise, you can proceed with the installation.', $domain),
 			
-			'server_settings_error' => __('Some of your server settings do not meet the minimum requirements for installing the sample data. Please, consult with your hosting provider on how to increase the required values.', $domain),
+			'server_settings_error' => __('Some of your server settings do not meet the requirements for installing the sample data. Please, consult with your hosting provider on how to increase the required values.', $domain),
 			'server_settings' => __('Server Settings', $domain),
 			'current' => __('Current', $domain),
 			'note' => __('NOTE', $domain),
 			'settings_can_not_be_adjusted' => __('if for some reason those settings can not be adjusted, you may install the sample data using an <strong>alternative method</strong> - importing the <strong>.sql</strong> file directly into the database. Refer to the template documentation for instructions.', $domain),
 			'template_installation' => __('You can proceed with the template installation without updating server settings, however in this case you can get errors or only part of your content will be loaded.', $domain),
+			'congratulations' => __('Congratulations', $domain),
+			'congratulations_msg' => __('You have successfully installed your <b>Cherry WordPress Theme</b>.<br /> You can look theme now', $domain),
+			'visit_site' => __('visit site', $domain),
+			'settings_output_buffering' => __('You might see only the white screen on the next step. Don\'t worry, the importing is being continued. Please wait until the installation is finished.', $domain),
+			'jigoshop_attention' => __('<b>Attention:</b> the Jigoshop plugin is not activated. We recommend that you install and activate this plugin to ensure correct data importing. Otherwise, some data may be lost during the import.', $domain),
+			'woocommerce_attention' => __('<b>Attention:</b> the WooCommerce plugin is not activated. We recommend that you install and activate this plugin to ensure correct data importing. Otherwise, some data may be lost during the import.', $domain),
 
 			//function.php
 			'login_error' => __('The login information you have entered is incorrect.', $domain),
@@ -812,6 +826,9 @@
 			'no_items' => __('No items', $domain),
 			'posted' => __('Posted', $domain),
 			'all_templates' => __('All templates', $domain),
+
+			//options-backup.php
+			'start' => __('Start', $domain),
 
 			//data_management_interface.php
 			'data_management' => __('Data Management', $domain),

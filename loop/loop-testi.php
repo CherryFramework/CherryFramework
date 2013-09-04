@@ -37,6 +37,7 @@ if (have_posts()) : while ($wp_query->have_posts()) : $wp_query->the_post();
 		<?php } ?>
 		<div class="testimonial_content">
 			<?php the_content(); ?>
+			<div class="clear"></div>
 			<small>
 				<?php if($testiname) { ?>
 					<span class="user"><?php echo $testiname; ?></span><?php echo ', '; ?>
