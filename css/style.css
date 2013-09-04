@@ -1172,13 +1172,8 @@ p.gravatar {
 	overflow:hidden;
 	margin-top:10px;
 	padding:20px;
-<<<<<<< HEAD
 	border:1px solid #DDD;
-	background:#eee;
-=======
-	border:1px solid #eee;
 	background:#f5f5f5;
->>>>>>> 3af1bfba5f223b2c7695427d4c906484bad329b3
 	zoom:1;
 }
 .comment.bypostauthor .comment-body { background:#fafafa; }
@@ -2009,10 +2004,6 @@ a img.aligncenter {
 }
 a img.alignnone { margin:5px 0 10px 0; }
 article .post-content img { max-width:100%; }
-<<<<<<< HEAD
-.wp-caption-text { text-align:center; }
-*[class*="thumbnail"] { border-color:#DDD; }
-=======
 .wp-caption { max-width:100%; }
 .wp-caption-text {
 	max-width:96%;
@@ -2031,7 +2022,7 @@ article .post-content img { max-width:100%; }
 	margin:0;
 	padding:0 4px 5px;
 }
->>>>>>> 3af1bfba5f223b2c7695427d4c906484bad329b3
+*[class*="thumbnail"] { border-color:#DDD; }
 .featured-thumbnail {
 	position:relative;
 	float:left;

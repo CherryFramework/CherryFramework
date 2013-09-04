@@ -1042,10 +1042,10 @@
 			'priority' => __('Priority.', $domain),
 			'change_freq' => __('Change freq.', $domain),
 			'post_types_settings' => __('Post types settings.', $domain),
-			'include_post_types_desc' => __('<b>Include post types</b> - specify the post types which will be included into your sitemap.', $domain),
-			'priority_desc' => __('<b>Priority</b> – set post type priorities on your site. For example, if the blog page content is more important for search engines than the portfolio page content, set the priority for blog posts as 1, for portfolio pages as 0.9 and so on.', $domain),
-			'change_freq_desc' => __('<b>Change frequency</b> – specify how often you change certain post types. It helps the search engines to determine how relevant your information is at the moment of search.', $domain),
-			'ping_sitemap_desc' => __('<b>Ping sitemap</b> – choose the search engines which will receive the link to your sitemap.', $domain),
+			'include_post_types_desc' => __('<strong>Include post types</strong> - specify the post types which will be included into your sitemap.', $domain),
+			'priority_desc' => __('<strong>Priority</strong> - set post type priorities on your site. For example, if the blog page content is more important for search engines than the portfolio page content, set the priority for blog posts as 1, for portfolio pages as 0.9 and so on.', $domain),
+			'change_freq_desc' => __('<strong>Change frequency</strong> - specify how often you change certain post types. It helps the search engines to determine how relevant your information is at the moment of search.', $domain),
+			'ping_sitemap_desc' => __('<strong>Ping sitemap</strong> - choose the search engines which will receive the link to your sitemap.', $domain),
 			'ping_sitemap' => __('Ping sitemap.', $domain),
 			'seo' => __('SEO', $domain),
 			'index_settings' => __('Your website indexation settings.', $domain),
@@ -1055,9 +1055,8 @@
 			'plagin_index' => __('Your plugins system files and folders <em>(recommended)</em>', $domain),
 			'theme_index' => __('Your themes system files and folders <em>(recommended)</em>', $domain),
 			'media_index' => __('Media library files (images, video, audio, etc.) <em>(not recommended)</em>', $domain),
-			'nofollow_name' => __('Add the <em>“rel”</em> attribute with the <em>“nofollow”</em> value to content links.', $domain),
-			'nofollow_desc' => __('This option will stop the search engines from going to other sites following the links in your site content.', $domain),
-			'' => __('', $domain)
+			'nofollow_name' => __('Add the <em>"rel"</em> attribute with the <em>"nofollow"</em> value to content links.', $domain),
+			'nofollow_desc' => __('This option will stop the search engines from going to other sites following the links in your site content.', $domain)
 			);
 		return $locals[$label];
 	};
