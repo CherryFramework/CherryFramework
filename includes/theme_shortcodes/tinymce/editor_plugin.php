@@ -242,7 +242,7 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
 								
 								break;
-                
+				
 				// spacer
 								
 								case 'spacer':
@@ -314,7 +314,7 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
 								
 								break;
-                
+				
 				// span3
 								
 								case 'span3':
@@ -324,8 +324,8 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
 								
 								break;
-                
-                // span4
+				
+				// span4
 								
 								case 'span4':
 								
@@ -334,8 +334,8 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
 								
 								break;
-                
-                // span5
+				
+				// span5
 								
 								case 'span5':
 								
@@ -344,8 +344,8 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
 								
 								break;
-                
-                // span6
+				
+				// span6
 								
 								case 'span6':
 								
@@ -354,8 +354,8 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
 								
 								break;
-                
-                // span7
+				
+				// span7
 								
 								case 'span7':
 								
@@ -364,8 +364,8 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
 								
 								break;
-                
-                // span8
+				
+				// span8
 								
 								case 'span8':
 								
@@ -374,8 +374,8 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
 								
 								break;
-                
-                // span9
+				
+				// span9
 								
 								case 'span9':
 								
@@ -384,8 +384,8 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
 								
 								break;
-                
-                // span10
+				
+				// span10
 								
 								case 'span10':
 								
@@ -394,8 +394,8 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
 								
 								break;
-                
-                // span11
+				
+				// span11
 								
 								case 'span11':
 								
@@ -404,8 +404,8 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
 								
 								break;
-                
-                // span12
+				
+				// span12
 								
 								case 'span12':
 								
@@ -509,9 +509,9 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								
 								break;
 								
-				// dspan - 75x25
+				// dspan - 66x33
 								
-								case 'dspan_75x25':
+								case 'dspan_66x33':
 								
 								var a = '[span8]'+selectedText+'[/span8][span4][/span4]';
 								
@@ -519,9 +519,9 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								
 								break;
 								
-				// dspan - 25x75
+				// dspan - 33x66
 								
-								case 'dspan_25x75':
+								case 'dspan_33x66':
 								
 								var a = '[span4]'+selectedText+'[/span4][span8][/span8]';
 								
@@ -579,8 +579,8 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								
 								break;
 								
-                
-                 // blockquote
+				
+				 // blockquote
 								
 								case 'blockquote':
 								
@@ -608,7 +608,7 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								var a = '[table td1="#" td2="Title" td3="Value"] [td1] 1 [/td1] [td2] some title 1 [/td2] [td3] some value 1 [/td3] [/table]';
 								
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
-                
+				
 								break;
 								
 				
@@ -619,10 +619,10 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 								var a = '[tabs tab1="Title #1" tab2="Title #2" tab3="Title #3"] [tab1] Tab 1 content... [/tab1] [tab2] Tab 2 content... [/tab2] [tab3] Tab 3 content... [/tab3] [/tabs]';
 								
 								tinyMCE.activeEditor.execCommand("mceInsertContent", false, a);
-                
+				
 								break;
-                
-                // Accordion
+				
+				// Accordion
 								
 								case 'accordions':
 								
@@ -746,22 +746,22 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 										a.addWithDialog(c,"row fluid","row_fluid");
 										a.addWithDialog(c,"1/2","one_half");
 										a.addWithDialog(c,"1/3","one_third");
-                    					a.addWithDialog(c,"2/3","two_third");
+										a.addWithDialog(c,"2/3","two_third");
 										a.addWithDialog(c,"1/4","one_fourth");
 										a.addWithDialog(c,"3/4","three_fourth");
 										a.addWithDialog(c,"1/6","one_sixth");
 										a.addWithDialog(c,"5/6","five_sixth");
 								c=b.addMenu({title:"<?php echo theme_locals("2_columns"); ?>"});
-										a.addWithDialog(c,"50% | 50%","dspan_50x50");
-										a.addWithDialog(c,"75% | 25%","dspan_75x25");
-										a.addWithDialog(c,"25% | 75%","dspan_25x75");
+										a.addWithDialog(c,"1/2 | 1/2","dspan_50x50");
+										a.addWithDialog(c,"2/3 | 1/3","dspan_66x33");
+										a.addWithDialog(c,"1/3 | 2/3","dspan_33x66");
 								c=b.addMenu({title:"<?php echo theme_locals("3_columns"); ?>"});
-										a.addWithDialog(c,"33.3% | 33.3% | 33.3%","tspan_33x33x33");
-										a.addWithDialog(c,"50% | 25% | 25%","tspan_50x25x25");
-										a.addWithDialog(c,"25% | 50% | 25%","tspan_25x50x25");
-										a.addWithDialog(c,"25% | 25% | 50%","tspan_25x25x50");
+										a.addWithDialog(c,"1/3 | 1/3 | 1/3","tspan_33x33x33");
+										a.addWithDialog(c,"1/2 | 1/4 | 1/4","tspan_50x25x25");
+										a.addWithDialog(c,"1/4 | 1/2 | 1/4","tspan_25x50x25");
+										a.addWithDialog(c,"1/4 | 1/4 | 1/2","tspan_25x25x50");
 								c=b.addMenu({title:"<?php echo theme_locals("4_columns"); ?>"});;b.addSeparator();
-										a.addWithDialog(c,"25% | 25% | 25% | 25%","qspan_25x25x25x25");
+										a.addWithDialog(c,"1/4 | 1/4 | 1/4 | 1/4","qspan_25x25x25x25");
 								c=b.addMenu({title:"<?php echo theme_locals("elements"); ?>"});
 										a.addWithDialog(c,"<?php echo theme_locals("label"); ?>","label");
 										a.addWithDialog(c,"<?php echo theme_locals("highlight"); ?>","highlight");
