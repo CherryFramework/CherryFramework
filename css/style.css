@@ -225,13 +225,28 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 .title-header {
 	overflow:hidden;
 	margin-bottom:1em;
+	word-wrap:break-word;
+	-webkit-hyphens:auto;
+	-moz-hyphens:auto;
+	-ms-hyphens:auto;
+	-o-hyphens:auto;
+	hyphens:auto;
 }
 .title-desc {
 	display:block;
 	color:#999;
 	font-size:11px;
 }
-.breadcrumb__t { margin:0; }
+.breadcrumb__t {
+	margin:0;
+	word-wrap:break-word;
+	-webkit-hyphens:auto;
+	-moz-hyphens:auto;
+	-ms-hyphens:auto;
+	-o-hyphens:auto;
+	hyphens:auto;
+}
+.breadcrumb__t li { display:inline; }
 #sidebar { padding-top:40px; }
 .testimonial {
 	position:relative;
@@ -723,7 +738,7 @@ html[xmlns] .slides { display:block; }
 }
 .error404-holder { padding:30px 0 100px 0; }
 .error404-holder_num {
-	color:#0088cc;
+	color:#08c;
 	text-align:center;
 	font-size:250px;
 	line-height:1.2em;
@@ -748,6 +763,14 @@ html[xmlns] .slides { display:block; }
 	margin-bottom:30px;
 	width:100%;
 }
+.post-title {
+	word-wrap:break-word;
+	-webkit-hyphens:auto;
+	-moz-hyphens:auto;
+	-ms-hyphens:auto;
+	-o-hyphens:auto;
+	hyphens:auto;
+}
 @media (max-width: 480px) {
 	.post .featured-thumbnail {
 		width:120px;
@@ -757,7 +780,15 @@ html[xmlns] .slides { display:block; }
 @media (max-width: 480px) {
 	.post .featured-thumbnail.large { width:auto; }
 }
-.post_content { padding-bottom:20px; }
+.post_content {
+	word-wrap:break-word;
+	-webkit-hyphens:auto;
+	-moz-hyphens:auto;
+	-ms-hyphens:auto;
+	-o-hyphens:auto;
+	hyphens:auto;
+	padding-bottom:20px;
+}
 .post_content .excerpt, .post_content .full-post-content { margin-bottom:1.5em; }
 .post_footer {
 	clear:both;
@@ -1056,6 +1087,7 @@ p.gravatar {
 	float:left;
 	width:90px;
 }
+.share-buttons iframe { max-width:none; }
 @media (max-width: 480px) {
 	.share-buttons { display:none; }
 }
@@ -1141,7 +1173,7 @@ p.gravatar {
 	margin-top:10px;
 	padding:20px;
 	border:1px solid #eee;
-	background:#eee;
+	background:#f5f5f5;
 	zoom:1;
 }
 .comment.bypostauthor .comment-body { background:#fafafa; }
@@ -1260,7 +1292,6 @@ p.gravatar {
 }
 #wp-calendar thead th {
 	padding:7px 0;
-	background:#fff;
 	color:#000;
 	text-align:center;
 	font-size:14px;
@@ -1946,7 +1977,6 @@ nav.footer-nav ul li.current-menu-item a { text-decoration:underline; }
 .alignright {
 	float:right;
 	margin:5px 0 10px 20px;
-	text-align:right;
 }
 .aligntextright { text-align:right; }
 .aligncenter, div.aligncenter {
@@ -1955,10 +1985,7 @@ nav.footer-nav ul li.current-menu-item a { text-decoration:underline; }
 	text-align:center;
 }
 .aligntextcenter { text-align:center; }
-.alignnone {
-	display:block;
-	margin:5px 10px 20px 0;
-}
+.alignnone { margin:5px 0 10px 0; }
 .thumbnail .alignnone { margin:0; }
 a img.alignleft {
 	float:left;
@@ -1973,9 +2000,26 @@ a img.aligncenter {
 	margin-left:auto;
 	margin-right:auto;
 }
-a img.alignnone { margin:5px 10px 20px 0; }
+a img.alignnone { margin:5px 0 10px 0; }
 article .post-content img { max-width:100%; }
-.wp-caption-text { text-align:center; }
+.wp-caption { max-width:100%; }
+.wp-caption-text {
+	max-width:96%;
+	padding:5px 3px 10px;
+	text-align:center;
+}
+.wp-caption.alignnone {
+	max-width:100%;
+	margin:5px 0 10px 0;
+}
+.wp-caption.alignleft { margin:5px 20px 10px 0; }
+.wp-caption.alignright { margin:5px 0 10px 20px; }
+.wp-caption p.wp-caption-text {
+	font-size:11px;
+	line-height:17px;
+	margin:0;
+	padding:0 4px 5px;
+}
 .featured-thumbnail {
 	position:relative;
 	float:left;
@@ -2096,7 +2140,7 @@ article .post-content img { max-width:100%; }
 	margin-bottom:7px;
 	width:50px;
 	height:50px;
-	background:#0088cc url(../images/up-arrow.png) no-repeat center center;
+	background:#08c url(../images/up-arrow.png) no-repeat center center;
 	-webkit-transition:1s;
 	-moz-transition:1s;
 	-o-transition:1s;
@@ -2166,10 +2210,14 @@ code, pre { margin-bottom:20px; }
 	background-position:50% 50%;
 	background-repeat:no-repeat;
 }
-input[type="submit"], input[type="reset"] { height:28px; }
+input[type="submit"], input[type="reset"] {
+	vertical-align:top;
+	height:28px;
+}
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input { outline:none; }
 select.btn:focus, textarea.btn:focus, input[type="text"].btn:focus, input[type="password"].btn:focus, input[type="datetime"].btn:focus, input[type="datetime-local"].btn:focus, input[type="date"].btn:focus, input[type="month"].btn:focus, input[type="time"].btn:focus, input[type="week"].btn:focus, input[type="number"].btn:focus, input[type="email"].btn:focus, input[type="url"].btn:focus, input[type="search"].btn:focus, input[type="tel"].btn:focus, input[type="color"].btn:focus, .uneditable-input.btn:focus { outline:none; }
 select:focus, textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus { outline:none; }
+label[for^=pwbox] { display:inline-block; }
 .wpcf7-form p.field {
 	position:relative;
 	overflow:hidden;
