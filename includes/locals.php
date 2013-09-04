@@ -25,6 +25,7 @@
 			'try_again' => __('try again', $domain),
 			'finish' => __('Finish', $domain),
 			'skip' => __('Skip this step', $domain),
+			'install_next' => __('next', $domain),
 			'none' => __('None', $domain),
 			'date' => __('Date', $domain),
 			'title' => __('Title', $domain),
@@ -386,7 +387,8 @@
 			'select_the_file' => __('Select the file that contains Widget Settings (e.g. <b>your_template_package/sources/sample_data/widgets.json</b>)', $domain),
 			'show_widget_settings' => __('Show Widget Settings', $domain),
 			'no_widget' => __('Your have no widgets. Please, click next to go to the next step.', $domain),
-			'widget_import_warning' => __('Отключите, возможно не нужные Вам виджеты и кликтине Next. По-умолчанию, все выбранные виджеты будут импортированы в тему.', $domain),
+			'widget_import_warning' => __('Disable the widgets you don\'t need and click "Next". All the selected widgets will be imported into the theme by default.', $domain),
+			'go_to_widgets' => __('go to widgets', $domain),
 			
 			//wordpress-importer.php
 			'sorry' => __('Sorry, there has been an error.', $domain),
@@ -423,7 +425,7 @@
 			'step_2' => __('<span>Step <i>2</i></span> Assign Authors', $domain),
 			'A new version of' => __('A new version of this importer is available. Please update to version %s to ensure compatibility with newer export files. ', $domain),
 			'select_xml' => __('Select (<b>.xml</b>) file to upload sample data.<br>If you do not want to install sample data from livedemo you need to <b>skip this step</b>.', $domain),
-			'sample_data_import_warning' => __('Обратите внимание что некий контент уже установлен. Возможно Вам просто нужно пропустить этот шаг. Противном случае Вы можете продолжить установку.', $domain),	
+			'sample_data_import_warning' => __('Please note that certain content is already installed. You may simply need to skip this step. Otherwise, you can proceed with the installation.', $domain),
 			
 			'server_settings_error' => __('Some of your server settings do not meet the requirements for installing the sample data. Please, consult with your hosting provider on how to increase the required values.', $domain),
 			'server_settings' => __('Server Settings', $domain),
@@ -434,7 +436,9 @@
 			'congratulations' => __('Congratulations', $domain),
 			'congratulations_msg' => __('You have successfully installed your <b>Cherry WordPress Theme</b>.<br /> You can look theme now', $domain),
 			'visit_site' => __('visit site', $domain),
-			'settings_output_buffering' => __('Возможно на следующем шаге Вы увидете только белый экран. Не волнуйтесь, импорт при этом продолжается. Пожалуйста дождитесь завершения установки.', $domain),
+			'settings_output_buffering' => __('You might see only the white screen on the next step. Don\'t worry, the importing is being continued. Please wait until the installation is finished.', $domain),
+			'jigoshop_attention' => __('<b>Attention:</b> the Jigoshop plugin is not activated. We recommend that you install and activate this plugin to ensure correct data importing. Otherwise, some data may be lost during the import.', $domain),
+			'woocommerce_attention' => __('<b>Attention:</b> the WooCommerce plugin is not activated. We recommend that you install and activate this plugin to ensure correct data importing. Otherwise, some data may be lost during the import.', $domain),
 
 			//function.php
 			'login_error' => __('The login information you have entered is incorrect.', $domain),

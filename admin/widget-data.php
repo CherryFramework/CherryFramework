@@ -62,14 +62,14 @@ class myWidget_Data {
 								</div> <!-- end sidebar -->
 							<?php endforeach;?>
 						</div> <!-- end sidebars -->
-						<button class="button-primary" type="submit" name="export-widgets" id="export-widgets"><?php echo theme_locals("next"); ?></button>
+						<button class="button-primary" type="submit" name="export-widgets" id="export-widgets"><?php echo theme_locals("install_next"); ?></button>
 					</form>
 
 				<?php } else { ?>
 
 					<h4><?php echo theme_locals('no_widget');?></h4>
-					<a href="<?php echo admin_url('widgets.php'); ?>" class="btn-link">go to widgets</a>
-					<a href="<?php echo admin_url('export.php'); ?>" class="button-primary">next</a>
+					<a href="<?php echo admin_url('widgets.php'); ?>" class="btn-link"><?php echo theme_locals("go_to_widgets"); ?></a>
+					<a href="<?php echo admin_url('export.php'); ?>" class="button-primary"><?php echo theme_locals("install_next"); ?></a>
 				<?php } ?>
 			</div> <!-- end wrap -->
 		</div> <!-- end export-widget-settings -->
@@ -83,7 +83,7 @@ class myWidget_Data {
 			<?php if (isset($_FILES['upload-file'])) : ?>
 			<h4 class="head"><?php echo theme_locals('step_4'); ?></h4>
 			<div class="import-wrapper">
-				<p><?php echo theme_locals('widget_import_warning'); ?></p>
+				<p class="text-style"><?php echo theme_locals('widget_import_warning'); ?></p>
 				<form action="" id="import-widget-data" class="clearfix" method="post">
 					<?php 
 						wp_nonce_field('import_widget_data', '_wpnonce');
@@ -145,10 +145,13 @@ class myWidget_Data {
 								<?php endif; ?>
 							<?php endforeach; ?>
 						</div><!--/.end sidebars-->
-						<input class="button-primary" type="submit" name="import-widgets" id="import-widgets" value="<?php echo theme_locals("next"); ?>">
+						<input class="button-primary" type="submit" name="import-widgets" id="import-widgets" value="<?php echo theme_locals("install_next"); ?>">
 						<?php else :
 							echo theme_locals("please_try_again");
 						endif; ?>
+					</form>
+					<form enctype="multipart/form-data" id="skip-import-widget" method="post" action="<?php echo admin_url('options-permalink.php'); ?>">
+						<p class="submit"><input type="submit" class="btn-link" value="<?php echo theme_locals("skip"); ?>"></p>
 					</form>
 				</div><!--/.import-wrapper-->
 			<?php else : ?>
@@ -158,7 +161,7 @@ class myWidget_Data {
 						<p class="text-style"><?php echo theme_locals("select_the_file"); ?></p>
 							<input type="file" name="upload-file" id="upload-file" size="25">
 						</div>
-					<input type="submit" name="button-upload" class="button-primary" value="<?php echo theme_locals("next"); ?>" disabled="disabled">
+					<input type="submit" name="button-upload" class="button-primary" value="<?php echo theme_locals("install_next"); ?>" disabled="disabled">
 				</form>
 				<form enctype="multipart/form-data" id="skip-import-widget" method="post" action="<?php echo admin_url('options-permalink.php'); ?>">
 					<p class="submit"><input type="submit" class="btn-link" value="<?php echo theme_locals("skip"); ?>"></p>

@@ -316,7 +316,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 					</div>
 				<?php endif; ?>
 
-					<input type="submit" class="button-primary" value="<?php echo theme_locals('next'); ?>" disabled="disabled" />
+					<input type="submit" class="button-primary" value="<?php echo theme_locals('install_next'); ?>" disabled="disabled" />
 				</form>
 				<form action="<?php echo $this->step3; ?>" method="post" id="skip-import-data" class="clearfix">
 					<p class="submit"><input type="submit" class="btn-link" value="<?php echo theme_locals("skip"); ?>"></p>
