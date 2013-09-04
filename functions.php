@@ -45,7 +45,10 @@
 	 * Comment some value from variables.less
 	 *
 	 */
-	function childComment() {
+	if ( CURRENT_THEME != 'cherry' )
+		add_action('cherry_activation_hook', 'comment_child_var');
+
+	function comment_child_var() {
 		global $variablesArray;
 
 		$file = CHILD_DIR .'/bootstrap/less/variables.less';
@@ -94,6 +97,8 @@
 	/*
 	 * Unlink less cache files
 	 */
+	add_action('cherry_activation_hook', 'clean_less_cache');
+	
 	function clean_less_cache() {
 		if ( CURRENT_THEME == 'cherry' ) {
 			$bootstrapInput	= PARENT_DIR .'/less/bootstrap.less';
@@ -109,10 +114,8 @@
 		if (file_exists($cacheFile2)) unlink($cacheFile2);
 	}
 
-	if (( (is_admin() && isset($_GET['activated'] )) || (is_admin() && ($pagenow == "themes.php")) ) && FILE_WRITEABLE) {
-		clean_less_cache();
-
-		if ( CURRENT_THEME != 'cherry' ) childComment();
+	if ( (is_admin() && ($pagenow == "themes.php")) && FILE_WRITEABLE ) {
+		do_action('cherry_activation_hook');
 	}
 
 	/*
