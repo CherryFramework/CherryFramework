@@ -181,13 +181,16 @@ function cherry_dynamic_sidebar_params( $params ) {
 	$responsive   = get_option($themename . '_widget_responsive');
 	$custom_class = get_option($themename . '_widget_custom_class');
 
-	if ( !isset($responsive[$widget_id]) ) 
+	if ( !isset($responsive[$widget_id]) && !isset($custom_class[$widget_id]) ) 
 		return $params;
 
 	$haystack_str = htmlspecialchars(stripslashes($params[0]['before_widget']), ENT_QUOTES);
-	$params[0]['before_widget'] = add_widget_class_attr($haystack_str);	
+	$params[0]['before_widget'] = add_widget_class_attr($haystack_str);
+
 	if ( isset($custom_class[$widget_id]) && !empty($custom_class[$widget_id]) ) 
 		$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$custom_class[$widget_id]} ", $params[0]['before_widget'], 1 );
+
+	if ( isset($responsive[$widget_id]) && !empty($responsive[$widget_id]) ) 
 	$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$responsive[$widget_id]} ", $params[0]['before_widget'], 1 );
 
 	return $params;
