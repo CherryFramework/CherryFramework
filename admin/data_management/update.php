@@ -37,7 +37,6 @@ $theme_base = get_option('template');
 /**************************************************/
 
 //Uncomment below to find the theme slug that will need to be setup on the api server
-//var_dump($theme_base);
 
 add_filter('pre_set_site_transient_update_themes', 'check_for_update');
 
@@ -104,10 +103,9 @@ function wp_persistant_notice() {
 	global $pagenow;
 	$cherry_url_info = get_option('cherry_url_info');
 	$cherry_new_version = get_option('cherry_new_version');
-	$cherry_version = get_theme_info(PARENT_NAME)->Version;
+	$cherry_version = get_theme_info(PARENT_NAME, 'Version');
 	$pageHidden = array("update.php", "update-core.php", 'cherry-options_page_options-framework-data-management', 'admin.php');
-	$stylesheet = get_theme_info(PARENT_NAME)->get_stylesheet();
-	$update_url = wp_nonce_url('update.php?action=upgrade-theme&amp;theme=' . urlencode($stylesheet), 'upgrade-theme_' . $stylesheet);
+	$update_url = wp_nonce_url('update.php?action=upgrade-theme&amp;theme=' . urlencode(get_theme_info(PARENT_NAME, 'Name')), 'upgrade-theme_' . get_theme_info(PARENT_NAME, 'Name'));
 
 	if (! get_user_meta(get_current_user_id(), '_wp_hide_notice', true) &&  !in_array($pagenow, $pageHidden) && is_admin() && ($cherry_new_version > $cherry_version ) ) {
 		printf( '<div class="updated"><p><strong>%1$s <a href="%2$s" class="thickbox" title="cherry">%3$s</a> %4$s <a href="%5$s" onclick="%6$s">%7$s</a><br>%8$s<br><a href="%9$s"> %10$s </a></strong></p></div>', theme_locals('new_version'), $cherry_url_info.'?TB_iframe=true&width=1024&height=800', theme_locals('view_version').' '.$cherry_new_version.' '.theme_locals('details'), theme_locals('or'), $update_url, "if ( confirm('Updating this theme will lose any customizations you have made. \'Cancel\' to stop, \'OK\' to update.') ) {return true;}return false;", theme_locals('update_now'), theme_locals('info_box_4'), esc_url(add_query_arg( 'wp_nag', wp_create_nonce( 'wp_nag' ))), theme_locals('dismiss_notice'));
