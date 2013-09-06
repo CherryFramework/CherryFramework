@@ -349,7 +349,7 @@ if (!function_exists('shortcode_recent_posts')) {
 					if ($thumb == 'true') {
 						if ( has_post_thumbnail($post->ID) ){
 							$output .= '<figure class="thumbnail featured-thumbnail"><a href="'.get_permalink($post->ID).'" title="'.get_the_title($post->ID).'">';
-							$output .= '<img  src="'.$image.'"/>';
+							$output .= '<img src="'.$image.'" alt="' . get_the_title($post->ID) .'"/>';
 							$output .= '</a></figure>';
 						}
 					}
@@ -496,7 +496,7 @@ if (!function_exists('shortcode_recenttesti')) {
 					if ($thumb == 'true') {
 						if ( has_post_thumbnail($post->ID) ){
 							$output .= '<figure class="featured-thumbnail">';
-							$output .= '<img  src="'.$image.'"/>';
+							$output .= '<img src="'.$image.'" alt="" />';
 							$output .= '</figure>';
 						}
 					}

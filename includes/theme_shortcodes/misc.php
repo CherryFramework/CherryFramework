@@ -54,7 +54,7 @@ if (!function_exists('title_shortcode')) {
 		// get site URL
 		$home_url = home_url();
 	 
-	    $output =  '<hgroup class="title-box clearfix '.$custom_class.'">';
+	    $output =  '<div class="title-box clearfix '.$custom_class.'">';
 	 
 		if ($icon!="") {
 			$output .= '<span class="title-box_icon">';
@@ -72,7 +72,7 @@ if (!function_exists('title_shortcode')) {
 			$output .= '</h3>';
 		}
 	 
-			$output .= '</hgroup><!-- //.title-box -->';
+			$output .= '</div><!-- //.title-box -->';
 	 
 			return $output;
 	} 

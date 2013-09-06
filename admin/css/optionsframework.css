@@ -229,7 +229,7 @@ input[type="file"]{margin:0;}
 	background-repeat:repeat-x;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcfcfc', endColorstr='#ffeeeeee', GradientType=0);
 }
-#optionsframework .controls input.upload_button{padding-top:3px;padding-bottom:4px;}
+#optionsframework .controls input.upload_button{padding-top:2px;padding-bottom:2px;}
 #optionsframework .controls input.upload_button:hover,
 #optionsframework .reset-button:hover{
 	text-decoration:none;
