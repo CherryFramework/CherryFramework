@@ -201,6 +201,11 @@
 							$image_title      = $attachment->post_title;
 
 							if (!$attachment_counter && !has_post_thumbnail()) {
+								if ($lightbox == "yes") {
+									$link_href    = $image_attributes[0];
+								} else {
+									$link_href    = get_permalink($post->ID);
+								}
 								$figure_before = '<figure class="thumbnail thumbnail__portfolio">';
 								$figure_after  = '</figure><!--/.thumbnail__portfolio-->';
 								$link_style    = 'display:block';
@@ -208,16 +213,16 @@
 							} else {
 								$figure_before = '';
 								$figure_after  = '';
+								$link_href = $image_attributes[0];
 								$link_style = 'display:none';
 								unset($img_tag);
 								unset($zoom_icon);
 							} ?>
-					<?php echo $figure_before; ?><a href="<?php echo $image_attributes[0]; ?>" class="image-wrap" title="<?php the_title(); ?>" style="<?php echo $link_style; ?>" <?php echo $link_rel; ?>><?php if (isset($img_tag)) echo $img_tag; if (isset($zoom_icon)) echo $zoom_icon; ?></a><?php echo $figure_after; ?>
+					<?php echo $figure_before; ?><a href="<?php echo $link_href; ?>" class="image-wrap" title="<?php the_title(); ?>" style="<?php echo $link_style; ?>" <?php echo $link_rel; ?>><?php if (isset($img_tag)) echo $img_tag; if (isset($zoom_icon)) echo $zoom_icon; ?></a><?php echo $figure_after; ?>
 					<?php $attachment_counter++;
 					}
 				}
-			}
-			?>
+			} ?>
 
 			<div class="caption caption__portfolio">
 				<?php if($folio_title == "yes"){ ?>
