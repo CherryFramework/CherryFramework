@@ -2,15 +2,17 @@
 	include_once (PARENT_DIR . '/admin/data_management/update.php');
 
 	@define('PARENT_NAME', 'CherryFramework');
-	$framework_version = get_theme_info(PARENT_NAME)->Version; 
 
-	function get_theme_info($theme_name){
+	$framework_version = get_theme_info(PARENT_NAME, 'Version'); 
+	function get_theme_info($theme_name, $data_type=''){
 		if ( function_exists('wp_get_theme') ) {
 			$theme = wp_get_theme($theme_name);
+			$return_info = $data_type ? $theme -> $data_type : $theme ;
 		} else {
-			$theme = get_current_theme($theme_name);
+			$theme = get_theme_data(get_theme_root() . '/' . $theme_name . '/style.css');
+			$return_info = $data_type ? $theme[$data_type] : $theme ;
 		}
-		return $theme;
+		return $return_info;
 	}
 
 	function get_file_date($theme_name){
@@ -23,13 +25,11 @@
 		}else{
 			$theme->date = theme_locals("no_backup");
 		}
-
 		if($get_version_backup!=''){
 			$theme->backup_version = $get_version_backup;
 		}else{
 			$theme->backup_version = theme_locals("no_backup");
 		}
-
 		return $theme;
 	}
 
@@ -51,8 +51,8 @@
 	}
 
 	function check_update(){	
-		global $wp_version, $framework_version, $framework_update;	 
-		$theme_base = get_theme_info(PARENT_NAME)->Template;
+		global $wp_version, $framework_version, $framework_update;
+		$theme_base = get_theme_info(PARENT_NAME, 'Template');;
 		$request = array('slug' => $theme_base, 'version' => $framework_version);
 		$send_for_check = array( 'body' => array('action' => 'theme_update', 'request' => serialize($request), 'api-key' => md5(get_bloginfo('url'))), 'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url'));
 		$raw_response = wp_remote_post(API_URL, $send_for_check);
@@ -83,21 +83,20 @@
 									<div class="update-message"><?php echo theme_locals("info_box_2"); ?></div>
 								<?php } ?>
 								<div class="controls framework_info">
-									<span class="data_label"><?php echo theme_locals("name"); ?>:</span><span class="data_val"><?php echo get_theme_info(PARENT_NAME)->Name; ?></span><br>
-									<span class="data_label"><?php echo theme_locals("author"); ?>:</span><span class="data_val"><?php echo get_theme_info(PARENT_NAME)->Author; ?></span><br>
+									<span class="data_label"><?php echo theme_locals("name"); ?>:</span><span class="data_val"><?php echo get_theme_info(PARENT_NAME, 'Name'); ?></span><br>
+									<span class="data_label"><?php echo theme_locals("author"); ?>:</span><span class="data_val"><?php echo get_theme_info(PARENT_NAME, 'Author'); ?></span><br>
 									<span class="data_label"><?php echo theme_locals("your_version"); ?>:</span><span id="your_version_<?php echo PARENT_NAME; ?>" class="data_val"><?php echo $framework_version; ?></span><br>
 									<span class="data_label"><?php echo theme_locals("update_version"); ?>:</span><span id="update_version" class="data_val"><?php echo check_update(); ?></span><br>
 									<span class="data_label"><?php echo theme_locals("backup_version"); ?>:</span><span id="version_<?php echo PARENT_NAME; ?>" class="data_val"><?php echo get_file_date(PARENT_NAME)->backup_version ?></span><br>
 									<span class="data_label"><?php echo theme_locals("backup_date"); ?>:</span><span id="date_<?php echo PARENT_NAME; ?>" class="data_val"><?php echo get_file_date(PARENT_NAME)->date ?></span><br>
-									<span class="data_label"><?php echo theme_locals("description"); ?>:</span><span class="data_val"><?php echo get_theme_info(PARENT_NAME)->Description; ?></span><br>
-									<?php add_radio_button(get_theme_info(PARENT_NAME)->Template, "", true); ?>
+									<span class="data_label"><?php echo theme_locals("description"); ?>:</span><span class="data_val"><?php echo get_theme_info(PARENT_NAME, 'Description'); ?></span><br>
+									<?php add_radio_button(get_theme_info(PARENT_NAME, 'Template'), "", true); ?>
 								</div>
 								<?php if ( FILE_WRITEABLE ) { ?>
 								<div class="buttons_controls">
 									<div class="button_wrapper">
 										<?php 
-											$stylesheet = get_theme_info(PARENT_NAME)->get_stylesheet();
-											$update_url = wp_nonce_url('update.php?action=upgrade-theme&amp;theme=' . PARENT_NAME, 'upgrade-theme_' . $stylesheet);
+											$update_url = wp_nonce_url('update.php?action=upgrade-theme&amp;theme=' . PARENT_NAME, 'upgrade-theme_' . get_theme_info(PARENT_NAME, 'Name'));
 											$disable_class= "";
 											$cap= "";
 											if($framework_version>=check_update()){
@@ -128,7 +127,7 @@
 								$themes_array = array();
 								foreach ($themes as $theme) {
 									if(is_dir("$themes_dir/$theme")){
-										if(strtolower(get_theme_info($theme)->Template) == 'cherryframework' && strtolower($theme) != 'cherryframework'){
+										if(strtolower(get_theme_info($theme, 'Template')) == 'cherryframework' && strtolower($theme) != 'cherryframework'){
 											array_push($themes_array, $theme);
 										}
 									}

@@ -195,7 +195,7 @@ if (!function_exists('mini_posts_list_shortcode')) {
 							if ($meta == 'yes') {
 								// mini post meta
 								$output .= '<div class="mini-post-meta">';
-									$output .= '<time datetime="'.get_the_time('Y-m-d\TH:i:s', $post->ID).'"> <span>' .get_the_time('d', $post->ID). '</span>' .get_the_time('M', $post->ID). '</time>';
+									$output .= '<time datetime="'.get_the_time('Y-m-d\TH:i:s', $post->ID).'"> <span>' .get_the_date(). '</span></time>';
 								$output .= '</div>';
 							}
 							$output .= cherry_get_post_networks(array('post_id' => $post->ID, 'display_title' => false, 'output_type' => 'return'));

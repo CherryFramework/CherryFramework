@@ -168,15 +168,17 @@ if ( !$category_value ) {
 }?>
 
 <?php
-	// query
+	// The Query
 	$args = array(
 		'post_type'          => 'portfolio',
 		'paged'              => $paged,
-		'showposts'          => $items_count, 
+		'showposts'          => $items_count,
 		'portfolio_category' => $category_value,
 		'suppress_filters'   => $suppress_filters
 		);
-	$wp_query = new WP_Query($args);
+	
+	global $query_string;
+	query_posts($args);
 ?>
 
 <?php if ( !have_posts() ) : ?>
@@ -195,5 +197,5 @@ if ( !$category_value ) {
 
 <?php 
 	get_template_part('includes/post-formats/post-nav');
-	wp_reset_postdata();
+	wp_reset_query();
 ?>

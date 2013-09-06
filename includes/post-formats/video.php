@@ -50,10 +50,10 @@
 				echo stripslashes(htmlspecialchars_decode($embed));
 			} else { ?>
 				<script type="text/javascript">
-					$(document).ready(function(){
-						$("#jquery_jplayer_<?php the_ID(); ?>").jPlayer({
+					jQuery(document).ready(function(){
+						jQuery("#jquery_jplayer_<?php the_ID(); ?>").jPlayer({
 							ready: function () {
-								$(this).jPlayer("setMedia", {
+								jQuery(this).jPlayer("setMedia", {
 									m4v: "<?php echo stripslashes(htmlspecialchars_decode($file1)); ?>",
 									ogv: "<?php echo stripslashes(htmlspecialchars_decode($file2)); ?>" <?php if(has_post_thumbnail()) {?>,
 									poster: "<?php echo $image; ?>" <?php } ?>

@@ -7,9 +7,8 @@
 	<?php $random = gener_random(10); ?>
 
 	<script type="text/javascript">
-		// Can also be used with $(document).ready()
-		$(window).load(function() {
-			$('#flexslider_<?php echo $random ?>').flexslider({
+		jQuery(window).load(function() {
+			jQuery('#flexslider_<?php echo $random ?>').flexslider({
 				animation: "slide",
 				smoothHeight: true
 			});

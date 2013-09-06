@@ -70,7 +70,7 @@ class MY_PostWidget extends WP_Widget {
 				</figure>
 				<?php } ?>
 
-				<time datetime="<?php the_time('Y-m-d\TH:i'); ?>"><?php the_time('F j, Y'); ?></time>
+				<time datetime="<?php the_time('Y-m-d\TH:i'); ?>"><?php the_date(); ?></time>
 				
 				<h4 class="post-list_h">
 					<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php echo theme_locals("permanent_link_to"); ?> <?php the_title_attribute(); ?>"><?php the_title(); ?></a>

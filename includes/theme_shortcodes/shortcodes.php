@@ -172,7 +172,7 @@ if (!function_exists('shortcode_recent_posts')) {
 					}
 						
 					$output .= '<script type="text/javascript">
-						$(document).ready(function(){
+						jQuery(document).ready(function(){
 							var myPlaylist_'. $id.'  = new jPlayerPlaylist({
 							jPlayer: "#jquery_jplayer_'. $id .'",
 							cssSelectorAncestor: "#jp_container_'. $id .'"
@@ -183,7 +183,7 @@ if (!function_exists('shortcode_recent_posts')) {
 								'. $audio_format .' : "'. stripslashes(htmlspecialchars_decode($file)) .'"}
 							], { 
 								playlistOptions: {enableRemoveControls: false},
-								ready: function () {$(this).jPlayer("setMedia", {'. $audio_format .' : "'. stripslashes(htmlspecialchars_decode($file)) .'", poster: "'. $image .'"});
+								ready: function () {jQuery(this).jPlayer("setMedia", {'. $audio_format .' : "'. stripslashes(htmlspecialchars_decode($file)) .'", poster: "'. $image .'"});
 							},
 							swfPath: "'. $template_url .'/flash",
 							supplied: "'. $audio_format .', all",
@@ -280,10 +280,10 @@ if (!function_exists('shortcode_recent_posts')) {
 
 					if ($embed == '') {
 						$output .= '<script type="text/javascript">
-							$(document).ready(function(){
-								$("#jquery_jplayer_'. $id.'").jPlayer({
+							jQuery(document).ready(function(){
+								jQuery("#jquery_jplayer_'. $id.'").jPlayer({
 									ready: function () {
-										$(this).jPlayer("setMedia", {
+										jQuery(this).jPlayer("setMedia", {
 											m4v: "'. stripslashes(htmlspecialchars_decode($file1)) .'",
 											ogv: "'. stripslashes(htmlspecialchars_decode($file2)) .'",
 											poster: "'. $image .'"
@@ -359,7 +359,7 @@ if (!function_exists('shortcode_recent_posts')) {
 					if ($meta == 'true') {
 							$output .= '<span class="meta">';
 									$output .= '<span class="post-date">';
-										$output .= get_the_time( get_option( 'date_format' ) );
+										$output .= get_the_date();
 									$output .= '</span>';
 									$output .= '<span class="post-comments">';
 										$output .= '<a href="'.get_comments_link($post->ID).'">';
@@ -585,7 +585,7 @@ if (!function_exists('shortcode_video_preview')) {
 			$output_author = '<span class="post_author">Posts by <a href="'.$user_url.'" title="Posts by '.$get_user->user_nicename.'"  rel="author">'.$get_user->user_nicename.'</a></span>';
 		}
 		if($date=="yes"){
-			$output_date = '<span class="post_date"><time datetime="'.$get_post->post_date.'"> '.get_the_time('M j, Y', $post_ID).'</time></span>';
+			$output_date = '<span class="post_date"><time datetime="'.$get_post->post_date.'"> '.get_the_date().'</time></span>';
 		}
 		if($get_image_url!=false && $get_image_url!=''){
 			$img = '<a class="preview_image"  href="'.$post_url.'" title="'.$get_image_url.'"><img src="'.$get_image_url.'" alt=""><span class="icon-play-circle hover"></span></a>';

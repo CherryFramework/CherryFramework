@@ -22,15 +22,15 @@ class MY_FlickrWidget extends WP_Widget {
 	<ul id="flickr" class="flickr_list unstyled clearfix row-fluid"></ul>
 	<a href="http://flickr.com/photos/<?php echo $flickr_id ?>" class="link" target="_blank"><?php echo $linktext; ?></a>
 	<script>
-		$('#flickr').jflickrfeed({
+		jQuery('#flickr').jflickrfeed({
 			limit: <?php echo $amount ?>,
 			qstrings: {
 				id: '<?php echo $flickr_id ?>'
 			},
 			itemTemplate: '<li class="flickr_li span4"><a class="thumbnail" rel="prettyPhoto[gallery-<?php echo $suf; ?>]" href="{{image_b}}" title="{{title}}"><div class="wrapper"><img class="flickr_img" src="{{image_s}}" alt="{{title}}" /><span class="zoom-icon"></span></div></a></li>'
 		}, function(data) {
-			magnific_popup_init($("#flickr"));
-			$(".flickr_li:nth-child(3n-2)").addClass("nomargin");
+			magnific_popup_init(jQuery("#flickr"));
+			jQuery(".flickr_li:nth-child(3n-2)").addClass("nomargin");
 		});
 	</script>
 
