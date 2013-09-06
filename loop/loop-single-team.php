@@ -22,11 +22,13 @@
 		<?php } ?>
 		<div class="team-content post-content">
 			<?php the_content(); ?>
+			<div class="clear"></div>
 			<?php
 				if ( isset($teaminfo) ) { ?>
 					<span class="page-desc"><?php echo $teaminfo; ?></span>
 				<?php }
 			?>
+			<?php cherry_get_post_networks() ?>
 		</div><!--.post-content-->
 	</article>
 </div><!-- #post-## -->

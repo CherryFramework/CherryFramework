@@ -19,7 +19,7 @@
  *                                              'edge' => 'top', //top, bottom, left, right
  *                                              'align' => 'middle' //top, bottom, left, right, middle
  *                                              )
- *                           )
+ *                           ),
  *                        // more as needed
  *                        );
  *      //Now we instantiate the class and pass our pointer array to the constructor 
@@ -37,118 +37,125 @@
 
 class WP_Help_Pointer {
 
-    public $screen_id;
-    public $valid;
-    public $pointers;
-   
-    public function __construct( $pntrs = array() ) {
-      
-        // Don't run on WP < 3.3
-        if ( get_bloginfo( 'version' ) < '3.3' )
-            return;
+	public $screen_id;
+	public $valid;
+	public $pointers;
 
-        $screen = get_current_screen();
-        $this->screen_id = $screen->id;
-      
-        $this->register_pointers($pntrs);
+	public function __construct( $pntrs = array() ) {
 
-        add_action( 'admin_enqueue_scripts', array( &$this, 'add_pointers' ), 1000 );
-        add_action( 'admin_head', array( &$this, 'add_scripts' ) );
-    }
+		// Don't run on WP < 3.3
+		if ( get_bloginfo( 'version' ) < '3.3' )
+			return;
 
-    public function register_pointers( $pntrs ) {
+		$screen = get_current_screen();
+		$this->screen_id = $screen->id;
 
-        $pointers = NULL;
-       
-        foreach( $pntrs as $ptr ) {
-                
-            if( $ptr['screen'] == $this->screen_id ) {
-               
-                $pointers[$ptr['id']] = array(
-                    'screen' => $ptr['screen'],
-                    'target' => $ptr['target'],
-                    'options' => array(
-                        'content' => sprintf( '<h3> %s </h3> <p> %s </p>',$ptr['title'],$ptr['content']
-                        ),
-                        'position' => $ptr['position']
-                    )
-                );
-                
-            }
-        }
+		$this->register_pointers($pntrs);
 
-        if (isset($pointers)) {
-            $this->pointers = $pointers;
-        }
-    }
+		add_action( 'admin_enqueue_scripts', array( &$this, 'add_pointers' ), 1000 );
+		add_action( 'admin_head', array( &$this, 'add_scripts' ) );
+	}
 
-    public function add_pointers() {
-               
-        $pointers = $this->pointers;
+	public function register_pointers( $pntrs ) {
 
-        if ( ! $pointers || ! is_array( $pointers ) )
-            return;
-       
-        // Get dismissed pointers
-        $dismissed = explode( ',', (string) get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
-        $valid_pointers = array();
+		$pointers = NULL;
 
-        // Check pointers and remove dismissed ones.
-        foreach ( $pointers as $pointer_id => $pointer ) {
+		foreach( $pntrs as $ptr ) {
+			if( $ptr['screen'] == $this->screen_id ) {
+				$pointers[$ptr['id']] = array(
+					'screen' => $ptr['screen'],
+					'target' => $ptr['target'],
+					'options' => array(
+						'content' => sprintf( '<h3> %s </h3> <p> %s </p>',$ptr['title'],$ptr['content']
+						),
+						'position' => $ptr['position']
+					)
+				);
+			}
+		}
 
-            // Make sure we have pointers & check if they have been dismissed
-            if ( in_array( $pointer_id, $dismissed ) || empty( $pointer )  || empty( $pointer_id ) || empty( $pointer['target'] ) || empty( $pointer['options'] ) )
-                continue;
+		if (isset($pointers)) {
+			$this->pointers = $pointers;
+		}
+	}
 
-            $pointer['pointer_id'] = $pointer_id;
+	public function add_pointers() {
 
-            // Add the pointer to $valid_pointers array
-            $valid_pointers['pointers'][] =  $pointer;
-        }
+		$pointers = $this->pointers;
 
-        // No valid pointers? Stop here.
-        if ( empty( $valid_pointers ) )
-            return;
+		if ( ! $pointers || ! is_array( $pointers ) )
+			return;
 
-        $this->valid = $valid_pointers;
+		// Get dismissed pointers
+		$dismissed = explode( ',', (string) get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
+		$valid_pointers = array();
 
-        wp_enqueue_style( 'wp-pointer' );
-        wp_enqueue_script( 'wp-pointer' );
-    }
-   
-    public function add_scripts() {
-        $pointers = $this->valid;
-      
-        if( empty( $pointers ) ) 
-            return;
+		// Check pointers and remove dismissed ones.
+		foreach ( $pointers as $pointer_id => $pointer ) {
 
-        $pointers = json_encode( $pointers );
-   
-        echo <<<HTML
-        <script>
-        jQuery(document).ready( function($) {
-            var WPHelpPointer = {$pointers};
-           
-            $.each(WPHelpPointer.pointers, function(i) {
-                wp_help_pointer_open(i);
-            });
+			// Make sure we have pointers & check if they have been dismissed
+			if ( in_array( $pointer_id, $dismissed ) || empty( $pointer )  || empty( $pointer_id ) || empty( $pointer['target'] ) || empty( $pointer['options'] ) )
+				continue;
 
-            function wp_help_pointer_open(i) {
-                pointer = WPHelpPointer.pointers[i];
-                options = $.extend( pointer.options, {
-                    close: function() {
-                        $.post( ajaxurl, {
-                            pointer: pointer.pointer_id,
-                            action: 'dismiss-wp-pointer'
-                        });
-                    }
-                });
-                $(pointer.target).pointer( options ).pointer('open');
-            }
-        });
-        </script>
+			$pointer['pointer_id'] = $pointer_id;
+
+			// Add the pointer to $valid_pointers array
+			$valid_pointers['pointers'][] =  $pointer;
+		}
+
+		// No valid pointers? Stop here.
+		if ( empty( $valid_pointers ) )
+			return;
+
+		$this->valid = $valid_pointers;
+
+		wp_enqueue_style( 'wp-pointer' );
+		wp_enqueue_script( 'wp-pointer' );
+	}
+
+	public function add_scripts() {
+		$pointers = $this->valid;
+
+		if( empty( $pointers ) ) 
+			return;
+
+		$pointers = json_encode( $pointers );
+		$close_txt = theme_locals('pointer_close');
+
+		echo <<<HTML
+		<script>
+		jQuery(document).ready( function($) {
+			var WPHelpPointer = {$pointers};
+
+			$.each(WPHelpPointer.pointers, function(i) {
+				wp_help_pointer_open(i);
+			});
+
+			function wp_help_pointer_open(i) {
+				pointer = WPHelpPointer.pointers[i];
+				options = $.extend( pointer.options, {
+					close: function() {
+						$.post( ajaxurl, {
+							pointer: pointer.pointer_id,
+							action: 'dismiss-wp-pointer'
+						});
+					},
+					buttons: function( event, t ) {
+						var close  = '{$close_txt}',
+							button = $('<a class="close" href="#">' + close + '</a>');
+
+						return button.bind( 'click.pointer', function(e) {
+							e.preventDefault();
+							t.element.pointer('close');
+						});
+					}
+				});
+				$(pointer.target).pointer( options ).pointer('open');
+			}
+		});
+		</script>
 HTML;
-        
-    }
+
+	}
 
 } // end class

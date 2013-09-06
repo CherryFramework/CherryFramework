@@ -32,7 +32,8 @@ function optionsframework_rolescheck () {
 		// If the user can edit theme options, let the fun begin!
 		add_action( 'admin_menu', 'optionsframework_add_page');
 		add_action( 'admin_menu', 'optionsframework_add_subpage1');
-		add_action( 'admin_menu', 'optionsframework_add_subpage2');
+		add_action( 'admin_menu', 'optionsframework_add_data_managment');
+		add_action( 'admin_menu', 'optionsframework_add_seo');
 		add_action( 'admin_init', 'optionsframework_init' );
 		add_action( 'admin_init', 'optionsframework_mlu_init' );
 		add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
@@ -195,13 +196,24 @@ if ( !function_exists( 'optionsframework_add_subpage1' ) ) {
 
 /* Add a subpage called "Data Management" to the Cherry Options. */
 
-if ( !function_exists( 'optionsframework_add_subpage2' ) ) {
-	function optionsframework_add_subpage2 () {
+if ( !function_exists( 'optionsframework_add_data_managment' ) ) {
+	function optionsframework_add_data_managment () {
 		$of_page = add_submenu_page('options-framework', theme_locals("data_management"), theme_locals("data_management"), 'administrator', 'options-framework-data-management',  'admin_data_management');
 
 		// Adds actions to hook in the required css and javascript
 		add_action("admin_print_scripts-$of_page", 'optionsframework_load_scripts');
 		add_action("admin_print_styles-$of_page",'optionsframework_load_styles');
+	}
+}
+
+/* Add a subpage called "SEO" to the Cherry Options. */
+
+if ( !function_exists( 'optionsframework_add_seo' ) ) {
+	function optionsframework_add_seo () {
+		$of_page = add_submenu_page('options-framework', 'SEO', 'SEO', 'administrator', 'seo',  'seo_settings_page');
+		// Adds actions to hook in the required css and javascript
+		add_action("admin_print_scripts-$of_page", 'optionsframework_load_scripts_seo');
+		add_action("admin_print_styles-$of_page",'optionsframework_load_styles_seo');
 	}
 }
 
@@ -214,6 +226,10 @@ function optionsframework_load_styles() {
 
 function optionsframework_load_styles_store() {
 	wp_enqueue_style('style2', 'http://www.templatehelp.com/codes/jsbanner/a04/css/style2.css');
+	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_DIRECTORY.'css/optionsframework.css');
+}
+
+function optionsframework_load_styles_seo() {
 	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_DIRECTORY.'css/optionsframework.css');
 }
 
@@ -240,6 +256,15 @@ function optionsframework_load_scripts_store() {
 	// Inline scripts from options-interface.php
 	add_action('admin_head', 'of_admin_head');
 }
+
+function optionsframework_load_scripts_seo() {
+	// Enqueued scripts
+	wp_enqueue_script('jquery-ui-core');
+	wp_enqueue_script('options-custom', OPTIONS_FRAMEWORK_DIRECTORY.'js/options-custom.js', array('jquery'));
+	// Inline scripts from options-interface.php
+	add_action('admin_head', 'of_admin_head');
+}
+
 function of_admin_head() {
 
 	// Hook to add custom scripts

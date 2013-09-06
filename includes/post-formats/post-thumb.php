@@ -1,5 +1,7 @@
 <?php 
 	$post_image_size = (!is_singular()) ? of_get_option('post_image_size') : of_get_option('single_image_size');
+	$post_image_before = (!is_singular()) ? '<a href="'.get_permalink().'" title="'.get_the_title().'" >' : '';
+	$post_image_after = (!is_singular()) ? '</a>' : '';
 	$thumb        = get_post_thumbnail_id(); //get img ID
 	$img_url      = wp_get_attachment_url($thumb, 'full'); //get img URL
 	$img_width    = 770; //set width large img
@@ -16,6 +18,6 @@
 	
 	$image = $img_attr.aq_resize($img_url, $img_width, $img_height, true).'"'; //resize & crop img
 	if(has_post_thumbnail()) {
-		echo '<figure class="featured-thumbnail thumbnail '.$figure_class.'" ><a href="'.get_permalink().'" title="'.get_the_title().'" ><img '.$image.' alt="'.get_the_title().'" ></a></figure>';
+		echo '<figure class="featured-thumbnail thumbnail '.$figure_class.'" >'.$post_image_before.'<img '.$image.' alt="'.get_the_title().'" >'.$post_image_after.'</figure>';
 	};
 ?>

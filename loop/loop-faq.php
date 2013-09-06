@@ -2,7 +2,12 @@
 <?php
 	// WPML filter
 	$suppress_filters = get_option('suppress_filters');
-
+	if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+		<div id="post-<?php the_ID(); ?>" <?php post_class('page'); ?>>
+			<?php the_content(); ?>
+			<div class="clear"></div>
+		</div><!--#post-->
+	<?php endwhile;
 	//query
 	$temp     = $wp_query;
 	$wp_query = null;

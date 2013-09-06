@@ -192,13 +192,13 @@ if (!function_exists('mini_posts_list_shortcode')) {
 							$output .= '<h4><a href="'.get_permalink($post->ID).'" title="'.get_the_title($post->ID).'">';
 								$output .= get_the_title($post->ID);
 							$output .= '</a></h4>';
-
 							if ($meta == 'yes') {
 								// mini post meta
 								$output .= '<div class="mini-post-meta">';
 									$output .= '<time datetime="'.get_the_time('Y-m-d\TH:i:s', $post->ID).'"> <span>' .get_the_time('d', $post->ID). '</span>' .get_the_time('M', $post->ID). '</time>';
 								$output .= '</div>';
 							}
+							$output .= cherry_get_post_networks(array('post_id' => $post->ID, 'display_title' => false, 'output_type' => 'return'));
 							if($excerpt_count >= 1){
 								$output .= '<div class="excerpt">';
 									$output .= my_string_limit_words($excerpt,$excerpt_count);

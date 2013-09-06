@@ -77,31 +77,25 @@ add_shortcode('dropcap', 'dropcap_shortcode');
 
 
 // Horizontal Rule
-function hr_shortcode($atts, $content = null) {
+function hr_shortcode() {
 
-	$output = '<div class="hr"><!-- .hr (end) --></div>';
-
-	return $output;
+	return '<div class="hr"></div><!-- .hr (end) -->';
 }
 add_shortcode('hr', 'hr_shortcode');
 
 
 // Small Horizontal Rule
-function sm_hr_shortcode($atts, $content = null) {
+function sm_hr_shortcode() {
 
-	$output = '<div class="sm_hr"></div>';
-
-	return $output;
+	return '<div class="sm_hr"></div><!-- .sm_hr (end) -->';
 }
 add_shortcode('sm_hr', 'sm_hr_shortcode');
 
 
 // Spacer
-function spacer_shortcode($atts, $content = null) {
+function spacer_shortcode() {
 
-	$output = '<div class="spacer"><!-- .spacer (end) --></div>';
-
-	return $output;
+	return '<div class="spacer"></div><!-- .spacer (end) -->';
 }
 add_shortcode('spacer', 'spacer_shortcode');
 
@@ -119,12 +113,12 @@ add_shortcode('blockquote', 'blockquote_shortcode');
 
 
 // Row
-function row_shortcode($atts, $content=null) {
+function row_shortcode($atts, $content = null) {
 
-	// add divs to the content	
+	// add divs to the content
 	$output = '<div class="row">';
 	$output .= do_shortcode($content);
-	$output .= '</div> <!-- .row (end) -->';
+	$output .= '</div><!-- .row (end) -->';
 
 	return $output;
 }
@@ -132,7 +126,7 @@ add_shortcode('row', 'row_shortcode');
 
 
 // Row Inner
-function row_inner_shortcode($atts, $content=null) {
+function row_inner_shortcode($atts, $content = null) {
 
 	// add divs to the content  
 	$output = '<div class="row">';
@@ -145,7 +139,7 @@ add_shortcode('row_in', 'row_inner_shortcode');
 
 
 // Row Fluid
-function row_fluid_shortcode($atts, $content=null) {
+function row_fluid_shortcode($atts, $content = null) {
 
 	// add divs to the content  
 	$output = '<div class="row-fluid">';
@@ -157,11 +151,9 @@ function row_fluid_shortcode($atts, $content=null) {
 add_shortcode('row_fluid', 'row_fluid_shortcode');
 
 // Clear
-function clear_shortcode($atts, $content = null) {
+function clear_shortcode() {
 
-	$output = '<div class="clear"></div>';
-
-	return $output;
+	return '<div class="clear"></div><!-- .clear (end) -->';
 }
 add_shortcode('clear', 'clear_shortcode');
 
@@ -171,8 +163,8 @@ function address_shortcode($atts, $content = null) {
 	
 	$output = '<address>';
 	$output .= do_shortcode($content);
-	$output .= '</address> <!-- address (end) -->';
-   
+	$output .= '</address><!-- address (end) -->';
+
 	return $output;
 }
 add_shortcode('address', 'address_shortcode');
@@ -267,8 +259,8 @@ function vr_shortcode($atts, $content = null) {
 	
 	$output = '<div class="vertical-divider">';
 	$output .= do_shortcode($content);
-	$output .= '</div> <!-- divider (end) -->';
-   
+	$output .= '</div><!-- divider (end) -->';
+
 	return $output;
 }
 add_shortcode('vr', 'vr_shortcode');
@@ -319,22 +311,22 @@ function icon_shortcode($atts, $content = null) {
 			'custom_class'    => '',
 			'align'           => ''
 	), $atts));
-    $template_url = (is_dir(CHILD_DIR.'/images/iconSweets'))?CHILD_URL:PARENT_URL;
+	$template_url = (is_dir(CHILD_DIR.'/images/iconSweets'))?CHILD_URL:PARENT_URL;
 
-    if ($icon_type == 'Images' || $icon_type == '') {
-        $icon_images = ($icon_images != '')? strtolower($icon_images) : "alert"; 
-        $output = '<figure class="align'. $align ." ".$custom_class.'"><img src="'. $template_url  .'/images/iconSweets/'. $icon_images .'.png" alt=""></figure>';
-        return $output;
-    }else{
-        $icon_font = ($icon_font != '')? strtolower($icon_font) : "icon-question";
-        $icon_font_size = ($icon_font_size != '')? $icon_font_size : "14px";
-        if(stripos($icon_font_size, "px")===false && stripos($icon_font_size, "em")===false){
-            $icon_font_size = (int) $icon_font_size . "px";
-        }
-        $icon_font_color = ($icon_font_color != '')? $icon_font_color : "#00000";
-        $output = '<figure class="align'.$align.' aligntext'.$align.' "><i class="'.$icon_font.' '.$custom_class.'" style="color:'.$icon_font_color.'; font-size:'.$icon_font_size.'; line-height:1.2em;"></i></figure>';
-        return $output;
-    }
+	if ($icon_type == 'Images' || $icon_type == '') {
+		$icon_images = ($icon_images != '')? strtolower($icon_images) : "alert"; 
+		$output = '<figure class="align'. $align ." ".$custom_class.'"><img src="'. $template_url  .'/images/iconSweets/'. $icon_images .'.png" alt=""></figure>';
+		return $output;
+	}else{
+		$icon_font = ($icon_font != '')? strtolower($icon_font) : "icon-question";
+		$icon_font_size = ($icon_font_size != '')? $icon_font_size : "14px";
+		if(stripos($icon_font_size, "px")===false && stripos($icon_font_size, "em")===false){
+			$icon_font_size = (int) $icon_font_size . "px";
+		}
+		$icon_font_color = ($icon_font_color != '')? $icon_font_color : "#00000";
+		$output = '<figure class="align'.$align.' aligntext'.$align.' "><i class="'.$icon_font.' '.$custom_class.'" style="color:'.$icon_font_color.'; font-size:'.$icon_font_size.'; line-height:1.2em;"></i></figure>';
+		return $output;
+	}
 }
 add_shortcode('icon', 'icon_shortcode');
 

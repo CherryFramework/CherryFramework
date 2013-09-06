@@ -37,6 +37,7 @@
 		} else {
 			$theme_name = get_current_theme();
 		}
+		$theme_name = preg_replace("/\W/", "_", strtolower($theme_name) );
 		return $theme_name;
 	}
 
@@ -44,7 +45,10 @@
 	 * Comment some value from variables.less
 	 *
 	 */
-	function childComment() {
+	if ( CURRENT_THEME != 'cherry' )
+		add_action('cherry_activation_hook', 'comment_child_var');
+
+	function comment_child_var() {
 		global $variablesArray;
 
 		$file = CHILD_DIR .'/bootstrap/less/variables.less';
@@ -93,6 +97,8 @@
 	/*
 	 * Unlink less cache files
 	 */
+	add_action('cherry_activation_hook', 'clean_less_cache');
+	
 	function clean_less_cache() {
 		if ( CURRENT_THEME == 'cherry' ) {
 			$bootstrapInput	= PARENT_DIR .'/less/bootstrap.less';
@@ -108,10 +114,8 @@
 		if (file_exists($cacheFile2)) unlink($cacheFile2);
 	}
 
-	if (( (is_admin() && isset($_GET['activated'] )) || (is_admin() && ($pagenow == "themes.php")) ) && FILE_WRITEABLE) {
-		clean_less_cache();
-
-		if ( CURRENT_THEME != 'cherry' ) childComment();
+	if ( (is_admin() && ($pagenow == "themes.php")) && FILE_WRITEABLE ) {
+		do_action('cherry_activation_hook');
 	}
 
 	/*
@@ -179,6 +183,7 @@
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/hero_unit.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/roundabout.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/categories.php');
+	include_once (PARENT_DIR . '/includes/theme_shortcodes/media.php');
 	
 	//tinyMCE includes
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/tinymce/tinymce_shortcodes.php');
@@ -214,12 +219,17 @@
 
 	// Framework Data Management
 	include_once (PARENT_DIR . '/admin/data_management/data_management_interface.php');
+
+	// SEO Settings
+	include_once (PARENT_DIR . '/admin/seo/seo_settings_page.php');
 	
 	// WP Pointers
 	include_once (PARENT_DIR . '/includes/class.wp-help-pointers.php');
 
 	// Embedding LESS compile
-	include_once (PARENT_DIR .'/includes/lessc.inc.php');
+	if ( !class_exists('lessc') ) {
+		include_once (PARENT_DIR .'/includes/lessc.inc.php');
+	}
 	include_once (PARENT_DIR .'/includes/less-compile.php');
 	
 	// include shop
@@ -1156,5 +1166,50 @@ function warning_notice() {
 			$user_voting = 'dislike';
 		}
 		return array('like_count' => $like_count, 'dislike_count' => $dislike_count, 'user_voting' => $user_voting);
+	}
+//------------------------------------------------------
+//  Get team social networks
+//------------------------------------------------------
+	function cherry_get_post_networks($args = array()){
+		global $post;
+		extract(
+			wp_parse_args(
+				$args,
+				array(
+					'post_id' => get_the_ID(),
+					'class' => 'post_networks',
+					'before_title' => '<h4>',
+					'after_title' => '</h4>',
+					'display_title' => true,
+					'output_type' => 'echo'
+				)
+			)
+		);
+		$networks_array = explode(" ", get_option('fields_id_value'.$post_id, ''));
+
+		if($networks_array[0]!=''){
+			$count = 0;
+			$network_title = get_post_meta($post_id, 'network_title', true);
+
+			$output = '<div class="'.$class.'">';
+			$output .= $network_title && $display_title ? $before_title.$network_title.$after_title : '';
+			$output .= '<ul class="clearfix unstyled">';
+			foreach ($networks_array as $networks_id) {
+				$network_array = explode(";", get_option('network_'.$post_id.'_'.$networks_id, array('','','')));
+				$output .= '<li class="network_'.$count.'">';
+				$output .= $network_array[2] ? '<a href="'.$network_array[2].'" title="'.$network_array[1].'">' : '' ;
+				$output .= $network_array[0] ? '<span class="'.$network_array[0].'"></span>' :'';
+				$output .= $network_array[1] ? '<span class="network_title">'.$network_array[1].'</span>' : '' ;
+				$output .= $network_array[2] ? '</a>' : '' ;
+				$output .= '</li>';
+				++$count;
+			}
+			$output .= '</ul></div>';
+			if($output_type == 'echo'){
+				echo $output;
+			}else{
+				return $output;
+			}
+		}
 	}
 ?>

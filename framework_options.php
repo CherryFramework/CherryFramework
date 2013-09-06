@@ -1,12 +1,9 @@
 <?php
 	if(!function_exists('optionsframework_option_name')) {
 		function optionsframework_option_name() {
-			// This gets the theme name from the stylesheet (lowercase and without spaces)
-			$themename = CURRENT_THEME;
-			$themename = preg_replace("/\W/", "_", strtolower($themename) );
-			
+			// This gets the theme name from the stylesheet (lowercase and without spaces)			
 			$optionsframework_settings = get_option('optionsframework');
-			$optionsframework_settings['id'] = $themename;
+			$optionsframework_settings['id'] = CURRENT_THEME;
 			update_option('optionsframework', $optionsframework_settings);
 		}
 		
@@ -19,10 +16,10 @@
 	if(!function_exists('framework_options')){
 		function framework_options() {
 			global $typography_mixed_fonts;
-				if(count($typography_mixed_fonts)==0){
-					$typography_mixed_fonts = array_merge(options_typography_get_os_fonts() , options_typography_get_google_fonts());
-					asort($typography_mixed_fonts);
-				}
+			if(count($typography_mixed_fonts)==0){
+				$typography_mixed_fonts = array_merge(options_typography_get_os_fonts() , options_typography_get_google_fonts());
+				asort($typography_mixed_fonts);
+			}
 
 	//true/false array
 			$true_false_array = array(
@@ -676,6 +673,13 @@
 			$options['folio_meta'] = array( "name" => theme_locals("show_meta_name"),
 								"desc" => theme_locals("show_meta_desc"),
 								"id" => "folio_meta",
+								"std" => "yes",
+								"type" => "radio",
+								"options" => $yes_no_array);
+
+			$options['folio_lightbox'] = array( "name" => theme_locals("enable_lightbox"),
+								"desc" => theme_locals("folio_enable_lightbox_desc"),
+								"id" => "folio_lightbox",
 								"std" => "yes",
 								"type" => "radio",
 								"options" => $yes_no_array);
