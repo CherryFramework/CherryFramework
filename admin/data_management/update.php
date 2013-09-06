@@ -7,7 +7,7 @@
 
 /******************Change this*******************/
 @define('API_URL', 'http://updates.cherry.template-help.com/cherrymoto/api/');
-@define('DETAILS_URL', 'http://www.cherryframework.com/update/cherry-framework-v-2-2-1/');
+@define('DETAILS_URL', 'http://www.cherryframework.com/update/cherry-framework-v-2-3/');
 /************************************************/
 
 /*******************Child Theme******************
