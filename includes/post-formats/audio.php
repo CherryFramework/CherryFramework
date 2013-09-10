@@ -26,7 +26,7 @@
 	
 	<div class="audio-wrap">
 		<script type="text/javascript">
-			$(document).ready(function(){
+			jQuery(document).ready(function(){
 				var myPlaylist_<?php the_ID(); ?> = new jPlayerPlaylist({
 					jPlayer: "#jquery_jplayer_<?php the_ID(); ?>",
 					cssSelectorAncestor: "#jp_container_<?php the_ID(); ?>"
@@ -42,7 +42,7 @@
 					enableRemoveControls: false
 				},
 				ready: function () {
-					$(this).jPlayer("setMedia", {
+					jQuery(this).jPlayer("setMedia", {
 						<?php echo $audio_format; ?>: "<?php echo stripslashes(htmlspecialchars_decode($file)); ?>"
 						});
 					},

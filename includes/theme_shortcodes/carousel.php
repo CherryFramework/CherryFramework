@@ -164,7 +164,7 @@ if (!function_exists('shortcode_carousel')) {
 
 					$output .= '<div class="desc">';
 					if ($date == "yes") {
-						$output .= '<time datetime="'.get_the_time('Y-m-d\TH:i:s', $post->ID).'">' .get_the_time('M', $post->ID). ' <span>'.get_the_time('d', $post->ID).'</span></time>';
+						$output .= '<time datetime="'.get_the_time('Y-m-d\TH:i:s', $post->ID).'">' .get_the_date().'</time>';
 					}
 
 					if ($author == "yes") {

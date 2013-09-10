@@ -105,7 +105,7 @@ function widget($args, $instance) {
 		}	
    
 		if ( $instance['date'] ) : ?>
-			<time datetime="<?php the_time('Y-m-d\TH:i'); ?>"><?php the_time('F j, Y'); ?> <?php the_time() ?></time>
+			<time datetime="<?php the_time('Y-m-d\TH:i'); ?>"><?php the_date(); ?> <?php the_time() ?></time>
 		<?php endif;
 
 		if ( $instance['comment_num'] ) : ?>
@@ -113,7 +113,7 @@ function widget($args, $instance) {
 		<?php endif;
 
 		if ( $instance['show_title'] ) : ?>
-			<h4 class="post-list_h"><a class="post-title" href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php if ( $instance['show_title_date'] ) {?>[<?php the_time('m-d-Y'); ?>]<?php }else{?><?php the_title(); ?><?php }?></a></h4>
+			<h4 class="post-list_h"><a class="post-title" href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php if ( $instance['show_title_date'] ) {?>[<?php echo get_the_date(); ?>]<?php }else{?><?php the_title(); ?><?php }?></a></h4>
 		<?php endif; ?>
 				
 				

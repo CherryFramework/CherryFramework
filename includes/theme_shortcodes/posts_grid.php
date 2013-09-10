@@ -239,12 +239,12 @@ if (!function_exists('posts_grid_shortcode')) {
 
 							// post date
 							$output .= '<span class="post_date">';
-							$output .= '<time datetime="'.get_the_time('Y-m-d\TH:i:s', $post_id).'">' .get_the_time( get_option( 'date_format' ), $post_id ). '</time>';
+							$output .= '<time datetime="'.get_the_time('Y-m-d\TH:i:s', $post_id).'">' .get_the_date(). '</time>';
 							$output .= '</span>';
 
 							// post author
 							$output .= '<span class="post_author">';
-							$output .= '<em>by </em>';
+							$output .= '<em> by </em>';
 							$output .= '<a href="'.get_author_posts_url(get_the_author_meta( 'ID' )).'">'.get_the_author_meta('display_name').'</a>';
 							$output .= '</span>';
 
