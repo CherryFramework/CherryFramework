@@ -93,7 +93,7 @@
 					}
 				});
 
-				$(window).resize(resizeWindow);
+				jQuery(window).resize(resizeWindow);
 				myAccordionList.mouseleave(mouseLeaveSlider);
 			}
 		});

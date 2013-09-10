@@ -252,9 +252,8 @@ if ( !function_exists( 'tz_gallery' ) ) {
 	function tz_gallery($postid, $imagesize) { ?>
 		<?php $random = gener_random(10); ?>
 			<script type="text/javascript">
-				// Can also be used with $(document).ready()
-				$(window).load(function() {
-					$('#flexslider_<?php echo $random ?>').flexslider({
+				jQuery(window).load(function() {
+					jQuery('#flexslider_<?php echo $random ?>').flexslider({
 						animation: "slide",
 						smoothHeight : true
 					});
@@ -330,7 +329,7 @@ if ( !function_exists( 'tz_audio' ) ) {
 		}
 	?>
 		<script type="text/javascript">
-			$(document).ready(function(){
+			jQuery(document).ready(function(){
 				var myPlaylist_<?php the_ID(); ?> = new jPlayerPlaylist({
 					jPlayer: "#jquery_jplayer_<?php the_ID(); ?>",
 					cssSelectorAncestor: "#jp_container_<?php the_ID(); ?>"
@@ -346,7 +345,7 @@ if ( !function_exists( 'tz_audio' ) ) {
 					enableRemoveControls: false
 				},
 				ready: function () {
-					$(this).jPlayer("setMedia", {
+					jQuery(this).jPlayer("setMedia", {
 						<?php echo $audio_format; ?>: "<?php echo stripslashes(htmlspecialchars_decode($file)); ?>"
 						});
 					},
@@ -445,10 +444,10 @@ if ( !function_exists( 'tz_video' ) ) {
 			</div>
 		<?php } else { ?>
 			<script type="text/javascript">
-				$(document).ready(function(){
-					$("#jquery_jplayer_<?php the_ID(); ?>").jPlayer({
+				jQuery(document).ready(function(){
+					jQuery("#jquery_jplayer_<?php the_ID(); ?>").jPlayer({
 						ready: function () {
-							$(this).jPlayer("setMedia", {
+							jQuery(this).jPlayer("setMedia", {
 								m4v: "<?php echo stripslashes(htmlspecialchars_decode($file1)); ?>",
 								ogv: "<?php echo stripslashes(htmlspecialchars_decode($file2)); ?>" <?php if(has_post_thumbnail()) {?>,
 								poster: "<?php echo $image; ?>" <?php } ?>
@@ -573,7 +572,7 @@ if ( !function_exists( 'mytheme_comment' ) ) {
 				<div class="reply">
 					<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
 				</div>
-				<div class="comment-meta commentmetadata"><?php printf('%1$s', get_comment_date('F j, Y')) ?></div>
+				<div class="comment-meta commentmetadata"><?php printf('%1$s', get_comment_date()) ?></div>
 			</div>
 		</div>
 <?php }

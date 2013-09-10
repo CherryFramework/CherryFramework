@@ -31,8 +31,8 @@ if (!function_exists('shortcode_post_cycle')) {
 		$rand              = rand();
 
 		$output = '<script type="text/javascript">
-						$(window).load(function() {
-							$("#flexslider_'.$random.'").flexslider({
+						jQuery(window).load(function() {
+							jQuery("#flexslider_'.$random.'").flexslider({
 								animation: "'.$effect.'",
 								smoothHeight : true,
 								directionNav: '.$slider_navigation.',
@@ -134,7 +134,7 @@ if (!function_exists('shortcode_post_cycle')) {
 					if($meta == 'true'){
 						$output .= '<span class="meta">';
 						$output .= '<span class="post-date">';
-						$output .= get_the_time( get_option( 'date_format' ) );
+						$output .= get_the_date();
 						$output .= '</span>';
 						$output .= '<span class="post-comments">'.theme_locals('comments').": ";
 						$output .= '<a href="'.get_comments_link($post->ID).'">';
