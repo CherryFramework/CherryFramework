@@ -7,13 +7,14 @@
 	create_zip ($theme_folder);
 
 	function create_zip ($themeName){
+		$exclude_files = array('.', '..', '.svn', 'thumbs.db', '!sources', 'style.less.cache', 'bootstrap.less.cache', '.gitignore', '.git');
 		$all_themes_dir = str_replace('\\', '/', get_theme_root());
 		$backup_dir = str_replace('\\', '/', WP_CONTENT_DIR).'/themes_backup';
 		$zip_name = $backup_dir."/".$themeName.'.zip';
 		$backup_date = date("F d Y");
 		
 		if(is_dir($all_themes_dir."/".$themeName)){
-			$file_string = scan_dir($all_themes_dir."/".$themeName, array('.', '..', '.svn', 'thumbs.db', '!sources'));
+			$file_string = scan_dir($all_themes_dir."/".$themeName, $exclude_files);
 		}
 
 		if ( function_exists('wp_get_theme') ) {

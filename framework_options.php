@@ -546,6 +546,13 @@
 								"type" => "radio",
 								"options" => $true_false_array);
 
+			$options['blog_button_text'] = array( "name" => theme_locals('button_text_name'),
+								"desc" => theme_locals('button_text_desc'),
+								"id" => "blog_button_text",
+								"std" => "Read More",
+								"class" => "tiny",
+								"type" => "text");
+
 			$options['post_meta'] = array( "name" => theme_locals('meta_name'),
 								"desc" => theme_locals('meta_desc'),
 								"id" => "post_meta",
@@ -669,6 +676,13 @@
 								"std" => "yes",
 								"type" => "radio",
 								"options" => $yes_no_array);
+
+			$options['folio_button_text'] = array( "name" => theme_locals('folio_button_text_name'),
+								"desc" => theme_locals('folio_button_text_desc'),
+								"id" => "folio_button_text",
+								"std" => "Read More",
+								"class" => "tiny",
+								"type" => "text");
 
 			$options['folio_meta'] = array( "name" => theme_locals("show_meta_name"),
 								"desc" => theme_locals("show_meta_desc"),

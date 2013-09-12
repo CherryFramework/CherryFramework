@@ -716,15 +716,12 @@ html[xmlns] .slides { display:block; }
 	margin:0;
 	padding:0 0 5px 28px;
 	background:none;
-	color:#000;
 	font-weight:normal;
-	font-size:15px;
 }
 .faq-list_body {
 	position:relative;
 	margin:0 0 2em 0;
 	padding:0 0 0 28px;
-	color:#888;
 }
 .faq-list_body .marker { top:3px; }
 .faq-list .marker {
@@ -732,13 +729,11 @@ html[xmlns] .slides { display:block; }
 	top:0;
 	left:0;
 	display:block;
-	color:#333;
 	font-weight:bold;
-	font-size:15px;
+	margin:0;
 }
 .error404-holder { padding:30px 0 100px 0; }
 .error404-holder_num {
-	color:#0088cc;
 	text-align:center;
 	font-size:250px;
 	line-height:1.2em;
@@ -819,7 +814,6 @@ html[xmlns] .slides { display:block; }
 .post_meta div[class^="post_"] .ajax_voting span { color:inherit; }
 .post_meta div[class^="post_"] .user_voting { cursor:default; }
 .post_meta div[class^="post_"] .user_voting i, .post_meta div[class^="post_"] .user_voting span {
-	color:#D5D5D5;
 	transition:all 0.2s ease-in-out;
 	-webkit-transition:all 0.2s ease-out;
 }
@@ -907,9 +901,9 @@ html[xmlns] .slides { display:block; }
 	border-radius:5px;
 	visibility:hidden;
 	animation:tips_out 0.3s ease-out;
-	animation-fill-mode:both;
+	animation-fill-mode:forwards;
 	-webkit-animation:tips_out 0.3s ease-out;
-	-webkit-animation-fill-mode:both;
+	-webkit-animation-fill-mode:forwards;
 }
 .meta_type_icon > div.post_meta_unite div[class^="post_"] .tips:before {
 	background:transparent;
@@ -918,7 +912,7 @@ html[xmlns] .slides { display:block; }
 	height:0px;
 	border-style:solid;
 	border-width:0 7px 7px 7px;
-	border-color:transparent transparent #DDD transparent;
+	border-color:transparent transparent #EAEAEA transparent;
 	position:absolute;
 	margin:-19px 0 0 5px;
 	padding-top:10px;
@@ -929,9 +923,9 @@ html[xmlns] .slides { display:block; }
 	visibility:visible;
 	margin-top:15px;
 	animation:tips_in 0.3s ease-out;
-	animation-fill-mode:both;
+	animation-fill-mode:backwards;
 	-webkit-animation:tips_in 0.3s ease-out;
-	-webkit-animation-fill-mode:both;
+	-webkit-animation-fill-mode:backwards;
 }
 @media (max-width: 768px) {
 	 .post_meta .post_meta_unite {
@@ -956,7 +950,7 @@ html[xmlns] .slides { display:block; }
 		width:100%;
 	}
 	.meta_type_icon .post_meta_unite span .tips {
-		position:relative;
+		position:absolute;
 		display:inline-block;
 		visibility:visible;
 		margin:0;
@@ -1286,14 +1280,14 @@ p.gravatar {
 #wp-calendar caption {
 	margin-bottom:5px;
 	padding:4px 0;
-	color:#000;
+	color:#0088cc;
 	font-weight:bold;
 	font-size:16px;
 	text-align:center;
 }
 #wp-calendar thead th {
 	padding:7px 0;
-	color:#000;
+	color:#0088cc;
 	text-align:center;
 	font-size:14px;
 }
@@ -2087,6 +2081,7 @@ article .post-content img { max-width:100%; }
 	speak:none;
 	*margin-right:.3em;
 }
+.list > ul li:before { color:#999; }
 .list.check-list > ul li:before { content:"\f00c"; }
 .list.check2-list > ul li:before { content:"\f078"; }
 .list.arrow-list > ul li:before { content:"\f054"; }

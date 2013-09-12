@@ -577,7 +577,7 @@ if (!function_exists('shortcode_video_preview')) {
 		$video_url = parser_video_url(get_post_meta($post_ID, 'tz_video_embed', true));
 		$get_image_url = video_image($video_url);
 		$img='';
-
+		
 		if($title=="yes"){
 			$output_title = '<h4><a href="'.$post_url.'" title="'.$get_post->post_title.'">'.$get_post->post_title.'</a></h4>';
 		}
@@ -619,7 +619,7 @@ if (!function_exists('video_image')) {
 				return "http://img.youtube.com/vi/".$image_id."/0.jpg";
 			} else if(stripos($url, "vimeo")!==false){
 				$get_header = @get_headers("http://vimeo.com/api/v2/video/".$image_id.".php");
-				if($get_header[0] == 'HTTP/1.0 200 OK'){
+				if(stripos($get_header[0],'200 OK')){
 					$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/".$image_id.".php"));
 					return $hash[0]["thumbnail_large"];
 				}else{

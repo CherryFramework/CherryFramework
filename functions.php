@@ -951,14 +951,14 @@
 //------------------------------------------------------
 //  Warning notice
 //------------------------------------------------------
-add_action( 'admin_notices', 'warning_notice' );
-function warning_notice() {
-	global $pagenow;
-	$pageHidden = array('admin.php');
-    if (!get_user_meta(get_current_user_id(), '_wp_hide_notice', true) && is_admin() && !FILE_WRITEABLE && !in_array($pagenow, $pageHidden)) {
-        printf('<div class="updated"><strong><p>'.theme_locals('warning_notice_2').'</p><p>'.theme_locals('warning_notice_3').'</p><p><a href="'.esc_url(add_query_arg( 'wp_nag', wp_create_nonce( 'wp_nag' ))).'">'.theme_locals('dismiss_notice').'</a></p></strong></div>');
-    }
-}
+	add_action( 'admin_notices', 'warning_notice' );
+	function warning_notice() {
+		global $pagenow;
+		$pageHidden = array('admin.php');
+		if (!get_user_meta(get_current_user_id(), '_wp_hide_notice', true) && is_admin() && !FILE_WRITEABLE && !in_array($pagenow, $pageHidden)) {
+			printf('<div class="updated"><strong><p>'.theme_locals('warning_notice_2').'</p><p>'.theme_locals('warning_notice_3').'</p><p><a href="'.esc_url(add_query_arg( 'wp_nag', wp_create_nonce( 'wp_nag' ))).'">'.theme_locals('dismiss_notice').'</a></p></strong></div>');
+		}
+	}
 //------------------------------------------------------
 //  Post Meta
 //------------------------------------------------------
@@ -985,7 +985,6 @@ function warning_notice() {
 				}
 			}	
 		}
-
 
 		if($post_meta_type!='false'){
 			$post_ID = get_the_ID();
@@ -1040,7 +1039,12 @@ function warning_notice() {
 									<i class="icon-bookmark"></i>
 									<?php 
 										echo $icon_tips_before;
-										($post_type != 'post') ? the_terms($post_ID, $post_type.'_category','',', ') : the_category(', ');
+										if($post_type != 'post'){
+											$custom_category = !is_wp_error(get_the_term_list($post_ID, $post_type.'_category','',', ')) ? get_the_term_list($post_ID, $post_type.'_category','',', ') : theme_locals('has_not_category');
+											echo $custom_category;
+										}else{
+											the_category(', ');
+										}
 										echo $icon_tips_after;
 									?>
 								</div>
