@@ -619,7 +619,7 @@ if (!function_exists('video_image')) {
 				return "http://img.youtube.com/vi/".$image_id."/0.jpg";
 			} else if(stripos($url, "vimeo")!==false){
 				$get_header = @get_headers("http://vimeo.com/api/v2/video/".$image_id.".php");
-				if($get_header[0] == 'HTTP/1.0 200 OK'){
+				if(stripos($get_header[0],'200 OK')){
 					$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/".$image_id.".php"));
 					return $hash[0]["thumbnail_large"];
 				}else{
