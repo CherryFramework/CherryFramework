@@ -60,8 +60,9 @@ class MY_CommentWidget extends WP_Widget_Recent_Comments {
 			<li class="comments-custom_li">
 				
 				<?php if(function_exists('get_avatar') && $display_avatar == 'on') {
-					echo '<figure class="thumbnail featured-thumbnail">'; 
-					echo get_avatar( get_the_author_meta('email'), $avatar_size ); /* This avatar is the user's gravatar (http://gravatar.com) based on their administrative email address */ 
+					echo '<figure class="thumbnail featured-thumbnail">';
+					echo get_avatar( get_the_author_meta('email', $id = get_comment(get_comment_ID())->user_id), $avatar_size );
+					 /* This avatar is the user's gravatar (http://gravatar.com) based on their administrative email address */ 
 					echo '</figure>';
 				} ?>
 				<?php if($display_post_title == 'on') {
