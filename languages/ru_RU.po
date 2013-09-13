@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru_RU\n"
 "POT-Creation-Date: 2013-09-04 18:01+0200\n"
-"PO-Revision-Date: 2013-09-04 18:03+0200\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2013-09-10 12:41+0200\n"
+"Last-Translator: alex <alex@alex.com>\n"
 "Language-Team:  <demolink@info.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -137,7 +137,7 @@ msgstr "Жирный курсив"
 #: ../admin/parsers.php:43 ../admin/parsers.php:75 ../admin/parsers.php:83
 #: ../includes/locals.php:878 ../includes/locals.php:880
 msgid "There was an error when reading this WXR file"
-msgstr "Произошла ошибкапри чтении WXR файла"
+msgstr "Произошла ошибка при чтении WXR файла"
 
 #: ../admin/parsers.php:44 ../includes/locals.php:879
 msgid ""
@@ -404,7 +404,7 @@ msgstr "Первая"
 
 #: ../includes/locals.php:66
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: ../includes/locals.php:69
 msgid "Previous"
@@ -1124,127 +1124,127 @@ msgstr ""
 
 #: ../includes/locals.php:239
 msgid "linear"
-msgstr ""
+msgstr "linear"
 
 #: ../includes/locals.php:240
 msgid "easeInSine"
-msgstr ""
+msgstr "easeInSine"
 
 #: ../includes/locals.php:241
 msgid "easeOutSine"
-msgstr ""
+msgstr "easeOutSine"
 
 #: ../includes/locals.php:242
 msgid "easeInOutSine"
-msgstr ""
+msgstr "easeInOutSine"
 
 #: ../includes/locals.php:243
 msgid "easeInQuad"
-msgstr ""
+msgstr "easeInQuad"
 
 #: ../includes/locals.php:244
 msgid "easeOutQuad"
-msgstr ""
+msgstr "easeOutQuad"
 
 #: ../includes/locals.php:245
 msgid "easeInOutQuad"
-msgstr ""
+msgstr "easeInOutQuad"
 
 #: ../includes/locals.php:246
 msgid "easeInCubic"
-msgstr ""
+msgstr "easeInCubic"
 
 #: ../includes/locals.php:247
 msgid "easeOutCubic"
-msgstr ""
+msgstr "easeOutCubic"
 
 #: ../includes/locals.php:248
 msgid "easeInOutCubic"
-msgstr ""
+msgstr "easeInOutCubic"
 
 #: ../includes/locals.php:249
 msgid "easeInQuart"
-msgstr ""
+msgstr "easeInQuart"
 
 #: ../includes/locals.php:250
 msgid "easeOutQuart"
-msgstr ""
+msgstr "easeOutQuart"
 
 #: ../includes/locals.php:251
 msgid "easeInOutQuart"
-msgstr ""
+msgstr "easeInOutQuart"
 
 #: ../includes/locals.php:252
 msgid "easeInQuint"
-msgstr ""
+msgstr "easeInQuint"
 
 #: ../includes/locals.php:253
 msgid "easeOutQuint"
-msgstr ""
+msgstr "easeOutQuint"
 
 #: ../includes/locals.php:254
 msgid "easeInOutQuint"
-msgstr ""
+msgstr "easeInOutQuint"
 
 #: ../includes/locals.php:255
 msgid "easeInExpo"
-msgstr ""
+msgstr "easeInExpo"
 
 #: ../includes/locals.php:256
 msgid "easeOutExpo"
-msgstr ""
+msgstr "easeOutExpo"
 
 #: ../includes/locals.php:257
 msgid "easeInOutExpo"
-msgstr ""
+msgstr "easeInOutExpo"
 
 #: ../includes/locals.php:258
 msgid "easeInCirc"
-msgstr ""
+msgstr "easeInCirc"
 
 #: ../includes/locals.php:259
 msgid "easeOutCirc"
-msgstr ""
+msgstr "easeOutCirc"
 
 #: ../includes/locals.php:260
 msgid "easeInOutCirc"
-msgstr ""
+msgstr "easeInOutCirc"
 
 #: ../includes/locals.php:261
 msgid "easeInBack"
-msgstr ""
+msgstr "easeInBack"
 
 #: ../includes/locals.php:262
 msgid "easeOutBack"
-msgstr ""
+msgstr "easeOutBack"
 
 #: ../includes/locals.php:263
 msgid "easeInOutBack"
-msgstr ""
+msgstr "easeInOutBack"
 
 #: ../includes/locals.php:264
 msgid "easeInElastic"
-msgstr ""
+msgstr "easeInElastic"
 
 #: ../includes/locals.php:265
 msgid "easeOutElastic"
-msgstr ""
+msgstr "easeOutElastic"
 
 #: ../includes/locals.php:266
 msgid "easeInOutElastic"
-msgstr ""
+msgstr "easeInOutElastic"
 
 #: ../includes/locals.php:267
 msgid "easeInBounce"
-msgstr ""
+msgstr "easeInBounce"
 
 #: ../includes/locals.php:268
 msgid "easeOutBounce"
-msgstr ""
+msgstr "easeOutBounce"
 
 #: ../includes/locals.php:269
 msgid "easeInOutBounce"
-msgstr ""
+msgstr "easeInOutBounce"
 
 #: ../includes/locals.php:272
 msgid "Blog"
@@ -1310,11 +1310,13 @@ msgstr "Размер избранных изображений на страни
 
 #: ../includes/locals.php:286
 msgid "View meta of the blog."
-msgstr ""
+msgstr "Просмотреть мета-данные блога."
 
 #: ../includes/locals.php:287
 msgid "Select meta block type which will be displayed on blog and post pages."
 msgstr ""
+"Выберите тип блока мета-данных, который будет отображаться на страницах "
+"блога и страницах записей."
 
 #: ../includes/locals.php:288
 msgid "Enable excerpt for blog posts?"
@@ -1326,11 +1328,11 @@ msgstr "Разрешить или запретить использовать ц
 
 #: ../includes/locals.php:290
 msgid "Do not show."
-msgstr ""
+msgstr "Не показывать"
 
 #: ../includes/locals.php:291
 msgid "Lines."
-msgstr ""
+msgstr "Линии"
 
 #: ../includes/locals.php:292
 msgid "Columns."
@@ -1342,15 +1344,15 @@ msgstr "Иконки"
 
 #: ../includes/locals.php:294
 msgid "Post publication date."
-msgstr ""
+msgstr "Дата публикации записи."
 
 #: ../includes/locals.php:295
 msgid "Should the post publication date be displayed?"
-msgstr ""
+msgstr "Отображать дату публикации поста?"
 
 #: ../includes/locals.php:296
 msgid "Author of the post."
-msgstr ""
+msgstr "Автор записи."
 
 #: ../includes/locals.php:297
 msgid "Display the author of the post?"
@@ -1358,11 +1360,11 @@ msgstr "Показывать автора поста"
 
 #: ../includes/locals.php:298
 msgid "Direct link to the post."
-msgstr ""
+msgstr "Прямая ссылка на запись."
 
 #: ../includes/locals.php:299
 msgid "Should the direct link to the post be displayed? "
-msgstr ""
+msgstr "Отображать прямую ссылку на запись?"
 
 #: ../includes/locals.php:300
 msgid "Post categories."
@@ -1370,15 +1372,15 @@ msgstr "Категории поста"
 
 #: ../includes/locals.php:301
 msgid "Should the post categories be displayed?"
-msgstr ""
+msgstr "Отображать категории записи?"
 
 #: ../includes/locals.php:302
 msgid "Tags be displayed."
-msgstr ""
+msgstr "Отображать теги"
 
 #: ../includes/locals.php:303
 msgid "Should the tags be displayed?"
-msgstr ""
+msgstr "Отображать теги (метки)?"
 
 #: ../includes/locals.php:304
 msgid "Number of comments."
@@ -1386,31 +1388,31 @@ msgstr "Количество комментариев"
 
 #: ../includes/locals.php:305
 msgid "Should the number of comments be displayed?"
-msgstr ""
+msgstr "Отображать количество комментариев?"
 
 #: ../includes/locals.php:306 ../includes/locals.php:632
 msgid "Number of view."
-msgstr ""
+msgstr "Количество просмотров."
 
 #: ../includes/locals.php:307
 msgid "Should the number of view be displayed?"
-msgstr ""
+msgstr "Отображать количество просмотров?"
 
 #: ../includes/locals.php:308
 msgid "Number of likes."
-msgstr ""
+msgstr "Количество \"лайков\"."
 
 #: ../includes/locals.php:309
 msgid "Should the number of likes be displayed?"
-msgstr ""
+msgstr "Отображать количество \"лайков\"?"
 
 #: ../includes/locals.php:310
 msgid "Number of dislikes."
-msgstr ""
+msgstr "Количество \"дизлайков\"."
 
 #: ../includes/locals.php:311
 msgid "Should the number of dislikes be displayed?"
-msgstr ""
+msgstr "Отображать количество \"дизлайков\"?"
 
 #: ../includes/locals.php:315
 msgid "Portfolio"
@@ -1675,7 +1677,7 @@ msgstr ""
 
 #: ../includes/locals.php:392
 msgid "go to widgets"
-msgstr ""
+msgstr "перейти к виджетам"
 
 #: ../includes/locals.php:395
 msgid "Sorry, there has been an error."
@@ -1969,18 +1971,25 @@ msgstr "Вы указали некорректные данные при авт�
 msgid ""
 "You need to enable write permissions on your server to use these functions."
 msgstr ""
+"Вы должны предоставить права на запись на Вашем сервере для использования "
+"этих функций."
 
 #: ../includes/locals.php:447
 msgid ""
 "Cherry Framework is not able to perform necessary changes for the correct "
 "work with your child theme."
 msgstr ""
+"Cherry фреймворк не может произвести необходимые изменения для корректной "
+"работы с Вашей дочерней темой."
 
 #: ../includes/locals.php:448
 msgid ""
 "See <a target=\"_blank\" href=\"http://codex.wordpress.org/"
 "Changing_File_Permissions\">the Codex</a> for more information."
 msgstr ""
+"Проверьте <a target=\"_blank\" href=\"http://codex.wordpress.org/"
+"Changing_File_Permissions\">справочник WordPress (Codex)</a> для получения "
+"дополнительной информации."
 
 #: ../includes/locals.php:451
 msgid "Header Menu"
@@ -2172,15 +2181,15 @@ msgstr "Введите дополнительные данные."
 
 #: ../includes/locals.php:507
 msgid "Social Networks"
-msgstr ""
+msgstr "Социальные Сети"
 
 #: ../includes/locals.php:508
 msgid "Page URL"
-msgstr ""
+msgstr "Адрес страницы"
 
 #: ../includes/locals.php:509
 msgid "Your Social Networks."
-msgstr ""
+msgstr "Ваши Социальные Сети"
 
 #: ../includes/locals.php:510
 msgid ""
@@ -2188,14 +2197,17 @@ msgid ""
 "<a target=\"_blank\" href=\"http://fortawesome.github.io/Font-Awesome/icons/"
 "#brand\">website</a>. E.g. \"icon-facebook\"."
 msgstr ""
+"В поле иконка (icon) Вам нужно указать имя иконки, которое может быть "
+"скопировано с этой <a target=\"_blank\" href=\"http://fortawesome.github.io/"
+"Font-Awesome/icons/#brand\">страницы</a>. К примеру, \"icon-facebook\"."
 
 #: ../includes/locals.php:511
 msgid "Social Networks Title"
-msgstr ""
+msgstr "Заголовок Социальных Сетей"
 
 #: ../includes/locals.php:512
 msgid "Specify the heading for the social networks block."
-msgstr ""
+msgstr "Укажите заголовок для блока социальных сетей."
 
 #: ../includes/locals.php:515
 msgid "Testimonial Options"
@@ -2686,19 +2698,19 @@ msgstr "Нету тэг"
 
 #: ../includes/locals.php:633
 msgid "I like it."
-msgstr ""
+msgstr "Мне нравится."
 
 #: ../includes/locals.php:634
 msgid "I don't like."
-msgstr ""
+msgstr "Мне не нравится."
 
 #: ../includes/locals.php:635
 msgid "Only registered users can vote!"
-msgstr ""
+msgstr "Только зарегистрированные пользователи могут голосовать!"
 
 #: ../includes/locals.php:636
 msgid "You have already voted."
-msgstr ""
+msgstr "Вы уже проголосовали."
 
 #: ../includes/locals.php:639
 msgid "&laquo; Older Entries"
@@ -2958,7 +2970,7 @@ msgstr "Google карты"
 
 #: ../includes/locals.php:707
 msgid "Sitemap"
-msgstr ""
+msgstr "Карта сайта."
 
 #: ../includes/locals.php:710
 msgid "Add 125x125 ads."
@@ -3138,7 +3150,7 @@ msgstr "(по умолчанию: \"ссылка\")"
 
 #: ../includes/locals.php:761
 msgid "Thumbnail dimensions"
-msgstr ""
+msgstr "Размеры миниатюры"
 
 #: ../includes/locals.php:762
 msgid "Show post thumbnail"
@@ -3472,6 +3484,9 @@ msgid ""
 "strongly advised to <a href=\"admin.php?page=options-framework-data-"
 "management\">backup</a> your data."
 msgstr ""
+"<b style=\"color:red;\">Предупреждение!</b>Перед обновлением фреймворка "
+"настоятельно рекомендуется<a href=\"admin.php?page=options-framework-data-"
+"management\">сделать резервную копию</a> Ваших данных."
 
 #: ../includes/locals.php:861
 msgid "View File"
@@ -3967,29 +3982,31 @@ msgstr "Пользовательский класс CSS"
 
 #: ../includes/locals.php:1040
 msgid "Sitemap XML"
-msgstr ""
+msgstr "Карта сайта XML."
 
 #: ../includes/locals.php:1041
 msgid "Include post types."
-msgstr ""
+msgstr "Добавляемые типы постов."
 
 #: ../includes/locals.php:1042
 msgid "Priority."
-msgstr ""
+msgstr "Приоритет."
 
 #: ../includes/locals.php:1043
 msgid "Change freq."
-msgstr ""
+msgstr "Частота изменения."
 
 #: ../includes/locals.php:1044
 msgid "Post types settings."
-msgstr ""
+msgstr "Настройки типов записей"
 
 #: ../includes/locals.php:1045
 msgid ""
 "<strong>Include post types</strong> - specify the post types which will be "
 "included into your sitemap."
 msgstr ""
+"<strong>Добавляемые типы постов</strong> - Укажите типы постов, которые "
+"будут включены в вашу карту сайта."
 
 #: ../includes/locals.php:1046
 msgid ""
@@ -3998,6 +4015,11 @@ msgid ""
 "the portfolio page content, set the priority for blog posts as 1, for "
 "portfolio pages as 0.9 and so on."
 msgstr ""
+"<strong>Приоритет</strong> -  Установите приоритеты типов постов на вашем "
+"сайте. Например, если страницы блога имеют более важное содержимое для "
+"поисковых систем, чемсодержимое на страницах портфолио. В таком случае, вы "
+"устанавливаете приоритет для постов блога 1, а для страниц портфолио "
+"устанавливаете 0,9 и так далее."
 
 #: ../includes/locals.php:1047
 msgid ""
@@ -4005,63 +4027,75 @@ msgid ""
 "post types. It helps the search engines to determine how relevant your "
 "information is at the moment of search."
 msgstr ""
+"<strong>Частота изменения</strong> - Укажите, как часто вы изменяете "
+"определенные типы постов. Это нужно для того что бы поисковые системы могли "
+"определить насколько информация актуальна на момент поиска."
 
 #: ../includes/locals.php:1048
 msgid ""
 "<strong>Ping sitemap</strong> - choose the search engines which will receive "
 "the link to your sitemap."
 msgstr ""
+"<strong>Пингование карты сайта</strong> - Выберите поисковые системы, "
+"которым будет отправлена ссылка на вашу карту сайта. "
 
 #: ../includes/locals.php:1049
 msgid "Ping sitemap."
-msgstr ""
+msgstr "Пингование карты сайта."
 
 #: ../includes/locals.php:1050
 msgid "SEO"
-msgstr ""
+msgstr "SEO"
 
 #: ../includes/locals.php:1051
 msgid "Your website indexation settings."
-msgstr ""
+msgstr "Настройки индексации вашего сайта. "
 
 #: ../includes/locals.php:1052
 msgid ""
 "Forbid the search engines to index the following directories of your site."
 msgstr ""
+"Запретить поисковым системам индексировать следующие директории вашего сайта."
 
 #: ../includes/locals.php:1053
 msgid ""
 "These settings will help reduce the information search range on your site. "
-msgstr ""
+msgstr "Эти настройки помогут сузить круг поиска информации на вашем сайте. "
 
 #: ../includes/locals.php:1054
 msgid "WordPress engine system files and folders <em>(recommended)</em>"
-msgstr ""
+msgstr "Системные файлы и папки WordPress <em>(рекомендуется)</em>"
 
 #: ../includes/locals.php:1055
 msgid "Your plugins system files and folders <em>(recommended)</em>"
-msgstr ""
+msgstr "Системные файлы и папки ваших плагинов <em>(рекомендуется)</em>"
 
 #: ../includes/locals.php:1056
 msgid "Your themes system files and folders <em>(recommended)</em>"
-msgstr ""
+msgstr "Системные файлы и папки ваших тем <em>(рекомендуется)</em>"
 
 #: ../includes/locals.php:1057
 msgid ""
 "Media library files (images, video, audio, etc.) <em>(not recommended)</em>"
 msgstr ""
+"Файлы медиа библиотеки. (Картинки, видео, аудио и тд.) <em> (не "
+"рекомендуется)</em>"
 
 #: ../includes/locals.php:1058
 msgid ""
 "Add the <em>\"rel\"</em> attribute with the <em>\"nofollow\"</em> value to "
 "content links."
 msgstr ""
+"Добавлять атрибут  <em>\"rel\"</em> со значением <em>\"nofollow\"</em>к "
+"ссылкам в контенте."
 
 #: ../includes/locals.php:1059
 msgid ""
 "This option will stop the search engines from going to other sites following "
 "the links in your site content."
 msgstr ""
+"Эта опция запретит поисковым системам переходить на другие сайты по ссылкам "
+"в контенте вашего сайта."
 
 #~ msgid "Skip"
 #~ msgstr "Пропустить"

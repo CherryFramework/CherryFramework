@@ -146,7 +146,7 @@
 	i {
 		font-size: 16px;
 		margin-right: .5em;
-		color: @grayLight;
+		color: @iconColor;
 		&.icon-tag{
 			margin-right: .3em;
 		}
@@ -713,22 +713,17 @@ html[xmlns] .slides { display: block;}
 /* FAQs Page
 ---------------------------------------- */
 .faq-list {
-	
 	&_h {
 		position:relative;
 		margin:0;
 		padding:0 0 5px 28px;
 		background:none;
-		color:#000;
 		font-weight:normal;
-		font-size:15px;
 	}
 	&_body {
 		position:relative;
 		margin:0 0 2em 0;
 		padding:0 0 0 28px;
-		color: #888;
-
 		& .marker {
 			top: 3px;
 		}
@@ -738,9 +733,8 @@ html[xmlns] .slides { display: block;}
 		top:0;
 		left:0;
 		display:block;
-		color:#333;
 		font-weight:bold;
-		font-size:15px;
+		margin:0;
 	}
 }	
 		
@@ -751,7 +745,6 @@ html[xmlns] .slides { display: block;}
 	padding: 30px 0 100px 0;
 
 	&_num {
-		color: @linkColor;
 		text-align: center;
 		font-size: 250px;
 		line-height: 1.2em;
@@ -857,7 +850,6 @@ html[xmlns] .slides { display: block;}
 		.user_voting{
 			cursor: default;
 			i, span{
-				color: #D5D5D5;
 				transition: all 0.2s ease-in-out;
 				-webkit-transition: all 0.2s ease-out;
 			}
@@ -917,7 +909,7 @@ html[xmlns] .slides { display: block;}
 		font-size: 16px;
 		margin-right: 0em;
 		padding-right: 0.5em;
-		color: @grayLight;
+		color: @iconColor;
 	}
 	& .pull-right {
 		padding-right: 0;
@@ -964,9 +956,9 @@ html[xmlns] .slides { display: block;}
 				border-radius: 5px;
 				visibility: hidden;
 				animation: tips_out 0.3s ease-out;
-				animation-fill-mode:both;
+				animation-fill-mode:forwards;
 				-webkit-animation: tips_out 0.3s ease-out;
-				-webkit-animation-fill-mode:both;
+				-webkit-animation-fill-mode:forwards;
 				&:before{
 					background: transparent;
 					content: " ";
@@ -974,7 +966,7 @@ html[xmlns] .slides { display: block;}
 					height: 0px;
 					border-style: solid;
 					border-width: 0 7px 7px 7px;
-					border-color: transparent transparent @tableBorder transparent;
+					border-color: transparent transparent #EAEAEA transparent;
 					position: absolute;
 					margin:-19px 0 0 5px;
 					padding-top: 10px;
@@ -987,9 +979,9 @@ html[xmlns] .slides { display: block;}
 					visibility: visible;
 					margin-top: 15px;
 					animation: tips_in 0.3s ease-out;
-					animation-fill-mode:both;
+					animation-fill-mode:backwards;
 					-webkit-animation: tips_in 0.3s ease-out;
-					-webkit-animation-fill-mode:both;
+					-webkit-animation-fill-mode:backwards;
 				}	
 			};
 		}
@@ -1020,7 +1012,7 @@ html[xmlns] .slides { display: block;}
 			float: none;
 			width: 100%;
 			.tips{
-				position: relative;
+				position: absolute;
 				display: inline-block;
 				visibility: visible;
 				margin: 0;

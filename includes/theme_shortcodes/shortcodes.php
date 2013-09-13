@@ -577,7 +577,7 @@ if (!function_exists('shortcode_video_preview')) {
 		$video_url = parser_video_url(get_post_meta($post_ID, 'tz_video_embed', true));
 		$get_image_url = video_image($video_url);
 		$img='';
-
+		
 		if($title=="yes"){
 			$output_title = '<h4><a href="'.$post_url.'" title="'.$get_post->post_title.'">'.$get_post->post_title.'</a></h4>';
 		}

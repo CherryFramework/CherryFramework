@@ -22,10 +22,12 @@
 	<dl class="faq-list">
 	<?php while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
 		<dt class="faq-list_h">
-			<span class="marker"><?php echo theme_locals("q"); ?></span><?php the_title(); ?>
+			<h4 class="marker"><?php echo theme_locals("q"); ?></h4>
+			<h4><?php the_title(); ?></h4>
 		</dt>
 		<dd id="post-<?php the_ID(); ?>" class="faq-list_body">
-			<span class="marker"><?php echo theme_locals("a"); ?></span><?php the_content(); ?>
+			<h4 class="marker"><?php echo theme_locals("a"); ?></h4>
+			<?php the_content(); ?>
 		</dd>
 	<?php endwhile; ?>
 	</dl>
