@@ -23,7 +23,6 @@
 		'linkColor'      =>	'#000000',
 		'linkColorHover' =>	'#000000'
 		);
-
 	/*
 	 * Definition current theme
 	 *
@@ -1216,4 +1215,17 @@
 			}
 		}
 	}
+//------------------------------------------------------
+// js global variables
+//------------------------------------------------------
+	function cherry_js_global_variables(){
+		$output = "<script>";
+		$output .="\n var sistem_folder = '".PARENT_URL."/admin/data_management/',";
+		$output .= "\n\t CHILD_URL ='" .CHILD_URL."',";
+		$output .= "\n\t PARENT_URL = '".PARENT_URL."'";
+		$output .= "</script>";
+		echo $output;
+	}
+	add_action('wp_head', 'cherry_js_global_variables');
+	add_action('admin_head', 'cherry_js_global_variables');
 ?>

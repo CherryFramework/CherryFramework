@@ -12,11 +12,11 @@ class MY_CommentWidget extends WP_Widget_Recent_Comments {
 		extract($args, EXTR_SKIP);
 		$title = apply_filters('widget_title', empty($instance['title']) ? theme_locals("recent_comments_decs") : $instance['title']);
 		$comments_count = apply_filters('widget_title', empty($instance['comments_count']) ? 5 : $instance['comments_count']);
-		$display_avatar = apply_filters('widget_display_avatar', empty($instance['display_avatar']) ? '' : 'on' );
+		$display_avatar = apply_filters('widget_display_avatar', empty($instance['display_avatar']) ? 'off' : 'on' );
 		$avatar_size = apply_filters('widget_avatar_size', empty($instance['avatar_size']) ? '48' : $instance['avatar_size']);
-		$display_author_name = apply_filters('widget_display_author_name', empty($instance['display_author_name']) ? '' : 'on' );
-		$display_date = apply_filters('widget_display_date', empty($instance['display_date']) ? '' : 'on' );
-		$display_post_title = apply_filters('widget_display_post_title', empty($instance['display_post_title']) ? '' : 'on' );
+		$display_author_name = apply_filters('widget_display_author_name', empty($instance['display_author_name']) ? 'off' : 'on' );
+		$display_date = apply_filters('widget_display_date', empty($instance['display_date']) ? 'off' : 'on' );
+		$display_post_title = apply_filters('widget_display_post_title', empty($instance['display_post_title']) ? 'off' : 'on' );
 		$meta_format = apply_filters('widget_meta_format', empty($instance['meta_format']) ? 'none' : $instance['meta_format'] );
 
 		if ( $comments_count < 1 ){
@@ -59,12 +59,12 @@ class MY_CommentWidget extends WP_Widget_Recent_Comments {
 			
 			<li class="comments-custom_li">
 				
-				<?php if(function_exists('get_avatar') && $display_avatar == 'on') {
+				<?php if(function_exists('get_avatar') && $display_avatar != 'off') {
 					echo '<figure class="thumbnail featured-thumbnail">'; 
 					echo get_avatar( get_the_author_meta('email'), $avatar_size ); /* This avatar is the user's gravatar (http://gravatar.com) based on their administrative email address */ 
 					echo '</figure>';
 				} ?>
-				<?php if($display_post_title == 'on') {
+				<?php if($display_post_title != 'off') {
 					$post_ID = $comment->comment_post_ID;
 					$title_format = "";
 					if($meta_format=="icons"){
@@ -74,7 +74,7 @@ class MY_CommentWidget extends WP_Widget_Recent_Comments {
 					}
 					echo '<div class="meta_format">'.$title_format.'<h4 class="comments-custom_h_title"><a href="'.post_permalink($post_ID).'" title="'.get_post($post_ID)->post_title.'">'.get_post($post_ID)->post_title.'</a></h4></div>';
 				}?>
-				<?php if($display_author_name == 'on') { 
+				<?php if($display_author_name != 'off') { 
 					$title_author_name = "";
 					if($meta_format=="icons"){
 						$title_author_name = '<i class="icon-user"></i>';
@@ -83,7 +83,8 @@ class MY_CommentWidget extends WP_Widget_Recent_Comments {
 					}
 					echo'<div class="meta_format">'.$title_author_name.'<h4 class="comments-custom_h_author">'.$comment->comment_author.'</h4></div>';
 				}?>
-				<?php if($display_date == 'on') {
+				<?php
+				if($display_date != 'off') {
 					$title_date = "";
 					if($meta_format=="icons"){
 						$title_date = '<i class="icon-calendar"></i>';
