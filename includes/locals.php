@@ -281,6 +281,8 @@
 			'image_size_desc' => __('Featured image size on the blog.', $domain),
 			'load_image_name' => __('Should images be uploaded on page scroll?', $domain),
 			'load_image_desc' => __('You can enable images load only as you scroll down the page. Otherwise images will load all at once.', $domain),
+			'display_share_name' => __('Display share button in single post?', $domain),
+			'display_share_desc' => __('Display share button in single post?', $domain),
 			'single_post_image_name' => __('Single post image size', $domain),
 			'single_post_image_desc' => __('Featured image size on the single page.', $domain),
 			'meta_name' => __('View meta of the blog.', $domain),
