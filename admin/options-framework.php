@@ -295,8 +295,16 @@ if ( !function_exists( 'optionsframework_page' ) ) {
 				if(get_bloginfo("language")=="ru_RU" || get_bloginfo("language")=="es_ES" || get_bloginfo("language")=="de_DE"){
 					$locals = substr(get_bloginfo("language"), 0, 2)."/";
 				}
-				echo '<a class="icon-a icon-support" href="http://info.template-help.com/help/'.$locals.'cms-blog-templates/wordpress/wordpress-tutorials/" ><span class="icon"><span>'.theme_locals("support").'</span></span></a>';
-				echo '<a class="icon-a icon-documentation" href="http://info.template-help.com/help/'.$locals.'wordpress-quick-start-guide.html" ><span class="icon"><span>'.theme_locals("documentation").'</span></span></a>';
+				$doc_link = 'http://info.template-help.com/help/quick-start-guide/';
+				if (class_exists('Woocommerce')) {
+					$doc_link .= 'woocommerce/';
+				} elseif (function_exists('jigoshop_init')) {
+					$doc_link .= 'jigoshop-cherry-framework/';
+				} else {
+					$doc_link .= 'cherry-framework/';
+				}
+				echo '<a class="icon-a icon-support" href="http://info.template-help.com/help/'.$locals.'cms-blog-templates/wordpress/wordpress-tutorials/" target="_blank"><span class="icon"><span>'.theme_locals("support").'</span></span></a>';
+				echo "<a class='icon-a icon-documentation' href='$doc_link' target='_blank'><span class='icon'><span>".theme_locals('documentation')."</span></span></a>";
 			?>
 		</div>
 		<div class="clear"></div>
@@ -524,8 +532,16 @@ if ( ! function_exists( 'admin_screen_store' ) ) {
 										if(get_bloginfo("language")=="ru_RU" || get_bloginfo("language")=="es_ES" || get_bloginfo("language")=="de_DE"){
 											$locals = substr(get_bloginfo("language"), 0, 2)."/"; 
 										}
+										$doc_link = 'http://info.template-help.com/help/quick-start-guide/';
+										if (class_exists('Woocommerce')) {
+											$doc_link .= 'woocommerce/';
+										} elseif (function_exists('jigoshop_init')) {
+											$doc_link .= 'jigoshop-cherry-framework/';
+										} else {
+											$doc_link .= 'cherry-framework/';
+										}
 										echo '<li><a class="icon-a icon-support" href="http://info.template-help.com/help/'.$locals.'cms-blog-templates/wordpress/wordpress-tutorials/" target="_blank"><span class="icon"><span>'.theme_locals("support").'</span></span></a></li>';
-										echo '<li><a class="icon-a icon-documentation" href="http://info.template-help.com/help/'.$locals.'wordpress-quick-start-guide.html" target="_blank"><span class="icon"><span>'.theme_locals("documentation").'</span></span></a></li>';
+										echo "<li><a class='icon-a icon-documentation' href='$doc_link' target='_blank'><span class='icon'><span>".theme_locals('documentation')."</span></span></a></li>";
 									?>
 								</ul>
 							</div>
