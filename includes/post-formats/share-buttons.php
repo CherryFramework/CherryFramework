@@ -2,8 +2,8 @@
 <?php
 	/* get permalink */
 	$permalink = get_permalink(get_the_ID());
-	$display_share_buttons = of_get_option('single_share_button', true);
-	if($display_share_buttons!='false'){
+	$display_share_buttons = of_get_option('single_share_button', 'true');
+	if($display_share_buttons != 'false'){
 ?>
 <!-- Facebook Like Button -->
 <script>(function(d, s, id) {
