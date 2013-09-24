@@ -55,7 +55,7 @@
 					rows                : <?php echo of_get_option('sl_rows'); ?>,
 					slicedCols          : <?php echo of_get_option('sl_columns'); ?>,
 					slicedRows          : <?php echo of_get_option('sl_rows'); ?>,
-					thumbnails          : <?php echo of_get_option('sl_thumbnails'); ?>,
+					thumbnails          : <?php echo of_get_option('sl_thumbnails', 'false'); ?>,
 					time                : <?php echo of_get_option('sl_pausetime'); ?>, //milliseconds between the end of the sliding effect and the start of the next one
 					transPeriod         : <?php echo of_get_option('sl_animation_speed'); ?>, //lenght of the sliding effect in milliseconds
 
