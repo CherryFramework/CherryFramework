@@ -950,7 +950,7 @@
 	}
 	if (!function_exists("get_slider_template_part")) {
 		function get_slider_template_part() {
-			switch (get_option('slider_type', 'slider')) {
+			switch (of_get_option('slider_type')) {
 				case "accordion_slider":
 					$slider_type = "accordion";
 				break;
