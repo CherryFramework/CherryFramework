@@ -64,10 +64,6 @@ if (!function_exists('shortcode_roundabout')) {
 				'suppress_filters'       => $suppress_filters
 			);
 
-			echo '<pre>';
-			print_r($args);
-			echo '</pre>';
-
 			$posts = get_posts($args);
 			$i = 1;
 			
