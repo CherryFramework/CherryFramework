@@ -47,16 +47,16 @@ class myWidget_Data {
 											$widget_options = get_option( 'widget_' . $widget_type );
 											$widget_title = isset( $widget_options[$widget_type_index]['title'] ) ? $widget_options[$widget_type_index]['title'] : $widget_type_index;
 										?>
-											<div class="import-form-row">
-												<input class="<?php echo ($sidebar_name == 'wp_inactive_widgets') ? 'inactive' : 'active'; ?> widget-checkbox" type="checkbox" name="<?php echo esc_attr( $widget ); ?>" id="<?php echo esc_attr( 'meta_' .  $widget ); ?>" <?php echo ($sidebar_name == 'wp_inactive_widgets') ? '' : 'checked'; ?> />
-												<label for="<?php echo esc_attr( 'meta_' . $widget ); ?>">
-													<?php 
-														echo ucfirst( $widget_type );
-														if( !empty( $widget_title ) )
-															echo ' - ' . $widget_title; 
-													?>
-												</label>
-											</div>
+										<div class="import-form-row">
+											<input class="<?php echo ($sidebar_name == 'wp_inactive_widgets') ? 'inactive' : 'active'; ?> widget-checkbox" type="checkbox" name="<?php echo esc_attr( $widget ); ?>" id="<?php echo esc_attr( 'meta_' .  $widget ); ?>" <?php echo ($sidebar_name == 'wp_inactive_widgets') ? '' : 'checked'; ?> />
+											<label for="<?php echo esc_attr( 'meta_' . $widget ); ?>">
+												<?php 
+													echo ucfirst( $widget_type );
+													if( !empty( $widget_title ) )
+														echo ' - ' . $widget_title; 
+												?>
+											</label>
+										</div>
 										<?php endforeach; ?>
 									</div> <!-- end widgets -->
 								</div> <!-- end sidebar -->
@@ -77,26 +77,56 @@ class myWidget_Data {
 	}
 	
 	function import_settings_page() {
+		global $wp_registered_sidebars;
 		?>
 		<div class="widget-data import-widget-settings clearfix">
 
 			<?php if (isset($_FILES['upload-file'])) : ?>
 			<h4 class="head"><?php echo theme_locals('step_4'); ?></h4>
+			
+			<?php 
+				wp_nonce_field('import_widget_data', '_wpnonce');
+				$json = $this->get_widget_settings_json();
+
+				if( is_wp_error($json) )
+					wp_die( $json->get_error_message() );
+
+				if( !( $json_data = json_decode( $json[0], true ) ) )
+					return;
+
+				// get sidebar from JSON
+				$json_sidebar = array();
+				foreach ($json_data[0] as $key => $value) {
+					array_push($json_sidebar, $key);
+				}
+
+				// get registered sidebar in theme
+				$real_sidebar = array();
+				foreach ($wp_registered_sidebars as $sidebar_name => $sidebar) {
+					if ( ($sidebar_name != 'wp_inactive_widgets') && is_array($sidebar) ) {
+						array_push($real_sidebar, $sidebar_name);
+					}
+				}
+				
+				$result = array_intersect($json_sidebar, $real_sidebar);
+				if (empty($result)) { ?>
+					<!-- <p class="text-style"><?php echo theme_locals('empty_widgets'); ?></p> -->
+					<p class="text-style">Файл widgets.json "не правильный" или пустой. По-этому ни одного виджета не будет импортировано в Вашу тему.</p>
+					<form action="" id="import-widget-data" class="clearfix" method="post">
+						<input class="button-primary" type="submit" name="import-widgets" id="import-widgets" value="<?php echo theme_locals("install_next"); ?>">
+					</form>
+					<p class="submit">
+						<a href="<?php echo admin_url('admin.php?page=options-framework-import&amp;step=3'); ?>" class="btn-link"><?php echo theme_locals("try_again"); ?></a>
+					</p>
+				<?php return;
+				}
+			?>
 			<div class="import-wrapper">
 				<p class="text-style"><?php echo theme_locals('widget_import_warning'); ?></p>
 				<form action="" id="import-widget-data" class="clearfix" method="post">
-					<?php 
-						wp_nonce_field('import_widget_data', '_wpnonce');
-						$json = $this->get_widget_settings_json();
 
-						if( is_wp_error($json) )
-							wp_die( $json->get_error_message() );
+					<?php $json_file = $json[1]; ?>
 
-						if( !( $json_data = json_decode( $json[0], true ) ) )
-							return;
-
-						$json_file = $json[1];
-					?>
 					<input type="hidden" name="import_file" value="<?php echo esc_attr( $json_file ); ?>"/>
 					<input type="hidden" name="action" value="import_widget_data"/>
 
@@ -222,6 +252,7 @@ class myWidget_Data {
 		}
 		unset( $widgets_array['export'] );
 		unset( $widgets_array['Widget-Settings'] );
+		unset( $widgets_array[''] );
 
 		$options_type = get_option($themename . '_widget_rules_type');
 		$options      = get_option($themename . '_widget_rules');
@@ -442,7 +473,7 @@ class myWidget_Data {
 		$widget_settings = $this->upload_widget_settings_file();
 		if (array_key_exists('error', $widget_settings)){
 			echo "<p class='text-style'><b>".theme_locals("error").": </b>" . $widget_settings['error'];
-			echo ' ' . theme_locals("please") . ', <a href="' . admin_url("admin.php?page=options-framework-import&step=3") . '">'. theme_locals("try_again") .'</a>';
+			echo ' ' . theme_locals("please") . ', <a class="btn-link" href="' . admin_url("admin.php?page=options-framework-import&step=3") . '">'. theme_locals("try_again") .'</a>';
 			echo "</p></div>";
 		}
 		if (array_key_exists('file', $widget_settings)){

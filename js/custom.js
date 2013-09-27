@@ -129,4 +129,19 @@ jQuery(document).ready(function(){
 		jQuery.post(post_url);
 		return false;
 	}
+// ---------------------------------------------------------
+// sprite loader
+// ---------------------------------------------------------
+	jQuery('.wpcf7-submit').after('<div class="ajax-loader"></div>');
+	jQuery('.wpcf7-submit').click(function(){
+		var listener = setInterval(
+				function(){
+					if(jQuery('img.ajax-loader').css('visibility')=='visible'){
+						jQuery('div.ajax-loader').css({'display':'inline-block'});
+					}else{
+						jQuery('div.ajax-loader').css({'display':'none'});
+						clearInterval(listener);
+					}
+				},100);
+	})
 });

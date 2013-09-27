@@ -532,6 +532,13 @@
 								"class" => "small", //mini, tiny, small
 								"options" => $single_image_size_array);
 
+			$options['single_share_button'] = array( "name" => theme_locals('display_share_name'),
+								"desc" => theme_locals('display_share_desc'),
+								"id" => "single_share_button",
+								"std" => "true",
+								"type" => "radio",
+								"options" => $true_false_array);
+
 			$options['load_image'] = array( "name" => theme_locals('load_image_name'),
 								"desc" => theme_locals('load_image_desc'),
 								"id" => "load_image",

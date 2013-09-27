@@ -269,12 +269,18 @@
 /* FlexSlider Necessary Styles */ 
 .flexslider {
 	min-height: 120px;
-	background: url(../images/loading.gif) 50% 50% no-repeat;
-
+	&:before{
+		z-index: -1;
+		top: 50%;
+		left: 50%;
+		margin: -10px 0 0 -10px;
+	}
+	&.no-bg:before{
+		display: none;
+	}
 	&.no-bg {
 		background: none;
 	}
-
 	& .slides > li {
 		display: none;
 		-webkit-backface-visibility: hidden;
@@ -517,7 +523,18 @@ html[xmlns] .slides { display: block;}
 		position:relative;
 		display:block;
 		overflow:hidden;
-		background:#f5f5f5 url(../images/loading.gif) 50% 50% no-repeat;
+		&:before{
+			top: 50%;
+			left: 50%;
+			margin: -16px 0 0 -16px;
+			z-index: -1;
+		}
+	}
+	.folio_loader{
+		top: 50%;
+		left: 50%;
+		margin: -10px 0 0 -10px;
+		z-index: -1;
 	}
 }
 .thumbnail__portfolio {
@@ -1278,7 +1295,6 @@ p.gravatar {
 			& a {
 
 			}
-
 		}
 		& .prev {
 			& a {
