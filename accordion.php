@@ -56,7 +56,6 @@
 						var sliderImgWidth = 100/imagesCount;
 						jQuery(">li", myAccordionList).each(function(index){
 							jQuery(this).removeClass("accordion_slider-open").addClass("accordion_slider-closed").stop(true).animate({'left':index*sliderImgWidth+"%", 'cursor':'pointer'}, speed, easing);
-							
 						})
 						myAccordionList.data('current','-1');
 					}
@@ -66,10 +65,10 @@
 						imagesLoaded++;
 						checkLoadImg()
 					}else{
-						jQuery(this).bind("load", function(){
+						jQuery(this).on("load", function(){
 							imagesLoaded++;
 							checkLoadImg()
-							jQuery(this).unbind("load");
+							jQuery(this).off("load");
 						})
 					}
 				})
@@ -144,7 +143,7 @@
 					$caption = stripslashes(htmlspecialchars_decode($caption));
 				}
 				echo '<li>';
-					echo '<img src="'.$sl_image_url[0].'" width="100%" height="auto" class="slider_img '.$img_class.'" alt="">';
+					echo '<img data-src="'.$sl_image_url[0].'" width="100%" height="auto" class="slider_img '.$img_class.'" alt="">';
 					if($caption!="" || $url!=""){
 						echo '<div class="accordion_caption">'.$caption.$url.'</div>';
 					}
