@@ -720,7 +720,7 @@ $plugin_url = get_template_directory_uri().'/includes/theme_shortcodes/tinymce/'
 										a.addWithDialog(c,"<?php echo theme_locals("banner"); ?>","banner");
 										a.addWithDialog(c,"<?php echo theme_locals("recentcomments"); ?>","recentcomments");
 										a.addWithDialog(c,"<?php echo theme_locals("post_cycle"); ?>","post_cycle");
-										a.addWithDialog(c,"<?php echo theme_locals("carousel"); ?>","carousel");
+										a.addWithDialog(c,"<?php echo theme_locals("carousel_elasti"); ?>","carousel");
 										a.addWithDialog(c,"<?php echo theme_locals("roundabout"); ?>","roundabout");
 										a.addWithDialog(c,"<?php echo theme_locals("service_box"); ?>","service_box");
 										a.addWithDialog(c,"<?php echo theme_locals("hero_unit"); ?>","hero_unit");

@@ -26,10 +26,10 @@ function widgets_scripts($hook) {
 	if ( $widget_page != $hook) return;
 
 	// widget rules JS
-	wp_register_script('widget-rules-js', get_template_directory_uri().'/admin/js/widget-rules.js', array('jquery'));
+	wp_register_script('widget-rules-js', PARENT_URL.'/admin/js/widget-rules.js', array('jquery'));
 	wp_enqueue_script('widget-rules-js');
 	// widget rules CSS
-	wp_register_style('widget-rules-css', get_template_directory_uri().'/admin/css/widget-rules.css');
+	wp_register_style('widget-rules-css', PARENT_URL.'/admin/css/widget-rules.css');
 	wp_enqueue_style('widget-rules-css');
 }
 

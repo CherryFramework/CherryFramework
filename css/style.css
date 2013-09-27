@@ -1804,7 +1804,6 @@ iframe .uiHeader h3 { color:#fff; }
 	padding:0;
 	width:100%;
 	height:250px;
-	list-style:none;
 	background:none;
 }
 .roundabout-holder ul li {
@@ -1815,7 +1814,6 @@ iframe .uiHeader h3 { color:#fff; }
 	height:inherit;
 	border:none;
 	background:none;
-	list-style-type:none;
 	text-align:center;
 	cursor:pointer;
 }
