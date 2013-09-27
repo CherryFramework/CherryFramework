@@ -1466,6 +1466,7 @@ iframe .uiHeader h3 { color:#fff; }
 .posts-grid li { margin-bottom:25px; }
 .posts-grid li .featured-thumbnail { margin:0; }
 .posts-grid li .featured-thumbnail img { width:100%; }
+.posts-grid .post_meta span[class^="post_"] { margin-right:10px; }
 .mini-posts-grid { margin:0; }
 .mini-posts-grid li {
 	margin:0 5px 5px 0;
@@ -2409,7 +2410,7 @@ div.jp-interface {
 	overflow:hidden;
 	width:100%;
 	height:35px;
-	border-bottom:1px solid #DDD;
+	border-bottom:1px solid #4E4E4E;
 	-webkit-transition:opacity .5s ease-in-out, margin .5s ease-in-out;
 	-moz-transition:opacity .5s ease-in-out, margin .5s ease-in-out;
 	-ms-transition:opacity .5s ease-in-out, margin .5s ease-in-out;
@@ -2492,7 +2493,7 @@ div.jp-progress {
 	overflow:hidden;
 	width:100%;
 	height:7px;
-	border-bottom:1px solid #DDD;
+	border-bottom:1px solid #777;
 	background-color:#303030;
 }
 div.jp-seek-bar {
@@ -2795,7 +2796,6 @@ a.jp-restore-screen:hover span { background-position:-84px -84px; }
 .preloader { margin-bottom:20px; }
 img.ajax-loader { display:none; }
 div.ajax-loader {
-	opacity:0.5;
 	position:relative;
 	display:none;
 	vertical-align:top;
