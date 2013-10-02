@@ -502,7 +502,8 @@ if ( ! function_exists( 'admin_screen_store' ) ) {
 								<?php // Get RSS Feed(s)
 								include_once( ABSPATH . WPINC . '/feed.php' );
 								// Get a SimplePie feed object from the specified feed source.
-								$rss = fetch_feed( 'http://blog.templatemonster.com/category/cherry-wordpress-themes/feed/' );
+								// $rss = fetch_feed( 'http://blog.templatemonster.com/category/cherry-wordpress-themes/feed/' );
+								$rss = fetch_feed( 'http://www.cherryframework.com/feed/' );
 								if ( ! is_wp_error( $rss ) ) : // Checks that the object is created correctly
 									// Figure out how many total items there are, but limit it to 5. 
 									$maxitems = $rss->get_item_quantity( 3 ); 
