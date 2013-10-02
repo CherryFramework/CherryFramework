@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: de_DE\n"
-"POT-Creation-Date: 2013-09-20 15:58+0200\n"
-"PO-Revision-Date: 2013-09-20 15:58+0200\n"
-"Last-Translator: alex <alex@alex.com>\n"
+"POT-Creation-Date: 2013-09-27 12:03+0200\n"
+"PO-Revision-Date: 2013-10-01 15:34+0200\n"
+"Last-Translator: Alex Ross <alex@template-telp.com>\n"
 "Language-Team:  <demolink@info.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,63 +13,78 @@ msgstr ""
 "X-Poedit-Basepath: ./\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../admin/options-sanitize.php:257 ../includes/locals.php:363
+#: ../admin/options-sanitize.php:257
+#: ../includes/locals.php:363
 msgid "No Repeat"
 msgstr "Keine Wiederholung"
 
-#: ../admin/options-sanitize.php:258 ../includes/locals.php:364
+#: ../admin/options-sanitize.php:258
+#: ../includes/locals.php:364
 msgid "Repeat Horizontally"
 msgstr "Horizontal wiederholen"
 
-#: ../admin/options-sanitize.php:259 ../includes/locals.php:365
+#: ../admin/options-sanitize.php:259
+#: ../includes/locals.php:365
 msgid "Repeat Vertically"
 msgstr "Vertikal wiederholen"
 
-#: ../admin/options-sanitize.php:260 ../includes/locals.php:366
+#: ../admin/options-sanitize.php:260
+#: ../includes/locals.php:366
 msgid "Repeat All"
 msgstr "Alle wiederholen"
 
-#: ../admin/options-sanitize.php:273 ../includes/locals.php:367
+#: ../admin/options-sanitize.php:273
+#: ../includes/locals.php:367
 msgid "Top Left"
 msgstr "Links-oben"
 
-#: ../admin/options-sanitize.php:274 ../includes/locals.php:368
+#: ../admin/options-sanitize.php:274
+#: ../includes/locals.php:368
 msgid "Top Center"
 msgstr "Oberen Mitte "
 
-#: ../admin/options-sanitize.php:275 ../includes/locals.php:369
+#: ../admin/options-sanitize.php:275
+#: ../includes/locals.php:369
 msgid "Top Right"
 msgstr "Rechts-oben"
 
-#: ../admin/options-sanitize.php:276 ../includes/locals.php:370
+#: ../admin/options-sanitize.php:276
+#: ../includes/locals.php:370
 msgid "Middle Left"
 msgstr "links in der Mitte "
 
-#: ../admin/options-sanitize.php:277 ../includes/locals.php:371
+#: ../admin/options-sanitize.php:277
+#: ../includes/locals.php:371
 msgid "Middle Center"
 msgstr "Mittelzentrum"
 
-#: ../admin/options-sanitize.php:278 ../includes/locals.php:372
+#: ../admin/options-sanitize.php:278
+#: ../includes/locals.php:372
 msgid "Middle Right"
 msgstr "Rechts in der Mitte "
 
-#: ../admin/options-sanitize.php:279 ../includes/locals.php:373
+#: ../admin/options-sanitize.php:279
+#: ../includes/locals.php:373
 msgid "Bottom Left"
 msgstr "unten links"
 
-#: ../admin/options-sanitize.php:280 ../includes/locals.php:374
+#: ../admin/options-sanitize.php:280
+#: ../includes/locals.php:374
 msgid "Bottom Center"
 msgstr "unten Mitte"
 
-#: ../admin/options-sanitize.php:281 ../includes/locals.php:375
+#: ../admin/options-sanitize.php:281
+#: ../includes/locals.php:375
 msgid "Bottom Right"
 msgstr "unten rechts"
 
-#: ../admin/options-sanitize.php:294 ../includes/locals.php:376
+#: ../admin/options-sanitize.php:294
+#: ../includes/locals.php:376
 msgid "Scroll Normally"
 msgstr "Normal scrollen"
 
-#: ../admin/options-sanitize.php:295 ../includes/locals.php:377
+#: ../admin/options-sanitize.php:295
+#: ../includes/locals.php:377
 msgid "Fixed in Place"
 msgstr "Befestigt"
 
@@ -89,81 +104,94 @@ msgstr "1.5"
 msgid "2"
 msgstr "2"
 
-#: ../admin/options-sanitize.php:391 ../includes/locals.php:874
+#: ../admin/options-sanitize.php:391
+#: ../includes/locals.php:874
 msgid "Latin"
 msgstr "Latein"
 
-#: ../admin/options-sanitize.php:392 ../includes/locals.php:875
+#: ../admin/options-sanitize.php:392
+#: ../includes/locals.php:875
 msgid "Latin Extended"
 msgstr "Erweitertes Lateinisch"
 
-#: ../admin/options-sanitize.php:393 ../includes/locals.php:876
+#: ../admin/options-sanitize.php:393
+#: ../includes/locals.php:876
 msgid "Greek"
 msgstr "Griechisch"
 
-#: ../admin/options-sanitize.php:394 ../includes/locals.php:877
+#: ../admin/options-sanitize.php:394
+#: ../includes/locals.php:877
 msgid "Greek Extended"
 msgstr "Erweitertes Griechisch"
 
-#: ../admin/options-sanitize.php:395 ../includes/locals.php:878
+#: ../admin/options-sanitize.php:395
+#: ../includes/locals.php:878
 msgid "Cyrillic"
 msgstr "Kyrillisch "
 
-#: ../admin/options-sanitize.php:396 ../includes/locals.php:879
+#: ../admin/options-sanitize.php:396
+#: ../includes/locals.php:879
 msgid "Cyrillic Extended"
 msgstr "Erweitertes Kyrillisch "
 
-#: ../admin/options-sanitize.php:397 ../includes/locals.php:880
+#: ../admin/options-sanitize.php:397
+#: ../includes/locals.php:880
 msgid "Vietnamese"
 msgstr "Vietnamesisch"
 
-#: ../admin/options-sanitize.php:414 ../includes/locals.php:9
+#: ../admin/options-sanitize.php:414
+#: ../includes/locals.php:9
 #: ../includes/locals.php:881
 msgid "Normal"
 msgstr "Normal"
 
-#: ../admin/options-sanitize.php:415 ../includes/locals.php:882
+#: ../admin/options-sanitize.php:415
+#: ../includes/locals.php:882
 msgid "Italic"
 msgstr "kursiv "
 
-#: ../admin/options-sanitize.php:416 ../includes/locals.php:883
+#: ../admin/options-sanitize.php:416
+#: ../includes/locals.php:883
 msgid "Bold"
 msgstr "Fett "
 
-#: ../admin/options-sanitize.php:417 ../includes/locals.php:884
+#: ../admin/options-sanitize.php:417
+#: ../includes/locals.php:884
 msgid "Bold Italic"
 msgstr "Fettkursiv "
 
-#: ../admin/parsers.php:43 ../admin/parsers.php:75 ../admin/parsers.php:83
-#: ../includes/locals.php:887 ../includes/locals.php:889
+#: ../admin/parsers.php:43
+#: ../admin/parsers.php:75
+#: ../admin/parsers.php:83
+#: ../includes/locals.php:887
+#: ../includes/locals.php:889
 msgid "There was an error when reading this WXR file"
 msgstr "Es gab einen Fehler beim Lesen dieser WXR Datei"
 
-#: ../admin/parsers.php:44 ../includes/locals.php:888
-msgid ""
-"Details are shown above. The importer will now try again with a different "
-"parser..."
-msgstr ""
-"Details werden oben angezeigt. Der Importer versucht es nun nochmals mit "
-"einem anderen Parser... "
+#: ../admin/parsers.php:44
+#: ../includes/locals.php:888
+msgid "Details are shown above. The importer will now try again with a different parser..."
+msgstr "Details werden oben angezeigt. Der Importer versucht es nun nochmals mit einem anderen Parser... "
 
-#: ../admin/parsers.php:87 ../admin/parsers.php:92 ../admin/parsers.php:284
-#: ../admin/parsers.php:475 ../includes/locals.php:890
-msgid ""
-"This does not appear to be a WXR file, missing/invalid WXR version number"
-msgstr ""
-"Dies scheint keine WXR Datei zu sein, die WXR Versionsnummer fehlt oder ist "
-"ungültig "
+#: ../admin/parsers.php:87
+#: ../admin/parsers.php:92
+#: ../admin/parsers.php:284
+#: ../admin/parsers.php:475
+#: ../includes/locals.php:890
+msgid "This does not appear to be a WXR file, missing/invalid WXR version number"
+msgstr "Dies scheint keine WXR Datei zu sein, die WXR Versionsnummer fehlt oder ist ungültig "
 
 #: ../includes/class-tgm-plugin-activation.php:170
 msgid "Return to the dashboard"
 msgstr "Zurück zur Instrumententafel"
 
-#: ../includes/class-tgm-plugin-activation.php:172 ../includes/locals.php:593
+#: ../includes/class-tgm-plugin-activation.php:172
+#: ../includes/locals.php:593
 msgid "The following plugin was activated successfully:"
 msgstr "Das folgende Plugin wurde erfolgreich aktiviert:"
 
-#: ../includes/class-tgm-plugin-activation.php:174 ../includes/locals.php:576
+#: ../includes/class-tgm-plugin-activation.php:174
+#: ../includes/locals.php:576
 #: ../includes/locals.php:900
 msgid "Dismiss this notice"
 msgstr "Ignoriere diese Benachrichtigung"
@@ -260,7 +288,8 @@ msgstr "nächste"
 msgid "None"
 msgstr "Keine(r, s)"
 
-#: ../includes/locals.php:30 ../includes/locals.php:739
+#: ../includes/locals.php:30
+#: ../includes/locals.php:739
 msgid "Date"
 msgstr "Datum"
 
@@ -437,15 +466,8 @@ msgid "Unmute"
 msgstr "Leise"
 
 #: ../includes/locals.php:76
-msgid ""
-"<span>Update Required. </span>To play the media you will need to either "
-"update your browser to a recent version or update your <a href='http://get."
-"adobe.com/flashplayer/' target='_blank'>Flash plugin</a>."
-msgstr ""
-"<span> Update erforderlich.</span> Um den Video zu starten,kannst du "
-"entweder deinen Browser auf eine aktuellere Version aktualisieren  oder dein "
-"<a href='http://get.adobe.com/flashplayer/' target='_blank'>Flash plugin</a> "
-"aktualisieren."
+msgid "<span>Update Required. </span>To play the media you will need to either update your browser to a recent version or update your <a href='http://get.adobe.com/flashplayer/' target='_blank'>Flash plugin</a>."
+msgstr "<span> Update erforderlich.</span> Um den Video zu starten,kannst du entweder deinen Browser auf eine aktuellere Version aktualisieren  oder dein <a href='http://get.adobe.com/flashplayer/' target='_blank'>Flash plugin</a> aktualisieren."
 
 #: ../includes/locals.php:79
 msgid "Cherry Options"
@@ -473,9 +495,7 @@ msgstr "Standard wiederherstellen"
 
 #: ../includes/locals.php:85
 msgid "Click OK to reset. Any theme settings will be lost!"
-msgstr ""
-"Klick bitte auf OK, um das Zurücksetzen zu bestätigen. Alle Theme-"
-"Einstellungen gehen verloren"
+msgstr "Klick bitte auf OK, um das Zurücksetzen zu bestätigen. Alle Theme-Einstellungen gehen verloren"
 
 #: ../includes/locals.php:88
 msgid "General"
@@ -526,105 +546,56 @@ msgid "Body Text"
 msgstr "Textkörper"
 
 #: ../includes/locals.php:100
-msgid ""
-"Choose your prefered font for body text. <em>Note: fonts marked with "
-"<strong>*</strong> symbol will be loaded from the <a href='http://www.google."
-"com/webfonts'>Google Web Fonts</a> library.</em>"
-msgstr ""
-"Wähl bitte deinen gewünschten Schrift für den Haupttext aus.   <em>Hinweis: "
-"Schriften , die mit<strong>*</strong> Symbol markiert sind, sollst du von <a "
-"href='http://www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen."
-"</em>"
+msgid "Choose your prefered font for body text. <em>Note: fonts marked with <strong>*</strong> symbol will be loaded from the <a href='http://www.google.com/webfonts'>Google Web Fonts</a> library.</em>"
+msgstr "Wähl bitte deinen gewünschten Schrift für den Haupttext aus.   <em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen.</em>"
 
 #: ../includes/locals.php:101
 msgid "H1 Heading"
 msgstr "H1 Überschrift"
 
 #: ../includes/locals.php:102
-msgid ""
-"Choose your prefered font for H1 heading and titles. <em>Note: fonts marked "
-"with <strong>*</strong> symbol will be loaded from the <a href='http://www."
-"google.com/webfonts'>Google Web Fonts</a> library.</em>"
-msgstr ""
-"Wähl deinen gewünschten Schrift für H1 Überschrift und Titeln aus.   "
-"<em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, "
-"sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-"
-"Library hochladen.</em>"
+msgid "Choose your prefered font for H1 heading and titles. <em>Note: fonts marked with <strong>*</strong> symbol will be loaded from the <a href='http://www.google.com/webfonts'>Google Web Fonts</a> library.</em>"
+msgstr "Wähl deinen gewünschten Schrift für H1 Überschrift und Titeln aus.   <em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen.</em>"
 
 #: ../includes/locals.php:103
 msgid "H2 Heading"
 msgstr "H2 Überschrift"
 
 #: ../includes/locals.php:104
-msgid ""
-"Choose your prefered font for H2 heading and titles. <em>Note: fonts marked "
-"with <strong>*</strong> symbol will be loaded from the <a href='http://www."
-"google.com/webfonts'>Google Web Fonts</a> library.</em>"
-msgstr ""
-"Wähl deinen gewünschten Schrift für H2 Überschrift und Titeln aus.   "
-"<em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, "
-"sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-"
-"Library hochladen.</em>"
+msgid "Choose your prefered font for H2 heading and titles. <em>Note: fonts marked with <strong>*</strong> symbol will be loaded from the <a href='http://www.google.com/webfonts'>Google Web Fonts</a> library.</em>"
+msgstr "Wähl deinen gewünschten Schrift für H2 Überschrift und Titeln aus.   <em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen.</em>"
 
 #: ../includes/locals.php:105
 msgid "H3 Heading"
 msgstr "H3 Überschrift"
 
 #: ../includes/locals.php:106
-msgid ""
-"Choose your prefered font for H3 heading and titles. <em>Note: fonts marked "
-"with <strong>*</strong> symbol will be loaded from the <a href='http://www."
-"google.com/webfonts'>Google Web Fonts</a> library.</em>"
-msgstr ""
-"Wähl deinen gewünschten Schrift für H3 Überschrift und Titeln aus.   "
-"<em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, "
-"sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-"
-"Library hochladen.</em>"
+msgid "Choose your prefered font for H3 heading and titles. <em>Note: fonts marked with <strong>*</strong> symbol will be loaded from the <a href='http://www.google.com/webfonts'>Google Web Fonts</a> library.</em>"
+msgstr "Wähl deinen gewünschten Schrift für H3 Überschrift und Titeln aus.   <em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen.</em>"
 
 #: ../includes/locals.php:107
 msgid "H4 Heading"
 msgstr "H4 Überschrift"
 
 #: ../includes/locals.php:108
-msgid ""
-"Choose your prefered font for H4 heading and titles. <em>Note: fonts marked "
-"with <strong>*</strong> symbol will be loaded from the <a href='http://www."
-"google.com/webfonts'>Google Web Fonts</a> library.</em>"
-msgstr ""
-"Wähl deinen gewünschten Schrift für H4 Überschrift und Titeln aus.   "
-"<em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, "
-"sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-"
-"Library hochladen.</em>"
+msgid "Choose your prefered font for H4 heading and titles. <em>Note: fonts marked with <strong>*</strong> symbol will be loaded from the <a href='http://www.google.com/webfonts'>Google Web Fonts</a> library.</em>"
+msgstr "Wähl deinen gewünschten Schrift für H4 Überschrift und Titeln aus.   <em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen.</em>"
 
 #: ../includes/locals.php:109
 msgid "H5 Heading"
 msgstr "H5 Überschrift"
 
 #: ../includes/locals.php:110
-msgid ""
-"Choose your prefered font for H5 heading and titles. <em>Note: fonts marked "
-"with <strong>*</strong> symbol will be loaded from the <a href='http://www."
-"google.com/webfonts'>Google Web Fonts</a> library.</em>"
-msgstr ""
-"Wähl deinen gewünschten Schrift für H5 Überschrift und Titeln aus.   "
-"<em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, "
-"sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-"
-"Library hochladen.</em>"
+msgid "Choose your prefered font for H5 heading and titles. <em>Note: fonts marked with <strong>*</strong> symbol will be loaded from the <a href='http://www.google.com/webfonts'>Google Web Fonts</a> library.</em>"
+msgstr "Wähl deinen gewünschten Schrift für H5 Überschrift und Titeln aus.   <em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen.</em>"
 
 #: ../includes/locals.php:111
 msgid "H6 Heading"
 msgstr "H6 Überschrift"
 
 #: ../includes/locals.php:112
-msgid ""
-"Choose your prefered font for H6 heading and titles. <em>Note: fonts marked "
-"with <strong>*</strong> symbol will be loaded from the <a href='http://www."
-"google.com/webfonts'>Google Web Fonts</a> library.</em>"
-msgstr ""
-"Wähl deinen gewünschten Schrift für H6 Überschrift und Titeln aus.   "
-"<em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, "
-"sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-"
-"Library hochladen.</em>"
+msgid "Choose your prefered font for H6 heading and titles. <em>Note: fonts marked with <strong>*</strong> symbol will be loaded from the <a href='http://www.google.com/webfonts'>Google Web Fonts</a> library.</em>"
+msgstr "Wähl deinen gewünschten Schrift für H6 Überschrift und Titeln aus.   <em>Hinweis: Schriften , die mit<strong>*</strong> Symbol markiert sind, sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen.</em>"
 
 #: ../includes/locals.php:113
 msgid "Display search box?"
@@ -647,13 +618,8 @@ msgid "Custom CSS"
 msgstr "Eigenes CSS"
 
 #: ../includes/locals.php:118
-msgid ""
-"Want to add any custom CSS code? Put in here, and the rest is taken care of. "
-"This overrides any other stylesheets. eg: a.button{color:green}"
-msgstr ""
-"Möchtest du speziellen CSS Code einbauen? Dann füg es hier rein, der Rest "
-"wird erledigt. Es überschreibt automatisch alle Stylesheets. Zum Beispiel: a."
-"button{color:green}"
+msgid "Want to add any custom CSS code? Put in here, and the rest is taken care of. This overrides any other stylesheets. eg: a.button{color:green}"
+msgstr "Möchtest du speziellen CSS Code einbauen? Dann füg es hier rein, der Rest wird erledigt. Es überschreibt automatisch alle Stylesheets. Zum Beispiel: a.button{color:green}"
 
 #: ../includes/locals.php:121
 msgid "Logo"
@@ -668,15 +634,8 @@ msgid "What kind of logo?"
 msgstr "Welches Logo?"
 
 #: ../includes/locals.php:124
-msgid ""
-"Select whether you want your main logo to be an image or text. If you select "
-"\"image\" you can put in the image url in the next option, and if you select "
-"\"text\" your Site Title will be shown instead."
-msgstr ""
-"Wähl bitte aus, ob dein Hauptlogo ein Bild oder einen Text sein soll. Falls "
-"du \"Bild\" möchtest, gib die Bild-URL in der nächste Option an, und falls "
-"du \"Text\" ausgewählt hast, wird stattdessen den Titel deiner Seite "
-"angezeigt"
+msgid "Select whether you want your main logo to be an image or text. If you select \"image\" you can put in the image url in the next option, and if you select \"text\" your Site Title will be shown instead."
+msgstr "Wähl bitte aus, ob dein Hauptlogo ein Bild oder einen Text sein soll. Falls du \"Bild\" möchtest, gib die Bild-URL in der nächste Option an, und falls du \"Text\" ausgewählt hast, wird stattdessen den Titel deiner Seite angezeigt"
 
 #: ../includes/locals.php:125
 msgid "Image Logo"
@@ -690,44 +649,26 @@ msgstr "Textlogo"
 msgid "Logo Typography"
 msgstr "Logo Typographie"
 
-#: ../includes/locals.php:128 ../includes/locals.php:137
-msgid ""
-"Choose your prefered font for menu. <em>Note: fonts marked with <strong>*</"
-"strong> symbol will be loaded from the <a href='http://www.google.com/"
-"webfonts'>Google Web Fonts</a> library.</em>"
-msgstr ""
-"Wähl bitte deinen gewünschten Schrift für Menü aus.<em>Hinweis: Schriften, "
-"die mit<strong>*</strong> Symbol markiert sind, sollst du von <a "
-"href='http://www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen."
-"</em>"
+#: ../includes/locals.php:128
+#: ../includes/locals.php:137
+msgid "Choose your prefered font for menu. <em>Note: fonts marked with <strong>*</strong> symbol will be loaded from the <a href='http://www.google.com/webfonts'>Google Web Fonts</a> library.</em>"
+msgstr "Wähl bitte deinen gewünschten Schrift für Menü aus.<em>Hinweis: Schriften, die mit<strong>*</strong> Symbol markiert sind, sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen.</em>"
 
 #: ../includes/locals.php:129
 msgid "Logo Image Path"
 msgstr "Pfad des Logo-Bildes"
 
 #: ../includes/locals.php:130
-msgid ""
-"Click Upload or Enter the direct path to your <strong>logo image</strong>. "
-"For example <em>http://your_website_url_here/wp-content/themes/themeXXXX/"
-"images/logo.png</em>"
-msgstr ""
-"Drück auf Hochladen oder gib den direkten Pfad zum <strong>Logo-Bild</"
-"strong>. Zum Beispiel <em>http://your_website_url_here/wp-content/themes/"
-"themeXXXX/images/logo.png</em>"
+msgid "Click Upload or Enter the direct path to your <strong>logo image</strong>. For example <em>http://your_website_url_here/wp-content/themes/themeXXXX/images/logo.png</em>"
+msgstr "Drück auf Hochladen oder gib den direkten Pfad zum <strong>Logo-Bild</strong>. Zum Beispiel <em>http://your_website_url_here/wp-content/themes/themeXXXX/images/logo.png</em>"
 
 #: ../includes/locals.php:131
 msgid "Favicon"
 msgstr "Favicon"
 
 #: ../includes/locals.php:132
-msgid ""
-"Click Upload or Enter the direct path to your <strong>favicon</strong>. For "
-"example <em>http://your_website_url_here/wp-content/themes/themeXXXX/favicon."
-"ico</em>"
-msgstr ""
-"Drück auf Hochladen oder gib den direkten Pfad zum <strong>favicon</strong>. "
-"Zum Beispiel <em>http://your_website_url_here/wp-content/themes/themeXXXX/"
-"favicon.ico</em>"
+msgid "Click Upload or Enter the direct path to your <strong>favicon</strong>. For example <em>http://your_website_url_here/wp-content/themes/themeXXXX/favicon.ico</em>"
+msgstr "Drück auf Hochladen oder gib den direkten Pfad zum <strong>favicon</strong>. Zum Beispiel <em>http://your_website_url_here/wp-content/themes/themeXXXX/favicon.ico</em>"
 
 #: ../includes/locals.php:135
 msgid "Navigation"
@@ -753,7 +694,8 @@ msgstr "FadeIn Effekt"
 msgid "Fade-in animation."
 msgstr "FadeIn Effekt"
 
-#: ../includes/locals.php:142 ../includes/locals.php:143
+#: ../includes/locals.php:142
+#: ../includes/locals.php:143
 msgid "Slide-down animation."
 msgstr "slideDown  Effekt"
 
@@ -821,12 +763,14 @@ msgstr "Wähl den Slidertyp aus, der dir am besten passt."
 msgid "Disable slider"
 msgstr "Slider deaktivieren"
 
-#: ../includes/locals.php:162 ../includes/locals.php:208
+#: ../includes/locals.php:162
+#: ../includes/locals.php:208
 #: ../includes/locals.php:474
 msgid "Slideshow"
 msgstr "Diashow "
 
-#: ../includes/locals.php:163 ../includes/locals.php:460
+#: ../includes/locals.php:163
+#: ../includes/locals.php:460
 msgid "Slides"
 msgstr "Dias"
 
@@ -930,11 +874,13 @@ msgstr "bottomRightTopLeft"
 msgid "bottomLeftTopRight"
 msgstr "bottomLeftTopRight"
 
-#: ../includes/locals.php:189 ../includes/locals.php:190
+#: ../includes/locals.php:189
+#: ../includes/locals.php:190
 msgid "Number of columns"
 msgstr "Anzahl der Spalten "
 
-#: ../includes/locals.php:191 ../includes/locals.php:192
+#: ../includes/locals.php:191
+#: ../includes/locals.php:192
 msgid "Number of rows"
 msgstr "Anzahl der Zeilen "
 
@@ -1031,13 +977,8 @@ msgid "Display next & prev navigation only on hover?"
 msgstr "Soll Vor / Zurücknavigation nur bei Maus-Schweben angezeigt werden?"
 
 #: ../includes/locals.php:217
-msgid ""
-"If true the navigation button (prev, next and play/stop buttons) will be "
-"visible on hover state only, if false they will be visible always"
-msgstr ""
-"Wenn das Argument true (richtig) ist, sollte den Navigationbutton (Vor, "
-"Nächte und Start/Stopp Buttons) nur bei Maus-Schweben sichtbar sein, wenn "
-"das Argument false (falsch) ist, sollte er immer sichtbar sein"
+msgid "If true the navigation button (prev, next and play/stop buttons) will be visible on hover state only, if false they will be visible always"
+msgstr "Wenn das Argument true (richtig) ist, sollte den Navigationbutton (Vor, Nächte und Start/Stopp Buttons) nur bei Maus-Schweben sichtbar sein, wenn das Argument false (falsch) ist, sollte er immer sichtbar sein"
 
 #: ../includes/locals.php:218
 msgid "Play/Pause button"
@@ -1068,12 +1009,8 @@ msgid "Slides to display"
 msgstr "Dias zum anzeigen"
 
 #: ../includes/locals.php:227
-msgid ""
-"Select the slides that you want to be displayed on slider. If no slide is "
-"selected, all slides will be displayed."
-msgstr ""
-"Wähl Dias aus, die du auf dem Slider darstellen möchtest. Falls du  keines "
-"der Dias ausgewählt hast, werden alle Dias angezeigt. "
+msgid "Select the slides that you want to be displayed on slider. If no slide is selected, all slides will be displayed."
+msgstr "Wähl Dias aus, die du auf dem Slider darstellen möchtest. Falls du  keines der Dias ausgewählt hast, werden alle Dias angezeigt. "
 
 #: ../includes/locals.php:228
 msgid "Pause on mouseover"
@@ -1081,18 +1018,14 @@ msgstr "Pause beim MauseOver"
 
 #: ../includes/locals.php:229
 msgid "The auto play will pause when you mouse over the slider."
-msgstr ""
-"Die automatische Wiedergabe wird unterbrochen, wenn du mit der  Maus über "
-"den Slider fährst."
+msgstr "Die automatische Wiedergabe wird unterbrochen, wenn du mit der  Maus über den Slider fährst."
 
 #: ../includes/locals.php:230
 msgid "Animation slowdown"
 msgstr "Slowdown -Animation"
 
 #: ../includes/locals.php:231
-msgid ""
-"You can choose different types of animation slowdown for transition of "
-"slides."
+msgid "You can choose different types of animation slowdown for transition of slides."
 msgstr "Wähl verschiedene Arten der SlowDown-Animation für Dias-Übergang"
 
 #: ../includes/locals.php:232
@@ -1100,8 +1033,7 @@ msgid "Mouse events for transition of slides"
 msgstr "Mausereignissen für Dias-Übergang"
 
 #: ../includes/locals.php:233
-msgid ""
-"You can choose different types of mouse events for transition of slides."
+msgid "You can choose different types of mouse events for transition of slides."
 msgstr "Wähl verschidene Arten von Mausereignissen für Dias-Übergang"
 
 #: ../includes/locals.php:234
@@ -1121,13 +1053,8 @@ msgid "Active slide"
 msgstr "Schiebe aktivieren"
 
 #: ../includes/locals.php:238
-msgid ""
-"Set the number of slide that will be active by default. If the value is 0, "
-"all slides will be of the same width when page loads."
-msgstr ""
-"Leg die Nummer des Dias fest, das aktiv by defaut wird. Falls es der Wert 0 "
-"steht, werden für alles Dias beim Laden der Seite derselben Breite "
-"aufgewickelt "
+msgid "Set the number of slide that will be active by default. If the value is 0, all slides will be of the same width when page loads."
+msgstr "Leg die Nummer des Dias fest, das aktiv by defaut wird. Falls es der Wert 0 steht, werden für alles Dias beim Laden der Seite derselben Breite aufgewickelt "
 
 #: ../includes/locals.php:239
 msgid "linear"
@@ -1271,9 +1198,7 @@ msgstr "Ähnliche Artikel Titel"
 
 #: ../includes/locals.php:276
 msgid "Enter Your Title used on Single Post page for related posts."
-msgstr ""
-"Gib deinen Titel, der auf der einzelnen Artikelseite ist, für die ähnliche "
-"Artikel ein"
+msgstr "Gib deinen Titel, der auf der einzelnen Artikelseite ist, für die ähnliche Artikel ein"
 
 #: ../includes/locals.php:277
 msgid "Related Posts"
@@ -1300,17 +1225,13 @@ msgid "Should images be uploaded on page scroll?"
 msgstr "Sollen die Bilder auf der Seitenchronik hochgeladen werden?"
 
 #: ../includes/locals.php:283
-msgid ""
-"You can enable images load only as you scroll down the page. Otherwise "
-"images will load all at once."
-msgstr ""
-"Das Laden der Bilder kannst du aktivieren nur wenn du auf der Seite runter "
-"scrollst. Sonst werden alle Bilder gleichzeitig geladen."
+msgid "You can enable images load only as you scroll down the page. Otherwise images will load all at once."
+msgstr "Das Laden der Bilder kannst du aktivieren nur wenn du auf der Seite runter scrollst. Sonst werden alle Bilder gleichzeitig geladen."
 
-#: ../includes/locals.php:284 ../includes/locals.php:285
-#, fuzzy
+#: ../includes/locals.php:284
+#: ../includes/locals.php:285
 msgid "Display share button in single post?"
-msgstr "Den Autor des Beitrages anzeigen?"
+msgstr "Soll ein Teile-Button im Beitrag angezeigt werden?"
 
 #: ../includes/locals.php:286
 msgid "Single post image size"
@@ -1326,8 +1247,7 @@ msgstr "Ansehen Meta des Blogs."
 
 #: ../includes/locals.php:289
 msgid "Select meta block type which will be displayed on blog and post pages."
-msgstr ""
-"Wählen Sie meta Block Art, die auf Blogs und Post-Seiten angezeigt werden."
+msgstr "Wählen Sie meta Block Art, die auf Blogs und Post-Seiten angezeigt werden."
 
 #: ../includes/locals.php:290
 msgid "Enable excerpt for blog posts?"
@@ -1337,10 +1257,10 @@ msgstr "Soll der Artikelauszug für Blog aktiviert werden?"
 msgid "Enable or Disable excerpt for blog posts."
 msgstr "Artivieren oder Deaktivieren den Artikelauszug für Blog "
 
-#: ../includes/locals.php:292 ../includes/locals.php:293
-#, fuzzy
+#: ../includes/locals.php:292
+#: ../includes/locals.php:293
 msgid "Button text for blog posts."
-msgstr "Soll Meta für Blog-Artikel aktiviert werden?"
+msgstr "Button Text für Blog Beiträge"
 
 #: ../includes/locals.php:294
 msgid "Do not show."
@@ -1406,7 +1326,8 @@ msgstr "Anzahl der Kommentare."
 msgid "Should the number of comments be displayed?"
 msgstr "Sollte die Anzahl der Kommentare angezeigt werden?"
 
-#: ../includes/locals.php:310 ../includes/locals.php:640
+#: ../includes/locals.php:310
+#: ../includes/locals.php:640
 msgid "Number of view."
 msgstr "Anzahl der Ansichten."
 
@@ -1468,13 +1389,12 @@ msgstr "Soll der Artikelauszug angezeigt werden? "
 
 #: ../includes/locals.php:328
 msgid "Enable or Disable excerpt for portfolio posts."
-msgstr ""
-"Artivieren oder Deaktivieren den Artikelauszug für die Portfolio Artikel"
+msgstr "Artivieren oder Deaktivieren den Artikelauszug für die Portfolio Artikel"
 
-#: ../includes/locals.php:329 ../includes/locals.php:330
-#, fuzzy
+#: ../includes/locals.php:329
+#: ../includes/locals.php:330
 msgid "Button text for portfolio posts."
-msgstr "Artivieren oder Deaktivieren den Button für die Portfolio Artikel"
+msgstr "Button Test für Portfolio Beiträge."
 
 #: ../includes/locals.php:331
 msgid "Excerpt words"
@@ -1498,8 +1418,7 @@ msgstr "Soll Meta-Information vom Portfolio angezeigt werden? "
 
 #: ../includes/locals.php:336
 msgid "Enable or Disable meta for single portfolio posts."
-msgstr ""
-"Meta-Daten für einzelne Portfolio-Beiträge aktivieren oder deaktivieren"
+msgstr "Meta-Daten für einzelne Portfolio-Beiträge aktivieren oder deaktivieren"
 
 #: ../includes/locals.php:337
 msgid "Enable or Disable lightbox for portfolio posts."
@@ -1510,12 +1429,8 @@ msgid "Layout"
 msgstr "Layout"
 
 #: ../includes/locals.php:339
-msgid ""
-"Portfolio has different layout modes. You can set and change the layout mode "
-"via this option."
-msgstr ""
-"Portfolio hat verschiedene Layoutmodus. Via diese Option kannst du den "
-"Layout-Modus festlegen oder verändern"
+msgid "Portfolio has different layout modes. You can set and change the layout mode via this option."
+msgstr "Portfolio hat verschiedene Layoutmodus. Via diese Option kannst du den Layout-Modus festlegen oder verändern"
 
 #: ../includes/locals.php:340
 msgid "Fit rows"
@@ -1531,8 +1446,7 @@ msgstr "die Anzahl von Elementen des 2-spaltigen Portfolios"
 
 #: ../includes/locals.php:343
 msgid "Portfolio items amount for Portfolio 2 columns template."
-msgstr ""
-"die Anzahl von Elementen des Portfolios für 2-spaltige Portfolio-Template"
+msgstr "die Anzahl von Elementen des Portfolios für 2-spaltige Portfolio-Template"
 
 #: ../includes/locals.php:344
 msgid "Portfolio 3 columns items amount"
@@ -1540,8 +1454,7 @@ msgstr "die Anzahl von Elementen des 32-spaltigen Portfolios"
 
 #: ../includes/locals.php:345
 msgid "Portfolio items amount for Portfolio 3 columns template."
-msgstr ""
-"die Anzahl von Elementen des Portfolios für 3-spaltige Portfolio-Template"
+msgstr "die Anzahl von Elementen des Portfolios für 3-spaltige Portfolio-Template"
 
 #: ../includes/locals.php:346
 msgid "Portfolio 4 columns items amount"
@@ -1549,8 +1462,7 @@ msgstr "die Anzahl von Elementen des 4-spaltigen Portfolios"
 
 #: ../includes/locals.php:347
 msgid "Portfolio items amount for Portfolio 4 columns template."
-msgstr ""
-"die Anzahl von Elementen des Portfolios für 4-spaltige Portfolio-Template"
+msgstr "die Anzahl von Elementen des Portfolios für 4-spaltige Portfolio-Template"
 
 #: ../includes/locals.php:350
 msgid "Footer"
@@ -1569,21 +1481,15 @@ msgid "Google Analytics Code"
 msgstr "Google Analytics-Code"
 
 #: ../includes/locals.php:354
-msgid ""
-"You can paste your Google Analytics or other tracking code in this box. This "
-"will be automatically added to the footer."
-msgstr ""
-"In diesem Feld platzier den Code von Google Analytics oder anderen Tracking-"
-"Code. Das wird automatisch im Footer hinzugefügt "
+msgid "You can paste your Google Analytics or other tracking code in this box. This will be automatically added to the footer."
+msgstr "In diesem Feld platzier den Code von Google Analytics oder anderen Tracking-Code. Das wird automatisch im Footer hinzugefügt "
 
 #: ../includes/locals.php:355
 msgid "Feedburner URL"
 msgstr "Feedburner-URL"
 
 #: ../includes/locals.php:356
-msgid ""
-"Feedburner is a Google service that takes care of your RSS feed. Paste your "
-"Feedburner URL here to let readers see it in your website."
+msgid "Feedburner is a Google service that takes care of your RSS feed. Paste your Feedburner URL here to let readers see it in your website."
 msgstr "Feedburner ist einen Google-Dienst, der Ihre RSS-Feed pflegt"
 
 #: ../includes/locals.php:357
@@ -1599,14 +1505,8 @@ msgid "Footer Menu Typography"
 msgstr "Footer-Menü Topographie"
 
 #: ../includes/locals.php:360
-msgid ""
-"Choose your prefered font for menu. <em>Note: fonts marked with <strong>*</"
-"strong> symbol will be loaded from the <a href=\"http://www.google.com/"
-"webfonts\">Google Web Fonts</a> library.</em>"
-msgstr ""
-"Wähl deinen gewünschten Schrift für Menü aus. <em>Hinweis: Schriften, die "
-"mit<strong>*</strong> Symbol markiert sind, sollst du von <a href='http://"
-"www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen.</em>"
+msgid "Choose your prefered font for menu. <em>Note: fonts marked with <strong>*</strong> symbol will be loaded from the <a href=\"http://www.google.com/webfonts\">Google Web Fonts</a> library.</em>"
+msgstr "Wähl deinen gewünschten Schrift für Menü aus. <em>Hinweis: Schriften, die mit<strong>*</strong> Symbol markiert sind, sollst du von <a href='http://www.google.com/webfonts'>Google Web Fonts</a>-Library hochladen.</em>"
 
 #: ../includes/locals.php:380
 msgid "<span>Step <i>1</i></span>Theme Options Import"
@@ -1614,9 +1514,7 @@ msgstr "<span>Schritt <i>1</i></span>Theme Optionen importieren "
 
 #: ../includes/locals.php:381
 msgid "Select the file that contains Theme Options (e.g. <b>options.json</b> )"
-msgstr ""
-"Wähl bitte die Datei, wo sich Theme Optionen  (z.B. <b>options.json</b> ) "
-"befinden "
+msgstr "Wähl bitte die Datei, wo sich Theme Optionen  (z.B. <b>options.json</b> ) befinden "
 
 #: ../includes/locals.php:382
 msgid "Upload File and Import"
@@ -1632,20 +1530,15 @@ msgstr "Willkommen zum OptionsFramework Backup Manager."
 
 #: ../includes/locals.php:385
 msgid "There was a problem importing your settings. Please Try again."
-msgstr ""
-"Es gab ein Problem beim Importieren deiner Einstellungen. Bitte versuch es "
-"noch einmal."
+msgstr "Es gab ein Problem beim Importieren deiner Einstellungen. Bitte versuch es noch einmal."
 
 #: ../includes/locals.php:386
 msgid "There was a problem exporting your settings. Please Try again."
-msgstr ""
-"Es gab ein Problem beim Exportieren deiner Einstellungen. Bitte versuch es "
-"noch einmal."
+msgstr "Es gab ein Problem beim Exportieren deiner Einstellungen. Bitte versuch es noch einmal."
 
 #: ../includes/locals.php:387
 msgid "The import file you've provided is invalid. Please try again."
-msgstr ""
-"Das von deinen importierte Datei ist ungültig. Bitte versuch es noch mal."
+msgstr "Das von deinen importierte Datei ist ungültig. Bitte versuch es noch mal."
 
 #: ../includes/locals.php:389
 msgid "<span>Step <i>1</i></span> Widget Settings Export"
@@ -1664,20 +1557,12 @@ msgid "Import Settings"
 msgstr "Import Einstellungen"
 
 #: ../includes/locals.php:393
-msgid ""
-"Incorrect file. Please, <a href='admin.php?page=options-framework-import&amp;"
-"step=1'>try again</a>."
-msgstr ""
-"Fehlerhafte Datei.  Bitte <a href='admin.php?page=options-framework-"
-"import&amp;step=1'> versuch es noch einmal</a>."
+msgid "Incorrect file. Please, <a href='admin.php?page=options-framework-import&amp;step=1'>try again</a>."
+msgstr "Fehlerhafte Datei.  Bitte <a href='admin.php?page=options-framework-import&amp;step=1'> versuch es noch einmal</a>."
 
 #: ../includes/locals.php:394
-msgid ""
-"Select the file that contains Widget Settings (e.g. <b>your_template_package/"
-"sources/sample_data/widgets.json</b>)"
-msgstr ""
-"Wählen Sie die Datei, die Widget-Einstellungen  enthält  (z. B. "
-"<b>your_template_package/sources/sample_data/widgets.json</b>)"
+msgid "Select the file that contains Widget Settings (e.g. <b>your_template_package/sources/sample_data/widgets.json</b>)"
+msgstr "Wählen Sie die Datei, die Widget-Einstellungen  enthält  (z. B. <b>your_template_package/sources/sample_data/widgets.json</b>)"
 
 #: ../includes/locals.php:395
 msgid "Show Widget Settings"
@@ -1685,27 +1570,19 @@ msgstr "Widget Einstellungen anzeigen"
 
 #: ../includes/locals.php:396
 msgid "Your have no widgets. Please, click next to go to the next step."
-msgstr ""
-"Ihr haben keine Widgets. Bitte klicken Sie auf Weiter, um zum nächsten "
-"Schritt zu gehen."
+msgstr "Ihr haben keine Widgets. Bitte klicken Sie auf Weiter, um zum nächsten Schritt zu gehen."
 
 #: ../includes/locals.php:397
-msgid ""
-"Disable the widgets you don't need and click \"Next\". All the selected "
-"widgets will be imported into the theme by default."
-msgstr ""
-"Schalten Sie unbenutzte Widgets aus und klicken Sie „nächste“. Alle "
-"ausgewählte Widgets werden automatisch in das nächste Thema importiert."
+msgid "Disable the widgets you don't need and click \"Next\". All the selected widgets will be imported into the theme by default."
+msgstr "Schalten Sie unbenutzte Widgets aus und klicken Sie „nächste“. Alle ausgewählte Widgets werden automatisch in das nächste Thema importiert."
 
 #: ../includes/locals.php:398
 msgid "go to widgets"
 msgstr "Zum den Widgets"
 
 #: ../includes/locals.php:399
-msgid ""
-"File widgets.json incorrect or empty. For this reason, none of the widget "
-"will be imported into your theme."
-msgstr ""
+msgid "File widgets.json incorrect or empty. For this reason, none of the widget will be imported into your theme."
+msgstr "Die widgets.json Datei ist falsch angegeben oder leer. In diesem Fall werden keine Widgets in das Theme importiert."
 
 #: ../includes/locals.php:402
 msgid "Sorry, there has been an error."
@@ -1721,57 +1598,31 @@ msgstr "Bitte"
 
 #: ../includes/locals.php:405
 #, php-format
-msgid ""
-"This WXR file (version %s) may not be supported by this version of the "
-"importer. Please consider updating."
-msgstr ""
-"Diese WXR Datei (Version %s) wird möglicherweise von dieser Version des "
-"Importers nicht unterstützt. Du sollst ihn wenn möglich aktualisieren. "
+msgid "This WXR file (version %s) may not be supported by this version of the importer. Please consider updating."
+msgstr "Diese WXR Datei (Version %s) wird möglicherweise von dieser Version des Importers nicht unterstützt. Du sollst ihn wenn möglich aktualisieren. "
 
 #: ../includes/locals.php:406
 #, php-format
-msgid ""
-"The export file could not be found at <code>%s</code>. It is likely that "
-"this was caused by a permissions problem."
-msgstr ""
-"Die exportierte Datei wurde nicht in <code>%s</code> gefunden. Es wurde "
-"aufgrund von Berechtigungsproblem sein"
+msgid "The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem."
+msgstr "Die exportierte Datei wurde nicht in <code>%s</code> gefunden. Es wurde aufgrund von Berechtigungsproblem sein"
 
 #: ../includes/locals.php:407
 #, php-format
-msgid ""
-"Failed to import author %s. Their posts will be attributed to the current "
-"user."
-msgstr ""
-"Import des Benutzers %s fehlgeschlagen. Ihre Artikel werden dem aktuellen "
-"Benutzer zugewiesen. "
+msgid "Failed to import author %s. Their posts will be attributed to the current user."
+msgstr "Import des Benutzers %s fehlgeschlagen. Ihre Artikel werden dem aktuellen Benutzer zugewiesen. "
 
 #: ../includes/locals.php:408
 msgid "Assign Authors"
 msgstr "Autoren zuweisen "
 
 #: ../includes/locals.php:409
-msgid ""
-"To make it easier for you to edit and save the imported content, you may "
-"want to reassign the author of the imported item to an existing user of this "
-"site. For example, you may want to import all the entries as <b>admin</b> "
-"entries."
-msgstr ""
-"Um es für dich einfacher zu machen, den importierten Inhalt zu bearbeiten "
-"und zu speichern, solltest du als Autor des Inhalts einen bereits "
-"existierenden Nutzer dieser Site verwenden. Du kannst zum Beispiel alle "
-"Einträge als  <b>admin</b>s Artikel importieren. "
+msgid "To make it easier for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site. For example, you may want to import all the entries as <b>admin</b> entries."
+msgstr "Um es für dich einfacher zu machen, den importierten Inhalt zu bearbeiten und zu speichern, solltest du als Autor des Inhalts einen bereits existierenden Nutzer dieser Site verwenden. Du kannst zum Beispiel alle Einträge als  <b>admin</b>s Artikel importieren. "
 
 #: ../includes/locals.php:410
 #, php-format
-msgid ""
-"If a new user is created by WordPress, a new password will be randomly "
-"generated and the new user&#8217;s role will be set as %s. Manually changing "
-"the new user&#8217;s details will be necessary."
-msgstr ""
-"Wenn ein neuer Benutzer durch WordPress erstellt wird, wird ein zufälliges "
-"Passwort generiert und die Benutzerrolle wird zu %s geändert. Es wird nötig "
-"sein, die weiteren Benutzerinformationen manuell zu bearbeiten. "
+msgid "If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary."
+msgstr "Wenn ein neuer Benutzer durch WordPress erstellt wird, wird ein zufälliges Passwort generiert und die Benutzerrolle wird zu %s geändert. Es wird nötig sein, die weiteren Benutzerinformationen manuell zu bearbeiten. "
 
 #: ../includes/locals.php:411
 msgid "Download and import file attachments"
@@ -1795,12 +1646,8 @@ msgstr "- Auswahl -"
 
 #: ../includes/locals.php:416
 #, php-format
-msgid ""
-"Failed to create new user for %s. Their posts will be attributed to the "
-"current user."
-msgstr ""
-"Erstellen eines neuen Benutzers für %s fehlgeschlagen. Seine Artikel werden "
-"dem aktuellen Benutzer zugewiesen. "
+msgid "Failed to create new user for %s. Their posts will be attributed to the current user."
+msgstr "Erstellen eines neuen Benutzers für %s fehlgeschlagen. Seine Artikel werden dem aktuellen Benutzer zugewiesen. "
 
 #: ../includes/locals.php:417
 #, php-format
@@ -1881,41 +1728,20 @@ msgstr "<span>Schritt <i>2</i></span> Datenimport zuweisen Autoren"
 
 #: ../includes/locals.php:434
 #, php-format
-msgid ""
-"A new version of this importer is available. Please update to version %s to "
-"ensure compatibility with newer export files. "
-msgstr ""
-"Eine neue Version dieses Importers ist verfügbar. Du sollst ihn auf Version "
-"%s aktualisieren, um die Kompatibilität mit neueren Dateien zu "
-"gewährleisten. "
+msgid "A new version of this importer is available. Please update to version %s to ensure compatibility with newer export files. "
+msgstr "Eine neue Version dieses Importers ist verfügbar. Du sollst ihn auf Version %s aktualisieren, um die Kompatibilität mit neueren Dateien zu gewährleisten. "
 
 #: ../includes/locals.php:435
-msgid ""
-"Select (<b>.xml</b>) file to upload sample data.<br>If you do not want to "
-"install sample data from livedemo you need to <b>skip this step</b>."
-msgstr ""
-"Wählen(<b>.xml</b>) zu archivieren, um Beispieldaten zu laden..<br> Wenn Sie "
-"nicht möchten, dass Beispieldaten aus LiveDemo installieren, müssen Sie<b> "
-"diesen Schritt überspringen</b>."
+msgid "Select (<b>.xml</b>) file to upload sample data.<br>If you do not want to install sample data from livedemo you need to <b>skip this step</b>."
+msgstr "Wählen(<b>.xml</b>) zu archivieren, um Beispieldaten zu laden..<br> Wenn Sie nicht möchten, dass Beispieldaten aus LiveDemo installieren, müssen Sie<b> diesen Schritt überspringen</b>."
 
 #: ../includes/locals.php:436
-msgid ""
-"Please note that certain content is already installed. You may simply need "
-"to skip this step. Otherwise, you can proceed with the installation."
-msgstr ""
-"Bitte beachten Sie: bestimmte Inhalte sind schon installiert. Sie können "
-"einfach diesen Schritt überspringen. Ansonsten können Sie mit der "
-"Installierung weitergehen."
+msgid "Please note that certain content is already installed. You may simply need to skip this step. Otherwise, you can proceed with the installation."
+msgstr "Bitte beachten Sie: bestimmte Inhalte sind schon installiert. Sie können einfach diesen Schritt überspringen. Ansonsten können Sie mit der Installierung weitergehen."
 
 #: ../includes/locals.php:438
-msgid ""
-"Some of your server settings do not meet the requirements for installing the "
-"sample data. Please, consult with your hosting provider on how to increase "
-"the required values."
-msgstr ""
-"Einige Ihrer Server-Einstellungen entsprechen nicht den Anforderungen für "
-"die Installation der Sample-Daten. Bitte wenden Sie sich an Ihren Hosting-"
-"Provider, wie Sie die gewünschten Werte zu erhöhen."
+msgid "Some of your server settings do not meet the requirements for installing the sample data. Please, consult with your hosting provider on how to increase the required values."
+msgstr "Einige Ihrer Server-Einstellungen entsprechen nicht den Anforderungen für die Installation der Sample-Daten. Bitte wenden Sie sich an Ihren Hosting-Provider, wie Sie die gewünschten Werte zu erhöhen."
 
 #: ../includes/locals.php:439
 msgid "Server Settings"
@@ -1930,100 +1756,52 @@ msgid "NOTE"
 msgstr "HINWEIS"
 
 #: ../includes/locals.php:442
-msgid ""
-"if for some reason those settings can not be adjusted, you may install the "
-"sample data using an <strong>alternative method</strong> - importing the "
-"<strong>.sql</strong> file directly into the database. Refer to the template "
-"documentation for instructions."
-msgstr ""
-"wenn die Einstellungen nicht verändert werden können, installiere die "
-"Beispieldaten via eine <strong>alternative Methode</strong> - du sollst die "
-"<strong>.sql</strong> direkt in Datenbank importieren. Ausführliche "
-"Anweisungen findest Du in der Template-Dokumentation."
+msgid "if for some reason those settings can not be adjusted, you may install the sample data using an <strong>alternative method</strong> - importing the <strong>.sql</strong> file directly into the database. Refer to the template documentation for instructions."
+msgstr "wenn die Einstellungen nicht verändert werden können, installiere die Beispieldaten via eine <strong>alternative Methode</strong> - du sollst die <strong>.sql</strong> direkt in Datenbank importieren. Ausführliche Anweisungen findest Du in der Template-Dokumentation."
 
 #: ../includes/locals.php:443
-msgid ""
-"You can proceed with the template installation without updating server "
-"settings, however in this case you can get errors or only part of your "
-"content will be loaded."
-msgstr ""
-"Du kannst das Template einfach ohne Update Server Einstellungen "
-"installieren, aber würdest du dann den Fehler kriegen oder würde es nun "
-"einen Teil des Inhalts hochgeladet   "
+msgid "You can proceed with the template installation without updating server settings, however in this case you can get errors or only part of your content will be loaded."
+msgstr "Du kannst das Template einfach ohne Update Server Einstellungen installieren, aber würdest du dann den Fehler kriegen oder würde es nun einen Teil des Inhalts hochgeladet   "
 
 #: ../includes/locals.php:444
 msgid "Congratulations"
 msgstr "Glückwünsche"
 
 #: ../includes/locals.php:445
-msgid ""
-"You have successfully installed your <b>Cherry WordPress Theme</b>.<br /> "
-"You can look theme now"
-msgstr ""
-"Sie haben erfolgreich Ihre <b>Kirsche WordPress Theme installiert</b>. <br /"
-">Sie können Thema jetzt anschauen"
+msgid "You have successfully installed your <b>Cherry WordPress Theme</b>.<br /> You can look theme now"
+msgstr "Sie haben erfolgreich Ihre <b>Kirsche WordPress Theme installiert</b>. <br />Sie können Thema jetzt anschauen"
 
 #: ../includes/locals.php:446
 msgid "visit site"
 msgstr "website besuchen"
 
 #: ../includes/locals.php:447
-msgid ""
-"You might see only the white screen on the next step. Don't worry, the "
-"importing is being continued. Please wait until the installation is finished."
-msgstr ""
-"Sie sehen bei dem nächsten Schritt nur ein weißes Bildschirm. Keine Sorge, "
-"der Import wird weitergeführt. Bitte warten Sie bis die Installation fertig "
-"ist."
+msgid "You might see only the white screen on the next step. Don't worry, the importing is being continued. Please wait until the installation is finished."
+msgstr "Sie sehen bei dem nächsten Schritt nur ein weißes Bildschirm. Keine Sorge, der Import wird weitergeführt. Bitte warten Sie bis die Installation fertig ist."
 
 #: ../includes/locals.php:448
-msgid ""
-"<b>Attention:</b> the Jigoshop plugin is not activated. We recommend that "
-"you install and activate this plugin to ensure correct data importing. "
-"Otherwise, some data may be lost during the import."
-msgstr ""
-"<b>Achtung:</b> das Jigoshop-Plug-in ist nicht aktiviert. Wir empfehlen, "
-"dass Sie dieses Plug-in installieren und aktivieren, um einen richtigen "
-"Dateiimport sicherzustellen. Ansonsten können währen des Imports einige "
-"Dateien verlorengehen."
+msgid "<b>Attention:</b> the Jigoshop plugin is not activated. We recommend that you install and activate this plugin to ensure correct data importing. Otherwise, some data may be lost during the import."
+msgstr "<b>Achtung:</b> das Jigoshop-Plug-in ist nicht aktiviert. Wir empfehlen, dass Sie dieses Plug-in installieren und aktivieren, um einen richtigen Dateiimport sicherzustellen. Ansonsten können währen des Imports einige Dateien verlorengehen."
 
 #: ../includes/locals.php:449
-msgid ""
-"<b>Attention:</b> the WooCommerce plugin is not activated. We recommend that "
-"you install and activate this plugin to ensure correct data importing. "
-"Otherwise, some data may be lost during the import."
-msgstr ""
-"<b>Achtung:</b> das WooCommerce -Plug-in ist nicht aktiviert. Wir empfehlen, "
-"dass Sie dieses Plug-in installieren und aktivieren, um einen richtigen "
-"Dateiimport sicherzustellen. Ansonsten können währen des Imports einige "
-"Dateien verlorengehen."
+msgid "<b>Attention:</b> the WooCommerce plugin is not activated. We recommend that you install and activate this plugin to ensure correct data importing. Otherwise, some data may be lost during the import."
+msgstr "<b>Achtung:</b> das WooCommerce -Plug-in ist nicht aktiviert. Wir empfehlen, dass Sie dieses Plug-in installieren und aktivieren, um einen richtigen Dateiimport sicherzustellen. Ansonsten können währen des Imports einige Dateien verlorengehen."
 
 #: ../includes/locals.php:452
 msgid "The login information you have entered is incorrect."
 msgstr "Die angegebenen Anmeldeinformationen sind fehlerhaft. "
 
 #: ../includes/locals.php:453
-msgid ""
-"You need to enable write permissions on your server to use these functions."
-msgstr ""
-"Sie müssen Schreibrechte auf Ihrem Server aktivieren, um diese Funktionen "
-"nutzen zu können."
+msgid "You need to enable write permissions on your server to use these functions."
+msgstr "Sie müssen Schreibrechte auf Ihrem Server aktivieren, um diese Funktionen nutzen zu können."
 
 #: ../includes/locals.php:454
-msgid ""
-"Cherry Framework is not able to perform necessary changes for the correct "
-"work with your child theme."
-msgstr ""
-"Cherry Framework ist nicht in der Lage, die notwendigen Änderungen für die "
-"korrekte Arbeit mit Ihrem Kind Thema durchzuführen."
+msgid "Cherry Framework is not able to perform necessary changes for the correct work with your child theme."
+msgstr "Cherry Framework ist nicht in der Lage, die notwendigen Änderungen für die korrekte Arbeit mit Ihrem Kind Thema durchzuführen."
 
 #: ../includes/locals.php:455
-msgid ""
-"See <a target=\"_blank\" href=\"http://codex.wordpress.org/"
-"Changing_File_Permissions\">the Codex</a> for more information."
-msgstr ""
-"Siehe<a target=\"_blank\" href=\"http://codex.wordpress.org/"
-"Changing_File_Permissions\"> der Codex</a> für weitere Informationen."
+msgid "See <a target=\"_blank\" href=\"http://codex.wordpress.org/Changing_File_Permissions\">the Codex</a> for more information."
+msgstr "Siehe<a target=\"_blank\" href=\"http://codex.wordpress.org/Changing_File_Permissions\"> der Codex</a> für weitere Informationen."
 
 #: ../includes/locals.php:458
 msgid "Header Menu"
@@ -2067,8 +1845,7 @@ msgstr "Ihr Kommentar wartet auf Freischaltung"
 
 #: ../includes/locals.php:473
 msgid "Please choose desired Portfolio Format and fill additional fields."
-msgstr ""
-"Wähl bitte den gewünschten Portfolio-Format aus und füll zusätzlicher Felder "
+msgstr "Wähl bitte den gewünschten Portfolio-Format aus und füll zusätzlicher Felder "
 
 #: ../includes/locals.php:475
 msgid "Grid Gallery"
@@ -2084,8 +1861,7 @@ msgstr "Format"
 
 #: ../includes/locals.php:478
 msgid "Choose post format that most fit your needs."
-msgstr ""
-"Wähl das Artikel-Format aus, das deinen Anforderungen am besten entspricht"
+msgstr "Wähl das Artikel-Format aus, das deinen Anforderungen am besten entspricht"
 
 #: ../includes/locals.php:479
 msgid "Input project end date."
@@ -2107,7 +1883,8 @@ msgstr "Zusätzliche Informationen zum Portfolioelement"
 msgid "Input the project URL (external link)"
 msgstr "Gib die URL des Projekts ein (externer Link) "
 
-#: ../includes/locals.php:484 ../includes/locals.php:538
+#: ../includes/locals.php:484
+#: ../includes/locals.php:538
 msgid "Image Settings"
 msgstr "Bild Einstellungen"
 
@@ -2140,12 +1917,8 @@ msgid "Embedded Code"
 msgstr "Einbettcode"
 
 #: ../includes/locals.php:492
-msgid ""
-"You can include embedded code here.<br><b>Attention!</b> This code overwrite "
-"your video URL(s)."
-msgstr ""
-"Hier kannst du deinen Einbettcode platzieren.  <br><b>Vorsicht!</b> Dieser "
-"Code überschreibt deine Video-URL(s)."
+msgid "You can include embedded code here.<br><b>Attention!</b> This code overwrite your video URL(s)."
+msgstr "Hier kannst du deinen Einbettcode platzieren.  <br><b>Vorsicht!</b> Dieser Code überschreibt deine Video-URL(s)."
 
 #: ../includes/locals.php:493
 msgid "Audio Settings"
@@ -2228,14 +2001,8 @@ msgid "Your Social Networks."
 msgstr "Ihre Soziale Netzwerke."
 
 #: ../includes/locals.php:517
-msgid ""
-"In icon field you need to specify the icon name that can be copied from the "
-"<a target=\"_blank\" href=\"http://fortawesome.github.io/Font-Awesome/icons/"
-"#brand\">website</a>. E.g. \"icon-facebook\"."
-msgstr ""
-"Im Symbol Feld müssen Sie auf das Symbolaussuchen, Name, aus dem kopiert "
-"werden soll<a target=\"_blank\" href=\"http://fortawesome.github.io/Font-"
-"Awesome/icons/#brand\"> Webseite</a>. z.B. \"icon-facebook\"."
+msgid "In icon field you need to specify the icon name that can be copied from the <a target=\"_blank\" href=\"http://fortawesome.github.io/Font-Awesome/icons/#brand\">website</a>. E.g. \"icon-facebook\"."
+msgstr "Im Symbol Feld müssen Sie auf das Symbolaussuchen, Name, aus dem kopiert werden soll<a target=\"_blank\" href=\"http://fortawesome.github.io/Font-Awesome/icons/#brand\"> Webseite</a>. z.B. \"icon-facebook\"."
 
 #: ../includes/locals.php:518
 msgid "Social Networks Title"
@@ -2253,7 +2020,8 @@ msgstr "Testimonial Optionen"
 msgid "Please fill additional fields for testimonial."
 msgstr "Füll bitte zusäzliche Felde für Testimonial ein"
 
-#: ../includes/locals.php:524 ../includes/locals.php:851
+#: ../includes/locals.php:524
+#: ../includes/locals.php:851
 #: ../includes/locals.php:916
 msgid "Name"
 msgstr "Name"
@@ -2282,7 +2050,8 @@ msgstr "Das Zitat"
 msgid "Put your quote in this field."
 msgstr "Gib ein Zitat in diesem Feld ein. "
 
-#: ../includes/locals.php:533 ../includes/locals.php:740
+#: ../includes/locals.php:533
+#: ../includes/locals.php:740
 #: ../includes/locals.php:852
 msgid "Author"
 msgstr "Autor"
@@ -2316,12 +2085,8 @@ msgid "The Category Slug"
 msgstr "Titelform der Kategorie (in URLs)"
 
 #: ../includes/locals.php:544
-msgid ""
-"Name of the custom category that is displayed on this page. You need to use "
-"the slug of the category here."
-msgstr ""
-"Gib der benutzerdefinierten Kategorie, die auf dieser Seite angezeigt wird, "
-"einen Namen. Verwende hier den Titelform der Kategorie"
+msgid "Name of the custom category that is displayed on this page. You need to use the slug of the category here."
+msgstr "Gib der benutzerdefinierten Kategorie, die auf dieser Seite angezeigt wird, einen Namen. Verwende hier den Titelform der Kategorie"
 
 #: ../includes/locals.php:547
 msgid "Install Required Plugins"
@@ -2362,25 +2127,13 @@ msgstr "Das Theme empfiehlt folgende Plugins: %1$s."
 
 #: ../includes/locals.php:555
 #, php-format
-msgid ""
-"Sorry, but you do not have the correct permissions to install the %s plugin. "
-"Contact the administrator of this site for help on getting the plugin "
-"installed."
-msgstr ""
-"Entschuldig, aber du hast nicht die richtige Berechtigung, um das Plugin %s "
-"zu installieren. Bitte kontaktiere den Webseiten Administrator, damit dieser "
-"dir bei der Installation helfen kann"
+msgid "Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed."
+msgstr "Entschuldig, aber du hast nicht die richtige Berechtigung, um das Plugin %s zu installieren. Bitte kontaktiere den Webseiten Administrator, damit dieser dir bei der Installation helfen kann"
 
 #: ../includes/locals.php:556
 #, php-format
-msgid ""
-"Sorry, but you do not have the correct permissions to install the %s "
-"plugins. Contact the administrator of this site for help on getting the "
-"plugins installed."
-msgstr ""
-"Entschuldig, aber du hast nicht die richtige Berechtigung, um die Plugin s%s "
-"zu installieren. Kontaktiere bitte den Webseiten Administrator, damit dieser "
-"dir bei der Installation helfen kann"
+msgid "Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed."
+msgstr "Entschuldig, aber du hast nicht die richtige Berechtigung, um die Plugin s%s zu installieren. Kontaktiere bitte den Webseiten Administrator, damit dieser dir bei der Installation helfen kann"
 
 #: ../includes/locals.php:557
 #, php-format
@@ -2404,65 +2157,33 @@ msgstr "Die folgenden empfohlenen Plugins sind derzeit nicht aktiviert: %1$s."
 
 #: ../includes/locals.php:561
 #, php-format
-msgid ""
-"Sorry, but you do not have the correct permissions to activate the %s "
-"plugin. Contact the administrator of this site for help on getting the "
-"plugin activated."
-msgstr ""
-"Entschuldig, aber du hast nicht die richtige Berechtigung, um das Plugin %s "
-"zu aktivieren. Kontaktiere bitte den Webseiten Administrator, damit dieser "
-"dir bei der Installation helfen kann"
+msgid "Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated."
+msgstr "Entschuldig, aber du hast nicht die richtige Berechtigung, um das Plugin %s zu aktivieren. Kontaktiere bitte den Webseiten Administrator, damit dieser dir bei der Installation helfen kann"
 
 #: ../includes/locals.php:562
 #, php-format
-msgid ""
-"Sorry, but you do not have the correct permissions to activate the %s "
-"plugins. Contact the administrator of this site for help on getting the "
-"plugins activated."
-msgstr ""
-"Entschuldig, aber du hast nicht die richtige Berechtigung, um die Plugins %s "
-"zu aktivieren. Kontaktiere bitte den Webseiten Administrator, damit dieser "
-"dir bei der Installation helfen kann"
+msgid "Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated."
+msgstr "Entschuldig, aber du hast nicht die richtige Berechtigung, um die Plugins %s zu aktivieren. Kontaktiere bitte den Webseiten Administrator, damit dieser dir bei der Installation helfen kann"
 
 #: ../includes/locals.php:563
 #, php-format
-msgid ""
-"The following plugin needs to be updated to its latest version to ensure "
-"maximum compatibility with this theme: %1$s."
-msgstr ""
-"Das folgende Plugin muss auf die letzte Version aktiviert werden, um die "
-"maximale Kompatibilität mit dem Thema zu erreichen: %1$s."
+msgid "The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s."
+msgstr "Das folgende Plugin muss auf die letzte Version aktiviert werden, um die maximale Kompatibilität mit dem Thema zu erreichen: %1$s."
 
 #: ../includes/locals.php:564
 #, php-format
-msgid ""
-"The following plugins need to be updated to their latest version to ensure "
-"maximum compatibility with this theme: %1$s"
-msgstr ""
-"Die folgende Plugins müssen auf die letzte Version aktiviert werden, um die "
-"maximale Kompatibilität mit dem Thema zu erreichen: %1$s."
+msgid "The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s"
+msgstr "Die folgende Plugins müssen auf die letzte Version aktiviert werden, um die maximale Kompatibilität mit dem Thema zu erreichen: %1$s."
 
 #: ../includes/locals.php:565
 #, php-format
-msgid ""
-"Sorry, but you do not have the correct permissions to update the %s plugin. "
-"Contact the administrator of this site for help on getting the plugin "
-"updated."
-msgstr ""
-"Entschuldig, aber du hast nicht die richtige Berechtigung, um das Plugin %s "
-"zu aktualisieren. Kontaktiere bitte den Webseiten Administrator, damit "
-"dieser dir bei der Installation helfen kann"
+msgid "Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated."
+msgstr "Entschuldig, aber du hast nicht die richtige Berechtigung, um das Plugin %s zu aktualisieren. Kontaktiere bitte den Webseiten Administrator, damit dieser dir bei der Installation helfen kann"
 
 #: ../includes/locals.php:566
 #, php-format
-msgid ""
-"Sorry, but you do not have the correct permissions to update the %s plugins. "
-"Contact the administrator of this site for help on getting the plugins "
-"updated."
-msgstr ""
-"Entschuldig, aber du hast nicht die richtige Berechtigung, um die Plugins %s "
-"zu aktualisieren. Kontaktiere bitte den Webseiten Administrator, damit "
-"dieser dir bei der Installation helfen kann"
+msgid "Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated."
+msgstr "Entschuldig, aber du hast nicht die richtige Berechtigung, um die Plugins %s zu aktualisieren. Kontaktiere bitte den Webseiten Administrator, damit dieser dir bei der Installation helfen kann"
 
 #: ../includes/locals.php:567
 msgid "Begin installing plugin"
@@ -2493,7 +2214,8 @@ msgstr "Plugin wurde erfolgreich aktiviert"
 msgid "All plugins installed and activated successfully. %1$s"
 msgstr "Alle Plugins wurden erfolgreich aktiviert und installiert. %1$s"
 
-#: ../includes/locals.php:574 ../includes/locals.php:586
+#: ../includes/locals.php:574
+#: ../includes/locals.php:586
 msgid "Return to the Dashboard"
 msgstr "Zurück zum Dashboard"
 
@@ -2573,8 +2295,7 @@ msgstr "Installationspaket ist nicht verfügbar"
 #: ../includes/locals.php:596
 #, php-format
 msgid "Downloading install package from <span class='code'>%s</span>&#8230;"
-msgstr ""
-"Lade das Installationspaket von <span class='code'>%s</span>&#8230; herunter"
+msgstr "Lade das Installationspaket von <span class='code'>%s</span>&#8230; herunter"
 
 #: ../includes/locals.php:597
 msgid "Unpacking the package&#8230;"
@@ -2601,12 +2322,8 @@ msgid "Plugin activated successfully."
 msgstr "Das Plugin wurde erfolgreich aktiviert."
 
 #: ../includes/locals.php:603
-msgid ""
-"The installation and activation process is starting. This process may take a "
-"while on some hosts, so please be patient."
-msgstr ""
-"Die Installation und Aktivation wurden gestartet. Dies kann eine Weile "
-"dauern, hab bitte Geduld."
+msgid "The installation and activation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr "Die Installation und Aktivation wurden gestartet. Dies kann eine Weile dauern, hab bitte Geduld."
 
 #: ../includes/locals.php:604
 #, php-format
@@ -2631,18 +2348,13 @@ msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
 msgstr "Das Plugin %1$s (%2$d/%3$d) installieren und aktivieren"
 
 #: ../includes/locals.php:609
-msgid ""
-"The installation process is starting. This process may take a while on some "
-"hosts, so please be patient."
-msgstr ""
-"Die Installation  wurde gestartet. Dies kann eine Weile dauern, hab bitte "
-"Geduld."
+msgid "The installation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr "Die Installation  wurde gestartet. Dies kann eine Weile dauern, hab bitte Geduld."
 
 #: ../includes/locals.php:610
 #, php-format
 msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
-msgstr ""
-"Eine Fehlermeldung kommt bei der Installation von %1$s:<strong>%2$s</strong>."
+msgstr "Eine Fehlermeldung kommt bei der Installation von %1$s:<strong>%2$s</strong>."
 
 #: ../includes/locals.php:611
 #, php-format
@@ -2736,9 +2448,8 @@ msgid "No tags"
 msgstr "Keine Tags"
 
 #: ../includes/locals.php:639
-#, fuzzy
 msgid "No category"
-msgstr "nach Kategorie"
+msgstr "Keine Kategorie"
 
 #: ../includes/locals.php:641
 msgid "I like it."
@@ -2821,14 +2532,12 @@ msgid "Post Cycle"
 msgstr "Post Cycle"
 
 #: ../includes/locals.php:667
-#, fuzzy
 msgid "Carousel (Elasti)"
-msgstr "Karussell "
+msgstr "Karussell (Elasti)"
 
 #: ../includes/locals.php:668
-#, fuzzy
 msgid "Carousel (OWL)"
-msgstr "Karussell "
+msgstr "Karussell (OWL)"
 
 #: ../includes/locals.php:669
 msgid "Roundabout"
@@ -3159,12 +2868,8 @@ msgid "Show post title"
 msgstr "Titel des Artikels anzeigen"
 
 #: ../includes/locals.php:761
-msgid ""
-"Date as title <span style='font-size:11px; color:#999;'>('[mm-dd-yyyy]')</"
-"span>"
-msgstr ""
-"Datum als Titel <span style='font-size:11px; color:#999;'>('[mm-dd-yyyy]')</"
-"span>"
+msgid "Date as title <span style='font-size:11px; color:#999;'>('[mm-dd-yyyy]')</span>"
+msgstr "Datum als Titel <span style='font-size:11px; color:#999;'>('[mm-dd-yyyy]')</span>"
 
 #: ../includes/locals.php:762
 msgid "Excerpt"
@@ -3334,7 +3039,8 @@ msgstr "Telefon:"
 msgid "Email:"
 msgstr "E-Mail:"
 
-#: ../includes/locals.php:815 ../includes/locals.php:816
+#: ../includes/locals.php:815
+#: ../includes/locals.php:816
 msgid "Cherry - Facebook Like Box Widget"
 msgstr "Cherry - Facebook Like Box Widget"
 
@@ -3343,14 +3049,8 @@ msgid "Facebook page url"
 msgstr "URL der Facebook-Seite"
 
 #: ../includes/locals.php:818
-msgid ""
-"The Like Box only works with <a target=\"_blank\" href=\"https://www."
-"facebook.com/help/174987089221178/\" title=\"Facebook Pages\">Facebook Pages."
-"</a>"
-msgstr ""
-"Die Like-Box funktioniert nur mit <a target=\"_blank\" href=\"https://www."
-"facebook.com/help/174987089221178/\" title=\"Facebook Pages\">Facebook "
-"Seiten.</a>"
+msgid "The Like Box only works with <a target=\"_blank\" href=\"https://www.facebook.com/help/174987089221178/\" title=\"Facebook Pages\">Facebook Pages.</a>"
+msgstr "Die Like-Box funktioniert nur mit <a target=\"_blank\" href=\"https://www.facebook.com/help/174987089221178/\" title=\"Facebook Pages\">Facebook Seiten.</a>"
 
 #: ../includes/locals.php:819
 msgid "Color Scheme"
@@ -3497,48 +3197,20 @@ msgid " backup file not found. Please try to create backup once again."
 msgstr "Backups nicht gefunden. Erstellen Sie bitte neues Backup."
 
 #: ../includes/locals.php:863
-msgid ""
-"Data Management allows to update or backup framework and themes. Framework "
-"is regularly updated thus delivering new opportunities for your site.<br> To "
-"keep your data safe, you can back up the framework or child theme, to be "
-"able to download it later. If necessary, you can restore the framework or "
-"your theme using the backup."
-msgstr ""
-"Mit der Daten-Verwaltung kann man ein Framework und Themes aktualisieren "
-"oder sichern. Framework wird regelmäßig aktualisiert damit du neue "
-"Möglichkeiten für die Website hast.<br> Damit deine Daten gesichert werden, "
-"mache ein Backup des Frameworks oder der Child-Theme, um es/sie später "
-"herunterzuladen. Wenn notwendig, können Sie das Framework oder Ihre Theme "
-"mit Hilfe vom Backup weiterherstellen. "
+msgid "Data Management allows to update or backup framework and themes. Framework is regularly updated thus delivering new opportunities for your site.<br> To keep your data safe, you can back up the framework or child theme, to be able to download it later. If necessary, you can restore the framework or your theme using the backup."
+msgstr "Mit der Daten-Verwaltung kann man ein Framework und Themes aktualisieren oder sichern. Framework wird regelmäßig aktualisiert damit du neue Möglichkeiten für die Website hast.<br> Damit deine Daten gesichert werden, mache ein Backup des Frameworks oder der Child-Theme, um es/sie später herunterzuladen. Wenn notwendig, können Sie das Framework oder Ihre Theme mit Hilfe vom Backup weiterherstellen. "
 
 #: ../includes/locals.php:864
-msgid ""
-"<b>Warning!</b> Before updating framework you are strongly advised to backup "
-"your data."
-msgstr ""
-"<b>Warnung!</b> Vor dem Update des Frameworks empfehlen wir Ihnen die Daten "
-"zu sichern."
+msgid "<b>Warning!</b> Before updating framework you are strongly advised to backup your data."
+msgstr "<b>Warnung!</b> Vor dem Update des Frameworks empfehlen wir Ihnen die Daten zu sichern."
 
 #: ../includes/locals.php:865
-msgid ""
-"You can back up your theme. If the theme has a backup copy, it is possible "
-"to restore it or download. The date of the latest backup copy is displayed "
-"in the column <b>Last Backup Date</b>."
-msgstr ""
-"Sie können die Theme sichern. Wenn die Theme eine Sicherungskopie hat, kann "
-"man die weiterherstellen oder herunterladen. Das Datum von letzter "
-"Sicherungskopie wird in der Spalte <b>Letztes Datum der Sicherungs</b> "
-"angezeigt"
+msgid "You can back up your theme. If the theme has a backup copy, it is possible to restore it or download. The date of the latest backup copy is displayed in the column <b>Last Backup Date</b>."
+msgstr "Sie können die Theme sichern. Wenn die Theme eine Sicherungskopie hat, kann man die weiterherstellen oder herunterladen. Das Datum von letzter Sicherungskopie wird in der Spalte <b>Letztes Datum der Sicherungs</b> angezeigt"
 
 #: ../includes/locals.php:866
-msgid ""
-"<b style=\"color:red;\">Warning!</b> Before updating framework you are "
-"strongly advised to <a href=\"admin.php?page=options-framework-data-"
-"management\">backup</a> your data."
-msgstr ""
-"<b style=\"color:red;\"> Warnung!!</b>   Vor dem Update framework wird "
-"dringend empfohlen <a href=\"admin.php?page=options-framework-data-management"
-"\">Speichern</a> ihre Daten."
+msgid "<b style=\"color:red;\">Warning!</b> Before updating framework you are strongly advised to <a href=\"admin.php?page=options-framework-data-management\">backup</a> your data."
+msgstr "<b style=\"color:red;\"> Warnung!!</b>   Vor dem Update framework wird dringend empfohlen <a href=\"admin.php?page=options-framework-data-management\">Speichern</a> ihre Daten."
 
 #: ../includes/locals.php:870
 msgid "View File"
@@ -3549,14 +3221,8 @@ msgid "Previously Uploaded"
 msgstr "Vorher geladen"
 
 #: ../includes/locals.php:893
-msgid ""
-"<p>An Unexpected HTTP Error occurred during the API request.</p><p><a "
-"href='#' onclick='document.location.reload(); return false;'>Try again</a></"
-"p>"
-msgstr ""
-"<p>Während der API-Anfrage ist ein unerwarteter HTTP-Fehler aufgetreten.</"
-"p><p><a href='#' onclick='document.location.reload(); return false;'>Versuch "
-"es noch mal</a></p>"
+msgid "<p>An Unexpected HTTP Error occurred during the API request.</p><p><a href='#' onclick='document.location.reload(); return false;'>Try again</a></p>"
+msgstr "<p>Während der API-Anfrage ist ein unerwarteter HTTP-Fehler aufgetreten.</p><p><a href='#' onclick='document.location.reload(); return false;'>Versuch es noch mal</a></p>"
 
 #: ../includes/locals.php:894
 msgid "An unknown error occurred"
@@ -3588,9 +3254,7 @@ msgstr "Bitte lade nicht diese Seite direkt. Danke!"
 
 #: ../includes/locals.php:904
 msgid "This post is password protected. Enter the password to view comments."
-msgstr ""
-"Dieser Artikel ist passwortgeschützt. Gib das Passwort ein, um die "
-"Kommentare zu sehen."
+msgstr "Dieser Artikel ist passwortgeschützt. Gib das Passwort ein, um die Kommentare zu sehen."
 
 #: ../includes/locals.php:905
 msgid "1 Response"
@@ -3712,8 +3376,7 @@ msgstr "Es ist ein Fehler aufgetreten"
 
 #: ../includes/locals.php:943
 msgid "We apologize for any inconvenience, please"
-msgstr ""
-"Wir möchten uns bei dir für die Unannehmlichkeiten entschuldigen, bitte"
+msgstr "Wir möchten uns bei dir für die Unannehmlichkeiten entschuldigen, bitte"
 
 #: ../includes/locals.php:944
 msgid "return to the home page"
@@ -3744,12 +3407,8 @@ msgid "Not Found"
 msgstr "Nicht gefunden"
 
 #: ../includes/locals.php:957
-msgid ""
-"Apologies, but no results were found for the requested archive. Perhaps "
-"searching will help find a related post."
-msgstr ""
-"Entschuldigung, aber die Seite konnte nicht gefunden werden. Vielleicht "
-"hilft die Suchfunktion den benötigen Artikel zu finden."
+msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
+msgstr "Entschuldigung, aber die Seite konnte nicht gefunden werden. Vielleicht hilft die Suchfunktion den benötigen Artikel zu finden."
 
 #: ../includes/locals.php:960
 msgid "is proudly powered by"
@@ -3811,7 +3470,8 @@ msgstr "Kategorie Archiv für "
 msgid "Tag Archive for"
 msgstr "Tag Archiv für "
 
-#: ../includes/locals.php:979 ../includes/locals.php:1022
+#: ../includes/locals.php:979
+#: ../includes/locals.php:1022
 msgid "Archive"
 msgstr "Archiv"
 
@@ -3832,19 +3492,12 @@ msgid "Page Not Found"
 msgstr "Seite nicht gefunden"
 
 #: ../includes/locals.php:988
-msgid ""
-"The page you are looking for might have been removed, had its name changed, "
-"or is temporarily unavailable."
-msgstr ""
-"Die Seite, nach der du suchst, wurde vielleicht entfernt, hat einen anderen "
-"Namen erhalten oder ist temporär nicht verfügbar."
+msgid "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+msgstr "Die Seite, nach der du suchst, wurde vielleicht entfernt, hat einen anderen Namen erhalten oder ist temporär nicht verfügbar."
 
 #: ../includes/locals.php:989
-msgid ""
-"Please try using our search box below to look for information on the "
-"internet."
-msgstr ""
-"Bitte versuch über unsere Suchfelder unten Information im Internet zu finden"
+msgid "Please try using our search box below to look for information on the internet."
+msgstr "Bitte versuch über unsere Suchfelder unten Information im Internet zu finden"
 
 #: ../includes/locals.php:992
 msgid "Posted in"
@@ -3859,38 +3512,20 @@ msgid "Submit Permalink Structure"
 msgstr "Permalink Struktur festlegen"
 
 #: ../includes/locals.php:1000
-msgid ""
-"This way of links configuration can be used by not only our blog followers "
-"but will help in SEO-optimisation as well. The effectiveness and main "
-"features of this link configuration method are revealed <a href='http://"
-"codex.wordpress.org/Using_Permalinks'>here</a>"
-msgstr ""
-"Diese Methode von Link Konfiguration ist nötig nicht nur für unsere Blog-"
-"Followers, aber es wurde auch für die SEO-Optimierung benötigt sein. Mehr "
-"Information über Effektivität und wichtige Funktionen dieser Method "
-"erreichst du <a href='http://codex.wordpress.org/Using_Permalinks'>hier</a>"
+msgid "This way of links configuration can be used by not only our blog followers but will help in SEO-optimisation as well. The effectiveness and main features of this link configuration method are revealed <a href='http://codex.wordpress.org/Using_Permalinks'>here</a>"
+msgstr "Diese Methode von Link Konfiguration ist nötig nicht nur für unsere Blog-Followers, aber es wurde auch für die SEO-Optimierung benötigt sein. Mehr Information über Effektivität und wichtige Funktionen dieser Method erreichst du <a href='http://codex.wordpress.org/Using_Permalinks'>hier</a>"
 
 #: ../includes/locals.php:1001
 msgid "Import Sample Data"
 msgstr "Beispieldateien importieren"
 
 #: ../includes/locals.php:1002
-msgid ""
-"If you want to install sample data from livedemo you need to go to "
-"<strong>Cherry Options</strong> > <strong>Import</strong> and follow the "
-"tips."
-msgstr ""
-"Wenn du die Beispieldateien von Live-Demo installieren möchtest, geh auf "
-"<strong>Cherry Options/Cherry Optionen</strong> > <strong>Import/"
-"Importieren</strong> und folge bitte den Tipps."
+msgid "If you want to install sample data from livedemo you need to go to <strong>Cherry Options</strong> > <strong>Import</strong> and follow the tips."
+msgstr "Wenn du die Beispieldateien von Live-Demo installieren möchtest, geh auf <strong>Cherry Options/Cherry Optionen</strong> > <strong>Import/Importieren</strong> und folge bitte den Tipps."
 
 #: ../includes/locals.php:1003
-msgid ""
-"If you want to install sample data from livedemo you need to go to "
-"<strong>Import</strong> and follow the tips."
-msgstr ""
-"Wenn Sie die Beispieldateien von Live-Demo installieren möchtest, geh auf "
-"<strong>Import/Importieren</strong> und folge bitte den Tipps."
+msgid "If you want to install sample data from livedemo you need to go to <strong>Import</strong> and follow the tips."
+msgstr "Wenn Sie die Beispieldateien von Live-Demo installieren möchtest, geh auf <strong>Import/Importieren</strong> und folge bitte den Tipps."
 
 #: ../includes/locals.php:1006
 msgid "No lable."
@@ -4057,42 +3692,20 @@ msgid "Post types settings."
 msgstr "Sende Typen Einstellungen."
 
 #: ../includes/locals.php:1054
-msgid ""
-"<strong>Include post types</strong> - specify the post types which will be "
-"included into your sitemap."
-msgstr ""
-"<strong>Schließen Sie die Arten von Posts ein</strong> – geben Sie die Arten "
-"von Posts an, die in ihrer Sitemap enthalten werden."
+msgid "<strong>Include post types</strong> - specify the post types which will be included into your sitemap."
+msgstr "<strong>Schließen Sie die Arten von Posts ein</strong> – geben Sie die Arten von Posts an, die in ihrer Sitemap enthalten werden."
 
 #: ../includes/locals.php:1055
-msgid ""
-"<strong>Priority</strong> - set post type priorities on your site. For "
-"example, if the blog page content is more important for search engines than "
-"the portfolio page content, set the priority for blog posts as 1, for "
-"portfolio pages as 0.9 and so on."
-msgstr ""
-"<strong>Priorität </strong>– Stellen Sie die Prioritäten für die Art von "
-"Post auf Ihre Seite. Wenn der Inhalt der Blog-Seite beispielsweise für "
-"Suchmaschinen wichtiger ist als der Inhalt der Portfolio-Seite, stellen Sie "
-"die Priorität für Blog-Posts zu 1, für Portfolio-Seiten zu 0.9 usw."
+msgid "<strong>Priority</strong> - set post type priorities on your site. For example, if the blog page content is more important for search engines than the portfolio page content, set the priority for blog posts as 1, for portfolio pages as 0.9 and so on."
+msgstr "<strong>Priorität </strong>– Stellen Sie die Prioritäten für die Art von Post auf Ihre Seite. Wenn der Inhalt der Blog-Seite beispielsweise für Suchmaschinen wichtiger ist als der Inhalt der Portfolio-Seite, stellen Sie die Priorität für Blog-Posts zu 1, für Portfolio-Seiten zu 0.9 usw."
 
 #: ../includes/locals.php:1056
-msgid ""
-"<strong>Change frequency</strong> - specify how often you change certain "
-"post types. It helps the search engines to determine how relevant your "
-"information is at the moment of search."
-msgstr ""
-"<strong>Häufigkeit ändern</strong> – setzten Sie an, wie oft Sie bestimmte "
-"Arten von Posts ändern. Es hilft Suchmaschinen bei der Determination der "
-"Relevanz Ihrer Information am Zeitpunkt der Suche."
+msgid "<strong>Change frequency</strong> - specify how often you change certain post types. It helps the search engines to determine how relevant your information is at the moment of search."
+msgstr "<strong>Häufigkeit ändern</strong> – setzten Sie an, wie oft Sie bestimmte Arten von Posts ändern. Es hilft Suchmaschinen bei der Determination der Relevanz Ihrer Information am Zeitpunkt der Suche."
 
 #: ../includes/locals.php:1057
-msgid ""
-"<strong>Ping sitemap</strong> - choose the search engines which will receive "
-"the link to your sitemap."
-msgstr ""
-"<strong>Ping Sitemap</strong> – wählen Sie die Suchmaschinen, die den Link "
-"zu Ihrer Sitemap bekommen werden."
+msgid "<strong>Ping sitemap</strong> - choose the search engines which will receive the link to your sitemap."
+msgstr "<strong>Ping Sitemap</strong> – wählen Sie die Suchmaschinen, die den Link zu Ihrer Sitemap bekommen werden."
 
 #: ../includes/locals.php:1058
 msgid "Ping sitemap."
@@ -4107,18 +3720,12 @@ msgid "Your website indexation settings."
 msgstr "Ihre Webseite  Indexierungseinstellungen."
 
 #: ../includes/locals.php:1061
-msgid ""
-"Forbid the search engines to index the following directories of your site."
-msgstr ""
-"Verbieten Sie Suchmaschinen, die folgenden Verzeichnisse auf ihrer Webseite "
-"einzuteilen ."
+msgid "Forbid the search engines to index the following directories of your site."
+msgstr "Verbieten Sie Suchmaschinen, die folgenden Verzeichnisse auf ihrer Webseite einzuteilen ."
 
 #: ../includes/locals.php:1062
-msgid ""
-"These settings will help reduce the information search range on your site. "
-msgstr ""
-"Diese Einstellung beitragen dazu, den Umfang der Informationssuche auf ihrer "
-"Seite zu reduzieren."
+msgid "These settings will help reduce the information search range on your site. "
+msgstr "Diese Einstellung beitragen dazu, den Umfang der Informationssuche auf ihrer Seite zu reduzieren."
 
 #: ../includes/locals.php:1063
 msgid "WordPress engine system files and folders <em>(recommended)</em>"
@@ -4133,27 +3740,16 @@ msgid "Your themes system files and folders <em>(recommended)</em>"
 msgstr "Ihre Themen System-Dateien und -Ordner <em>(empfohlen)</em>"
 
 #: ../includes/locals.php:1066
-msgid ""
-"Media library files (images, video, audio, etc.) <em>(not recommended)</em>"
-msgstr ""
-"Medienbibliothek Dateien (Bilder, Video, Audiodateien, usw.)<em>(nicht "
-"empfohlen)</em>"
+msgid "Media library files (images, video, audio, etc.) <em>(not recommended)</em>"
+msgstr "Medienbibliothek Dateien (Bilder, Video, Audiodateien, usw.)<em>(nicht empfohlen)</em>"
 
 #: ../includes/locals.php:1067
-msgid ""
-"Add the <em>\"rel\"</em> attribute with the <em>\"nofollow\"</em> value to "
-"content links."
-msgstr ""
-"Fügen Sie das  <em>\"rel\"</em> -Attribute mit dem <em>\"nofollow\"</em> -"
-"Wert zu Inhalt-links hinzu. "
+msgid "Add the <em>\"rel\"</em> attribute with the <em>\"nofollow\"</em> value to content links."
+msgstr "Fügen Sie das  <em>\"rel\"</em> -Attribute mit dem <em>\"nofollow\"</em> -Wert zu Inhalt-links hinzu. "
 
 #: ../includes/locals.php:1068
-msgid ""
-"This option will stop the search engines from going to other sites following "
-"the links in your site content."
-msgstr ""
-"Diese Option verhindert, dass Suchmaschinen, die den im Inhalt Ihrer Seite "
-"gegebenen Links folgen, zu anderen Webseiten gehen."
+msgid "This option will stop the search engines from going to other sites following the links in your site content."
+msgstr "Diese Option verhindert, dass Suchmaschinen, die den im Inhalt Ihrer Seite gegebenen Links folgen, zu anderen Webseiten gehen."
 
 #~ msgid "Skip"
 #~ msgstr "Überspringen"
