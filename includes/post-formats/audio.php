@@ -34,8 +34,7 @@
 				{
 					title:"<?php echo $audio_title; ?>",
 					artist:"<?php echo $audio_artist; ?>",
-					<?php echo $audio_format; ?>: "<?php echo stripslashes(htmlspecialchars_decode($file)); ?>" <?php if(has_post_thumbnail()) {?>,
-					poster: "<?php echo $image; ?>" <?php } ?>
+					<?php echo $audio_format; ?>: "<?php echo stripslashes(htmlspecialchars_decode($file)); ?>"
 				}
 				], {
 					playlistOptions: {
@@ -97,7 +96,7 @@
 		</div>
 		<!-- END audio -->
 	</div>
-			
+
 	<!-- Post Content -->
 	<div class="post_content">
 		<?php the_content(''); ?>
@@ -106,5 +105,5 @@
 	<!--// Post Content -->
 	
 	<?php get_template_part('includes/post-formats/post-meta'); ?>
-		
+
 </article><!--//.post__holder-->
