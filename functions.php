@@ -21,7 +21,8 @@
 		'baseFontSize'   =>	'#000000',
 		'baseLineHeight' =>	'#000000',
 		'linkColor'      =>	'#000000',
-		'linkColorHover' =>	'#000000'
+		'linkColorHover' =>	'#000000',
+		'mainBackground' =>	'#ffffff'
 		);
 //------------------------------------------------------
 // js global variables
@@ -1286,6 +1287,18 @@
 				}
 				wp_reset_query();
 			}
+		}
+	}
+
+//------------------------------------------------------
+//  Main Layout option
+//------------------------------------------------------
+	if (of_get_option('main_layout') == 'fixed') {
+		add_filter('body_class','cherry_layout_class');
+		function cherry_layout_class($classes) {
+			$classes[] = 'cherry-fixed-layout';
+
+			return $classes;
 		}
 	}
 ?>

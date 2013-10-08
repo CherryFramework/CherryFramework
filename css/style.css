@@ -1,10 +1,33 @@
 body { position:relative; }
 .ie8 body { min-width:980px; }
+@media (max-width: 767px) {
+	body.cherry-fixed-layout {
+		padding-left:0;
+		padding-right:0;
+	}
+}
 a { outline:none; }
 a:focus { outline:none; }
 .main-holder {
 	position:relative;
 	z-index:1;
+}
+.cherry-fixed-layout .main-holder {
+	margin:0 auto;
+	max-width:980px;
+	background:#fafafa;
+}
+@media (min-width: 1200px) {
+	.cherry-fixed-layout .main-holder { max-width:1210px; }
+}
+@media (min-width: 768px) and (max-width: 979px) {
+	.cherry-fixed-layout .main-holder { max-width:764px; }
+}
+@media (max-width: 767px) {
+	.cherry-fixed-layout .main-holder {
+		padding-left:20px;
+		padding-right:20px;
+	}
 }
 .header {
 	position:relative;

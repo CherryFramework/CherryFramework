@@ -47,6 +47,11 @@ function cherryVariables() {
 		$variablesArray['bodyBackground'] = bootstrapVariables('bodyBackground');
 	}
 
+	// mainBackground
+	if ( of_get_option('main_background') ) {
+		$variablesArray['mainBackground'] = of_get_option('main_background');
+	}
+
 	// baseFontFamily
 	if ( $body['face'] ) {
 		$variablesArray['baseFontFamily'] = $body['face'];
