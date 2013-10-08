@@ -9,11 +9,12 @@
 #optionsframework .group{padding-bottom:20px;display:none;}
 #optionsframework .section .heading{padding:10px 0px;margin:0 0 15px;border-bottom:1px solid #dfdfdf;}
 #optionsframework .section .controls{float:left;min-width:350px;width:70%;margin-right:2%;}
-#optionsframework .section .explain{font-size:12px;vertical-align: top;color:#929292;overflow:hidden; line-height: 16px;}
+#optionsframework .section .explain{font-size:12px;vertical-align: top;color:#929292;overflow:hidden; line-height: 16px;word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;-ms-hyphens: auto;-o-hyphens: auto;hyphens: auto;}
 #optionsframework .section-checkbox .controls{width:98%;}
 #optionsframework .section-checkbox .explain{max-width:94%;}
 #optionsframework .section-color .controls{min-width:125px;width:125px}
 #optionsframework .controls input, #optionsframework .controls select, #optionsframework .controls textarea{margin-bottom:10px;width:100%;outline:none;}
+#optionsframework .controls textarea {resize:none;overflow: auto;}
 #optionsframework .section-multicheck .controls, #optionsframework .data_management .controls{max-height:150px;overflow-y:scroll;background:#fff;border:1px solid #DDD;padding-top:8px;padding-bottom:0 !important;}
 #optionsframework .section-radio label, #optionsframework .section-multicheck .controls label , #optionsframework .data_management label, .checkbox_label{float:left;max-width:90%;line-height:16px;margin-bottom:5px;}
 #optionsframework input.checkbox, #optionsframework input.of-radio{width:30px;margin-top:2px;float:left;clear:both;}
@@ -44,7 +45,7 @@
 #optionsframework .mini .explain{max-width:74%;}
 #optionsframework .section-editor .explain{max-width:98%;float:none;margin-bottom:5px;}
 #optionsframework .controls input.upload{width:80%;}
-#optionsframework .controls input.upload_button{float:right;width:45px;border-color:#BBBBBB;cursor:pointer;height:16px;}
+#optionsframework .controls input.upload_button{float:right;width:auto;border-color:#BBBBBB;cursor:pointer;height:16px;}
 #optionsframework .controls input.upload_button:hover{border-color:#666666;color:#000;}
 #optionsframework .screenshot{float:left;margin-left:1px;position:relative;width:344px;margin-top:3px;}
 #optionsframework .screenshot img{background:#FAFAFA;border-color:#ccc #eee #eee #ccc;border-style:solid;border-width:1px;float:left;max-width:334px;padding:4px;margin-bottom:10px;}

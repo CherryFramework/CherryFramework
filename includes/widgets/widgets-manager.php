@@ -26,11 +26,91 @@ function widgets_scripts($hook) {
 	if ( $widget_page != $hook) return;
 
 	// widget rules JS
-	wp_register_script('widget-rules-js', get_template_directory_uri().'/admin/js/widget-rules.js', array('jquery'));
+	wp_register_script('widget-rules-js', PARENT_URL.'/admin/js/widget-rules.js', array('jquery'));
 	wp_enqueue_script('widget-rules-js');
 	// widget rules CSS
-	wp_register_style('widget-rules-css', get_template_directory_uri().'/admin/css/widget-rules.css');
+	wp_register_style('widget-rules-css', PARENT_URL.'/admin/css/widget-rules.css');
 	wp_enqueue_style('widget-rules-css');
+}
+
+// Clean up the variables
+add_action('widgets_init', 'clean_rules');
+function clean_rules() {
+	$themename = get_cherry_name();
+
+	// get option and style value
+	$options_type = get_option($themename . '_widget_rules_type');
+	$options      = get_option($themename . '_widget_rules');
+	$custom_class = get_option($themename . '_widget_custom_class');
+	$responsive   = get_option($themename . '_widget_responsive');
+	$users        = get_option($themename  . '_widget_users');
+
+	// if this options_type is set at first time
+	if ( !is_array($options_type) ) {
+		$options_type = array();
+	}
+	// if this option is set at first time
+	if ( !is_array($options) ) {
+		$options = array();
+	}
+	// if this custom_class is set at first time
+	if ( !is_array($custom_class) ) {
+		$custom_class = array();
+	}
+	// if this responsive is set at first time
+	if ( !is_array($responsive) ) {
+		$responsive = array();
+	}
+	// if this users is set at first time
+	if ( !is_array($users) ) {
+		$users = array();
+	}
+
+	// get all widgets names
+	$all_widgets = array();
+	$all_widgets_assoc = get_option('sidebars_widgets'); 
+	// iterate throug the sidebar widgets settings to get all active widgets names
+	foreach($all_widgets_assoc as $sidebar_name => $sidebar) {
+		// remember about wp_inactive_widgets and array_version fields!
+		if($sidebar_name != 'wp_inactive_widgets' && is_array($sidebar) && count($sidebar) > 0) {
+			foreach($sidebar as $widget_name) {
+				array_push($all_widgets, $widget_name);
+			}
+		}
+	}
+	// get the widget names from the exisitng settings
+	$widget_names = array_keys($options_type);
+	// check for the unexisting widgets
+	foreach($widget_names as $widget_name) {
+		// if widget doesn't exist - remove it from the options
+		if(in_array($widget_name, $all_widgets) !== TRUE) {
+			if(isset($options_type) && is_array($options_type) && isset($options_type[$widget_name])) {
+				unset($options_type[$widget_name]);
+			}
+
+			if(isset($options) && is_array($options) && isset($options[$widget_name])) {
+				unset($options[$widget_name]);
+			}
+
+			if(isset($custom_class) && is_array($custom_class) && isset($custom_class[$widget_name])) {
+				unset($custom_class[$widget_name]);
+			}
+
+			if(isset($responsive) && is_array($responsive) && isset($responsive[$widget_name])) {
+				unset($responsive[$widget_name]);
+			}
+
+			if(isset($users) && is_array($users) && isset($users[$widget_name])) {
+				unset($users[$widget_name]);
+			}
+		}
+	}
+	// update the settings
+	update_option($themename . '_widget_rules_type', $options_type);
+	update_option($themename . '_widget_rules', $options);
+	update_option($themename . '_widget_custom_class', $custom_class);
+	update_option($themename . '_widget_responsive', $responsive);
+	update_option($themename . '_widget_users', $users);
 }
 
 // define an additional operation when save the widget
@@ -39,6 +119,7 @@ add_filter( 'widget_update_callback', 'cherry_widget_update', 10, 4);
 // definition of the additional operation
 function cherry_widget_update($instance, $new_instance, $old_instance, $widget) {
 	$themename = get_cherry_name();
+	clean_rules();
 
 	// check if param was set
 	if ( isset( $_POST[$themename . '_widget_rules_' . $widget->id] ) ) {
@@ -50,13 +131,17 @@ function cherry_widget_update($instance, $new_instance, $old_instance, $widget) 
 		$responsive   = get_option($themename . '_widget_responsive');
 		$users        = get_option($themename  . '_widget_users');
 
-		// if this option is set at first time
+		// if this options_type is set at first time
 		if ( !is_array($options_type) ) {
 			$options_type = array();
 		}
 		// if this option is set at first time
 		if ( !is_array($options) ) {
 			$options = array();
+		}
+		// if this custom_class is set at first time
+		if ( !is_array($custom_class) ) {
+			$custom_class = array();
 		}
 		// if this responsive is set at first time
 		if ( !is_array($responsive) ) {
@@ -111,6 +196,7 @@ function kc_widget_form_extend( $instance, $widget ) {
 	if ( !is_array($options) ) {
 		$options = array();
 	}
+
 	// if this responsive is set at first time
 	if ( !is_array($responsive) ) {
 		$responsive = array();
@@ -305,6 +391,10 @@ function cherry_widget_control() {
 	// if this option is set at first time
 	if ( !is_array($options) ) {
 		$options = array();
+	}
+	// if this custom_class is set at first time
+	if ( !is_array($custom_class) ) {
+		$custom_class = array();
 	}
 	// if this responsive is set at first time
 	if ( !is_array($responsive) ) {

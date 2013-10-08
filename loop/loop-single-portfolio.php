@@ -108,13 +108,19 @@
 							echo '</ul>';
 					}?>
 				</div><!-- END .entry-meta -->
-
-				<?php the_content(); ?>
-				<?php //get_template_part('includes/post-formats/share-buttons'); ?>
+				<?php
+					the_content();
+					//get_template_part('includes/post-formats/share-buttons');
+				?>
 			</div><!-- END .entry-content -->
 		</div><!-- .row -->
 		<div class="row">
-			<div class="span7"><?php comments_template('', true); ?></div>
+			<div class="span7">
+				<?php
+					get_template_part( 'includes/post-formats/related-posts' );
+					comments_template('', true);
+				?>
+			</div>
 		</div>
 	</div>
 <?php endwhile; endif; ?>

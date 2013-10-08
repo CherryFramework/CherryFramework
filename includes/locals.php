@@ -281,12 +281,16 @@
 			'image_size_desc' => __('Featured image size on the blog.', $domain),
 			'load_image_name' => __('Should images be uploaded on page scroll?', $domain),
 			'load_image_desc' => __('You can enable images load only as you scroll down the page. Otherwise images will load all at once.', $domain),
+			'display_share_name' => __('Display share button in single post?', $domain),
+			'display_share_desc' => __('Display share button in single post?', $domain),
 			'single_post_image_name' => __('Single post image size', $domain),
 			'single_post_image_desc' => __('Featured image size on the single page.', $domain),
 			'meta_name' => __('View meta of the blog.', $domain),
 			'meta_desc' => __('Select meta block type which will be displayed on blog and post pages.', $domain),
 			'excerpt_name' => __('Enable excerpt for blog posts?', $domain),
 			'excerpt_desc' => __('Enable or Disable excerpt for blog posts.', $domain),
+			'button_text_name' => __('Button text for blog posts.', $domain),
+			'button_text_desc' => __('Button text for blog posts.', $domain),
 			'hide' => __('Do not show.', $domain),
 			'line' => __('Lines.', $domain),
 			'grid' => __('Columns.', $domain),
@@ -322,6 +326,8 @@
 			'show_title_desc' => __('Enable or Disable title for portfolio posts.', $domain),
 			'show_excerpt_name' => __('Show excerpt?', $domain),
 			'show_excerpt_desc' => __('Enable or Disable excerpt for portfolio posts.', $domain),
+			'folio_button_text_name' => __('Button text for portfolio posts.', $domain),
+			'folio_button_text_desc' => __('Button text for portfolio posts.', $domain),
 			'excerpt_words_name' => __('Excerpt words', $domain),
 			'excerpt_words_desc' => __('Excerpt length (words).', $domain),
 			'show_button_name' => __('Show button?', $domain),
@@ -390,6 +396,7 @@
 			'no_widget' => __('Your have no widgets. Please, click next to go to the next step.', $domain),
 			'widget_import_warning' => __('Disable the widgets you don\'t need and click "Next". All the selected widgets will be imported into the theme by default.', $domain),
 			'go_to_widgets' => __('go to widgets', $domain),
+			'empty_widgets' => __('File widgets.json incorrect or empty. For this reason, none of the widget will be imported into your theme.', $domain),
 			
 			//wordpress-importer.php
 			'sorry' => __('Sorry, there has been an error.', $domain),
@@ -629,6 +636,7 @@
 			'comments_link' => __('comments-link', $domain),
 			'comments_closed' => __('Comments are closed', $domain),
 			'has_not_tags' => __('No tags', $domain),
+			'has_not_category' => __('No category', $domain),
 			'number_views' => __('Number of view.', $domain),
 			'like' => __('I like it.', $domain),
 			'dislike' => __('I don\'t like.', $domain),
@@ -656,7 +664,8 @@
 			'banner' => __('Banner', $domain),
 			'recentcomments' => __('Comments', $domain),
 			'post_cycle' => __('Post Cycle', $domain),
-			'carousel' => __('Carousel', $domain),
+			'carousel_elasti' => __('Carousel (Elasti)', $domain),
+			'carousel_owl' => __('Carousel (OWL)', $domain),
 			'roundabout' => __('Roundabout', $domain),
 			'service_box' => __('Service Box', $domain),
 			'hero_unit' => __('Hero Unit', $domain),
@@ -1056,7 +1065,9 @@
 			'theme_index' => __('Your themes system files and folders <em>(recommended)</em>', $domain),
 			'media_index' => __('Media library files (images, video, audio, etc.) <em>(not recommended)</em>', $domain),
 			'nofollow_name' => __('Add the <em>"rel"</em> attribute with the <em>"nofollow"</em> value to content links.', $domain),
-			'nofollow_desc' => __('This option will stop the search engines from going to other sites following the links in your site content.', $domain)
+			'nofollow_desc' => __('This option will stop the search engines from going to other sites following the links in your site content.', $domain),
+
+			'' => '' // empty value
 			);
 		return $locals[$label];
 	};

@@ -532,6 +532,13 @@
 								"class" => "small", //mini, tiny, small
 								"options" => $single_image_size_array);
 
+			$options['single_share_button'] = array( "name" => theme_locals('display_share_name'),
+								"desc" => theme_locals('display_share_desc'),
+								"id" => "single_share_button",
+								"std" => "true",
+								"type" => "radio",
+								"options" => $true_false_array);
+
 			$options['load_image'] = array( "name" => theme_locals('load_image_name'),
 								"desc" => theme_locals('load_image_desc'),
 								"id" => "load_image",
@@ -545,6 +552,13 @@
 								"std" => "true",
 								"type" => "radio",
 								"options" => $true_false_array);
+
+			$options['blog_button_text'] = array( "name" => theme_locals('button_text_name'),
+								"desc" => theme_locals('button_text_desc'),
+								"id" => "blog_button_text",
+								"std" => "Read More",
+								"class" => "tiny",
+								"type" => "text");
 
 			$options['post_meta'] = array( "name" => theme_locals('meta_name'),
 								"desc" => theme_locals('meta_desc'),
@@ -669,6 +683,13 @@
 								"std" => "yes",
 								"type" => "radio",
 								"options" => $yes_no_array);
+
+			$options['folio_button_text'] = array( "name" => theme_locals('folio_button_text_name'),
+								"desc" => theme_locals('folio_button_text_desc'),
+								"id" => "folio_button_text",
+								"std" => "Read More",
+								"class" => "tiny",
+								"type" => "text");
 
 			$options['folio_meta'] = array( "name" => theme_locals("show_meta_name"),
 								"desc" => theme_locals("show_meta_desc"),

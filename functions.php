@@ -23,7 +23,19 @@
 		'linkColor'      =>	'#000000',
 		'linkColorHover' =>	'#000000'
 		);
-
+//------------------------------------------------------
+// js global variables
+//------------------------------------------------------
+	function cherry_js_global_variables(){
+		$output = "<script>";
+		$output .="\n var sistem_folder = '".PARENT_URL."/admin/data_management/',";
+		$output .= "\n\t CHILD_URL ='" .CHILD_URL."',";
+		$output .= "\n\t PARENT_URL = '".PARENT_URL."'";
+		$output .= "</script>";
+		echo $output;
+	}
+	add_action('wp_head', 'cherry_js_global_variables');
+	add_action('admin_head', 'cherry_js_global_variables');
 	/*
 	 * Definition current theme
 	 *
@@ -951,14 +963,14 @@
 //------------------------------------------------------
 //  Warning notice
 //------------------------------------------------------
-add_action( 'admin_notices', 'warning_notice' );
-function warning_notice() {
-	global $pagenow;
-	$pageHidden = array('admin.php');
-    if (!get_user_meta(get_current_user_id(), '_wp_hide_notice', true) && is_admin() && !FILE_WRITEABLE && !in_array($pagenow, $pageHidden)) {
-        printf('<div class="updated"><strong><p>'.theme_locals('warning_notice_2').'</p><p>'.theme_locals('warning_notice_3').'</p><p><a href="'.esc_url(add_query_arg( 'wp_nag', wp_create_nonce( 'wp_nag' ))).'">'.theme_locals('dismiss_notice').'</a></p></strong></div>');
-    }
-}
+	add_action( 'admin_notices', 'warning_notice' );
+	function warning_notice() {
+		global $pagenow;
+		$pageHidden = array('admin.php');
+		if (!get_user_meta(get_current_user_id(), '_wp_hide_notice', true) && is_admin() && !FILE_WRITEABLE && !in_array($pagenow, $pageHidden)) {
+			printf('<div class="updated"><strong><p>'.theme_locals('warning_notice_2').'</p><p>'.theme_locals('warning_notice_3').'</p><p><a href="'.esc_url(add_query_arg( 'wp_nag', wp_create_nonce( 'wp_nag' ))).'">'.theme_locals('dismiss_notice').'</a></p></strong></div>');
+		}
+	}
 //------------------------------------------------------
 //  Post Meta
 //------------------------------------------------------
@@ -985,7 +997,6 @@ function warning_notice() {
 				}
 			}	
 		}
-
 
 		if($post_meta_type!='false'){
 			$post_ID = get_the_ID();
@@ -1040,7 +1051,12 @@ function warning_notice() {
 									<i class="icon-bookmark"></i>
 									<?php 
 										echo $icon_tips_before;
-										($post_type != 'post') ? the_terms($post_ID, $post_type.'_category','',', ') : the_category(', ');
+										if($post_type != 'post'){
+											$custom_category = !is_wp_error(get_the_term_list($post_ID, $post_type.'_category','',', ')) ? get_the_term_list($post_ID, $post_type.'_category','',', ') : theme_locals('has_not_category');
+											echo $custom_category;
+										}else{
+											the_category(', ');
+										}
 										echo $icon_tips_after;
 									?>
 								</div>
@@ -1209,6 +1225,66 @@ function warning_notice() {
 				echo $output;
 			}else{
 				return $output;
+			}
+		}
+	}
+
+//------------------------------------------------------
+//  Related Posts
+//------------------------------------------------------
+	if(!function_exists('cherry_related_posts')){
+		function cherry_related_posts($args = array()){
+			global $post;
+			$default = array(
+				'post_type' => get_post_type($post),
+				'class' => 'related-posts',
+				'class_list' => 'related-posts_list',
+				'class_list_item' => 'related-posts_item',
+				'display_title' => true,
+				'display_link' => true,
+				'display_thumbnail' => true,
+				'width_thumbnail' => 200,
+				'height_thumbnail' => 120,
+				'before_title' => '<h3 class="related-posts_h">',
+				'after_title' => '</h3>',
+				'posts_count' => 4
+			);
+			extract(array_merge($default, $args));
+
+			$post_tags = wp_get_post_terms($post->ID, $post_type.'_tag', array("fields" => "slugs"));
+			$tags_type = $post_type=='post' ? 'tag' : $post_type.'_tag' ;
+			$suppress_filters = get_option('suppress_filters');// WPML filter
+			if ($post_tags && !is_wp_error($post_tags)) {
+				$args = array(
+					"$tags_type" => implode(',', $post_tags),
+					'post_status' => 'publish',
+					'posts_per_page' => $posts_count,
+					'ignore_sticky_posts' => 1,
+					'post__not_in' => array($post->ID),
+					'post_type' => $post_type,
+					'suppress_filters' => $suppress_filters
+					);
+				query_posts($args);
+				if ( have_posts() ) {
+					$output = '<div class="'.$class.'">';
+					$output .= $display_title ? $before_title.of_get_option('blog_related', theme_locals("posts_std")).$after_title : '' ;
+					$output .= '<ul class="'.$class_list.' clearfix">';
+					while( have_posts() ) {
+						the_post();
+						$thumb   = has_post_thumbnail() ? get_post_thumbnail_id() : PARENT_URL.'/images/empty_thumb.gif';
+						$blank_img = stripos($thumb, 'empty_thumb.gif');
+						$img_url = $blank_img ? $thumb : wp_get_attachment_url( $thumb,'full');
+						$image   = $blank_img ? $thumb : aq_resize($img_url, $width_thumbnail, $height_thumbnail, true) or $img_url;
+
+						$output .= '<li class="'.$class_list_item.'">';
+						$output .= $display_thumbnail ? '<figure class="thumbnail featured-thumbnail"><a href="'.get_permalink().'" title="'.get_the_title().'"><img data-src="'.$image.'" alt="'.get_the_title().'" /></a></figure>': '' ;
+						$output .= $display_link ? '<a href="'.get_permalink().'" >'.get_the_title().'</a>': '' ;
+						$output .= '</li>';
+					}
+					$output .= '</ul></div>';
+					echo $output;
+				}
+				wp_reset_query();
 			}
 		}
 	}

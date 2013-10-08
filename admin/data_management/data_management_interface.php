@@ -70,7 +70,6 @@
 		function admin_data_management () {
 			global $framework_version;
 			?>
-			<script>sistem_folder = "<?php echo PARENT_URL.'/admin/data_management/'; ?>"</script>
 			<div id="optionsframework-metabox" class="metabox-holder">
 				<div id="optionsframework" class="postbox store-holder">
 					<div class="wrap">

@@ -133,7 +133,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 			 */
 			function import_start( $file ) {
 				if ( ! is_file($file) ) {
-					echo '<p><strong>'.theme_locals('sorry').'</strong></p>';
+					echo '<p class="text-style"><strong>'.theme_locals('sorry').'</strong></p>';
 					echo theme_locals('not_exist');
 					echo ' <a class="btn-link" href="'.$this->step1.'">'.theme_locals('try_again').'</a>.';
 					$this->log(date('Y-m-d H:i:s'));
@@ -145,7 +145,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 				$import_data = $this->parse( $file );
 
 				if ( is_wp_error( $import_data ) ) {
-					echo '<p><strong>'.theme_locals('sorry').'</strong></p>';
+					echo '<p class="text-style"><strong>'.theme_locals('sorry').'</strong></p>';
 					echo esc_html( $import_data->get_error_message() );
 					echo '<a class="btn-link" href="'.$this->step1.'">'.theme_locals('try_again').'</a>.';
 					$this->log(date('Y-m-d H:i:s'));
@@ -212,7 +212,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 				$file = wp_import_handle_upload();
 
 				if ( isset( $file['error'] ) ) {
-					echo '<p><strong>' . theme_locals('sorry') . '</strong><br />';
+					echo '<p class="text-style"><strong>' . theme_locals('sorry') . '</strong><br />';
 					echo esc_html( $file['error'] ) . '</p>';
 					echo '<a class="btn-link" href="'.$this->step1.'">'.theme_locals('try_again').'</a>.</p>';
 					$this->log(date('Y-m-d H:i:s'));
@@ -230,7 +230,7 @@ if ( class_exists( 'WP_Importer' ) ) {
 				$this->id = (int) $file['id'];
 				$import_data = $this->parse( $file['file'] );
 				if ( is_wp_error( $import_data ) ) {
-					echo '<p><strong>' . theme_locals('sorry') . '</strong><br/>';
+					echo '<p class="text-style"><strong>' . theme_locals('sorry') . '</strong><br/>';
 					echo esc_html( $import_data->get_error_message() );
 					echo '. '.theme_locals('please').', <a class="btn-link" href="'.$this->step1.'">'.theme_locals('try_again').'</a>.</p>';
 					$this->log(date('Y-m-d H:i:s'));
@@ -1197,26 +1197,28 @@ if ( class_exists( 'WP_Importer' ) ) {
 				// Set permalink custom structure
 				update_option( 'permalink_structure', '/%category%/%postname%/' );
 
-				// wtite to .htaccess MIME Type
+				// write to .htaccess MIME Type
 				$htaccess = ABSPATH .'/.htaccess';
-				$fp = fopen($htaccess, 'a+');
-				if ($fp) {
-					$contents = fread($fp, filesize($htaccess));
-					$pos = strpos('# AddType TYPE/SUBTYPE EXTENSION', $contents);
-					if ( $pos!==false ) {
-						fwrite($fp, "\r\n# AddType TYPE/SUBTYPE EXTENSION\r\n");
-						fwrite($fp, "AddType audio/mpeg mp3\r\n");
-						fwrite($fp, "AddType audio/mp4 m4a\r\n");
-						fwrite($fp, "AddType audio/ogg ogg\r\n");
-						fwrite($fp, "AddType audio/ogg oga\r\n");
-						fwrite($fp, "AddType audio/webm webma\r\n");
-						fwrite($fp, "AddType audio/wav wav\r\n");
-						fwrite($fp, "AddType video/mp4 mp4\r\n");
-						fwrite($fp, "AddType video/mp4 m4v\r\n");
-						fwrite($fp, "AddType video/ogg ogv\r\n");
-						fwrite($fp, "AddType video/webm webm\r\n");
-						fwrite($fp, "AddType video/webm webmv\r\n");
-						fclose($fp);
+				if (file_exists($htaccess)) {
+					$fp = fopen($htaccess, 'a+');
+					if ($fp) {
+						$contents = fread($fp, filesize($htaccess));
+						$pos = strpos('# AddType TYPE/SUBTYPE EXTENSION', $contents);
+						if ( $pos!==false ) {
+							fwrite($fp, "\r\n# AddType TYPE/SUBTYPE EXTENSION\r\n");
+							fwrite($fp, "AddType audio/mpeg mp3\r\n");
+							fwrite($fp, "AddType audio/mp4 m4a\r\n");
+							fwrite($fp, "AddType audio/ogg ogg\r\n");
+							fwrite($fp, "AddType audio/ogg oga\r\n");
+							fwrite($fp, "AddType audio/webm webma\r\n");
+							fwrite($fp, "AddType audio/wav wav\r\n");
+							fwrite($fp, "AddType video/mp4 mp4\r\n");
+							fwrite($fp, "AddType video/mp4 m4v\r\n");
+							fwrite($fp, "AddType video/ogg ogv\r\n");
+							fwrite($fp, "AddType video/webm webm\r\n");
+							fwrite($fp, "AddType video/webm webmv\r\n");
+							fclose($fp);
+						}
 					}
 				}
 

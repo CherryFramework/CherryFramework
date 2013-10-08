@@ -28,8 +28,10 @@
 				}
 			} ?>
 			</div>
-		<?php } ?>
-		<a href="<?php the_permalink() ?>" class="btn btn-primary"><?php echo theme_locals("read_more"); ?></a>
+		<?php } 
+			$button_text = of_get_option('blog_button_text') ? of_get_option('blog_button_text') : theme_locals("read_more") ;
+		?>
+		<a href="<?php the_permalink() ?>" class="btn btn-primary"><?php echo $button_text; ?></a>
 		<div class="clear"></div>
 	</div>
 

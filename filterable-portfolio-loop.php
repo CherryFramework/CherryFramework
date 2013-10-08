@@ -233,8 +233,10 @@
 					<p class="excerpt"><?php $excerpt = get_the_excerpt(); echo my_string_limit_words($excerpt,$folio_excerpt_count);?></p>
 				<?php } ?>
 				
-				<?php if($folio_btn == "yes"){ ?>
-					<p><a href="<?php the_permalink() ?>" class="btn btn-primary"><?php echo theme_locals("read_more"); ?></a></p>
+				<?php if($folio_btn == "yes"){
+					$button_text = of_get_option('folio_button_text') ? of_get_option('folio_button_text') : theme_locals("read_more") ;
+				?>
+					<p><a href="<?php the_permalink() ?>" class="btn btn-primary"><?php echo $button_text ?></a></p>
 				<?php } ?>
 			</div><!--/.caption__portfolio-->
 

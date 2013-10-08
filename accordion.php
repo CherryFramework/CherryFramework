@@ -37,9 +37,10 @@
 				myAccordion.addClass('motopress-accordion');
 				function checkLoadImg(){
 					if(imagesLoaded>=imagesCount){
-						jQuery('.accordion_loader', myAccordion).stop(true).delay(1000).fadeOut(500);
 						setTimeout(function(){
-							jQuery("ul", myAccordion).css({"visibility":"visible", "display":"none"}).stop(true, true).fadeIn(1000);
+							jQuery("ul", myAccordion).css({"visibility":"visible", "display":"none"}).stop(true, true).fadeIn(1000, function(){
+								jQuery('.accordion_loader', myAccordion).remove();
+							});
 							resizeWindow();
 						},
 						1000);
