@@ -925,7 +925,7 @@
 		function my_post_type_slider() {
 			register_post_type( 'slider',
 				array( 
-					'label'               => theme_locals("slides"), 
+					'label'               => theme_locals("slides"),
 					'singular_label'      => theme_locals("slides"),
 					'_builtin'            => false,
 					'exclude_from_search' => true, // Exclude from Search Results
@@ -938,7 +938,7 @@
 								'with_front' => FALSE,
 					),
 					'query_var' => "slide", // This goes to the WP_Query schema
-					'menu_icon' => get_template_directory_uri() . '/includes/images/icon_slides.png',
+					'menu_icon' => PARENT_URL . '/includes/images/icon_slides.png',
 					'supports'  => array(
 									'title',
 									// 'custom-fields',

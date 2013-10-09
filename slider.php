@@ -91,34 +91,23 @@
 			$sl_small_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($slide->ID), 'slider-thumb');
 			$banner_animation   = of_get_option('sl_banner');
 
-			if ( has_post_thumbnail($slide->ID) ) {
-				echo "<div ";
-				if ( $url!="" ) {
-					echo "data-src='";
-					echo $sl_image_url[0];
-					echo "' data-link='". $url;
-					echo "' data-thumb='";
-					echo $sl_small_image_url[0];
-					echo "'>";
-					if ($caption) { ?>
-						<div class="camera_caption <?php echo $banner_animation;?>">
-							<?php echo stripslashes(htmlspecialchars_decode($caption)); ?>
-						</div>
-					<?php }
-				} else {
-					echo "data-src='";
-					echo $sl_image_url[0];
-					echo "' data-thumb='";
-					echo $sl_small_image_url[0];
-					echo "'>";
-					if ($caption) { ?>
-						<div class="camera_caption <?php echo $banner_animation;?>">
-							<?php echo stripslashes(htmlspecialchars_decode($caption)); ?>
-						</div>
-					<?php }
-				}
-				echo "</div>";
+			if ( $sl_image_url[0]=='' ) {
+				$sl_image_url[0] = PARENT_URL."/images/blank.gif";
 			}
+			if ( $url!='' ) {
+				$url = "data-link='$url'";
+			}
+			if ( $sl_small_image_url[0]!='' ) {
+				$sl_small_image_url[0] = "data-thumb='$sl_small_image_url[0]'";
+			}
+
+			echo "<div data-src='$sl_image_url[0]' $url $sl_small_image_url[0]>";
+				if ($caption) { ?>
+					<div class="camera_caption <?php echo $banner_animation;?>">
+						<?php echo stripslashes(htmlspecialchars_decode($caption)); ?>
+					</div>
+				<?php }
+			echo "</div>";
 		}
 		wp_reset_postdata();
 	?>
