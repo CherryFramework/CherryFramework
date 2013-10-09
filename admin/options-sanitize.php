@@ -1088,7 +1088,7 @@ function options_typography_enqueue_google_character_set($key, $character) {
 }
 
 function options_typography_enqueue_google_fonts($f, $ch) {
-	wp_enqueue_style( "options_typography_$f", "http://fonts.googleapis.com/css?family=$f$ch", false, null, 'all' );
+	wp_enqueue_style( "options_typography_$f", "//fonts.googleapis.com/css?family=$f$ch", false, null, 'all' );
 }
 
 
@@ -1123,10 +1123,10 @@ function options_typography_styles() {
 		$input = of_get_option( 'h6_heading' );
 		$output .= options_typography_font_styles( of_get_option( 'h6_heading' ) , 'h6');
 	}
-	if ( of_get_option( 'google_mixed_3' ) ) {
-		$input = of_get_option( 'google_mixed_3' );
-		$output .= options_typography_font_styles_body( of_get_option( 'google_mixed_3' ) , '.main-holder');
-	}
+	// if ( of_get_option( 'google_mixed_3' ) ) {
+	// 	$input = of_get_option( 'google_mixed_3' );
+	// 	$output .= options_typography_font_styles_body( of_get_option( 'google_mixed_3' ) , '.main-holder');
+	// }
 	if ( of_get_option( 'logo_typography' ) ) {
 		$input = of_get_option( 'logo_typography' );
 		$output .= options_typography_font_styles( of_get_option( 'logo_typography' ) , '.logo_h__txt, .logo_link');
