@@ -271,6 +271,18 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 	hyphens:auto;
 }
 .breadcrumb__t li { display:inline; }
+.breadcrumb__t li.divider {
+	font:0/0 a;
+	color:transparent;
+	text-shadow:none;
+	background-color:transparent;
+	border:0;
+}
+.breadcrumb__t li.divider:after {
+	content:' / ';
+	color:#333333;
+	font:12px/18px Arial, Helvetica, sans-serif;
+}
 #sidebar { padding-top:40px; }
 .testimonial {
 	position:relative;
