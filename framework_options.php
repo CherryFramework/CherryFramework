@@ -282,7 +282,7 @@
 								"id" => "mobile_menu_label",
 								"std" => theme_locals('mobile_menu_std'),
 								"class" => "tiny",
-								"type" => "text");	
+								"type" => "text");
 
 // ---------------------------------------------------------
 // Slider
