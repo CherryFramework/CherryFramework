@@ -49,8 +49,7 @@
 				'attachment'=>'scroll'
 			);
 
-			$options['body_background'] = array( 
-								"name" =>  theme_locals('body_name'),
+			$options['body_background'] = array( "name" =>  theme_locals('body_name'),
 								"desc" => theme_locals('body_desc'),
 								"id" => "body_background",
 								"std" => $background_defaults, 
@@ -70,11 +69,18 @@
 								"std" => "#fafafa",
 								"type" => "color");
 
-			$options['header_color'] = array( "name" => theme_locals('header_name'),
+			$header_bg_defaults = array(
+				'color' => '', 
+				'image' => '', 
+				'repeat' => 'repeat',
+				'position' => 'top center',
+				'attachment'=>'scroll'
+			);
+			$options['header_background'] = array( "name" => theme_locals('header_name'),
 								"desc" => theme_locals('header_desc'),
-								"id" => "header_color",
-								"std" => "",
-								"type" => "color");
+								"id" => "header_background",
+								"std" => $header_bg_defaults,
+								"type" => "background");
 			
 			$options['links_color'] = array( "name" => theme_locals('buttons_name'),
 								"desc" => theme_locals('buttons_desc'),

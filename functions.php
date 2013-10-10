@@ -1301,4 +1301,57 @@
 			return $classes;
 		}
 	}
+
+//------------------------------------------------------
+//  General option
+//------------------------------------------------------
+	if ( (of_get_option('header_background') != '')
+		|| (of_get_option('header_color') !='')
+		|| (of_get_option('body_background') !='')
+		|| (of_get_option('custom_css') !='') ) {
+
+		add_action('wp_head', 'cherry_general_opt');
+		function cherry_general_opt(){
+			$output = "\n<style type='text/css'>";
+
+			// body bg option
+			if (of_get_option('body_background') !='') {
+				$background = of_get_option('body_background');
+				if ($background != '') {
+					if ($background['image'] != '') {
+						$output .= "\nbody { background-image:url(".$background['image']. "); background-repeat:".$background['repeat']."; background-position:".$background['position']."; background-attachment:".$background['attachment']."; }";
+					}
+					if($background['color'] != '') {
+						$output .= "\nbody { background-color:".$background['color']." }";
+					}
+				}
+			}
+
+			// header bg option
+			if (of_get_option('header_color') !='') {
+				$header_styling = of_get_option('header_color');
+				update_option('child_header_color', $header_styling);
+				$output .= "\n.header { background-color:".$header_styling." }";
+			} else {
+				$header_styling = of_get_option('header_background');
+
+				if ($header_styling['image'] != '') {
+					$output .= "\n.header { background-image:url(".$header_styling['image']. "); background-repeat:".$header_styling['repeat']."; background-position:".$header_styling['position']."; background-attachment:".$header_styling['attachment']."; }";
+				}
+				if ($header_styling['color'] != '') {
+					$output .= "\n.header { background-color:".$header_styling['color']." }";
+				} else {
+					if (get_option('child_header_color')) {
+						$output .= "\n.header { background-color:".get_option('child_header_color')." }";
+					}
+				}
+			}
+
+			// custom CSS
+			$output .= "\n".htmlspecialchars_decode(of_get_option('custom_css'));
+			
+			$output .= "\n</style>";
+			echo $output;
+		}
+	}
 ?>
