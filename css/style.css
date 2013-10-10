@@ -35,7 +35,7 @@ a:focus { outline:none; }
 	z-index:99;
 	padding:30px 0;
 	border-bottom:1px solid #DDD;
-	background:#eee;
+	background-color:#eee;
 }
 .logo {
 	position:relative;
