@@ -7,8 +7,16 @@ body {
 	}
 	&.cherry-fixed-layout {
 		@media (max-width: 767px) {
-			padding-left: 0;
-			padding-right: 0;
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+		.header,
+		.content-holder,
+		.footer {
+			@media (max-width: 767px) {
+				padding-left: 20px;
+				padding-right: 20px;
+			}
 		}
 	}
 }
@@ -26,16 +34,13 @@ a {
 	.cherry-fixed-layout &{
 		margin: 0 auto;
 		max-width: 980px;
+		width: auto;
 		background: @mainBackground;
 		@media (min-width: 1200px) {
 			max-width: 1210px;
 		}
 		@media (min-width: 768px) and (max-width: 979px) {
 			max-width: 764px;
-		}
-		@media (max-width: 767px) {
-			padding-left: 20px;
-			padding-right: 20px;
 		}
 	}
 }
