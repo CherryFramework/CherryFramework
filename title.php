@@ -1,6 +1,13 @@
 <section class="title-section">
 	<h1 class="title-header">
-		<?php if(is_home()){ ?>
+		<?php 	
+			$shop_page = false;
+			if(function_exists( 'is_shop' )){
+				if(is_shop()){
+					$shop_page = true;
+				}
+			}
+			if(is_home()){ ?>
 			<?php $blog_text = of_get_option('blog_text'); ?>
 				<?php if($blog_text){?>
 					<?php echo of_get_option('blog_text'); ?>
@@ -42,7 +49,7 @@
 			<?php echo theme_locals("portfolio_tag").": "; ?>
 			<small><?php echo single_tag_title( '', false ); ?> </small>
 <!--Begin shop-->
-		<?php } elseif (function_exists( 'is_shop' ) && is_singular()) {
+		<?php } elseif ($shop_page) {
 				if (class_exists( 'Woocommerce' ) && !is_single()){
 					$page_id = woocommerce_get_page_id('shop');
 				} elseif (function_exists( 'jigoshop_init' ) && !is_singular()){
