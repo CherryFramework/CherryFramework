@@ -7,7 +7,7 @@
 
 /******************Change this*******************/
 @define('API_URL', 'http://updates.cherry.template-help.com/cherrymoto/api/');
-@define('DETAILS_URL', 'http://www.cherryframework.com/update/cherry-framework-v-2-3/');
+@define('DETAILS_URL', 'http://www.cherryframework.com/update/cherry-framework-2-3-1/');
 /************************************************/
 
 /*******************Child Theme******************
@@ -16,7 +16,7 @@
 //function exists errors
 if(function_exists('wp_get_theme')){
 	$theme_data = wp_get_theme(get_option('stylesheet'));
-	$theme_version = $theme_data->Version;  
+	$theme_version = $theme_data->Version;
 } else {
 	$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css');
 	$theme_version = $theme_data['Version'];
@@ -28,7 +28,7 @@ $theme_base = get_option('stylesheet');
 /***********************Parent Theme**************/
 if(function_exists('wp_get_theme')){
 	$theme_data = wp_get_theme(get_option('template'));
-	$theme_version = $theme_data->Version;  
+	$theme_version = $theme_data->Version;
 } else {
 	$theme_data = get_theme_data( TEMPLATEPATH . '/style.css');
 	$theme_version = $theme_data['Version'];
