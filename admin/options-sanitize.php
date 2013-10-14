@@ -324,7 +324,7 @@ function of_sanitize_hex( $hex, $default = '' ) {
  */
 
 function of_recognized_font_sizes() {
-	$sizes = range( 9, 71 );
+	$sizes = range( 9, 100 );
 	$sizes = apply_filters( 'of_recognized_font_sizes', $sizes );
 	$sizes = array_map( 'absint', $sizes );
 	return $sizes;
