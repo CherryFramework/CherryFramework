@@ -9,7 +9,7 @@
 	$args = array(
 		'post_type'        => 'slider',
 		'posts_per_page'   => -1,
-		'post_status'      => 'publish', 
+		'post_status'      => 'publish',
 		'orderby'          => 'name',
 		'order'            => 'ASC',
 		'suppress_filters' => $suppress_filters
@@ -26,7 +26,7 @@
 				imagesCount     = sliderImg.length,
 				imagesLoaded    = 0,
 				startingSlide   = <?php echo of_get_option('acc_starting_slide')-1; ?>,
-				easing          = "<?php echo (of_get_option('acc_easing')!="") ? of_get_option('acc_easing') : 'easeOutCubic'; ?>",
+				easing          = "<?php echo (of_get_option('acc_easing')!='') ? of_get_option('acc_easing') : 'easeOutCubic'; ?>",
 				speed           = <?php echo (of_get_option('acc_animation_speed')!="") ? of_get_option('acc_animation_speed') : 700; ?>,
 				auto            = <?php echo (of_get_option('acc_slideshow')!="") ? of_get_option('acc_slideshow') : true; ?>;
 			if(auto && startingSlide<0){
@@ -80,7 +80,7 @@
 					slideWidth: "70%",
 					tabWidth: null,
 					startingSlide: startingSlide,
-					trigger: "<?php echo (of_get_option('acc_trigger')!="") ? of_get_option('acc_trigger') : 'click' ; ?>",
+					trigger: "<?php echo (of_get_option('acc_trigger')!='') ? of_get_option('acc_trigger') : 'click' ; ?>",
 					speed: speed,
 					easing: easing,
 					auto: auto,

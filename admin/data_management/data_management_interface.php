@@ -95,7 +95,7 @@
 								<div class="buttons_controls">
 									<div class="button_wrapper">
 										<?php 
-											$update_url = wp_nonce_url('update.php?action=upgrade-theme&amp;theme=' . PARENT_NAME, 'upgrade-theme_' . get_theme_info(PARENT_NAME, 'Name'));
+											$update_url = wp_nonce_url('update.php?action=upgrade-theme&amp;theme=' . urlencode(PARENT_NAME), 'upgrade-theme_'.urlencode(PARENT_NAME));
 											$disable_class= "";
 											$cap= "";
 											if($framework_version>=check_update()){

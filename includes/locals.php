@@ -64,6 +64,8 @@
 			'last' => __('Last', $domain),
 			'first' => __('First', $domain),
 			'delete' => __('Delete', $domain),
+			'fullwidth' => __('Fullwidth', $domain),
+			'fixed' => __('Fixed', $domain),
 			
 			//Output Audio
 			'prev' => __('Previous', $domain),
@@ -90,8 +92,12 @@
 			'body_desc' => __('Change the background style', $domain),
 			'background_image' => __('Background Image', $domain),
 			'background_color' => __('Background Color', $domain),
-			'header_name' => __('Header background color', $domain),
-			'header_desc' => __('Change the header background color', $domain),
+			'main_layout_name' => __('Layout', $domain),
+			'main_layout_desc' => __('Select layout for Your site', $domain),
+			'main_bg_name' => __('Main background color', $domain),
+			'main_bg_desc' => __('Change the main background color', $domain),
+			'header_name' => __('Header styling', $domain),
+			'header_desc' => __('Change the header style', $domain),
 			'buttons_name' => __('Link color', $domain),
 			'buttons_desc' => __('Change the color of link', $domain),
 			'links_color_hover' => __('Link color hover', $domain),

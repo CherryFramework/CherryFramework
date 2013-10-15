@@ -1,7 +1,7 @@
 <?php
 	if(!function_exists('optionsframework_option_name')) {
 		function optionsframework_option_name() {
-			// This gets the theme name from the stylesheet (lowercase and without spaces)			
+			// This gets the theme name from the stylesheet (lowercase and without spaces)
 			$optionsframework_settings = get_option('optionsframework');
 			$optionsframework_settings['id'] = CURRENT_THEME;
 			update_option('optionsframework', $optionsframework_settings);
@@ -23,17 +23,17 @@
 
 	//true/false array
 			$true_false_array = array(
-				"true" => theme_locals("yes"),
+				"true"  => theme_locals("yes"),
 				"false" => theme_locals("no")
 			);
 	//yes/no array
 			$yes_no_array = array(
 				"yes" => theme_locals("yes"),
-				"no" => theme_locals("no")
+				"no"  => theme_locals("no")
 			);
 	// If using image radio buttons, define a directory path
-			$imagepath =  get_template_directory_uri() . '/includes/images/';
-				
+			$imagepath = PARENT_URL . '/includes/images/';
+
 			$options = array();
 // ---------------------------------------------------------
 // General
@@ -49,18 +49,38 @@
 				'attachment'=>'scroll'
 			);
 
-			$options['body_background'] = array( 
-								"name" =>  theme_locals('body_name'),
+			$options['body_background'] = array( "name" =>  theme_locals('body_name'),
 								"desc" => theme_locals('body_desc'),
 								"id" => "body_background",
 								"std" => $background_defaults, 
 								"type" => "background");
 			
-			$options['header_color'] = array( "name" => theme_locals('header_name'),
-								"desc" => theme_locals('header_desc'),
-								"id" => "header_color",
-								"std" => "",
+			$main_layout_opt = array('fullwidth' => theme_locals('fullwidth'), 'fixed' => theme_locals('fixed'));
+			$options['main_layout'] = array( "name" => theme_locals('main_layout_name'),
+								"desc" => theme_locals('main_layout_desc'),
+								"id" => "main_layout",
+								"type" => "radio",
+								"std" => "fullwidth",
+								"options" => $main_layout_opt);
+
+			$options['main_background'] = array( "name" => theme_locals('main_bg_name'),
+								"desc" => theme_locals('main_bg_desc'),
+								"id" => "main_background",
+								"std" => "#fafafa",
 								"type" => "color");
+
+			$header_bg_defaults = array(
+				'color' => '', 
+				'image' => '', 
+				'repeat' => 'repeat',
+				'position' => 'top center',
+				'attachment'=>'scroll'
+			);
+			$options['header_background'] = array( "name" => theme_locals('header_name'),
+								"desc" => theme_locals('header_desc'),
+								"id" => "header_background",
+								"std" => $header_bg_defaults,
+								"type" => "background");
 			
 			$options['links_color'] = array( "name" => theme_locals('buttons_name'),
 								"desc" => theme_locals('buttons_desc'),
@@ -150,7 +170,7 @@
 								"id" => "g_breadcrumbs_id",
 								"type" => "radio",
 								"std" => "yes",
-								"options" => $yes_no_array);;	
+								"options" => $yes_no_array);;
 
 			$options['custom_css'] = array( "name" => theme_locals('css_name'),
 								"desc" => theme_locals('css_desc'),
@@ -268,14 +288,14 @@
 								"id" => "mobile_menu_label",
 								"std" => theme_locals('mobile_menu_std'),
 								"class" => "tiny",
-								"type" => "text");	
+								"type" => "text");
 
 // ---------------------------------------------------------
 // Slider
 // ---------------------------------------------------------
 
 			$options['slider'] = array( "name" => theme_locals('slider'),
-	                            "type" => "heading");
+								"type" => "heading");
 	// Slider type
 			$options['sl_type'] = array( 
 								"name" => theme_locals('slider_type_name'),
@@ -297,192 +317,192 @@
 
 	// Slider effects
 			$sl_effect_array = array("random" => theme_locals("random"), "simpleFade" => theme_locals("simpleFade"), "curtainTopLeft" => theme_locals("curtainTopLeft"), "curtainTopRight" => theme_locals("curtainTopRight"), "curtainBottomLeft" => theme_locals("curtainBottomLeft"), "curtainBottomRight" => theme_locals("curtainBottomRight"), "curtainSliceLeft" => theme_locals("curtainSliceLeft"), "curtainSliceRight" => theme_locals("curtainSliceRight"), "blindCurtainTopLeft" => theme_locals("blindCurtainTopLeft"), "blindCurtainTopRight" => theme_locals("blindCurtainTopRight"), "blindCurtainBottomLeft" => theme_locals("blindCurtainBottomLeft"), "blindCurtainBottomRight" => theme_locals("blindCurtainBottomRight"), "blindCurtainSliceBottom" => theme_locals("blindCurtainSliceBottom"), "blindCurtainSliceTop" => theme_locals("blindCurtainSliceTop"), "stampede" => theme_locals("stampede"), "mosaic" => theme_locals("mosaic"), "mosaicReverse" => theme_locals("mosaicReverse"), "mosaicRandom" => theme_locals("mosaicRandom"), "mosaicSpiral" => theme_locals("mosaicSpiral"), "mosaicSpiralReverse" => theme_locals("mosaicSpiralReverse"), "topLeftBottomRight" => theme_locals("topLeftBottomRight"), "bottomRightTopLeft" => theme_locals("bottomRightTopLeft"), "bottomLeftTopRight" => theme_locals("bottomLeftTopRight"));
- 		
-	        $options['sl_effect'] = array( "name" => theme_locals('effect_name'),
-	                            "desc" => theme_locals('effect_desc'),
-	                            "id" => "sl_effect",
-	                            "std" => "random",
-	                            "type" => "select",
-	                            "class" => "tiny slider_type_1", //mini, tiny, small
-	                            "options" => $sl_effect_array);
+		
+			$options['sl_effect'] = array( "name" => theme_locals('effect_name'),
+								"desc" => theme_locals('effect_desc'),
+								"id" => "sl_effect",
+								"std" => "random",
+								"type" => "select",
+								"class" => "tiny slider_type_1", //mini, tiny, small
+								"options" => $sl_effect_array);
 	// Slider columns
 			$sl_columns_array = array("1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7", "8" => "8", "9" => "9", "10" => "10", "11" => "11", "12" => "12", "13" => "13", "14" => "14", "15" => "15", "16" => "16", "17" => "17", "18" => "18", "19" => "19", "20" => "20");
 
-	        $options['sl_columns'] = array( "name" => theme_locals('columns_name'),
-	                            "desc" => theme_locals('columns_desc'),
-	                            "id" => "sl_columns",
-	                            "std" => "6",
-	                            "type" => "select",
-	                            "class" => "small slider_type_1", //mini, tiny, small
-	                            "options" => $sl_columns_array);
+			$options['sl_columns'] = array( "name" => theme_locals('columns_name'),
+								"desc" => theme_locals('columns_desc'),
+								"id" => "sl_columns",
+								"std" => "6",
+								"type" => "select",
+								"class" => "small slider_type_1", //mini, tiny, small
+								"options" => $sl_columns_array);
 	// Slider rows
 			$sl_rows_array = array("1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7", "8" => "8", "9" => "9", "10" => "10", "11" => "11", "12" => "12", "13" => "13", "14" => "14", "15" => "15", "16" => "16", "17" => "17", "18" => "18", "19" => "19", "20" => "20");
 
-	        $options['sl_rows'] = array( "name" => theme_locals('rows_name'),
-	                            "desc" => theme_locals('rows_desc'),
-	                            "id" => "sl_rows",
-	                            "std" => "6",
-	                            "type" => "select",
-	                            "class" => "small slider_type_1", //mini, tiny, small
-	                            "options" => $sl_rows_array);
+			$options['sl_rows'] = array( "name" => theme_locals('rows_name'),
+								"desc" => theme_locals('rows_desc'),
+								"id" => "sl_rows",
+								"std" => "6",
+								"type" => "select",
+								"class" => "small slider_type_1", //mini, tiny, small
+								"options" => $sl_rows_array);
 	// Banner effects
 			$sl_banner_array = array("moveFromLeft" => theme_locals("moveFromLeft"), "moveFromRight" => theme_locals("moveFromRight"), "moveFromTop" => theme_locals("moveFromTop"), "moveFromBottom" => theme_locals("moveFromBottom"), "fadeIn" => theme_locals("fadeIn"), "fadeFromLeft" => theme_locals("fadeFromLeft"), "fadeFromRight" => theme_locals("fadeFromRight"), "fadeFromTop" => theme_locals("fadeFromTop"), "fadeFromBottom" => theme_locals("fadeFromBottom"));
 
-	        $options['sl_banner'] = array( "name" =>  theme_locals('banner_name'),
-		                        "desc" =>  theme_locals('banner_desc'),
-		                        "id" => "sl_banner",
-		                        "std" => "fadeFromBottom",
-		                        "type" => "select",
-		                        "class" => "tiny slider_type_1", //mini, tiny, small
-		                        "options" => $sl_banner_array);
+			$options['sl_banner'] = array( "name" =>  theme_locals('banner_name'),
+								"desc" =>  theme_locals('banner_desc'),
+								"id" => "sl_banner",
+								"std" => "fadeFromBottom",
+								"type" => "select",
+								"class" => "tiny slider_type_1", //mini, tiny, small
+								"options" => $sl_banner_array);
 
-	        $options['sl_pausetime'] = array( "name" => theme_locals('pause_name'),
-	                            "desc" => theme_locals('pause_desc'),
-	                            "id" => "sl_pausetime",
-	                            "std" => "7000",
-	                            "class" => "tiny slider_type_1",
-	                            "type" => "text");
+			$options['sl_pausetime'] = array( "name" => theme_locals('pause_name'),
+								"desc" => theme_locals('pause_desc'),
+								"id" => "sl_pausetime",
+								"std" => "7000",
+								"class" => "tiny slider_type_1",
+								"type" => "text");
 	 
-	        $options['sl_animation_speed'] = array( "name" => theme_locals('animation_name'),
-	                            "desc" => theme_locals('animation_desc'),
-	                            "id" => "sl_animation_speed",
-	                            "std" => "1500",
-	                            "class" => "tiny slider_type_1",
-	                            "type" => "text");
+			$options['sl_animation_speed'] = array( "name" => theme_locals('animation_name'),
+								"desc" => theme_locals('animation_desc'),
+								"id" => "sl_animation_speed",
+								"std" => "1500",
+								"class" => "tiny slider_type_1",
+								"type" => "text");
 	 
-	        $options['sl_slideshow'] = array( "name" => theme_locals('slideshow_name'),
-	                            "desc" => theme_locals('slideshow_desc'),
-	                            "id" => "sl_slideshow",
-	                            "std" => "true",
-	                            "type" => "radio",
-	                            "class" => "slider_type_1",
-	                            "options" => $true_false_array);
+			$options['sl_slideshow'] = array( "name" => theme_locals('slideshow_name'),
+								"desc" => theme_locals('slideshow_desc'),
+								"id" => "sl_slideshow",
+								"std" => "true",
+								"type" => "radio",
+								"class" => "slider_type_1",
+								"options" => $true_false_array);
 
-	        $options['sl_thumbnails'] = array( "name" => theme_locals('thumbnails_name'),
-	                            "desc" => theme_locals('thumbnails_desc'),
-	                            "id" => "sl_thumbnails",
-	                            "std" => "true",
-	                            "type" => "radio",
-	                            "class" => "slider_type_1",
-	                            "options" => $true_false_array);
+			$options['sl_thumbnails'] = array( "name" => theme_locals('thumbnails_name'),
+								"desc" => theme_locals('thumbnails_desc'),
+								"id" => "sl_thumbnails",
+								"std" => "true",
+								"type" => "radio",
+								"class" => "slider_type_1",
+								"options" => $true_false_array);
 
-	        $options['sl_control_nav'] = array( "name" => theme_locals('pagination_name'),
-	                            "desc" => theme_locals('pagination_desc'),
-	                            "id" => "sl_control_nav",
-	                            "std" => "true",
-	                            "type" => "radio",
-	                            "class" => "slider_type_1",
-	                            "options" => $true_false_array);
+			$options['sl_control_nav'] = array( "name" => theme_locals('pagination_name'),
+								"desc" => theme_locals('pagination_desc'),
+								"id" => "sl_control_nav",
+								"std" => "true",
+								"type" => "radio",
+								"class" => "slider_type_1",
+								"options" => $true_false_array);
 
-	        $options['sl_dir_nav'] = array( "name" => theme_locals('navigation_name'),
-	                            "desc" => theme_locals('navigation_desc'),
-	                            "id" => "sl_dir_nav",
-	                            "std" => "true",
-	                            "type" => "radio",
-	                            "class" => "slider_type_1",
-	                            "options" => $true_false_array);
+			$options['sl_dir_nav'] = array( "name" => theme_locals('navigation_name'),
+								"desc" => theme_locals('navigation_desc'),
+								"id" => "sl_dir_nav",
+								"std" => "true",
+								"type" => "radio",
+								"class" => "slider_type_1",
+								"options" => $true_false_array);
 
-	        $options['sl_dir_nav_hide'] = array( "name" => theme_locals('hover_name'),
-	                            "desc" => theme_locals('hover_desc'),
-	                            "id" => "sl_dir_nav_hide",
-	                            "std" => "false",
-	                            "type" => "radio",
-	                            "class" => "slider_type_1",
-	                            "options" => $true_false_array);
+			$options['sl_dir_nav_hide'] = array( "name" => theme_locals('hover_name'),
+								"desc" => theme_locals('hover_desc'),
+								"id" => "sl_dir_nav_hide",
+								"std" => "false",
+								"type" => "radio",
+								"class" => "slider_type_1",
+								"options" => $true_false_array);
 
-	        $options['sl_play_pause_button'] = array( "name" => theme_locals('button_name'),
-	                            "desc" => theme_locals('button_desc'),
-	                            "id" => "sl_play_pause_button",
-	                            "std" => "true",
-	                            "type" => "radio",
-	                            "class" => "slider_type_1",
-	                            "options" => $true_false_array);
+			$options['sl_play_pause_button'] = array( "name" => theme_locals('button_name'),
+								"desc" => theme_locals('button_desc'),
+								"id" => "sl_play_pause_button",
+								"std" => "true",
+								"type" => "radio",
+								"class" => "slider_type_1",
+								"options" => $true_false_array);
 	// Slider loader
 			$sl_loader_array = array("no" => theme_locals("none"), "pie" => theme_locals("pie"), "bar" => theme_locals("bar"));
 		
-	        $options['sl_loader'] = array( "name" => theme_locals('loader_name'),
-	                            "desc" => theme_locals('loader_desc'),
-	                            "id" => "sl_loader",
-	                            "std" => "no",
-	                            "type" => "select",
-	                            "class" => "small slider_type_1", //mini, tiny, small
-	                            "options" => $sl_loader_array);
+			$options['sl_loader'] = array( "name" => theme_locals('loader_name'),
+								"desc" => theme_locals('loader_desc'),
+								"id" => "sl_loader",
+								"std" => "no",
+								"type" => "select",
+								"class" => "small slider_type_1", //mini, tiny, small
+								"options" => $sl_loader_array);
 	// ---------------------------------------------------------
 	// Accordion Slider
 	// ---------------------------------------------------------
-	        $post_array = array();
-	       	$slider_post = query_posts("post_type=slider&posts_per_page=-1&post_status=publish&orderby=name&order=ASC");
+			$post_array = array();
+			$slider_post = query_posts("post_type=slider&posts_per_page=-1&post_status=publish&orderby=name&order=ASC");
 			foreach ($slider_post as $value){
 				$postID = $value -> ID;
- 				$post_array[$postID] = get_the_title($postID);
+				$post_array[$postID] = get_the_title($postID);
 			};
 			wp_reset_query();
 
-	        $options['acc_show_post'] = array( "name" => theme_locals('show_post_name'),
-                    "desc" => theme_locals('show_post_desc'),
-                    "id" => "acc_show_post",
-                    "std" => "",
-                    "type" => "multicheck",
-                    "class" => "slider_type_2",
-                    "options" => $post_array);
+			$options['acc_show_post'] = array( "name" => theme_locals('show_post_name'),
+					"desc" => theme_locals('show_post_desc'),
+					"id" => "acc_show_post",
+					"std" => "",
+					"type" => "multicheck",
+					"class" => "slider_type_2",
+					"options" => $post_array);
 
-	        $options['acc_slideshow'] = array( "name" => theme_locals('slideshow_name'),
-	                            "desc" => theme_locals('slideshow_desc'),
-	                            "id" => "acc_slideshow",
-	                            "std" => "false",
-	                            "type" => "radio",
-	                            "class" => "slider_type_2",
-	                            "options" => $true_false_array);
+			$options['acc_slideshow'] = array( "name" => theme_locals('slideshow_name'),
+								"desc" => theme_locals('slideshow_desc'),
+								"id" => "acc_slideshow",
+								"std" => "false",
+								"type" => "radio",
+								"class" => "slider_type_2",
+								"options" => $true_false_array);
 
-	       	$options['acc_hover_pause'] = array( "name" => theme_locals('hover_pause_name'),
-	                            "desc" => theme_locals('hover_pause_desc'),
-	                            "id" => "acc_hover_pause",
-	                            "std" => "true",
-	                            "type" => "radio",
-	                            "class" => "slider_type_2",
-	                            "options" => $true_false_array);
+			$options['acc_hover_pause'] = array( "name" => theme_locals('hover_pause_name'),
+								"desc" => theme_locals('hover_pause_desc'),
+								"id" => "acc_hover_pause",
+								"std" => "true",
+								"type" => "radio",
+								"class" => "slider_type_2",
+								"options" => $true_false_array);
 
-	       	$options['acc_pausetime'] = array( "name" => theme_locals('pause_name'),
-	                            "desc" => theme_locals('pause_desc'),
-	                            "id" => "acc_pausetime",
-	                            "std" => "6000",
-	                            "class" => "tiny slider_type_2",
-	                            "type" => "text");
+			$options['acc_pausetime'] = array( "name" => theme_locals('pause_name'),
+								"desc" => theme_locals('pause_desc'),
+								"id" => "acc_pausetime",
+								"std" => "6000",
+								"class" => "tiny slider_type_2",
+								"type" => "text");
 
-	        $options['acc_animation_speed'] = array( "name" => theme_locals('animation_name'),
-	                            "desc" => theme_locals('animation_desc'),
-	                            "id" => "acc_animation_speed",
-	                            "std" => "600",
-	                            "class" => "tiny slider_type_2",
-	                            "type" => "text");
+			$options['acc_animation_speed'] = array( "name" => theme_locals('animation_name'),
+								"desc" => theme_locals('animation_desc'),
+								"id" => "acc_animation_speed",
+								"std" => "600",
+								"class" => "tiny slider_type_2",
+								"type" => "text");
 
-	    	// Accordion animation easing    
+			// Accordion animation easing    
 			$acc_easing = array("linear" => theme_locals("linear"), "easeInSine" => theme_locals("easeInSine"), "easeOutSine" => theme_locals("easeOutSine"), "easeInOutSine" => theme_locals("easeInOutSine"), "easeInQuad" => theme_locals("easeInQuad"), "easeOutQuad" => theme_locals("easeOutQuad"), "easeInOutQuad" => theme_locals("easeInOutQuad"), "easeInCubic" => theme_locals("easeInCubic"), "easeOutCubic" => theme_locals("easeOutCubic"), "easeInOutCubic" => theme_locals("easeInOutCubic"), "easeInQuart" => theme_locals("easeInQuart"), "easeOutQuart" => theme_locals("easeOutQuart"), "easeInOutQuart" => theme_locals("easeInOutQuart"), "easeInQuint" => theme_locals("easeInQuint"), "easeOutQuint" => theme_locals("easeOutQuint"), "easeInOutQuint" => theme_locals("easeInOutQuint"), "easeInExpo" => theme_locals("easeInExpo"), "easeOutExpo" => theme_locals("easeOutExpo"), "easeInOutExpo" => theme_locals("easeInOutExpo"), "easeInCirc" => theme_locals("easeInCirc"), "easeOutCirc" => theme_locals("easeOutCirc"), "easeInOutCirc" => theme_locals("easeInOutCirc"), "easeInBack" => theme_locals("easeInBack"), "easeOutBack" => theme_locals("easeOutBack"), "easeInOutBack" => theme_locals("easeInOutBack"), "easeInElastic" => theme_locals("easeInElastic"), "easeOutElastic" => theme_locals("easeOutElastic"), "easeInOutElastic" => theme_locals("easeInOutElastic"), "easeInBounce" => theme_locals("easeInBounce"), "easeOutBounce" => theme_locals("easeOutBounce"), "easeInOutBounce" => theme_locals("easeInOutBounce"));
 
-	        $options['acc_easing'] = array( "name" =>  theme_locals('easing_name'),
-		                        "desc" =>  theme_locals('easing_desc'),
-		                        "id" => "acc_easing",
-		                        "std" => "easeOutCubic",
-		                        "type" => "select",
-		                        "class" => "tiny slider_type_2", //mini, tiny, small
-		                        "options" => $acc_easing);
-	   		// Accordion trigger    
+			$options['acc_easing'] = array( "name" =>  theme_locals('easing_name'),
+								"desc" =>  theme_locals('easing_desc'),
+								"id" => "acc_easing",
+								"std" => "easeOutCubic",
+								"type" => "select",
+								"class" => "tiny slider_type_2", //mini, tiny, small
+								"options" => $acc_easing);
+			// Accordion trigger    
 			$acc_trigger = array("click" => theme_locals("click"), "mouseover" => theme_locals("mouseover"), "dblclick" => theme_locals("dblclick"));
 
-	        $options['acc_trigger'] = array( "name" => theme_locals('trigger_name'),
-		                        "desc" => theme_locals('trigger_desc'),
-		                        "id" => "acc_trigger",
-		                        "std" => "mouseover",
-		                        "type" => "select",
-		                        "class" => "tiny slider_type_2", //mini, tiny, small
-		                        "options" => $acc_trigger);
+			$options['acc_trigger'] = array( "name" => theme_locals('trigger_name'),
+								"desc" => theme_locals('trigger_desc'),
+								"id" => "acc_trigger",
+								"std" => "mouseover",
+								"type" => "select",
+								"class" => "tiny slider_type_2", //mini, tiny, small
+								"options" => $acc_trigger);
 
-	       	$options['acc_starting_slide'] = array( "name" => theme_locals('starting_slide_name'),
-	                            "desc" => theme_locals('starting_slide_desc'),
-	                            "id" => "acc_starting_slide",
-	                            "std" => "0",
-	                            "class" => "tiny slider_type_2",
-	                            "type" => "text");
+			$options['acc_starting_slide'] = array( "name" => theme_locals('starting_slide_name'),
+								"desc" => theme_locals('starting_slide_desc'),
+								"id" => "acc_starting_slide",
+								"std" => "0",
+								"class" => "tiny slider_type_2",
+								"type" => "text");
 // ---------------------------------------------------------
 // Blog
 // ---------------------------------------------------------

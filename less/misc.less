@@ -423,6 +423,11 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
 	outline: none;
+	.placeholder(@placeholderText);
+	&::-moz-placeholder {
+		color: @placeholderText;
+		opacity: 1;
+	}
 	// -webkit-appearance: none;
 	&.btn {
 		&:focus {

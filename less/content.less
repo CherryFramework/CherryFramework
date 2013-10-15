@@ -4,31 +4,34 @@
 	position:relative;
 	z-index:1;
 	padding-bottom:50px;
-}	
+}
 #content {
 	padding-top: 40px;
+	&.left {
+		position: relative;
+		z-index: 9;
+		float: right !important;
+		margin-bottom: 40px;
+	}
 }
-#content.left {
-	position: relative;
-	z-index: 9;
-	float: right !important;
-	margin-bottom: 40px;
-}
+
 /* Title
 ---------------------------------------- */
-.title-section {
-	padding: 20px 0 0;
-}
-	.title-header {
+.title{
+	&-section {
+		padding: 20px 0 0;
+	}
+	&-header {
 		overflow: hidden;
 		margin-bottom: 1em;
 		.hyphens(auto);
 	}
-	.title-desc {
+	&-desc {
 		display: block;
 		color: #999;
 		font-size: 11px;
 	}
+}
 
 /* Breadcrumb
 ---------------------------------------- */
@@ -41,7 +44,12 @@
 
 		}
 		&.divider {
-
+			.hide-text();
+			&:after {
+				content: ' / ';
+				color: @textColor;
+				font: @baseFontSize/@baseLineHeight @baseFontFamily;
+			}
 		}
 		a {
 
@@ -61,7 +69,7 @@
 ================================================== */
 /* Page */
 .page {
-	
+
 }
 
 /* Testimonials Page
@@ -87,7 +95,7 @@
 	}
 	&_content {
 		overflow: hidden;
-		background:url(../images/quotes.png) no-repeat 0 0;
+		background: url(../images/quotes.png) no-repeat 0 0;
 	}
 	& .featured-thumbnail {
 		/* Portrait tablet to landscape and desktop */
@@ -118,7 +126,7 @@
 		}
 	}
 
-		
+
 /* Single thumbnails Page
 ---------------------------------------- */
 #primary {
@@ -128,7 +136,7 @@
 	overflow: hidden;
 }
 .entry-meta { }
-	
+
 /* Info */
 .portfolio-meta{
 	margin: 0;
@@ -183,7 +191,7 @@
 		max-width:100%;
 	}
 }
-	
+
 /* Grid Gallery */
 .grid_gallery {
 	margin-bottom:-1px;
@@ -242,12 +250,14 @@
 	content:"";
 	}
 .featured-thumbnail a:hover .zoom-icon,
-.thumbnail:hover .zoom-icon {
+a.thumbnail:hover .zoom-icon,
+.thumbnail__portfolio a:hover .zoom-icon {
 	opacity:1;
 }
 .no-rgba .image-wrap:hover .zoom-icon,
 .featured-thumbnail a:hover .zoom-icon,
-.thumbnail:hover .zoom-icon {
+a.thumbnail:hover .zoom-icon,
+.thumbnail__portfolio a:hover .zoom-icon {
 	visibility:visible;
 }
 
@@ -380,8 +390,8 @@ html[xmlns] .slides { display: block;}
 	opacity: 1;
 }
 .flex-direction-nav .flex-disabled {
-	opacity: .3!important; 
-	filter:alpha(opacity=30); 
+	opacity: .3!important;
+	filter:alpha(opacity=30);
 	cursor: default;
 }
 
@@ -569,7 +579,7 @@ html[xmlns] .slides { display: block;}
 		font-size: 80px;
 		color: #FFF;
 		text-decoration: none;
-		opacity: 0.8;	
+		opacity: 0.8;
 		-webkit-perspective: 1000;
 		-moz-perspective: 1000;
 		-ms-perspective: 1000;

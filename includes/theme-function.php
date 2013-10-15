@@ -585,7 +585,7 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 	function breadcrumbs() {
 
 	$showOnHome  = 1; // 1 - show "breadcrumbs" on home page, 0 - hide
-	$delimiter   = '<li class="divider">&thinsp;/&thinsp;</li>'; // divider
+	$delimiter   = '<li class="divider"></li>'; // divider
 	$home        = get_the_title( get_option('page_on_front', true) ); // text for link "Home"
 	$showCurrent = 1; // 1 - show title current post/page, 0 - hide
 	$before      = '<li class="active">'; // open tag for active breadcrumb
