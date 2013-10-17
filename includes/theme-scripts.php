@@ -48,10 +48,10 @@ function cherry_scripts() {
 				wp_enqueue_script('camera');
 				break;
 		}
-		// only Portfolio Pages (2-*, 3-*, 4-Columns)
+		// only Portfolio (2-*, 3-*, 4-Columns), Home and Front Pages
 		if ( (is_page_template('page-Portfolio2Cols-filterable.php')) 
 			|| (is_page_template('page-Portfolio3Cols-filterable.php')) 
-			|| (is_page_template('page-Portfolio4Cols-filterable.php'))
+			|| (is_page_template('page-Portfolio4Cols-filterable.php')) 
 			|| is_home() 
 			|| is_front_page()) {
 			wp_register_script('debouncedresize', PARENT_URL.'/js/jquery.debouncedresize.js', array('jquery'), '1.0', true);

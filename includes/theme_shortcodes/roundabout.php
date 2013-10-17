@@ -19,29 +19,35 @@ if (!function_exists('shortcode_roundabout')) {
 				'custom_class'     => ''
 			), $atts));
 
-			wp_enqueue_script( 'roundabout_script', get_template_directory_uri() . '/js/jquery.roundabout.min.js', array( 'jquery' ) );
-			wp_enqueue_script( 'roundabout_shape', get_template_directory_uri() . '/js/jquery.roundabout-shapes.min.js', array( 'jquery' ) );
+			wp_enqueue_script( 'roundabout_script', PARENT_URL . '/js/jquery.roundabout.min.js', array('jquery') );
+			wp_enqueue_script( 'roundabout_shape', PARENT_URL . '/js/jquery.roundabout-shapes.min.js', array('jquery') );
 
-			$template_url = get_stylesheet_directory_uri();
-			
+			$ra_id = uniqid();
+
 			// check what type of post user selected
 			switch ($type) {
-			   	case 'blog':
+				case 'blog':
 					$type_post = 'post';
 					break;
-			   	case 'portfolio':
+				case 'portfolio':
 					$type_post = 'portfolio';
+					break;
+				case 'testimonial':
+					$type_post = 'testi';
+					break;
+				case 'our team':
+					$type_post = 'team';
 					break;
 				default:
 					$type_post = 'post';
 					break;
-			}		
+			}
 
 			$output = '<div class="roundabout-holder '.$custom_class.'">';
 			if ($title != '') {
 				$output .= '<h2>'.$title.'</h2>';
 			}
-			$output .= '<ul id="roundabout-list">';
+			$output .= '<ul id="roundabout-list-'.$ra_id.'" class="unstyled">';
 			
 			global $post;
 
@@ -52,7 +58,7 @@ if (!function_exists('shortcode_roundabout')) {
 				'post_type'              => $type_post,
 				'category_name'          => $category,
 				$type_post . '_category' => $custom_category,
-				'numberposts'            => -1,
+				'posts_per_page'         => -1,
 				'orderby'                => 'post_date',
 				'order'                  => 'DESC',
 				'suppress_filters'       => $suppress_filters
@@ -74,21 +80,25 @@ if (!function_exists('shortcode_roundabout')) {
 					if ( function_exists( 'icl_object_id' ) ) $post = get_post( icl_object_id( $post->ID, $type_post, true ) );
 				}
 				setup_postdata($post);
-				$attachment_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
-				$url            = $attachment_url['0'];
-				$image          = aq_resize($url, $thumb_width, $thumb_height, true);
 
-				if ($i <= $num) {
+				if ( $num == -1 ) {
+					$num = count($posts);
+				}
+
+				if ( $num >= $i ) {
 					if (has_post_thumbnail($post->ID)) {
+						$attachment_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
+						$url            = $attachment_url['0'];
+						$image          = aq_resize($url, $thumb_width, $thumb_height, true);
+
 						$output .= '<li>';
 						$output .= '<a href="'.get_permalink($post->ID).'" title="'.get_the_title($post->ID).'">';
-						$output .= '<img  src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
+						$output .= '<img src="'.$image.'" alt="'.get_the_title($post->ID).'" />';
 						$output .= '</a>';
 						$output .= '</li>';
 						$i++;
 					}
-				}	else
-						break;
+				}
 			}
 			$output .= '</ul>';
 
@@ -98,7 +108,7 @@ if (!function_exists('shortcode_roundabout')) {
 
 			$output .= '<script>
 					jQuery(document).ready(function() {
-						jQuery("#roundabout-list").roundabout({
+						jQuery("#roundabout-list-'.$ra_id.'").roundabout({
 							minOpacity: 1,
 							minScale: 0.6,
 							minZ: 0,
@@ -107,8 +117,8 @@ if (!function_exists('shortcode_roundabout')) {
 						});
 					});
 					jQuery(window).bind("resize", function() {
-						jQuery("#roundabout-list li").removeAttr("style");
-						jQuery("#roundabout-list").roundabout({
+						jQuery("#roundabout-list-'.$ra_id.' li").removeAttr("style");
+						jQuery("#roundabout-list-'.$ra_id.'").roundabout({
 							minOpacity: 1,
 							minScale: 0.6,
 							responsive: false

@@ -64,6 +64,8 @@
 			'last' => __('Last', $domain),
 			'first' => __('First', $domain),
 			'delete' => __('Delete', $domain),
+			'fullwidth' => __('Fullwidth', $domain),
+			'fixed' => __('Fixed', $domain),
 			
 			//Output Audio
 			'prev' => __('Previous', $domain),
@@ -90,8 +92,12 @@
 			'body_desc' => __('Change the background style', $domain),
 			'background_image' => __('Background Image', $domain),
 			'background_color' => __('Background Color', $domain),
-			'header_name' => __('Header background color', $domain),
-			'header_desc' => __('Change the header background color', $domain),
+			'main_layout_name' => __('Layout', $domain),
+			'main_layout_desc' => __('Select layout for Your site', $domain),
+			'main_bg_name' => __('Main background color', $domain),
+			'main_bg_desc' => __('Change the main background color', $domain),
+			'header_name' => __('Header styling', $domain),
+			'header_desc' => __('Change the header style', $domain),
 			'buttons_name' => __('Link color', $domain),
 			'buttons_desc' => __('Change the color of link', $domain),
 			'links_color_hover' => __('Link color hover', $domain),
@@ -400,6 +406,7 @@
 			'no_widget' => __('Your have no widgets. Please, click next to go to the next step.', $domain),
 			'widget_import_warning' => __('Disable the widgets you don\'t need and click "Next". All the selected widgets will be imported into the theme by default.', $domain),
 			'go_to_widgets' => __('go to widgets', $domain),
+			'empty_widgets' => __('File widgets.json incorrect or empty. For this reason, none of the widget will be imported into your theme.', $domain),
 			
 			//wordpress-importer.php
 			'sorry' => __('Sorry, there has been an error.', $domain),
@@ -1068,7 +1075,9 @@
 			'theme_index' => __('Your themes system files and folders <em>(recommended)</em>', $domain),
 			'media_index' => __('Media library files (images, video, audio, etc.) <em>(not recommended)</em>', $domain),
 			'nofollow_name' => __('Add the <em>"rel"</em> attribute with the <em>"nofollow"</em> value to content links.', $domain),
-			'nofollow_desc' => __('This option will stop the search engines from going to other sites following the links in your site content.', $domain)
+			'nofollow_desc' => __('This option will stop the search engines from going to other sites following the links in your site content.', $domain),
+
+			'' => '' // empty value
 			);
 		return $locals[$label];
 	};

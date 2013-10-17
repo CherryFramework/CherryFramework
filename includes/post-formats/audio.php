@@ -93,13 +93,14 @@
 			</div>
 			<!-- END audio -->
 		</div>
-		<!-- Post Content -->
-		<div class="post_content">
-			<?php the_content(''); ?>
-			<div class="clear"></div>
-		</div>
-		<!--// Post Content -->
-	<?php
-		get_template_part('includes/post-formats/post-meta');
-	?>
+		<!-- END audio -->
+	</div>
+
+	<!-- Post Content -->
+	<div class="post_content">
+		<?php the_content(''); ?>
+		<div class="clear"></div>
+	</div>
+	<!--// Post Content -->
+	<?php get_template_part('includes/post-formats/post-meta'); ?>
 </article><!--//.post__holder-->
