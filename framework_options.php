@@ -503,13 +503,21 @@
 								"type" => "text");
 			
 			$options['blog_sidebar_pos'] = array( "name" => theme_locals('sidebar_name'),
-								"desc" => theme_locals('sidebar_desc'),
+								"desc" => theme_locals('sidebar_option_desc'),
 								"id" => "blog_sidebar_pos",
 								"std" => "right",
 								"type" => "images",
 								"options" => array(
 									'left' => $imagepath . '2cl.png',
-									'right' => $imagepath . '2cr.png',)
+									'right' => $imagepath . '2cr.png',
+									'none' => $imagepath . '1col.png',
+									'masonry' => $imagepath . 'masonry.png'),
+								"title" => array(
+									'left' => theme_locals('sidebar_left'),
+									'right' => theme_locals('sidebar_right'),
+									'none' => theme_locals('sidebar_hide'),
+									'masonry' => theme_locals('blog_masonry')
+									)
 								);
 	// Featured image size on the blog.
 			$post_image_size_array = array("normal" => theme_locals("normal_size"),"large" => theme_locals("large_size"));

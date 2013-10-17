@@ -23,6 +23,19 @@
 		'linkColor'      =>	'#000000',
 		'linkColorHover' =>	'#000000'
 		);
+//------------------------------------------------------
+// js global variables
+//------------------------------------------------------
+	function cherry_js_global_variables(){
+		$output = "<script>";
+		$output .="\n var system_folder = '".PARENT_URL."/admin/data_management/',";
+		$output .= "\n\t CHILD_URL ='" .CHILD_URL."',";
+		$output .= "\n\t PARENT_URL = '".PARENT_URL."'";
+		$output .= "</script>";
+		echo $output;
+	}
+	add_action('wp_head', 'cherry_js_global_variables');
+	add_action('admin_head', 'cherry_js_global_variables');
 	/*
 	 * Definition current theme
 	 *
@@ -176,6 +189,7 @@
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/service_box.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/post_cycle.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/carousel.php');
+	include_once (PARENT_DIR . '/includes/theme_shortcodes/carousel_owl.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/progressbar.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/banner.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/table.php');
@@ -937,7 +951,7 @@
 	}
 	if (!function_exists("get_slider_template_part")) {
 		function get_slider_template_part() {
-			switch (get_option('slider_type', 'slider')) {
+			switch (of_get_option('slider_type')) {
 				case "accordion_slider":
 					$slider_type = "accordion";
 				break;
@@ -973,7 +987,8 @@
 						'meta_elements' =>  array('start_unite', 'date', 'author', 'permalink', 'end_unite', 'start_unite', 'categories', 'tags', 'end_unite', 'start_unite', 'comment', 'views', 'like', 'dislike', 'end_unite'),
 						'meta_class' => 'post_meta',
 						'meta_before' => '',
-						'meta_after'  => ''
+						'meta_after'  => '',
+						'display_meta_data' => true
 					);
 		$args = wp_parse_args( $args, $defaults );
 		$post_meta_type = (of_get_option('post_meta') == 'true' || of_get_option('post_meta') == '') ? 'line' : of_get_option('post_meta');
@@ -985,7 +1000,7 @@
 			}	
 		}
 
-		if($post_meta_type!='false'){
+		if($post_meta_type!='false' && $args['display_meta_data']){
 			$post_ID = get_the_ID();
 			$post_type = get_post_type($post_ID);
 			$icon_tips_before = ($post_meta_type == 'icon') ? '<div class="tips">' : '';
@@ -1215,17 +1230,60 @@
 			}
 		}
 	}
-//------------------------------------------------------
-// js global variables
-//------------------------------------------------------
-	function cherry_js_global_variables(){
-		$output = "<script>";
-		$output .="\n var sistem_folder = '".PARENT_URL."/admin/data_management/',";
-		$output .= "\n\t CHILD_URL ='" .CHILD_URL."',";
-		$output .= "\n\t PARENT_URL = '".PARENT_URL."'";
-		$output .= "</script>";
-		echo $output;
+	if(!function_exists('cherry_related_posts')){
+		function cherry_related_posts($args = array()){
+			global $post;
+			$default = array(
+				'post_type' => get_post_type($post),
+				'class' => 'related-posts',
+				'class_list' => 'related-posts_list',
+				'class_list_item' => 'related-posts_item',
+				'display_title' => true,
+				'display_link' => true,
+				'display_thumbnail' => true,
+				'width_thumbnail' => 200,
+				'height_thumbnail' => 120,
+				'before_title' => '<h3 class="related-posts_h">',
+				'after_title' => '</h3>',
+				'posts_count' => 4
+			);
+			extract(array_merge($default, $args));
+
+			$post_tags = wp_get_post_terms($post->ID, $post_type.'_tag', array("fields" => "slugs"));
+			$tags_type = $post_type=='post' ? 'tag' : $post_type.'_tag' ;
+			$suppress_filters = get_option('suppress_filters');// WPML filter
+			if ($post_tags && !is_wp_error($post_tags)) {
+				$args = array(
+					"$tags_type" => implode(',', $post_tags),
+					'post_status' => 'publish',
+					'posts_per_page' => $posts_count,
+					'ignore_sticky_posts' => 1,
+					'post__not_in' => array($post->ID),
+					'post_type' => $post_type,
+					'suppress_filters' => $suppress_filters
+					);
+				query_posts($args);
+				if ( have_posts() ) {
+					$output = '<div class="'.$class.'">';
+					$output .= $display_title ? $before_title.of_get_option('blog_related', theme_locals("posts_std")).$after_title : '' ;
+					$output .= '<ul class="'.$class_list.' clearfix">';
+					while( have_posts() ) {
+						the_post();
+						$thumb   = has_post_thumbnail() ? get_post_thumbnail_id() : PARENT_URL.'/images/empty_thumb.gif';
+						$blank_img = stripos($thumb, 'empty_thumb.gif');
+						$img_url = $blank_img ? $thumb : wp_get_attachment_url( $thumb,'full');
+						$image   = $blank_img ? $thumb : aq_resize($img_url, $width_thumbnail, $height_thumbnail, true) or $img_url;
+
+						$output .= '<li class="'.$class_list_item.'">';
+						$output .= $display_thumbnail ? '<figure class="thumbnail featured-thumbnail"><a href="'.get_permalink().'" title="'.get_the_title().'"><img data-src="'.$image.'" alt="'.get_the_title().'" /></a></figure>': '' ;
+						$output .= $display_link ? '<a href="'.get_permalink().'" >'.get_the_title().'</a>': '' ;
+						$output .= '</li>';
+					}
+					$output .= '</ul></div>';
+					echo $output;
+				}
+				wp_reset_query();
+			}
+		}
 	}
-	add_action('wp_head', 'cherry_js_global_variables');
-	add_action('admin_head', 'cherry_js_global_variables');
 ?>

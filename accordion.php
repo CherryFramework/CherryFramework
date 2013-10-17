@@ -38,7 +38,7 @@
 				function checkLoadImg(){
 					if(imagesLoaded>=imagesCount){
 						setTimeout(function(){
-							jQuery("ul", myAccordion).css({"visibility":"visible", "display":"none"}).stop(true, true).fadeIn(1000, function(){
+							jQuery("ul", myAccordion).stop(true, true).css({"visibility":"visible", "display":"none"}).fadeIn(1000, function(){
 								jQuery('.accordion_loader', myAccordion).remove();
 							});
 							resizeWindow();
@@ -63,15 +63,16 @@
 					}
 				}
 				sliderImg.each(function(){
-					if(jQuery(this)[0].complete){
+					var img = jQuery(this);
+					if(img[0].complete!=false){
 						imagesLoaded++;
 						checkLoadImg()
 					}else{
-						jQuery(this).bind("load", function(){
+						img.on('load', function(){
 							imagesLoaded++;
-							checkLoadImg()
-							jQuery(this).unbind("load");
-						})
+							checkLoadImg();
+							jQuery(this).off();
+						});
 					}
 				})
 				myAccordionList.zAccordion({
@@ -145,7 +146,7 @@
 					$caption = stripslashes(htmlspecialchars_decode($caption));
 				}
 				echo '<li>';
-					echo '<img src="'.$sl_image_url[0].'" width="100%" height="auto" class="slider_img '.$img_class.'" alt="">';
+					echo '<img data-src="'.$sl_image_url[0].'" width="100%" height="auto" class="slider_img '.$img_class.'" alt="">';
 					if($caption!="" || $url!=""){
 						echo '<div class="accordion_caption">'.$caption.$url.'</div>';
 					}
