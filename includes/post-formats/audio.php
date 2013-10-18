@@ -93,9 +93,6 @@
 			</div>
 			<!-- END audio -->
 		</div>
-		<!-- END audio -->
-	</div>
-
 	<!-- Post Content -->
 	<div class="post_content">
 		<?php the_content(''); ?>
