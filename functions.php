@@ -29,7 +29,7 @@
 //------------------------------------------------------
 	function cherry_js_global_variables(){
 		$output = "<script>";
-		$output .="\n var sistem_folder = '".PARENT_URL."/admin/data_management/',";
+		$output .="\n var system_folder = '".PARENT_URL."/admin/data_management/',";
 		$output .= "\n\t CHILD_URL ='" .CHILD_URL."',";
 		$output .= "\n\t PARENT_URL = '".PARENT_URL."'";
 		$output .= "</script>";
@@ -190,6 +190,7 @@
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/service_box.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/post_cycle.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/carousel.php');
+	include_once (PARENT_DIR . '/includes/theme_shortcodes/carousel_owl.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/progressbar.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/banner.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/table.php');
@@ -987,7 +988,8 @@
 						'meta_elements' =>  array('start_unite', 'date', 'author', 'permalink', 'end_unite', 'start_unite', 'categories', 'tags', 'end_unite', 'start_unite', 'comment', 'views', 'like', 'dislike', 'end_unite'),
 						'meta_class' => 'post_meta',
 						'meta_before' => '',
-						'meta_after'  => ''
+						'meta_after'  => '',
+						'display_meta_data' => true
 					);
 		$args = wp_parse_args( $args, $defaults );
 		$post_meta_type = (of_get_option('post_meta') == 'true' || of_get_option('post_meta') == '') ? 'line' : of_get_option('post_meta');
@@ -999,7 +1001,7 @@
 			}	
 		}
 
-		if($post_meta_type!='false'){
+		if($post_meta_type!='false' && $args['display_meta_data']){
 			$post_ID = get_the_ID();
 			$post_type = get_post_type($post_ID);
 			$icon_tips_before = ($post_meta_type == 'icon') ? '<div class="tips">' : '';
@@ -1229,7 +1231,6 @@
 			}
 		}
 	}
-
 //------------------------------------------------------
 //  Related Posts
 //------------------------------------------------------

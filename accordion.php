@@ -38,7 +38,7 @@
 				function checkLoadImg(){
 					if(imagesLoaded>=imagesCount){
 						setTimeout(function(){
-							jQuery("ul", myAccordion).css({"visibility":"visible", "display":"none"}).stop(true, true).fadeIn(1000, function(){
+							jQuery("ul", myAccordion).stop(true, true).css({"visibility":"visible", "display":"none"}).fadeIn(1000, function(){
 								jQuery('.accordion_loader', myAccordion).remove();
 							});
 							resizeWindow();
@@ -62,15 +62,16 @@
 					}
 				}
 				sliderImg.each(function(){
-					if(jQuery(this)[0].complete){
+					var img = jQuery(this);
+					if(img[0].complete!=false){
 						imagesLoaded++;
 						checkLoadImg()
 					}else{
-						jQuery(this).on("load", function(){
+						img.on('load', function(){
 							imagesLoaded++;
-							checkLoadImg()
-							jQuery(this).off("load");
-						})
+							checkLoadImg();
+							jQuery(this).off();
+						});
 					}
 				})
 				myAccordionList.zAccordion({

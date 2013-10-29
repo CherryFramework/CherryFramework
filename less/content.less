@@ -396,12 +396,11 @@ html[xmlns] .slides { display: block;}
 }
 
 /* Control Nav */
-.flex-control-nav {
+.flex-control-nav{
 	width: 100%; 
 	position: absolute; 
 	bottom: -40px;
-
-	& li {
+	& li{
 		margin: 0 6px; 
 		display: inline-block;
 		zoom: 1; 
@@ -409,23 +408,24 @@ html[xmlns] .slides { display: block;}
 	}
 }
 
-.flex-control-paging li a {
-	width: 11px; 
-	height: 11px; 
-	display: block;
-	background: #666; 
-	background: rgba(0,0,0,0.5); 
-	cursor: pointer; 
-	text-indent: -9999px;
-	.border-radius(20px);
-	position: relative;
-	z-index: 999;
-
-	&:hover {
+.flex-control-paging li , .owl-theme .owl-controls {
+	a, span{
+		width: 11px; 
+		height: 11px; 
+		display: block;
+		background: #666; 
+		background: rgba(0,0,0,0.5); 
+		cursor: pointer; 
+		text-indent: -9999px;
+		.border-radius(20px);
+		position: relative;
+		z-index: 999;
+	}
+	a:hover , span:hover {
 		background: #333;
 		background: rgba(0,0,0,0.7);
 	}
-	&.flex-active {
+	a.flex-active, .active span{
 		background: #000; 
 		background: rgba(0,0,0,0.9); 
 		cursor: default;
@@ -1329,3 +1329,62 @@ p.gravatar {
 	}	
 }
 /* /Posts navigation 
+/* blog masonry */
+.blog{
+	.isotope{
+		margin: 0 -5px 20px;
+		vertical-align: top;
+		height: auto;
+		visibility: hidden;
+		@media (max-width: 768px) {
+			margin-left: -1%;
+			margin-right: -1%;
+		}
+		@media (max-width: 480px) {
+			margin-left: 0;
+			margin-right: 0;
+		}
+		.post_wrapper{
+			display: block;
+			float: left;
+			margin: 5px;
+			width: 306px;
+			@media (min-width: 1200px) {
+				width: 383px;
+			}
+			@media (min-width: 768px) and (max-width: 979px) {
+				width: 357px;
+			}
+			@media (max-width: 768px) {
+				width: 47.7%;
+				margin: 5px 1%;
+			}
+			@media (max-width: 480px) {
+				width: 100%;
+				margin:5px 0;
+			}
+			.post_content{
+				padding-bottom: 10px;
+			}
+			.post__holder{
+				border: 1px solid @tableBorder;
+				padding:6px;
+				border-radius: 5px;
+				margin-bottom: 0;
+				.post_meta{
+					border-bottom: 0;
+					margin-bottom: 0;
+					padding-bottom: 0;
+				}
+			}
+			/*.video-wrap{
+				min-height: 210px;
+				padding: 0;
+			}
+			embed, iframe, object, video{
+				min-height: 210px;
+			}*/
+		}
+	}
+}
+/* end blog masonry */

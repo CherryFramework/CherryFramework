@@ -6,11 +6,13 @@
 
 	if (have_posts()) : while (have_posts()) : the_post();
 		// The following determines what the post format is and shows the correct file accordingly
-		$format = get_post_format();
-		get_template_part( 'includes/post-formats/'.$format );
+		echo '<div class="post_wrapper">';
+			$format = get_post_format();
+			get_template_part( 'includes/post-formats/'.$format );
 
-		if ($format == '')
-			get_template_part( 'includes/post-formats/standard' );
+			if ($format == '')
+				get_template_part( 'includes/post-formats/standard' );
+		echo '</div>';
 		endwhile; else: ?>
 
 		<div class="no-results">
@@ -19,4 +21,3 @@
 				<?php get_search_form(); /* outputs the default Wordpress search form */ ?>
 		</div><!--no-results-->
 	<?php endif; ?>
-<?php get_template_part('includes/post-formats/post-nav'); ?>
