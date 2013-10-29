@@ -33,7 +33,7 @@ function widget($args, $instance) {
 		$sort_order = 'DESC';
 	}
 	
-	// Get array of post info.	
+	// Get array of post info.
 	$args = array(
 		'showposts' => $instance["num"],
 		'post_type' => $instance['posttype'],
@@ -102,10 +102,10 @@ function widget($args, $instance) {
 			<?php endif; ?>
 			</figure>
 		<?php endif;
-		}	
-   
+		}
+
 		if ( $instance['date'] ) : ?>
-			<time datetime="<?php the_time('Y-m-d\TH:i'); ?>"><?php the_date(); ?> <?php the_time() ?></time>
+			<time datetime="<?php the_time('Y-m-d\TH:i'); ?>"><?php the_time(get_option('date_format')); ?> <?php the_time() ?></time>
 		<?php endif;
 
 		if ( $instance['comment_num'] ) : ?>
@@ -115,46 +115,43 @@ function widget($args, $instance) {
 		if ( $instance['show_title'] ) : ?>
 			<h4 class="post-list_h"><a class="post-title" href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php if ( $instance['show_title_date'] ) {?>[<?php echo get_the_date(); ?>]<?php }else{?><?php the_title(); ?><?php }?></a></h4>
 		<?php endif; ?>
-				
-				
+
 		<div class="excerpt">
 		<?php if ( $instance['excerpt'] ) : ?>
-		   <?php if($limittext=="" || $limittext==0){ ?>
-		  <?php if ( $instance['excerpt_as_link'] ) : ?>
+			<?php if($limittext=="" || $limittext==0){ ?>
+			<?php if ( $instance['excerpt_as_link'] ) : ?>
 				<a href="<?php the_permalink() ?>">
-			  <?php endif; ?>
+			<?php endif; ?>
 			<?php the_excerpt(); ?>
-		  <?php if ( $instance['excerpt_as_link'] ) : ?>
+			<?php if ( $instance['excerpt_as_link'] ) : ?>
 				</a>
-			  <?php endif; ?>
-		  <?php }else{ ?>
-		  <?php if ( $instance['excerpt_as_link'] ) : ?>
+			<?php endif; ?>
+		<?php }else{ ?>
+		<?php if ( $instance['excerpt_as_link'] ) : ?>
 				<a href="<?php the_permalink() ?>">
-			  <?php endif; ?>
+			<?php endif; ?>
 			<?php $excerpt = get_the_excerpt(); echo my_string_limit_words($excerpt,$limittext);?>
-		  <?php if ( $instance['excerpt_as_link'] ) : ?>
+			<?php if ( $instance['excerpt_as_link'] ) : ?>
 				</a>
-			  <?php endif; ?>
-		  <?php } ?>
+			<?php endif; ?>
+		<?php } ?>
 		<?php endif; ?>
-	  </div>
+		</div>
 			<?php if ($instance['posttype'] == "testi") { ?>
 		<div class="name-testi"><span class="user"><?php echo $testiname; ?></span>, <a target="_blank" href="<?php echo $testiurl; ?>"><?php echo $testiurl; ?></a></div>
-	  <?php }?>
-	  <?php if ( $instance['more_link'] ) : ?>
+		<?php }?>
+		<?php if ( $instance['more_link'] ) : ?>
 		<a href="<?php the_permalink() ?>" class="btn btn-primary <?php if($instance['more_link_class']!="") {echo $instance['more_link_class'];}else{ ?>link<?php } ?>"><?php if($instance['more_link_text']==""){ echo theme_locals("read_more"); }else{ ?><?php echo $instance['more_link_text']; ?><?php } ?></a>
-	  <?php endif; ?>
+		<?php endif; ?>
 		</li><!--//.post-list_li -->
-	
+
 	<?php } ?>
 	<?php echo "</ul>\n"; ?>
 	<?php if ( $instance['global_link'] ) : ?>
-	  <a href="<?php echo $instance['global_link_href']; ?>" class="btn btn-primary link_show_all"><?php if($instance['global_link_text']==""){ echo theme_locals("view_all"); }else{ ?><?php echo $instance['global_link_text']; ?><?php } ?></a>
+		<a href="<?php echo $instance['global_link_href']; ?>" class="btn btn-primary link_show_all"><?php if($instance['global_link_text']==""){ echo theme_locals("view_all"); }else{ ?><?php echo $instance['global_link_text']; ?><?php } ?></a>
 	<?php endif; ?>
-	
-<?php 	
+<?php 
 	echo $after_widget;
-	
 	$post = $post_old; // Restore the post object.
 }
 
