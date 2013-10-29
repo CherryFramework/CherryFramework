@@ -31,7 +31,8 @@
 		$output = "<script>";
 		$output .="\n var sistem_folder = '".PARENT_URL."/admin/data_management/',";
 		$output .= "\n\t CHILD_URL ='" .CHILD_URL."',";
-		$output .= "\n\t PARENT_URL = '".PARENT_URL."'";
+		$output .= "\n\t PARENT_URL = '".PARENT_URL."', ";
+		$output .= "\n\t CURRENT_THEME = '".CURRENT_THEME."'";
 		$output .= "</script>";
 		echo $output;
 	}
