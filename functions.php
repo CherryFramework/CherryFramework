@@ -131,16 +131,25 @@
 		do_action('cherry_activation_hook');
 	}
 
-	/*
-	 * Loading theme textdomain
-	 */
 	if ( !function_exists('cherry_theme_setup')) {
 		function cherry_theme_setup() {
+			
+			//Loading theme textdomain
 			load_theme_textdomain( CURRENT_THEME, PARENT_DIR . '/languages' );
+
+			//Localization functions
+			include_once (PARENT_DIR . '/includes/locals.php');
+
+			//Plugin Activation
+			include_once (CHILD_DIR . '/includes/register-plugins.php');
+
+			//Include shop
+			if ( file_exists(get_stylesheet_directory().'/shop.php') ) {
+				include_once (CHILD_DIR . '/shop.php');
+			}
 		}
 		add_action('after_setup_theme', 'cherry_theme_setup');
 	}
-	include_once (PARENT_DIR . '/includes/locals.php');
 	
 	// WPML compatibility
 	// WPML filter for correct posts IDs for the current language Solution
@@ -226,10 +235,6 @@
 	include_once (CHILD_DIR . '/options.php');
 	include_once (PARENT_DIR . '/framework_options.php');
 
-	//Plugin Activation
-	include_once (CHILD_DIR . '/includes/class-tgm-plugin-activation.php');
-	include_once (CHILD_DIR . '/includes/register-plugins.php');
-
 	// Framework Data Management
 	include_once (PARENT_DIR . '/admin/data_management/data_management_interface.php');
 
@@ -244,14 +249,6 @@
 		include_once (PARENT_DIR .'/includes/lessc.inc.php');
 	}
 	include_once (PARENT_DIR .'/includes/less-compile.php');
-	
-	// include shop
-	function include_shop(){
-		if ( file_exists(get_stylesheet_directory().'/shop.php') ) {
-			include_once (CHILD_DIR . '/shop.php');
-		}
-	}
-	add_action('after_setup_theme', 'include_shop');
 
 	// removes detailed login error information for security
 	add_filter('login_errors',create_function('$a', "return null;"));
