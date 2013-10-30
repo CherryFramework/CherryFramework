@@ -1,10 +1,10 @@
 <?php
 	function theme_local_init() {
-		global $isThemeLocalInit, $locals;
-		if ($isThemeLocalInit) return true;
+		global $is_cherry_local_init, $cherry_locals_arr;
+		if ($is_cherry_local_init) return true;
 
 		$domain = CURRENT_THEME;
-		$locals = array(
+		$cherry_locals_arr = array(
 			//general
 			'no' => __('No', 'cherry'),
 			'yes' => __('Yes', $domain),
@@ -1087,13 +1087,12 @@
 
 			'' => '' // empty value
 		);
-		$isThemeLocalInit = true;
+		$is_cherry_local_init = true;
 	};
 
 	function theme_locals($label) {
-		global $locals;
+		global $cherry_locals_arr;
 		theme_local_init();
-
-		return $locals[$label];
+		return $cherry_locals_arr[$label];
 	};
 ?>

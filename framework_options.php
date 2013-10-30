@@ -576,7 +576,7 @@
 			$options['blog_button_text'] = array( "name" => theme_locals('button_text_name'),
 								"desc" => theme_locals('button_text_desc'),
 								"id" => "blog_button_text",
-								"std" => "Read More",
+								"std" => theme_locals('read_more'),
 								"class" => "tiny",
 								"type" => "text");
 
@@ -617,7 +617,7 @@
 								"std" => "yes",
 								"class" => "post_meta_options",
 								"type" => "radio",
-								"options" => $yes_no_array);			
+								"options" => $yes_no_array);
 
 			$options['post_tag'] = array( "name" => theme_locals('post_tag_name'),
 								"desc" => theme_locals('post_tag_desc'),
@@ -625,7 +625,7 @@
 								"std" => "yes",
 								"class" => "post_meta_options",
 								"type" => "radio",
-								"options" => $yes_no_array);			
+								"options" => $yes_no_array);
 
 			$options['post_comment'] = array( "name" => theme_locals('post_comment_name'),
 								"desc" => theme_locals('post_comment_desc'),
@@ -641,7 +641,7 @@
 								"std" => "yes",
 								"class" => "post_meta_options",
 								"type" => "radio",
-								"options" => $yes_no_array);	
+								"options" => $yes_no_array);
 
 			$options['post_like'] = array( "name" => theme_locals('post_like_name'),
 								"desc" => theme_locals('post_like_desc'),
@@ -649,8 +649,8 @@
 								"std" => "yes",
 								"class" => "post_meta_options",
 								"type" => "radio",
-								"options" => $yes_no_array);	
-										
+								"options" => $yes_no_array);
+
 			$options['post_dislike'] = array( "name" => theme_locals('post_dislike_name'),
 								"desc" => theme_locals('post_dislike_desc'),
 								"id" => "post_dislike",
@@ -707,7 +707,7 @@
 			$options['folio_button_text'] = array( "name" => theme_locals('folio_button_text_name'),
 								"desc" => theme_locals('folio_button_text_desc'),
 								"id" => "folio_button_text",
-								"std" => "Read More",
+								"std" => theme_locals('read_more'),
 								"class" => "tiny",
 								"type" => "text");
 
@@ -864,7 +864,6 @@ add_action('customize_register', 'cherry_register');
 			$options = combined_option_array();
 
 			// remove default sections
-			// $wp_customize->remove_section( 'nav' );
 			$wp_customize->remove_section( 'static_front_page' );
 
 			// change transport
@@ -904,21 +903,6 @@ add_action('customize_register', 'cherry_register');
 				'priority' => 11
 			)));
 
-			/* Main Layout */
-			$wp_customize->add_setting( $themename.'[main_layout]', array(
-				'default'   => $options['main_layout']['std'],
-				'type'      => 'option',
-				'transport' => 'postMessage'
-			));
-			$wp_customize->add_control( $themename.'_main_layout', array(
-				'label'    => $options['main_layout']['name'],
-				'section'  => $themename.'_general',
-				'settings' => $themename.'[main_layout]',
-				'type'     => 'radio',
-				'choices'  => $options['main_layout']['options'],
-				'priority' => 12
-			));
-
 			/* Main Background Color */
 			$wp_customize->add_setting( $themename.'[main_background]', array(
 				'default'   => $options['main_background']['std'],
@@ -939,8 +923,7 @@ add_action('customize_register', 'cherry_register');
 				'transport' => 'postMessage'
 			));
 			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $themename.'_header_background_color', array(
-				// 'label'    => theme_locals('header_color'),
-				'label'    => 'header_color',
+				'label'    => theme_locals('header_color'),
 				'section'  => $themename.'_general',
 				'settings' => $themename.'[header_background][color]',
 				'priority' => 14
@@ -952,8 +935,7 @@ add_action('customize_register', 'cherry_register');
 				'type'    => 'option'
 			));
 			$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $themename.'_header_background_image', array(
-				// 'label'    => theme_locals('header_image'),
-				'label'    => 'header_image',
+				'label'    => theme_locals('header_image'),
 				'section'  => $themename.'_general',
 				'settings' => $themename.'[header_background][image]',
 				'priority' => 15
@@ -971,21 +953,6 @@ add_action('customize_register', 'cherry_register');
 				'settings' => $themename.'[links_color]',
 				'priority' => 16
 			)));
-
-			/* Body Font Face */
-			$wp_customize->add_setting( $themename.'[google_mixed_3][face]', array(
-				'default' => $options['google_mixed_3']['std']['face'],
-				'type'    => 'option'
-			));
-			$wp_customize->add_control( $themename.'_google_mixed_3', array(
-				'label'    => $options['google_mixed_3']['name'],
-				'label'    => $options['google_mixed_3']['name'],
-				'section'  => $themename.'_general',
-				'settings' => $themename.'[google_mixed_3][face]',
-				'type'     => 'select',
-				'choices'  => $options['google_mixed_3']['options']['faces'],
-				'priority' => 17
-			));
 
 			/* H1 Heading font face */
 			$wp_customize->add_setting( $themename.'[h1_heading][face]', array(
@@ -1168,7 +1135,7 @@ add_action('customize_register', 'cherry_register');
 				'settings' => $themename.'[menu_typography][face]',
 				'type'     => 'select',
 				'choices'  => $options['menu_typography']['options']['faces'],
-				'priority' => 1,
+				'priority' => 11,
 			));
 
 			/* Header Navigation Color */
@@ -1181,7 +1148,7 @@ add_action('customize_register', 'cherry_register');
 				'label'    => theme_locals('header_menu_color'),
 				'section'  => 'nav',
 				'settings' => $themename.'[menu_typography][color]',
-				'priority' => 2
+				'priority' => 12
 			)));
 
 			/* Footer Navigation font */
@@ -1195,7 +1162,7 @@ add_action('customize_register', 'cherry_register');
 				'settings' => $themename.'[footer_menu_typography][face]',
 				'type'     => 'select',
 				'choices'  => $options['footer_menu_typography']['options']['faces'],
-				'priority' => 3,
+				'priority' => 13,
 			));
 
 			/* Footer Navigation Color */
@@ -1208,7 +1175,7 @@ add_action('customize_register', 'cherry_register');
 				'label'    => theme_locals('footer_menu_color'),
 				'section'  => 'nav',
 				'settings' => $themename.'[footer_menu_typography][color]',
-				'priority' => 4
+				'priority' => 14
 			)));
 
 // ---------------------------------------------------------
@@ -1470,7 +1437,7 @@ add_action('customize_register', 'cherry_register');
 	}
 
 	function cherry_customize_preview_js() {
-		wp_enqueue_script( 'cherry-customizer', OPTIONS_FRAMEWORK_DIRECTORY . 'js/theme-customizer.js', array( 'customize-preview' ), '1.0.0', true );
+		wp_enqueue_script( 'cherry-customizer', OPTIONS_FRAMEWORK_DIRECTORY . 'js/theme.customizer.min.js', array( 'customize-preview' ), '1.0.0', true );
 	}
 	add_action( 'customize_preview_init', 'cherry_customize_preview_js' );
 
