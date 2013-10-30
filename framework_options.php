@@ -297,7 +297,7 @@
 			$options['slider'] = array( "name" => theme_locals('slider'),
 								"type" => "heading");
 	// Slider type
-			$options['sl_type'] = array( 
+			$options['slider_type'] = array( 
 								"name" => theme_locals('slider_type_name'),
 								"desc" => theme_locals('slider_type_desc'),
 								"id" => "slider_type",
@@ -584,7 +584,7 @@
 			$options['blog_button_text'] = array( "name" => theme_locals('button_text_name'),
 								"desc" => theme_locals('button_text_desc'),
 								"id" => "blog_button_text",
-								"std" => "Read More",
+								"std" => theme_locals('read_more'),
 								"class" => "tiny",
 								"type" => "text");
 
@@ -625,7 +625,7 @@
 								"std" => "yes",
 								"class" => "post_meta_options",
 								"type" => "radio",
-								"options" => $yes_no_array);			
+								"options" => $yes_no_array);
 
 			$options['post_tag'] = array( "name" => theme_locals('post_tag_name'),
 								"desc" => theme_locals('post_tag_desc'),
@@ -633,7 +633,7 @@
 								"std" => "yes",
 								"class" => "post_meta_options",
 								"type" => "radio",
-								"options" => $yes_no_array);			
+								"options" => $yes_no_array);
 
 			$options['post_comment'] = array( "name" => theme_locals('post_comment_name'),
 								"desc" => theme_locals('post_comment_desc'),
@@ -649,7 +649,7 @@
 								"std" => "yes",
 								"class" => "post_meta_options",
 								"type" => "radio",
-								"options" => $yes_no_array);	
+								"options" => $yes_no_array);
 
 			$options['post_like'] = array( "name" => theme_locals('post_like_name'),
 								"desc" => theme_locals('post_like_desc'),
@@ -657,8 +657,8 @@
 								"std" => "yes",
 								"class" => "post_meta_options",
 								"type" => "radio",
-								"options" => $yes_no_array);	
-										
+								"options" => $yes_no_array);
+
 			$options['post_dislike'] = array( "name" => theme_locals('post_dislike_name'),
 								"desc" => theme_locals('post_dislike_desc'),
 								"id" => "post_dislike",
@@ -715,7 +715,7 @@
 			$options['folio_button_text'] = array( "name" => theme_locals('folio_button_text_name'),
 								"desc" => theme_locals('folio_button_text_desc'),
 								"id" => "folio_button_text",
-								"std" => "Read More",
+								"std" => theme_locals('read_more'),
 								"class" => "tiny",
 								"type" => "text");
 
@@ -863,437 +863,596 @@
  * or values you already have built in the options panel, you
  * can load them into $options for easy reference
  */
-	add_action('customize_register', 'cherry_register');
+add_action('customize_register', 'cherry_register');
 
 	if(!function_exists('cherry_register')) {
 		function cherry_register($wp_customize) {
-			$themename = CURRENT_THEME;
 
+			$themename = CURRENT_THEME;
 			$options = combined_option_array();
+
+			// remove default sections
+			$wp_customize->remove_section( 'static_front_page' );
+
+			// change transport
+			$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
+			$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+
 // ------------------------------------------------------------
 // General
 // ------------------------------------------------------------
-			$wp_customize->add_section( $themename.'_header', array(
-				'title' => theme_locals('general'),
-				'priority' => 200
+			$wp_customize->add_section( $themename.'_general', array(
+				'title'    => theme_locals('general'),
+				'priority' => 1
 			));
 			
-			// Background Image
-			$wp_customize->add_setting($themename.'[body_background][image]', array(
-				'default' => $options['body_background']['std']['image'],
-				'type' => 'option'
-			));
-			
-			$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'body_background_image', array(
-				'label'   => theme_locals('background_image'),
-				'section' => $themename.'_header',
-				'settings'   => $themename.'[body_background][image]'
-			)));
-			
-			// Background Color
+			/* Body Background Color */
 			$wp_customize->add_setting( $themename.'[body_background][color]', array(
-				'default' => $options['body_background']['std']['color'],
-				'type' => 'option'
+				'default'   => $options['body_background']['std']['color'],
+				'type'      => 'option',
+				'transport' => 'postMessage'
 			));
-			
-			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'body_background', array(
-				'label'   => theme_locals('background_color'),
-				'section' => $themename.'_header',
-				'settings'   => $themename.'[body_background][color]'
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $themename.'_body_background_color', array(
+				'label'    => theme_locals('background_color'),
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[body_background][color]',
+				'priority' => 10
 			)));
 			
-			// Header Color 
-			$wp_customize->add_setting( $themename.'[header_color]', array(
-				'default' => $options['header_color']['std'],
-				'type' => 'option'
+			/* Body Background Image */
+			$wp_customize->add_setting($themename.'[body_background][image]', array(
+				'default'   => $options['body_background']['std']['image'],
+				'type'      => 'option'
 			));
-			
-			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_color', array(
-				'label'   => $options['header_color']['name'],
-				'section' => $themename.'_header',
-				'settings'   => $themename.'[header_color]'
+			$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $themename.'_body_background_image', array(
+				'label'    => theme_locals('background_image'),
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[body_background][image]',
+				'priority' => 11
+			)));
+
+			/* Main Background Color */
+			$wp_customize->add_setting( $themename.'[main_background]', array(
+				'default'   => $options['main_background']['std'],
+				'type'      => 'option',
+				'transport' => 'postMessage'
+			));
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $themename.'_main_background', array(
+				'label'    => $options['main_background']['name'],
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[main_background]',
+				'priority' => 13
 			)));
 			
-			// Body Font Face 
-			$wp_customize->add_setting( $themename.'[google_mixed_3][face]', array(
-				'default' => $options['google_mixed_3']['std']['face'],
-				'type' => 'option'
+			/* Header Background Color */
+			$wp_customize->add_setting( $themename.'[header_background][color]', array(
+				'default'   => $options['header_background']['std']['color'],
+				'type'      => 'option',
+				'transport' => 'postMessage'
 			));
-		
-			$wp_customize->add_control( $themename.'_google_mixed_3', array(
-					'label' => $options['google_mixed_3']['name'],
-					'section' => $themename.'_header',
-					'settings' => $themename.'[google_mixed_3][face]',
-					'type' => 'select',
-					'choices' => $options['google_mixed_3']['options']['faces']
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $themename.'_header_background_color', array(
+				'label'    => theme_locals('header_color'),
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[header_background][color]',
+				'priority' => 14
+			)));
+
+			/* Header Background Image */
+			$wp_customize->add_setting($themename.'[header_background][image]', array(
+				'default' => $options['header_background']['std']['image'],
+				'type'    => 'option'
 			));
-			
-			// Buttons and Links Color 
+			$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $themename.'_header_background_image', array(
+				'label'    => theme_locals('header_image'),
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[header_background][image]',
+				'priority' => 15
+			)));
+
+			/* Links Color */
 			$wp_customize->add_setting( $themename.'[links_color]', array(
-				'default' => $options['links_color']['std'],
-				'type' => 'option'
+				'default'   => $options['links_color']['std'],
+				'type'      => 'option',
+				'transport' => 'postMessage'
 			));
-			
-			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'links_color', array(
-				'label'   => $options['links_color']['name'],
-				'section' => $themename.'_header',
-				'settings'   => $themename.'[links_color]'
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $themename.'_links_color', array(
+				'label'    => $options['links_color']['name'],
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[links_color]',
+				'priority' => 16
 			)));
 
-			// breadcrumbs 
-			$wp_customize->add_setting( $themename.'[g_breadcrumbs_id]', array(
-					'default' => $options['g_breadcrumbs_id']['std'],
-					'type' => 'option'
-			));
-			$wp_customize->add_control( $themename.'_g_breadcrumbs_id', array(
-					'label' => $options['g_breadcrumbs_id']['name'],
-					'section' => $themename.'_header',
-					'settings' => $themename.'[g_breadcrumbs_id]',
-					'type' => $options['g_breadcrumbs_id']['type'],
-					'choices' => $options['g_breadcrumbs_id']['options']
-			));
-
-			// Search Box
-			$wp_customize->add_setting( $themename.'[g_search_box_id]', array(
-					'default' => $options['g_search_box_id']['std'],
-					'type' => 'option'
-			));
-			$wp_customize->add_control( $themename.'_g_search_box_id', array(
-					'label' => $options['g_search_box_id']['name'],
-					'section' => $themename.'_header',
-					'settings' => $themename.'[g_search_box_id]',
-					'type' => $options['g_search_box_id']['type'],
-					'choices' => $options['g_search_box_id']['options']
-			));
-
-			// H4 Heading font face 
-			$wp_customize->add_setting( $themename.'[h4_heading][face]', array(
-				'default' => $options['h4_heading']['std']['face'],
-				'type' => 'option'
-			));
-			
-			$wp_customize->add_control( $themename.'_h4_heading', array(
-					'label' => $options['h4_heading']['name'],
-					'section' => $themename.'_header',
-					'settings' => $themename.'[h4_heading][face]',
-					'type' => 'select',
-					'choices' => $options['h4_heading']['options']['faces']
-			));
-			// H3 Heading font face 
-			$wp_customize->add_setting( $themename.'[h3_heading][face]', array(
-				'default' => $options['h3_heading']['std']['face'],
-				'type' => 'option'
-			));
-			
-			$wp_customize->add_control( $themename.'_h3_heading', array(
-					'label' => $options['h3_heading']['name'],
-					'section' => $themename.'_header',
-					'settings' => $themename.'[h3_heading][face]',
-					'type' => 'select',
-					'choices' => $options['h3_heading']['options']['faces']
-			));
-			// H2 Heading font face 
-			$wp_customize->add_setting( $themename.'[h2_heading][face]', array(
-				'default' => $options['h2_heading']['std']['face'],
-				'type' => 'option'
-			));
-			
-			$wp_customize->add_control( $themename.'_h2_heading', array(
-					'label' => $options['h2_heading']['name'],
-					'section' => $themename.'_header',
-					'settings' => $themename.'[h2_heading][face]',
-					'type' => 'select',
-					'choices' => $options['h2_heading']['options']['faces']
-			));
-
-			// H1 Heading font face 
+			/* H1 Heading font face */
 			$wp_customize->add_setting( $themename.'[h1_heading][face]', array(
 				'default' => $options['h1_heading']['std']['face'],
-				'type' => 'option'
+				'type'    => 'option',
 			));
-			
 			$wp_customize->add_control( $themename.'_h1_heading', array(
-					'label' => $options['h1_heading']['name'],
-					'section' => $themename.'_header',
-					'settings' => $themename.'[h1_heading][face]',
-					'type' => 'select',
-					'choices' => $options['h1_heading']['options']['faces']
+				'label'    => $options['h1_heading']['name'],
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[h1_heading][face]',
+				'type'     => 'select',
+				'choices'  => $options['h1_heading']['options']['faces'],
+				'priority' => 18
 			));
-			// H6 Heading font face 
-			$wp_customize->add_setting( $themename.'[h6_heading][face]', array(
-				'default' => $options['h6_heading']['std']['face'],
-				'type' => 'option'
+
+			/* H2 Heading font face */
+			$wp_customize->add_setting( $themename.'[h2_heading][face]', array(
+				'default' => $options['h2_heading']['std']['face'],
+				'type'    => 'option',
 			));
-			
-			$wp_customize->add_control( $themename.'_h6_heading', array(
-					'label' => $options['h6_heading']['name'],
-					'section' => $themename.'_header',
-					'settings' => $themename.'[h6_heading][face]',
-					'type' => 'select',
-					'choices' => $options['h6_heading']['options']['faces']
-			));	
-			// H5 Heading font face 
+			$wp_customize->add_control( $themename.'_h2_heading', array(
+				'label'    => $options['h2_heading']['name'],
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[h2_heading][face]',
+				'type'     => 'select',
+				'choices'  => $options['h2_heading']['options']['faces'],
+				'priority' => 19
+			));
+
+			/* H3 Heading font face */
+			$wp_customize->add_setting( $themename.'[h3_heading][face]', array(
+				'default' => $options['h3_heading']['std']['face'],
+				'type'    => 'option',
+			));
+			$wp_customize->add_control( $themename.'_h3_heading', array(
+				'label'    => $options['h3_heading']['name'],
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[h3_heading][face]',
+				'type'     => 'select',
+				'choices'  => $options['h3_heading']['options']['faces'],
+				'priority' => 20
+			));
+
+			/* H4 Heading font face */
+			$wp_customize->add_setting( $themename.'[h4_heading][face]', array(
+				'default' => $options['h4_heading']['std']['face'],
+				'type'    => 'option',
+			));
+			$wp_customize->add_control( $themename.'_h4_heading', array(
+				'label'    => $options['h4_heading']['name'],
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[h4_heading][face]',
+				'type'     => 'select',
+				'choices'  => $options['h4_heading']['options']['faces'],
+				'priority' => 21
+			));
+
+			/* H5 Heading font face */
 			$wp_customize->add_setting( $themename.'[h5_heading][face]', array(
 				'default' => $options['h5_heading']['std']['face'],
-				'type' => 'option'
+				'type'    => 'option',
 			));
-			
 			$wp_customize->add_control( $themename.'_h5_heading', array(
-					'label' => $options['h5_heading']['name'],
-					'section' => $themename.'_header',
-					'settings' => $themename.'[h5_heading][face]',
-					'type' => 'select',
-					'choices' => $options['h5_heading']['options']['faces']
+				'label'    => $options['h5_heading']['name'],
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[h5_heading][face]',
+				'type'     => 'select',
+				'choices'  => $options['h5_heading']['options']['faces'],
+				'priority' => 22
+			));
+
+			/* H6 Heading font face */
+			$wp_customize->add_setting( $themename.'[h6_heading][face]', array(
+				'default' => $options['h6_heading']['std']['face'],
+				'type'    => 'option',
+			));
+			$wp_customize->add_control( $themename.'_h6_heading', array(
+				'label'    => $options['h6_heading']['name'],
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[h6_heading][face]',
+				'type'     => 'select',
+				'choices'  => $options['h6_heading']['options']['faces'],
+				'priority' => 23
+			));
+
+			/* Breadcrumbs */
+			$wp_customize->add_setting( $themename.'[g_breadcrumbs_id]', array(
+				'default'   => $options['g_breadcrumbs_id']['std'],
+				'type'      => 'option'
+			));
+			$wp_customize->add_control( $themename.'_g_breadcrumbs_id', array(
+				'label'    => $options['g_breadcrumbs_id']['name'],
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[g_breadcrumbs_id]',
+				'type'     => 'radio',
+				'choices'  => $options['g_breadcrumbs_id']['options'],
+				'priority' => 24
+			));
+
+			/* Search Box */
+			$wp_customize->add_setting( $themename.'[g_search_box_id]', array(
+				'default'   => $options['g_search_box_id']['std'],
+				'type'      => 'option'
+			));
+			$wp_customize->add_control( $themename.'_g_search_box_id', array(
+				'label'    => $options['g_search_box_id']['name'],
+				'section'  => $themename.'_general',
+				'settings' => $themename.'[g_search_box_id]',
+				'type'     => 'radio',
+				'choices'  => $options['g_search_box_id']['options'],
+				'priority' => 25
 			));
 
 // ---------------------------------------------------------
 // Logo
 // ---------------------------------------------------------
-
-			$wp_customize->add_section( $themename.'_logo', array(
-				'title' => theme_locals('logo'),
-				'priority' => 201
-			));
-			
 			/* Logo Type */
 			$wp_customize->add_setting( $themename.'[logo_type]', array(
-					'default' => $options['logo_type']['std'],
-					'type' => 'option'
+				'default' => $options['logo_type']['std'],
+				'type'    => 'option'
 			));
 			$wp_customize->add_control( $themename.'_logo_type', array(
-					'label' => $options['logo_type']['name'],
-					'section' => $themename.'_logo',
-					'settings' => $themename.'[logo_type]',
-					'type' => $options['logo_type']['type'],
-					'choices' => $options['logo_type']['options']
+				'label'    => $options['logo_type']['name'],
+				'section'  => 'title_tagline',
+				'settings' => $themename.'[logo_type]',
+				'type'     => $options['logo_type']['type'],
+				'choices'  => $options['logo_type']['options'],
+				'priority' => 1
 			));
 			
 			/* Logo Path */
 			$wp_customize->add_setting( $themename.'[logo_url]', array(
 				'type' => 'option'
 			));
-			
-			$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'logo_url', array(
-				'label' => $options['logo_url']['name'],
-				'section' => $themename.'_logo',
-				'settings' => $themename.'[logo_url]'
+			$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $themename.'_logo_url', array(
+				'label'    => $options['logo_url']['name'],
+				'section'  => 'title_tagline',
+				'settings' => $themename.'[logo_url]',
+				'priority' => 2
 			)));
-			
-// ---------------------------------------------------------
-// Slider
-// ---------------------------------------------------------			 
-			$wp_customize->add_section( $themename.'_slider', array(
-				'title' => theme_locals('slider_name'),
-				'priority' => 202
+
+			/* Logo-text font */
+			$wp_customize->add_setting( $themename.'[logo_typography][face]', array(
+				'default'   => $options['logo_typography']['std']['face'],
+				'type'      => 'option'
 			));
-			 
-			/* Slider Effect */
-			$wp_customize->add_setting( $themename.'[sl_effect]', array(
-					'default' => $options['sl_effect']['std'],
-					'type' => 'option'
-			));
-			$wp_customize->add_control( $themename.'_sl_effect', array(
-					'label' => $options['sl_effect']['name'],
-					'section' => $themename.'_slider',
-					'settings' => $themename.'[sl_effect]',
-					'type' => $options['sl_effect']['type'],
-					'choices' => $options['sl_effect']['options']
-			));
-			 
-			/* Pause time */
-			$wp_customize->add_setting( $themename.'[sl_pausetime]', array(
-					'default' => $options['sl_pausetime']['std'],
-					'type' => 'option'
-			));
-			$wp_customize->add_control( $themename.'_sl_pausetime', array(
-					'label' => $options['sl_pausetime']['name'],
-					'section' => $themename.'_slider',
-					'settings' => $themename.'[sl_pausetime]',
-					'type' => $options['sl_pausetime']['type']
-			));
-			 
-			/* Animation speed */
-			$wp_customize->add_setting( $themename.'[sl_animation_speed]', array(
-					'default' => $options['sl_animation_speed']['std'],
-					'type' => 'option'
-			));
-			$wp_customize->add_control( $themename.'_sl_animation_speed', array(
-					'label' => $options['sl_animation_speed']['name'],
-					'section' => $themename.'_slider',
-					'settings' => $themename.'[sl_animation_speed]',
-					'type' => $options['sl_animation_speed']['type']
-			));
-			 
-			/* Auto slideshow */
-			$wp_customize->add_setting( $themename.'[sl_slideshow]', array(
-					'default' => $options['sl_slideshow']['std'],
-					'type' => 'option'
-			));
-			$wp_customize->add_control( $themename.'_sl_slideshow', array(
-					'label' => $options['sl_slideshow']['name'],
-					'section' => $themename.'_slider',
-					'settings' => $themename.'[sl_slideshow]',
-					'type' => $options['sl_slideshow']['type'],
-					'choices' => $options['sl_slideshow']['options']
-			));
-			 
-			/* Slide thumbnails */
-			$wp_customize->add_setting( $themename.'[sl_thumbnails]', array(
-					'default' => $options['sl_thumbnails']['std'],
-					'type' => 'option'
-			));
-			$wp_customize->add_control( $themename.'_sl_thumbnails', array(
-					'label' => $options['sl_thumbnails']['name'],
-					'section' => $themename.'_slider',
-					'settings' => $themename.'[sl_thumbnails]',
-					'type' => $options['sl_thumbnails']['type'],
-					'choices' => $options['sl_thumbnails']['options']
-			));
-			 
-			/* Show pagination? */
-			$wp_customize->add_setting( $themename.'[sl_control_nav]', array(
-					'default' => $options['sl_control_nav']['std'],
-					'type' => 'option'
-			));
-			$wp_customize->add_control( $themename.'_sl_control_nav', array(
-					'label' => $options['sl_control_nav']['name'],
-					'section' => $themename.'_slider',
-					'settings' => $themename.'[sl_control_nav]',
-					'type' => $options['sl_control_nav']['type'],
-					'choices' => $options['sl_control_nav']['options']
-			));   
-			 
-			/* Display next & prev navigation? */
-			$wp_customize->add_setting( $themename.'[sl_dir_nav]', array(
-					'default' => $options['sl_dir_nav']['std'],
-					'type' => 'option'
-			));
-			$wp_customize->add_control( $themename.'_sl_dir_nav', array(
-					'label' => $options['sl_dir_nav']['name'],
-					'section' => $themename.'_slider',
-					'settings' => $themename.'[sl_dir_nav]',
-					'type' => $options['sl_dir_nav']['type'],
-					'choices' => $options['sl_dir_nav']['options']
-			));
-			 
-			/* Play/Pause button */
-			$wp_customize->add_setting( $themename.'[sl_play_pause_button]', array(
-					'default' => $options['sl_play_pause_button']['std'],
-					'type' => 'option'
-			));
-			$wp_customize->add_control( $themename.'_sl_play_pause_button', array(
-					'label' => $options['sl_play_pause_button']['name'],
-					'section' => $themename.'_slider',
-					'settings' => $themename.'[sl_play_pause_button]',
-					'type' => $options['sl_play_pause_button']['type'],
-					'choices' => $options['sl_play_pause_button']['options']
+			$wp_customize->add_control( $themename.'_logo_typography_face', array(
+				'label'    => $options['logo_typography']['name'],
+				'section'  => 'title_tagline',
+				'settings' => $themename.'[logo_typography][face]',
+				'type'     => 'select',
+				'choices'  => $options['logo_typography']['options']['faces'],
+				'priority' => 3,
 			));
 
-			/* Loader */
-			$wp_customize->add_setting( $themename.'[sl_loader]', array(
-					'default' => $options['sl_loader']['std'],
-					'type' => 'option'
+			/* Logo Text Color */
+			$wp_customize->add_setting( $themename.'[logo_typography][color]', array(
+				'default'   => $options['logo_typography']['std']['color'],
+				'type'      => 'option',
+				'transport' => 'postMessage'
 			));
-			$wp_customize->add_control( $themename.'_sl_loader', array(
-					'label' => $options['sl_loader']['name'],
-					'section' => $themename.'_slider',
-					'settings' => $themename.'[sl_loader]',
-					'type' => $options['sl_loader']['type'],
-					'choices' => $options['sl_loader']['options']
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $themename.'_logo_typography_color', array(
+				'label'    => theme_locals('logo_color'),
+				'section'  => 'title_tagline',
+				'settings' => $themename.'[logo_typography][color]',
+				'priority' => 4
+			)));
+
+// ---------------------------------------------------------
+// Navigation
+// ---------------------------------------------------------
+			/* Header Navigation font */
+			$wp_customize->add_setting( $themename.'[menu_typography][face]', array(
+				'default'   => $options['menu_typography']['std']['face'],
+				'type'      => 'option'
+			));
+			$wp_customize->add_control( $themename.'_menu_typography_face', array(
+				'label'    => theme_locals('header_menu_face'),
+				'section'  => 'nav',
+				'settings' => $themename.'[menu_typography][face]',
+				'type'     => 'select',
+				'choices'  => $options['menu_typography']['options']['faces'],
+				'priority' => 11,
+			));
+
+			/* Header Navigation Color */
+			$wp_customize->add_setting( $themename.'[menu_typography][color]', array(
+				'default'   => $options['menu_typography']['std']['color'],
+				'type'      => 'option',
+				'transport' => 'postMessage'
+			));
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $themename.'_menu_typography_color', array(
+				'label'    => theme_locals('header_menu_color'),
+				'section'  => 'nav',
+				'settings' => $themename.'[menu_typography][color]',
+				'priority' => 12
+			)));
+
+			/* Footer Navigation font */
+			$wp_customize->add_setting( $themename.'[footer_menu_typography][face]', array(
+				'default'   => $options['footer_menu_typography']['std']['face'],
+				'type'      => 'option'
+			));
+			$wp_customize->add_control( $themename.'_footer_menu_typography_face', array(
+				'label'    => theme_locals('footer_menu_face'),
+				'section'  => 'nav',
+				'settings' => $themename.'[footer_menu_typography][face]',
+				'type'     => 'select',
+				'choices'  => $options['footer_menu_typography']['options']['faces'],
+				'priority' => 13,
+			));
+
+			/* Footer Navigation Color */
+			$wp_customize->add_setting( $themename.'[footer_menu_typography][color]', array(
+				'default'   => $options['footer_menu_typography']['std']['color'],
+				'type'      => 'option',
+				'transport' => 'postMessage'
+			));
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $themename.'_footer_menu_typography_color', array(
+				'label'    => theme_locals('footer_menu_color'),
+				'section'  => 'nav',
+				'settings' => $themename.'[footer_menu_typography][color]',
+				'priority' => 14
+			)));
+
+// ---------------------------------------------------------
+// Slider
+// ---------------------------------------------------------
+			$wp_customize->add_section( $themename.'_slider', array(
+				'title'    => theme_locals('slider'),
+				'priority' => 200
 			));
 			
+			/* Slider Type */
+			$wp_customize->add_setting( $themename.'[slider_type]', array(
+				'default' => $options['slider_type']['std'],
+				'type'    => 'option'
+			));
+			$wp_customize->add_control( $themename.'_slider_type', array(
+				'label'    => $options['slider_type']['name'],
+				'section'  => $themename.'_slider',
+				'settings' => $themename.'[slider_type]',
+				'type'     => 'radio',
+				'choices'  => $options['slider_type']['title']
+			));
+
 // ---------------------------------------------------------
 // Blog
 // ---------------------------------------------------------			
 			$wp_customize->add_section( $themename.'_blog', array(
-					'title' => theme_locals('blog'),
-					'priority' => 203
+				'title' => theme_locals('blog'),
+				'priority' => 203
 			));
-			
+
+			/* Blog title */
+			$wp_customize->add_setting( $themename.'[blog_text]', array(
+				'default' => $options['blog_text']['std'],
+				'type' => 'option',
+				'transport' => 'postMessage'
+			));
+			$wp_customize->add_control( $themename.'_blog_text', array(
+				'label' => $options['blog_text']['name'],
+				'section' => $themename.'_blog',
+				'settings' => $themename.'[blog_text]',
+				'type' => 'text',
+				'priority' => 1
+			));
+
+			/* Related posts title */
+			$wp_customize->add_setting( $themename.'[blog_related]', array(
+				'default' => $options['blog_related']['std'],
+				'type' => 'option',
+				'transport' => 'postMessage'
+			));
+			$wp_customize->add_control( $themename.'_blog_related', array(
+				'label' => $options['blog_related']['name'],
+				'section' => $themename.'_blog',
+				'settings' => $themename.'[blog_related]',
+				'type' => 'text',
+				'priority' => 2
+			));
+
+			/* Sidebar position */
+			$wp_customize->add_setting( $themename.'[blog_sidebar_pos]', array(
+				'default' => $options['blog_sidebar_pos']['std'],
+				'type' => 'option'
+			));
+			$wp_customize->add_control( $themename.'_blog_sidebar_pos', array(
+				'label' => $options['blog_sidebar_pos']['name'],
+				'section' => $themename.'_blog',
+				'settings' => $themename.'[blog_sidebar_pos]',
+				'type' => 'radio',
+				'choices' => array(
+					'left' => theme_locals('sidebar_left'), 
+					'right' => theme_locals('sidebar_right')),
+				'priority' => 3
+			));
+
 			/* Blog image size */
 			$wp_customize->add_setting( $themename.'[post_image_size]', array(
-					'default' => $options['post_image_size']['std'],
-					'type' => 'option'
+				'default' => $options['post_image_size']['std'],
+				'type' => 'option'
 			));
 			$wp_customize->add_control( $themename.'_post_image_size', array(
-					'label' => $options['post_image_size']['name'],
-					'section' => $themename.'_blog',
-					'settings' => $themename.'[post_image_size]',
-					'type' => $options['post_image_size']['type'],
-					'choices' => $options['post_image_size']['options']
+				'label' => $options['post_image_size']['name'],
+				'section' => $themename.'_blog',
+				'settings' => $themename.'[post_image_size]',
+				'type' => $options['post_image_size']['type'],
+				'choices' => $options['post_image_size']['options'],
+				'priority' => 4
+			));
+
+			/* Blog image size */
+			$wp_customize->add_setting( $themename.'[post_image_size]', array(
+				'default' => $options['post_image_size']['std'],
+				'type' => 'option'
+			));
+			$wp_customize->add_control( $themename.'_post_image_size', array(
+				'label' => $options['post_image_size']['name'],
+				'section' => $themename.'_blog',
+				'settings' => $themename.'[post_image_size]',
+				'type' => $options['post_image_size']['type'],
+				'choices' => $options['post_image_size']['options'],
+				'priority' => 5
 			));
 			
 			/* Single post image size */
 			$wp_customize->add_setting( $themename.'[single_image_size]', array(
-					'default' => $options['single_image_size']['std'],
-					'type' => 'option'
+				'default' => $options['single_image_size']['std'],
+				'type' => 'option'
 			));
 			$wp_customize->add_control( $themename.'_single_image_size', array(
-					'label' => $options['single_image_size']['name'],
-					'section' => $themename.'_blog',
-					'settings' => $themename.'[single_image_size]',
-					'type' => $options['single_image_size']['type'],
-					'choices' => $options['single_image_size']['options']
+				'label' => $options['single_image_size']['name'],
+				'section' => $themename.'_blog',
+				'settings' => $themename.'[single_image_size]',
+				'type' => $options['single_image_size']['type'],
+				'choices' => $options['single_image_size']['options'],
+				'priority' => 6
 			));
 			
 			/* Post Meta */
 			$wp_customize->add_setting( $themename.'[post_meta]', array(
-					'default' => $options['post_meta']['std'],
-					'type' => 'option'
+				'default' => $options['post_meta']['std'],
+				'type' => 'option'
 			));
 			$wp_customize->add_control( $themename.'_post_meta', array(
-					'label' => $options['post_meta']['name'],
-					'section' => $themename.'_blog',
-					'settings' => $themename.'[post_meta]',
-					'type' => $options['post_meta']['type'],
-					'choices' => $options['post_meta']['options']
+				'label' => $options['post_meta']['name'],
+				'section' => $themename.'_blog',
+				'settings' => $themename.'[post_meta]',
+				'type' => $options['post_meta']['type'],
+				'choices' => $options['post_meta']['options'],
+				'priority' => 7
 			));
 			
 			/* Post Excerpt */
 			$wp_customize->add_setting( $themename.'[post_excerpt]', array(
-					'default' => $options['post_excerpt']['std'],
-					'type' => 'option'
+				'default' => $options['post_excerpt']['std'],
+				'type' => 'option'
 			));
 			$wp_customize->add_control( $themename.'_post_excerpt', array(
-					'label' => $options['post_excerpt']['name'],
-					'section' => $themename.'_blog',
-					'settings' => $themename.'[post_excerpt]',
-					'type' => $options['post_excerpt']['type'],
-					'choices' => $options['post_excerpt']['options']
+				'label' => $options['post_excerpt']['name'],
+				'section' => $themename.'_blog',
+				'settings' => $themename.'[post_excerpt]',
+				'type' => $options['post_excerpt']['type'],
+				'choices' => $options['post_excerpt']['options'],
+				'priority' => 8
+			));
+
+			/* Button text */
+			$wp_customize->add_setting( $themename.'[blog_button_text]', array(
+				'default' => $options['blog_button_text']['std'],
+				'type' => 'option',
+				'transport' => 'postMessage'
+			));
+			$wp_customize->add_control( $themename.'_blog_button_text', array(
+				'label' => $options['blog_button_text']['name'],
+				'section' => $themename.'_blog',
+				'settings' => $themename.'[blog_button_text]',
+				'type' => 'text',
+				'priority' => 9
+			));
+
+// ---------------------------------------------------------
+// Portfolio
+// ---------------------------------------------------------			
+			$wp_customize->add_section( $themename.'_portfolio', array(
+				'title' => theme_locals('portfolio'),
+				'priority' => 204
 			));
 			
+			/* Portfolio filter */
+			$wp_customize->add_setting( $themename.'[folio_filter]', array(
+				'default' => $options['folio_filter']['std'],
+				'type' => 'option'
+			));
+			$wp_customize->add_control( $themename.'_folio_filter', array(
+				'label' => $options['folio_filter']['name'],
+				'section' => $themename.'_portfolio',
+				'settings' => $themename.'[folio_filter]',
+				'type' => $options['folio_filter']['type'],
+				'choices' => $options['folio_filter']['options'],
+				'priority' => 1
+			));
+
+			/* Show Portfolio posts title? */
+			$wp_customize->add_setting( $themename.'[folio_title]', array(
+				'default' => $options['folio_title']['std'],
+				'type' => 'option'
+			));
+			$wp_customize->add_control( $themename.'_folio_title', array(
+				'label' => $options['folio_title']['name'],
+				'section' => $themename.'_portfolio',
+				'settings' => $themename.'[folio_title]',
+				'type' => $options['folio_title']['type'],
+				'choices' => $options['folio_title']['options'],
+				'priority' => 2
+			));
+
+			/* Show Portfolio posts excerpt? */
+			$wp_customize->add_setting( $themename.'[folio_excerpt]', array(
+				'default' => $options['folio_excerpt']['std'],
+				'type' => 'option'
+			));
+			$wp_customize->add_control( $themename.'_folio_excerpt', array(
+				'label' => $options['folio_excerpt']['name'],
+				'section' => $themename.'_portfolio',
+				'settings' => $themename.'[folio_excerpt]',
+				'type' => $options['folio_excerpt']['type'],
+				'choices' => $options['folio_excerpt']['options'],
+				'priority' => 3
+			));
+
+			/* Show Portfolio posts button? */
+			$wp_customize->add_setting( $themename.'[folio_btn]', array(
+				'default' => $options['folio_btn']['std'],
+				'type' => 'option'
+			));
+			$wp_customize->add_control( $themename.'_folio_btn', array(
+				'label' => $options['folio_btn']['name'],
+				'section' => $themename.'_portfolio',
+				'settings' => $themename.'[folio_btn]',
+				'type' => $options['folio_btn']['type'],
+				'choices' => $options['folio_btn']['options'],
+				'priority' => 4
+			));
+
+			/* Button text */
+			$wp_customize->add_setting( $themename.'[folio_button_text]', array(
+				'default' => $options['folio_button_text']['std'],
+				'type' => 'option',
+				'transport' => 'postMessage'
+			));
+			$wp_customize->add_control( $themename.'_folio_button_text', array(
+				'label' => $options['folio_button_text']['name'],
+				'section' => $themename.'_portfolio',
+				'settings' => $themename.'[folio_button_text]',
+				'type' => 'text',
+				'priority' => 5
+			));
+
 // ---------------------------------------------------------
 // Footer
 // ---------------------------------------------------------			
 			$wp_customize->add_section( $themename.'_footer', array(
 				'title' => theme_locals('footer'),
-				'priority' => 204
+				'priority' => 205
 			));
-				
+
 			/* Footer Copyright Text */
 			$wp_customize->add_setting( $themename.'[footer_text]', array(
-					'default' => $options['footer_text']['std'],
-					'type' => 'option'
+				'default' => $options['footer_text']['std'],
+				'type' => 'option',
+				'transport' => 'postMessage'
 			));
 			$wp_customize->add_control( $themename.'_footer_text', array(
-					'label' => $options['footer_text']['name'],
-					'section' => $themename.'_footer',
-					'settings' => $themename.'[footer_text]',
-					'type' => 'text'
+				'label' => $options['footer_text']['name'],
+				'section' => $themename.'_footer',
+				'settings' => $themename.'[footer_text]',
+				'type' => 'text'
 			));
-			
-			/* Display Footer Menu */
-			$wp_customize->add_setting( $themename.'[footer_menu]', array(
-					'default' => $options['footer_menu']['std'],
-					'type' => 'option'
-			));
-			$wp_customize->add_control( $themename.'_footer_menu', array(
-					'label' => $options['footer_menu']['name'],
-					'section' => $themename.'_footer',
-					'settings' => $themename.'[footer_menu]',
-					'type' => $options['footer_menu']['type'],
-					'choices' => $options['footer_menu']['options']
-			));	
-		};
+		}
 	}
+
+	function cherry_customize_preview_js() {
+		wp_enqueue_script( 'cherry-customizer', OPTIONS_FRAMEWORK_DIRECTORY . 'js/theme.customizer.min.js', array( 'customize-preview' ), '1.0.0', true );
+	}
+	add_action( 'customize_preview_init', 'cherry_customize_preview_js' );
+
+	function cherry_customizer_css() { ?>
+	<style type="text/css">
+		.cherry-fixed-layout .main-holder { background: <?php echo of_get_option( 'main_background' ); ?>; }
+	</style>
+	<?php }
+	add_action( 'wp_head', 'cherry_customizer_css' );
 ?>

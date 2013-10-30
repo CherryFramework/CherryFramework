@@ -31,7 +31,8 @@
 		$output = "<script>";
 		$output .="\n var system_folder = '".PARENT_URL."/admin/data_management/',";
 		$output .= "\n\t CHILD_URL ='" .CHILD_URL."',";
-		$output .= "\n\t PARENT_URL = '".PARENT_URL."'";
+		$output .= "\n\t PARENT_URL = '".PARENT_URL."', ";
+		$output .= "\n\t CURRENT_THEME = '".CURRENT_THEME."'";
 		$output .= "</script>";
 		echo $output;
 	}
@@ -150,7 +151,7 @@
 		}
 		add_action('after_setup_theme', 'cherry_theme_setup');
 	}
-	
+
 	// WPML compatibility
 	// WPML filter for correct posts IDs for the current language Solution
 	if ( function_exists( 'wpml_get_language_information' )) {
