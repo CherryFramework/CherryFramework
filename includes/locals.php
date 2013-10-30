@@ -1,7 +1,11 @@
 <?php
-	function theme_locals($label) {
+	function theme_local_init() {
+	global $is_cherry_local_init, $cherry_locals_arr;
+
+	if ($is_cherry_local_init) return true;
+
 		$domain = CURRENT_THEME;
-		$locals = array(
+		$cherry_locals_arr = array(
 			//general
 			'no' => __('No', $domain),
 			'yes' => __('Yes', $domain),
@@ -1079,6 +1083,12 @@
 
 			'' => '' // empty value
 			);
-		return $locals[$label];
+		$is_cherry_local_init = true;
+	};
+	
+	function theme_locals($label) {
+		global $cherry_locals_arr;
+		theme_local_init();
+		return $cherry_locals_arr[$label];
 	};
 ?>
