@@ -9,11 +9,14 @@
 	@define( 'CHILD_URL', get_stylesheet_directory_uri() );
 
 	@define( 'CURRENT_THEME', getCurrentTheme() );
+	@define( 'CHERRY_VER', get_cherry_current_version() );
 	@define( 'FILE_WRITEABLE', is_writeable(PARENT_DIR.'/style.css'));
-	/*
-	 * Variables array init
-	 *
-	 */
+	
+	/**
+	*
+	* Variables array init
+	*
+	**/
 	$variablesArray = array(
 		'textColor'      =>	'#000000',
 		'bodyBackground' =>	'#000000',
@@ -24,9 +27,12 @@
 		'linkColorHover' =>	'#000000',
 		'mainBackground' =>	'#ffffff'
 		);
-//------------------------------------------------------
-// js global variables
-//------------------------------------------------------
+
+	/**
+	*
+	* JS global variables
+	*
+	**/
 	function cherry_js_global_variables(){
 		$output = "<script>";
 		$output .="\n var system_folder = '".PARENT_URL."/admin/data_management/',";
@@ -38,10 +44,12 @@
 	}
 	add_action('wp_head', 'cherry_js_global_variables');
 	add_action('admin_head', 'cherry_js_global_variables');
-	/*
-	 * Definition current theme
-	 *
-	 */
+
+	/**
+	*
+	* Definition current theme
+	*
+	**/
 	function getCurrentTheme() {
 		if ( function_exists('wp_get_theme') ) {
 			$theme = wp_get_theme();
@@ -55,10 +63,30 @@
 		return $theme_name;
 	}
 
-	/*
-	 * Comment some value from variables.less
-	 *
-	 */
+	/**
+	*
+	* Definition cherry current version
+	*
+	**/
+	function get_cherry_current_version() {
+		if ( function_exists('wp_get_theme') ) {
+			$theme = wp_get_theme();
+			if ( $theme->exists() ) {
+				$theme_ver = $theme->Version;
+			}
+		} else {
+			$theme_name = 'CherryFramework';
+			$theme_data = get_theme_data( get_theme_root() . '/' . $theme_name . '/style.css' );
+			$theme_ver  = $theme_data['Version'];
+		}
+		return $theme_ver;
+	}
+
+	/**
+	*
+	* Comment some value from variables.less
+	*
+	**/
 	if ( CURRENT_THEME != 'cherry' )
 		add_action('cherry_activation_hook', 'comment_child_var');
 
@@ -83,11 +111,11 @@
 		}
 	}
 
-	/* 
+	/**
 	 * Helper function to return the theme option value. 
 	 * If no value has been saved, it returns $default.
 	 * Needed because options are saved as serialized strings.
-	 */
+	 **/
 	if ( !function_exists( 'of_get_option' ) ) {
 		function of_get_option($name, $default = false) {
 			
@@ -108,9 +136,11 @@
 		}
 	}
 
-	/*
-	 * Unlink less cache files
-	 */
+	/**
+	*
+	* Unlink less cache files
+	*
+	**/
 	add_action('cherry_activation_hook', 'clean_less_cache');
 	
 	function clean_less_cache() {
@@ -152,18 +182,18 @@
 		add_action('after_setup_theme', 'cherry_theme_setup');
 	}
 
-	// WPML compatibility
-	// WPML filter for correct posts IDs for the current language Solution
+	//WPML compatibility
+	//WPML filter for correct posts IDs for the current language Solution
 	if ( function_exists( 'wpml_get_language_information' )) {
 		update_option('suppress_filters', 0);
 	} else {
 		update_option('suppress_filters', 1);
 	}
-	// Register Flickr and recent posts widgets link label for translation
+	//Register Flickr and recent posts widgets link label for translation
 	function wpml_link_text_filter( $link_text, $widget_title ) {
 		icl_translate( 'cherry', 'link_text_' . $widget_title, $link_text );
 	}
-	// Check if WPML is activated
+	//Check if WPML is activated
 	if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
 		add_filter( 'widget_linktext', 'wpml_link_text_filter', 10, 2 );
 	}
@@ -215,38 +245,38 @@
 	//Aqua Resizer for image cropping and resizing on the fly
 	include_once (PARENT_DIR . '/includes/aq_resizer.php');
 
-	// Add the pagemeta
+	//Add the pagemeta
 	include_once (PARENT_DIR . '/includes/theme-pagemeta.php');
 	
-	// Add the postmeta
+	//Add the postmeta
 	include_once (PARENT_DIR . '/includes/theme-postmeta.php');
 	
-	// Add the postmeta to Portfolio posts
+	//Add the postmeta to Portfolio posts
 	include_once (PARENT_DIR . '/includes/theme-portfoliometa.php');
 	
-	// Add the postmeta to Slider posts
+	//Add the postmeta to Slider posts
 	include_once (PARENT_DIR . '/includes/theme-slidermeta.php');
 	
-	// Add the postmeta to Testimonials
+	//Add the postmeta to Testimonials
 	include_once (PARENT_DIR . '/includes/theme-testimeta.php');
 	
-	// Add the postmeta to Our Team posts
+	//Add the postmeta to Our Team posts
 	include_once (PARENT_DIR . '/includes/theme-teammeta.php');
 
 	//Loading options.php for theme customizer
 	include_once (CHILD_DIR . '/options.php');
 	include_once (PARENT_DIR . '/framework_options.php');
 
-	// Framework Data Management
+	//Framework Data Management
 	include_once (PARENT_DIR . '/admin/data_management/data_management_interface.php');
 
-	// SEO Settings
+	//SEO Settings
 	include_once (PARENT_DIR . '/admin/seo/seo_settings_page.php');
 	
-	// WP Pointers
+	//WP Pointers
 	include_once (PARENT_DIR . '/includes/class.wp-help-pointers.php');
 
-	// Embedding LESS compile
+	//Embedding LESS compile
 	if ( !class_exists('lessc') ) {
 		include_once (PARENT_DIR .'/includes/lessc.inc.php');
 	}
@@ -302,7 +332,7 @@
 	/*
 	 * Custom excpert length
 	 *
-	 */ 
+	 */
 	if(!function_exists('new_excerpt_length')) {
 		
 		function new_excerpt_length($length) {
@@ -1352,5 +1382,146 @@
 			$output .= "\n</style>";
 			echo $output;
 		}
+	}
+
+	/**
+	*
+	* Register hook in update.php page
+	*
+	**/
+	add_action('load-update.php', 'cherry_register_update_page_hook');
+	function cherry_register_update_page_hook(){
+		if ( isset($_GET['action']) ) {
+			$plugin = isset($_REQUEST['plugin']) ? trim($_REQUEST['plugin']) : '';
+			$theme  = isset($_REQUEST['theme']) ? urldecode($_REQUEST['theme']) : '';
+			$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+
+			if ( 'CherryFramework' == $theme ) {
+
+				if ( 'upgrade-theme' == $action ) {
+					add_action('upgrader_process_complete', 'after_cherry_theme_upgrade_call');
+				} elseif ( 'upload-theme' == $action ) {
+					add_action('upgrader_process_complete', 'after_cherry_theme_upgrade_call');
+				}
+			}
+
+			if ( 'cherry-plugin' == $plugin ) {
+
+				if ( 'upgrade-plugin' == $action ) {
+					add_action('upgrader_process_complete', 'after_cherry_plugin_upgrade_call');
+				}
+			}
+		}
+	}
+
+	/**
+	*
+	* Register hook in update-core.php page
+	*
+	**/
+	add_action('load-update-core.php', 'cherry_register_update_core_page_hook');
+	function cherry_register_update_core_page_hook(){
+		if ( isset( $_GET['themes'] ) )
+			$themes = explode( ',', stripslashes($_GET['themes']) );
+		elseif ( isset( $_POST['checked'] ) )
+			$themes = (array) $_POST['checked'];
+
+		if ( !isset($themes) ) 
+			return;
+
+		if ( array_search('CherryFramework', $themes) === FALSE ) 
+			return;
+
+		if ( isset($_GET['action']) ) {
+			$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+
+			if ( 'do-theme-upgrade' == $action ) {
+				add_action('upgrader_process_complete', 'after_cherry_theme_upgrade_call');
+			}
+		}
+	}
+
+	/**
+	*
+	* Register hook after CherryFramework upgrade
+	*
+	**/
+	function after_cherry_theme_upgrade_call(){
+		do_action('after_cherry_theme_upgrade');
+	}
+
+	/**
+	*
+	* Register hook after Cherry Plugin upgrade
+	*
+	**/
+	function after_cherry_plugin_upgrade_call(){
+		do_action('after_cherry_plugin_upgrade');
+	}
+
+	/**
+	*
+	* Hard Cherry Plugin activation
+	*
+	**/
+	if ( version_compare( CHERRY_VER, '2.4', '>=' ) ) {
+		add_action('after_cherry_theme_upgrade', 'cherry_plugin_hard_activation');
+		add_action('after_switch_theme', 'cherry_plugin_hard_activation');
+	}
+	function cherry_plugin_hard_activation(){
+		$plugin = 'cherry-plugin-test/cherry_plugin.php';
+
+		if ( !function_exists('is_plugin_active') ) {
+			require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+		}
+
+		if ( is_plugin_active($plugin) )
+			return;
+
+		$result = cherry_plugin_unpack_package();
+		if ( $result ) {
+			$current = get_option( 'active_plugins' );
+
+			if ( !in_array( $plugin, $current ) ) {
+				$current[] = $plugin;
+				sort( $current );
+				do_action( 'activate_plugin', trim($plugin) );
+				update_option( 'active_plugins', $current );
+				do_action( 'activate_' . trim($plugin) );
+				do_action( 'activated_plugin', trim($plugin) );
+			}
+		}
+	}
+
+	/**
+	*
+	* Unpack Cherry Plugin package
+	*
+	**/
+	function cherry_plugin_unpack_package(){
+		$file   = PARENT_DIR . '/includes/plugins/cherry-plugin.zip';
+		$to     = WP_PLUGIN_DIR . '/cherry-plugin-test/';
+		$result = false;
+
+		if ( !file_exists($file) ) 
+			return $result;
+
+		if ( !function_exists('WP_Filesystem') ) {
+			require_once(ABSPATH . 'wp-admin/includes/file.php');
+		}
+		WP_Filesystem();
+		global $wp_filesystem;
+
+		// Clean up plugin directory
+		if ( $wp_filesystem->is_dir($to) )
+			$wp_filesystem->delete($to, true);
+
+		$result = unzip_file( $file, $to );
+		if ( is_wp_error($result) ) {
+			if ( 'incompatible_archive' == $result->get_error_code() ) {
+				return new WP_Error( 'incompatible_archive', __('The package could not be installed.', CURRENT_THEME), $result->get_error_data() );
+			}
+		}
+		return $result;
 	}
 ?>
