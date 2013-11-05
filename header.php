@@ -24,7 +24,7 @@
 	} ?></title>
 	<meta name="description" content="<?php wp_title(); echo ' | '; bloginfo( 'description' ); ?>" />
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, minimum-scale=0.25, maximum-scale=1.6, initial-scale=1.0">
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<?php if(of_get_option('favicon') != ''){ ?>
 	<link rel="icon" href="<?php echo of_get_option('favicon', '' ); ?>" type="image/x-icon" />
