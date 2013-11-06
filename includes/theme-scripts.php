@@ -12,7 +12,6 @@ function cherry_scripts() {
 		wp_register_script('modernizr', PARENT_URL.'/js/modernizr.js', array('jquery'), '2.0.6');
 		wp_register_script('elastislide', PARENT_URL.'/js/jquery.elastislide.js', array('jquery'), '1.0');
 		wp_register_script('jflickrfeed', PARENT_URL.'/js/jflickrfeed.js', array('jquery'), '1.0');
-		wp_register_script('owl_carousel', PARENT_URL.'/js/owl.carousel.min.js', array('jquery'), '1.22');
 		wp_register_script('superfish', PARENT_URL.'/js/superfish.js', array('jquery'), '1.5.3', true);
 		wp_register_script('mobilemenu', PARENT_URL.'/js/jquery.mobilemenu.js', array('jquery'), '1.0', true);
 		wp_register_script('easing', PARENT_URL.'/js/jquery.easing.1.3.js', array('jquery'), '1.3', true);
@@ -26,7 +25,6 @@ function cherry_scripts() {
 		wp_enqueue_script('modernizr');
 		wp_enqueue_script('elastislide');
 		wp_enqueue_script('jflickrfeed');
-		wp_enqueue_script('owl_carousel');
 		wp_enqueue_script('superfish');
 		wp_enqueue_script('mobilemenu');
 		wp_enqueue_script('easing');
