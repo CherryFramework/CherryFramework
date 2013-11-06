@@ -39,15 +39,17 @@
 	margin: 0;
 	.hyphens(auto);
 	li {
-		display: inline;
 		&.active {
 
 		}
 		&.divider {
-			.hide-text();
+			font: 0/0 a;
+			text-shadow: none;
+			background-color: transparent;
+			border: 0;
 			&:after {
-				content: ' / ';
-				color: @textColor;
+				content: '/';
+				padding: 0 3px;
 				font: @baseFontSize/@baseLineHeight @baseFontFamily;
 			}
 		}
