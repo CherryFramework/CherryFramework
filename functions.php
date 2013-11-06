@@ -164,43 +164,14 @@
 	//Loading jQuery and Scripts
 	include_once (PARENT_DIR . '/includes/theme-scripts.php');
 	
-	//Widget and Sidebar
+	//Sidebar
 	include_once (CHILD_DIR . '/includes/sidebar-init.php');
-	include_once (PARENT_DIR . '/includes/register-widgets.php');
-	include_once (PARENT_DIR . '/includes/widgets/widgets-manager.php');
 
 	//Theme initialization
 	include_once (CHILD_DIR . '/includes/theme-init.php');
 	
 	//Additional function
 	include_once (PARENT_DIR . '/includes/theme-function.php');
-	
-	//Shortcodes
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/columns.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/shortcodes.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/posts_grid.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/posts_list.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/mini_posts_list.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/mini_posts_grid.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/alert.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/tabs.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/toggle.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/html.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/misc.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/service_box.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/post_cycle.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/carousel.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/carousel_owl.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/progressbar.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/banner.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/table.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/hero_unit.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/roundabout.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/categories.php');
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/media.php');
-	
-	//tinyMCE includes
-	include_once (PARENT_DIR . '/includes/theme_shortcodes/tinymce/tinymce_shortcodes.php');
 	
 	//Aqua Resizer for image cropping and resizing on the fly
 	include_once (PARENT_DIR . '/includes/aq_resizer.php');

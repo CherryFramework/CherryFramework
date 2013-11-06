@@ -255,7 +255,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 }
 .breadcrumb__t li.divider:after {
 	content:' / ';
-	color:#333333;
+	color:#ff0000;
 	font:12px/18px Arial, Helvetica, sans-serif;
 }
 #sidebar { padding-top:40px; }
@@ -2465,10 +2465,7 @@ div.wpcf7-mail-sent-ok {
 	border:1px solid #DDD !important;
 	color:#468847 !important;
 }
-embed, iframe, object, video {
-	max-width:100%;
-	height:auto;
-}
+embed, iframe, object, video { max-width:100%; }
 p embed, p iframe, p object, p video { height:506px; }
 .video-wrap {
 	position:relative;

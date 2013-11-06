@@ -20,14 +20,6 @@ function my_string_limit_char($excerpt, $substr=0){
 	return $string;
 }
 
-// Remove invalid tags
-function remove_invalid_tags($str, $tags) {
-	foreach($tags as $tag) {
-		$str = preg_replace('#^<\/'.$tag.'>|<'.$tag.'>$#', '', trim($str));
-	}
-	return $str;
-}
-
 // Generates a random string
 function gener_random($length){
 	srand((double)microtime()*1000000 );
