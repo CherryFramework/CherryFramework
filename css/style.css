@@ -2466,7 +2466,6 @@ div.wpcf7-mail-sent-ok {
 	color:#468847 !important;
 }
 embed, iframe, object, video { max-width:100%; }
-p embed, p iframe, p object, p video { height:506px; }
 .video-wrap {
 	position:relative;
 	overflow:hidden;
