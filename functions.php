@@ -1535,7 +1535,7 @@
 			switch ($layout) {
 
 				case 'full_width_content':
-					$layout_class = apply_filters( "cherry_layout_full_width_content_column", "span12" );
+					$layout_class = apply_filters( "cherry_layout_wrapper", "span12" );
 					break;
 
 				case 'content':
