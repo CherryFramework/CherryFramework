@@ -103,8 +103,10 @@ if (is_admin()){
 
 add_action( 'admin_notices', 'wp_persistant_notice' );
 function wp_persistant_notice() {
-	global $update_cherry, $pagenow;
-	$domain = CURRENT_THEME;
+	global $pagenow;
+	$cherry_url_info = get_option('cherry_url_info');
+	$cherry_new_version = get_option('cherry_new_version');
+	$cherry_version = get_theme_info(PARENT_NAME, 'Version');
 	$pageHidden = array("update.php", "update-core.php", 'cherry-options_page_options-framework-data-management', 'admin.php');
 	$update_url = wp_nonce_url('update.php?action=upgrade-theme&amp;theme=' . urlencode(PARENT_NAME), 'upgrade-theme_'.urlencode(PARENT_NAME));
 	
