@@ -9,11 +9,14 @@
 	@define( 'CHILD_URL', get_stylesheet_directory_uri() );
 
 	@define( 'CURRENT_THEME', getCurrentTheme() );
+	@define( 'CHERRY_VER', cherry_get_theme_version('CherryFramework') );
 	@define( 'FILE_WRITEABLE', is_writeable(PARENT_DIR.'/style.css'));
-	/*
-	 * Variables array init
-	 *
-	 */
+	
+	/**
+	*
+	* Variables array init
+	*
+	**/
 	$variablesArray = array(
 		'textColor'      =>	'#000000',
 		'bodyBackground' =>	'#000000',
@@ -21,25 +24,32 @@
 		'baseFontSize'   =>	'#000000',
 		'baseLineHeight' =>	'#000000',
 		'linkColor'      =>	'#000000',
-		'linkColorHover' =>	'#000000'
+		'linkColorHover' =>	'#000000',
+		'mainBackground' =>	'#ffffff'
 		);
-//------------------------------------------------------
-// js global variables
-//------------------------------------------------------
+
+	/**
+	*
+	* JS global variables
+	*
+	**/
 	function cherry_js_global_variables(){
 		$output = "<script>";
-		$output .="\n var sistem_folder = '".PARENT_URL."/admin/data_management/',";
+		$output .="\n var system_folder = '".PARENT_URL."/admin/data_management/',";
 		$output .= "\n\t CHILD_URL ='" .CHILD_URL."',";
-		$output .= "\n\t PARENT_URL = '".PARENT_URL."'";
+		$output .= "\n\t PARENT_URL = '".PARENT_URL."', ";
+		$output .= "\n\t CURRENT_THEME = '".CURRENT_THEME."'";
 		$output .= "</script>";
 		echo $output;
 	}
 	add_action('wp_head', 'cherry_js_global_variables');
 	add_action('admin_head', 'cherry_js_global_variables');
-	/*
-	 * Definition current theme
-	 *
-	 */
+
+	/**
+	*
+	* Definition current theme
+	*
+	**/
 	function getCurrentTheme() {
 		if ( function_exists('wp_get_theme') ) {
 			$theme = wp_get_theme();
@@ -53,10 +63,30 @@
 		return $theme_name;
 	}
 
-	/*
-	 * Comment some value from variables.less
-	 *
-	 */
+	/**
+	*
+	* Definition theme version
+	* @param string $theme_name Directory name for the theme
+	*
+	**/
+	function cherry_get_theme_version($theme_name) {
+		if ( function_exists('wp_get_theme') ) {
+			$theme = wp_get_theme($theme_name);
+			if ( $theme->exists() ) {
+				$theme_ver = $theme->Version;
+			}
+		} else {
+			$theme_data = get_theme_data( get_theme_root() . '/' . $theme_name . '/style.css' );
+			$theme_ver  = $theme_data['Version'];
+		}
+		return $theme_ver;
+	}
+
+	/**
+	*
+	* Comment some value from variables.less
+	*
+	**/
 	if ( CURRENT_THEME != 'cherry' )
 		add_action('cherry_activation_hook', 'comment_child_var');
 
@@ -81,11 +111,11 @@
 		}
 	}
 
-	/* 
+	/**
 	 * Helper function to return the theme option value. 
 	 * If no value has been saved, it returns $default.
 	 * Needed because options are saved as serialized strings.
-	 */
+	 **/
 	if ( !function_exists( 'of_get_option' ) ) {
 		function of_get_option($name, $default = false) {
 			
@@ -106,9 +136,11 @@
 		}
 	}
 
-	/*
-	 * Unlink less cache files
-	 */
+	/**
+	*
+	* Unlink less cache files
+	*
+	**/
 	add_action('cherry_activation_hook', 'clean_less_cache');
 	
 	function clean_less_cache() {
@@ -130,29 +162,38 @@
 		do_action('cherry_activation_hook');
 	}
 
-	/*
-	 * Loading theme textdomain
-	 */
 	if ( !function_exists('cherry_theme_setup')) {
 		function cherry_theme_setup() {
+			
+			//Loading theme textdomain
 			load_theme_textdomain( CURRENT_THEME, PARENT_DIR . '/languages' );
+
+			//Localization functions
+			include_once (PARENT_DIR . '/includes/locals.php');
+
+			//Plugin Activation
+			include_once (CHILD_DIR . '/includes/register-plugins.php');
+
+			//Include shop
+			if ( file_exists(get_stylesheet_directory().'/shop.php') ) {
+				include_once (CHILD_DIR . '/shop.php');
+			}
 		}
 		add_action('after_setup_theme', 'cherry_theme_setup');
 	}
-	include_once (PARENT_DIR . '/includes/locals.php');
-	
-	// WPML compatibility
-	// WPML filter for correct posts IDs for the current language Solution
+
+	//WPML compatibility
+	//WPML filter for correct posts IDs for the current language Solution
 	if ( function_exists( 'wpml_get_language_information' )) {
 		update_option('suppress_filters', 0);
 	} else {
 		update_option('suppress_filters', 1);
 	}
-	// Register Flickr and recent posts widgets link label for translation
+	//Register Flickr and recent posts widgets link label for translation
 	function wpml_link_text_filter( $link_text, $widget_title ) {
 		icl_translate( 'cherry', 'link_text_' . $widget_title, $link_text );
 	}
-	// Check if WPML is activated
+	//Check if WPML is activated
 	if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
 		add_filter( 'widget_linktext', 'wpml_link_text_filter', 10, 2 );
 	}
@@ -189,6 +230,7 @@
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/service_box.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/post_cycle.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/carousel.php');
+	include_once (PARENT_DIR . '/includes/theme_shortcodes/carousel_owl.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/progressbar.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/banner.php');
 	include_once (PARENT_DIR . '/includes/theme_shortcodes/table.php');
@@ -203,54 +245,42 @@
 	//Aqua Resizer for image cropping and resizing on the fly
 	include_once (PARENT_DIR . '/includes/aq_resizer.php');
 
-	// Add the pagemeta
+	//Add the pagemeta
 	include_once (PARENT_DIR . '/includes/theme-pagemeta.php');
 	
-	// Add the postmeta
+	//Add the postmeta
 	include_once (PARENT_DIR . '/includes/theme-postmeta.php');
 	
-	// Add the postmeta to Portfolio posts
+	//Add the postmeta to Portfolio posts
 	include_once (PARENT_DIR . '/includes/theme-portfoliometa.php');
 	
-	// Add the postmeta to Slider posts
+	//Add the postmeta to Slider posts
 	include_once (PARENT_DIR . '/includes/theme-slidermeta.php');
 	
-	// Add the postmeta to Testimonials
+	//Add the postmeta to Testimonials
 	include_once (PARENT_DIR . '/includes/theme-testimeta.php');
 	
-	// Add the postmeta to Our Team posts
+	//Add the postmeta to Our Team posts
 	include_once (PARENT_DIR . '/includes/theme-teammeta.php');
 
 	//Loading options.php for theme customizer
 	include_once (CHILD_DIR . '/options.php');
 	include_once (PARENT_DIR . '/framework_options.php');
 
-	//Plugin Activation
-	include_once (CHILD_DIR . '/includes/class-tgm-plugin-activation.php');
-	include_once (CHILD_DIR . '/includes/register-plugins.php');
-
-	// Framework Data Management
+	//Framework Data Management
 	include_once (PARENT_DIR . '/admin/data_management/data_management_interface.php');
 
-	// SEO Settings
+	//SEO Settings
 	include_once (PARENT_DIR . '/admin/seo/seo_settings_page.php');
 	
-	// WP Pointers
+	//WP Pointers
 	include_once (PARENT_DIR . '/includes/class.wp-help-pointers.php');
 
-	// Embedding LESS compile
+	//Embedding LESS compile
 	if ( !class_exists('lessc') ) {
 		include_once (PARENT_DIR .'/includes/lessc.inc.php');
 	}
 	include_once (PARENT_DIR .'/includes/less-compile.php');
-	
-	// include shop
-	function include_shop(){
-		if ( file_exists(get_stylesheet_directory().'/shop.php') ) {
-			include_once (CHILD_DIR . '/shop.php');
-		}
-	}
-	add_action('after_setup_theme', 'include_shop');
 
 	// removes detailed login error information for security
 	add_filter('login_errors',create_function('$a', "return null;"));
@@ -302,7 +332,7 @@
 	/*
 	 * Custom excpert length
 	 *
-	 */ 
+	 */
 	if(!function_exists('new_excerpt_length')) {
 		
 		function new_excerpt_length($length) {
@@ -924,7 +954,7 @@
 		function my_post_type_slider() {
 			register_post_type( 'slider',
 				array( 
-					'label'               => theme_locals("slides"), 
+					'label'               => theme_locals("slides"),
 					'singular_label'      => theme_locals("slides"),
 					'_builtin'            => false,
 					'exclude_from_search' => true, // Exclude from Search Results
@@ -937,7 +967,7 @@
 								'with_front' => FALSE,
 					),
 					'query_var' => "slide", // This goes to the WP_Query schema
-					'menu_icon' => get_template_directory_uri() . '/includes/images/icon_slides.png',
+					'menu_icon' => PARENT_URL . '/includes/images/icon_slides.png',
 					'supports'  => array(
 									'title',
 									// 'custom-fields',
@@ -986,7 +1016,8 @@
 						'meta_elements' =>  array('start_unite', 'date', 'author', 'permalink', 'end_unite', 'start_unite', 'categories', 'tags', 'end_unite', 'start_unite', 'comment', 'views', 'like', 'dislike', 'end_unite'),
 						'meta_class' => 'post_meta',
 						'meta_before' => '',
-						'meta_after'  => ''
+						'meta_after'  => '',
+						'display_meta_data' => true
 					);
 		$args = wp_parse_args( $args, $defaults );
 		$post_meta_type = (of_get_option('post_meta') == 'true' || of_get_option('post_meta') == '') ? 'line' : of_get_option('post_meta');
@@ -998,7 +1029,7 @@
 			}	
 		}
 
-		if($post_meta_type!='false'){
+		if($post_meta_type!='false' && $args['display_meta_data']){
 			$post_ID = get_the_ID();
 			$post_type = get_post_type($post_ID);
 			$icon_tips_before = ($post_meta_type == 'icon') ? '<div class="tips">' : '';
@@ -1228,7 +1259,6 @@
 			}
 		}
 	}
-
 //------------------------------------------------------
 //  Related Posts
 //------------------------------------------------------
@@ -1286,6 +1316,247 @@
 				}
 				wp_reset_query();
 			}
+		}
+	}
+
+//------------------------------------------------------
+//  Main Layout option
+//------------------------------------------------------
+	if (of_get_option('main_layout') == 'fixed') {
+		add_filter('body_class','cherry_layout_class');
+		function cherry_layout_class($classes) {
+			$classes[] = 'cherry-fixed-layout';
+
+			return $classes;
+		}
+	}
+
+//------------------------------------------------------
+//  General option
+//------------------------------------------------------
+	if ( (of_get_option('header_background') != '')
+		|| (of_get_option('header_color') !='')
+		|| (of_get_option('body_background') !='')
+		|| (of_get_option('custom_css') !='') ) {
+
+		add_action('wp_head', 'cherry_general_opt');
+		function cherry_general_opt(){
+			$output = "\n<style type='text/css'>";
+
+			// body bg option
+			if (of_get_option('body_background') !='') {
+				$background = of_get_option('body_background');
+				if ($background != '') {
+					if ($background['image'] != '') {
+						$output .= "\nbody { background-image:url(".$background['image']. "); background-repeat:".$background['repeat']."; background-position:".$background['position']."; background-attachment:".$background['attachment']."; }";
+					}
+					if($background['color'] != '') {
+						$output .= "\nbody { background-color:".$background['color']." }";
+					}
+				}
+			}
+
+			// header bg option
+			if (of_get_option('header_color') !='') {
+				$header_styling = of_get_option('header_color');
+				update_option('child_header_color', $header_styling);
+				$output .= "\n.header { background-color:".$header_styling." }";
+			} else {
+				$header_styling = of_get_option('header_background');
+
+				if ($header_styling['image'] != '') {
+					$output .= "\n.header { background-image:url(".$header_styling['image']. "); background-repeat:".$header_styling['repeat']."; background-position:".$header_styling['position']."; background-attachment:".$header_styling['attachment']."; }";
+				}
+				if ($header_styling['color'] != '') {
+					$output .= "\n.header { background-color:".$header_styling['color']." }";
+				} else {
+					if (get_option('child_header_color')) {
+						$output .= "\n.header { background-color:".get_option('child_header_color')." }";
+					}
+				}
+			}
+
+			// custom CSS
+			$output .= "\n".htmlspecialchars_decode(of_get_option('custom_css'));
+			
+			$output .= "\n</style>";
+			echo $output;
+		}
+	}
+
+	/**
+	*
+	* Register hook in update.php page
+	*
+	**/
+	add_action('load-update.php', 'cherry_register_update_page_hook');
+	function cherry_register_update_page_hook(){
+		if ( isset($_GET['action']) ) {
+			$plugin = isset($_REQUEST['plugin']) ? trim($_REQUEST['plugin']) : '';
+			$theme  = isset($_REQUEST['theme']) ? urldecode($_REQUEST['theme']) : '';
+			$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+
+			if ( 'CherryFramework' == $theme ) {
+
+				if ( 'upgrade-theme' == $action ) {
+					add_action('upgrader_process_complete', 'after_cherry_theme_upgrade_call');
+				} elseif ( 'upload-theme' == $action ) {
+					add_action('upgrader_process_complete', 'after_cherry_theme_upgrade_call');
+				}
+			}
+
+			if ( 'cherry-plugin' == $plugin ) {
+
+				if ( 'upgrade-plugin' == $action ) {
+					add_action('upgrader_process_complete', 'after_cherry_plugin_upgrade_call');
+				}
+			}
+		}
+	}
+
+	/**
+	*
+	* Register hook in update-core.php page
+	*
+	**/
+	add_action('load-update-core.php', 'cherry_register_update_core_page_hook');
+	function cherry_register_update_core_page_hook(){
+		if ( isset( $_GET['themes'] ) )
+			$themes = explode( ',', stripslashes($_GET['themes']) );
+		elseif ( isset( $_POST['checked'] ) )
+			$themes = (array) $_POST['checked'];
+
+		if ( !isset($themes) ) 
+			return;
+
+		if ( array_search('CherryFramework', $themes) === FALSE ) 
+			return;
+
+		if ( isset($_GET['action']) ) {
+			$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+
+			if ( 'do-theme-upgrade' == $action ) {
+				add_action('upgrader_process_complete', 'after_cherry_theme_upgrade_call');
+			}
+		}
+	}
+
+	/**
+	*
+	* Register hook after CherryFramework upgrade
+	*
+	**/
+	function after_cherry_theme_upgrade_call(){
+		do_action('after_cherry_theme_upgrade');
+	}
+
+	/**
+	*
+	* Register hook after Cherry Plugin upgrade
+	*
+	**/
+	function after_cherry_plugin_upgrade_call(){
+		do_action('after_cherry_plugin_upgrade');
+	}
+
+	/**
+	*
+	* Hard Cherry Plugin activation
+	*
+	**/
+	if ( version_compare( CHERRY_VER, '2.4', '>=' ) ) {
+		add_action('after_cherry_theme_upgrade', 'cherry_plugin_hard_activation');
+		add_action('after_switch_theme', 'cherry_plugin_hard_activation');
+	}
+	function cherry_plugin_hard_activation(){
+		$plugin = 'cherry-plugin/cherry_plugin.php';
+
+		if ( !function_exists('is_plugin_active') ) {
+			require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+		}
+
+		if ( is_plugin_active($plugin) )
+			return;
+
+		$result = cherry_plugin_unpack_package();
+		if ( $result ) {
+			$current = get_option( 'active_plugins' );
+
+			if ( !in_array( $plugin, $current ) ) {
+				$current[] = $plugin;
+				sort( $current );
+				do_action( 'activate_plugin', trim($plugin) );
+				update_option( 'active_plugins', $current );
+				do_action( 'activate_' . trim($plugin) );
+				do_action( 'activated_plugin', trim($plugin) );
+			}
+		}
+	}
+
+	/**
+	*
+	* Unpack Cherry Plugin package
+	*
+	**/
+	function cherry_plugin_unpack_package(){
+		$file   = PARENT_DIR . '/includes/plugins/cherry-plugin.zip';
+		$to     = WP_PLUGIN_DIR . '/cherry-plugin/';
+		$result = false;
+
+		if ( !file_exists($file) ) 
+			return $result;
+
+		if ( !function_exists('WP_Filesystem') ) {
+			require_once(ABSPATH . 'wp-admin/includes/file.php');
+		}
+		WP_Filesystem();
+		global $wp_filesystem;
+
+		// Clean up plugin directory
+		if ( $wp_filesystem->is_dir($to) )
+			$wp_filesystem->delete($to, true);
+
+		$result = unzip_file( $file, $to );
+		if ( is_wp_error($result) ) {
+			if ( 'incompatible_archive' == $result->get_error_code() ) {
+				return new WP_Error( 'incompatible_archive', __('The package could not be installed.', CURRENT_THEME), $result->get_error_data() );
+			}
+		}
+		return $result;
+	}
+
+	/**
+	*
+	* Layout class
+	*
+	**/
+	if ( !function_exists('cherry_get_layout_class') ) {
+		function cherry_get_layout_class($layout) {
+			switch ($layout) {
+
+				case 'full_width_content':
+					$layout_class = apply_filters( "cherry_layout_wrapper", "span12" );
+					break;
+
+				case 'content':
+					$layout_class = apply_filters( "cherry_layout_content_column", "span8" );
+					$layout_class .= ' '.of_get_option('blog_sidebar_pos');
+					break;
+
+				case 'sidebar':
+					$layout_class = apply_filters( "cherry_layout_sidebar_column", "span4" );
+					break;
+
+				case 'left_block':
+					$layout_class = apply_filters( "cherry_layout_left_block_column", "span7" );
+					break;
+
+				case 'right_block':
+					$layout_class = apply_filters( "cherry_layout_right_block_column", "span5" );
+					break;
+			}
+
+			return $layout_class;
 		}
 	}
 ?>

@@ -43,7 +43,6 @@
 			$image   = aq_resize( $img_url, 770, 380, true ); //resize & crop img
 		}
 	?>
-	
 	<div class="video-wrap <?php echo $html5Class; ?>">
 		<?php
 			if ($embed != '') {
@@ -122,7 +121,7 @@
 		<div class="clear"></div>
 	</div>
 	<!-- //Post Content -->
-	
-	<?php get_template_part('includes/post-formats/post-meta'); ?>
-
+<?php
+		get_template_part('includes/post-formats/post-meta');
+?>
 </article><!--//.post__holder-->

@@ -417,7 +417,64 @@
 	}// List item	
 		
 }
+/* Carousel OWL
+---------------------------------------- */
+@import '../css/owl.carousel.css';
+.owl-carousel{
+	margin-bottom: 15px;
+	.item{
+		margin: 3px;
+		figure{
+			display: block;
+			width: 100%;
+			margin: 0 0 10px 0;
+			a{
+				display: block;
+				img{
+					display: block;
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+	}
+	.owl-wrapper-outer{
+		margin: 0 0 15px 0;
+	}
+	.owl-controls{
+		.owl-page{
+			margin: 0 6px; 
+			display: inline-block;
+			zoom: 1; 
+			*display: inline;
+		}
+		.owl-buttons{
+			position: absolute;
+			top: 30%;
+			margin: -15px 0 0 0;
+			width: 100%;
+			height: 30px;
+			.owl-prev, .owl-next{
+				border-radius: 50%;
+				background: url('../images/black-opacity-60.png');
+				color: #FFF;
+				font-size: 20px;
+			}
+			.owl-prev{
+				float: left;
+				padding: 6px 9px 4px 8px;
+			}
+			.owl-next{
+				float: right;
+				padding: 6px 8px 4px 9px;
+			}
+		}
+	}
+}
 
+
+/* End Carousel OWL
+---------------------------------------- */
 .es-nav span {
 	position:absolute;
 	top:0;

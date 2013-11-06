@@ -5,7 +5,7 @@
 	z-index: 99;
 	padding: 30px 0;
 	border-bottom: 1px solid @tableBorder;
-	background: @grayLighter;
+	background-color: @grayLighter;
 }
 
 /* Logo
@@ -46,56 +46,6 @@
 
 }
 /* /Logo */
-
-/* Social Networks
----------------------------------------- */
-.social { 
-	margin: 0;
-
-	&_li {
-	}
-	&_link {
-		.transition(0.25s);
-	}
-	&_link:hover {
-		.opacity(50);
-	}
-	&_ico {
-		display: inline-block;
-		vertical-align: top;
-	}
-	&_label {
-		display: inline-block;
-		vertical-align: top;
-	}
-
-	// Row view
-	&__row {
-		& li {
-			float: left;
-			margin-left: 5px;
-			&:first-child {
-				margin-left: 0;
-			}
-		}
-		& a {
-			float: left;
-		}
-	}
-
-	// List mode
-	&__list {
-		& li {
-			margin-bottom: 5px;
-		}
-		& a {
-			&:hover {
-				text-decoration: none;
-			}
-		}
-	}
-}
-/* /Social Networks */
 			
 /* Search Form
 ---------------------------------------- */

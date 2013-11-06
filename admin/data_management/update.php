@@ -1,13 +1,12 @@
 <?php
 /**/
 // TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
-//set_site_transient('update_themes', null);
+// set_site_transient('update_themes', null);
 
 // NOTE: All variables and functions will need to be prefixed properly to allow multiple plugins to be updated
 
 /******************Change this*******************/
-@define('API_URL', 'http://updates.cherry.template-help.com/cherrymoto/api/');
-@define('DETAILS_URL', 'http://www.cherryframework.com/update/cherry-framework-2-3-1/');
+@define('API_URL', 'http://updates.cherry.template-help.com/cherrymoto/v3/api/');
 /************************************************/
 
 /*******************Child Theme******************
@@ -16,11 +15,11 @@
 //function exists errors
 if(function_exists('wp_get_theme')){
 	$theme_data = wp_get_theme(get_option('stylesheet'));
-	$theme_version = $theme_data->Version;
+	$theme_version = $theme_data->Version;  
 } else {
 	$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css');
 	$theme_version = $theme_data['Version'];
-}
+}    
 $theme_base = get_option('stylesheet');
 **************************************************/
 
@@ -28,20 +27,22 @@ $theme_base = get_option('stylesheet');
 /***********************Parent Theme**************/
 if(function_exists('wp_get_theme')){
 	$theme_data = wp_get_theme(get_option('template'));
-	$theme_version = $theme_data->Version;
+	$theme_version = $theme_data->Version;  
 } else {
 	$theme_data = get_theme_data( TEMPLATEPATH . '/style.css');
 	$theme_version = $theme_data['Version'];
 }
 $theme_base = get_option('template');
+$update_cherry = false;
 /**************************************************/
 
 //Uncomment below to find the theme slug that will need to be setup on the api server
+//var_dump($theme_base);
 
 add_filter('pre_set_site_transient_update_themes', 'check_for_update');
 
 function check_for_update($checked_data) {
-	global $wp_version, $theme_version, $theme_base;
+	global $wp_version, $theme_version, $theme_base, $update_cherry;
 
 	$request = array(
 		'slug' => $theme_base,
@@ -51,7 +52,7 @@ function check_for_update($checked_data) {
 	// Start checking for an update
 	$send_for_check = array(
 		'body' => array(
-			'action' => 'theme_update',
+			'action' => 'theme_update', 
 			'request' => serialize($request),
 			'api-key' => md5(get_bloginfo('url'))
 		),
@@ -64,8 +65,7 @@ function check_for_update($checked_data) {
 	// Feed the update data into WP updater
 	if (!empty($response)){
 		$checked_data->response[$theme_base] = $response;
-		update_option('cherry_new_version', $response["new_version"]);
-		update_option('cherry_url_info', $response["url"]);
+		$update_cherry = $response;
 	}
 	return $checked_data;
 }
@@ -75,9 +75,12 @@ add_filter('themes_api', 'my_theme_api_call', 10, 3);
 function my_theme_api_call($def, $action, $args) {
 	global $theme_base, $theme_version;
 	
-	if ($args->slug != $theme_base)
+	if ( !isset($args->slug) )
 		return false;
 
+	if ($args->slug != $theme_base)
+		return false;
+	
 	// Get the current version
 	$args->version = $theme_version;
 	$request_string = prepare_request($action, $args);
@@ -100,10 +103,8 @@ if (is_admin()){
 
 add_action( 'admin_notices', 'wp_persistant_notice' );
 function wp_persistant_notice() {
-	global $pagenow;
-	$cherry_url_info = get_option('cherry_url_info');
-	$cherry_new_version = get_option('cherry_new_version');
-	$cherry_version = get_theme_info(PARENT_NAME, 'Version');
+	global $update_cherry, $pagenow;
+	$domain = CURRENT_THEME;
 	$pageHidden = array("update.php", "update-core.php", 'cherry-options_page_options-framework-data-management', 'admin.php');
 	$update_url = wp_nonce_url('update.php?action=upgrade-theme&amp;theme=' . urlencode(PARENT_NAME), 'upgrade-theme_'.urlencode(PARENT_NAME));
 	

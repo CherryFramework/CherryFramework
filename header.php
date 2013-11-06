@@ -27,37 +27,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<?php if(of_get_option('favicon') != ''){ ?>
-	<link rel="icon" href="<?php echo of_get_option('favicon', "" ); ?>" type="image/x-icon" />
+	<link rel="icon" href="<?php echo of_get_option('favicon', '' ); ?>" type="image/x-icon" />
 	<?php } else { ?>
-	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="<?php echo CHILD_URL; ?>/favicon.ico" type="image/x-icon" />
 	<?php } ?>
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo( 'name' ); ?>" href="<?php bloginfo( 'rss2_url' ); ?>" />
 	<link rel="alternate" type="application/atom+xml" title="<?php bloginfo( 'name' ); ?>" href="<?php bloginfo( 'atom_url' ); ?>" />
-	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_directory_uri(); ?>/bootstrap/css/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_directory_uri(); ?>/bootstrap/css/responsive.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/css/camera.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php echo CHILD_URL; ?>/bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php echo CHILD_URL; ?>/bootstrap/css/responsive.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php echo PARENT_URL; ?>/css/camera.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-	<style type="text/css">
-		<?php echo htmlspecialchars_decode(of_get_option('custom_css')); ?>
-
-		<?php $background = of_get_option('body_background');
-			if ($background != '') {
-				if ($background['image'] != '') {
-					echo 'body { background-image:url('.$background['image']. '); background-repeat:'.$background['repeat'].'; background-position:'.$background['position'].';  background-attachment:'.$background['attachment'].'; }';
-				}
-				if($background['color'] != '') {
-					echo 'body { background-color:'.$background['color']. '}';
-				}
-			};
-		?>
-		
-		<?php $header_styling = of_get_option('header_color'); 
-			if($header_styling != '') {
-				echo '.header {background-color:'.$header_styling.'}';
-			}
-		?>
-	</style>
 	<?php
 		/* Always have wp_head() just before the closing </head>
 		 * tag of your theme, or you will break many plugins, which
@@ -74,7 +54,7 @@
 	</div>
 	<![endif]-->
 	<!--[if (gt IE 9)|!(IE)]><!-->
-	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.mobile.customized.min.js" type="text/javascript"></script>
+	<script src="<?php echo PARENT_URL; ?>/js/jquery.mobile.customized.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		jQuery(function(){
 			jQuery('.sf-menu').mobileMenu({defaultText: <?php echo '"'.of_get_option('mobile_menu_label').'"'; ?>});
@@ -105,7 +85,7 @@
 				},
 				scaleFix = function () {
 					if (viewportmeta && /iPhone|iPad/.test(ua) && !/Opera Mini/.test(ua)) {
-						viewportmeta.content = "width=device-width, minimum-scale=1.0, maximum-scale=1.0";
+						viewportmeta.content = "width=device-width, minimum-scale=0.25, maximum-scale=1.6, initial-scale=1.0";
 						document.addEventListener("gesturestart", gestureStart, false);
 					}
 				};
@@ -120,7 +100,7 @@
 		<header class="motopress-wrapper header">
 			<div class="container">
 				<div class="row">
-					<div class="span12" data-motopress-wrapper-file="wrapper/wrapper-header.php" data-motopress-wrapper-type="header" data-motopress-id="<?php echo uniqid() ?>">
+					<div class="<?php echo cherry_get_layout_class( 'full_width_content' ); ?>" data-motopress-wrapper-file="wrapper/wrapper-header.php" data-motopress-wrapper-type="header" data-motopress-id="<?php echo uniqid() ?>">
 						<?php get_template_part('wrapper/wrapper-header'); ?>
 					</div>
 				</div>

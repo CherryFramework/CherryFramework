@@ -1,9 +1,12 @@
 <?php
-	function theme_locals($label) {
+	function theme_local_init() {
+		global $is_cherry_local_init, $cherry_locals_arr;
+		if ($is_cherry_local_init) return true;
+
 		$domain = CURRENT_THEME;
-		$locals = array(
+		$cherry_locals_arr = array(
 			//general
-			'no' => __('No', $domain),
+			'no' => __('No', 'cherry'),
 			'yes' => __('Yes', $domain),
 			'slow_speed' => __('Slow', $domain),
 			'normal_speed' => __('Normal', $domain),
@@ -55,7 +58,7 @@
 			'show_all' => __('Show All', $domain),
 			'search' => __('search', $domain),
 			'go' => __('Go', $domain),
-			'prev_post' => __('&laquo; Previous post.', $domain),
+			'prev_post' => __('&laquo; Previous post', $domain),
 			'next_post' => __('Next Post &raquo;', $domain),
 			'url' => __('URL', $domain),
 			'url_1' => __('URL #1', $domain),
@@ -64,6 +67,8 @@
 			'last' => __('Last', $domain),
 			'first' => __('First', $domain),
 			'delete' => __('Delete', $domain),
+			'fullwidth' => __('Fullwidth', $domain),
+			'fixed' => __('Fixed', $domain),
 			
 			//Output Audio
 			'prev' => __('Previous', $domain),
@@ -88,10 +93,16 @@
 			'general' => __('General', $domain),
 			'body_name' => __('Body styling', $domain),
 			'body_desc' => __('Change the background style', $domain),
-			'background_image' => __('Background Image', $domain),
-			'background_color' => __('Background Color', $domain),
-			'header_name' => __('Header background color', $domain),
-			'header_desc' => __('Change the header background color', $domain),
+			'background_image' => __('Body Background Image', $domain),
+			'background_color' => __('Body Background Color', $domain),
+			'header_image' => __('Header Image', $domain),
+			'header_color' => __('Header Color', $domain),
+			'main_layout_name' => __('Layout', $domain),
+			'main_layout_desc' => __('Select layout for Your site', $domain),
+			'main_bg_name' => __('Main background color', $domain),
+			'main_bg_desc' => __('Change the main background color', $domain),
+			'header_name' => __('Header styling', $domain),
+			'header_desc' => __('Change the header style', $domain),
 			'buttons_name' => __('Link color', $domain),
 			'buttons_desc' => __('Change the color of link', $domain),
 			'links_color_hover' => __('Link color hover', $domain),
@@ -130,6 +141,7 @@
 			'logo_image_path_desc' => __('Click Upload or Enter the direct path to your <strong>logo image</strong>. For example <em>http://your_website_url_here/wp-content/themes/themeXXXX/images/logo.png</em>', $domain),
 			'favicon_name' => __('Favicon', $domain),
 			'favicon_desc' => __('Click Upload or Enter the direct path to your <strong>favicon</strong>. For example <em>http://your_website_url_here/wp-content/themes/themeXXXX/favicon.ico</em>', $domain),
+			'logo_color' => __('Logo Color', $domain),
 			
 			//Navigation options
 			'navigation' => __('Navigation', $domain),
@@ -152,6 +164,8 @@
 			'mobile_menu_name' => __('Mobile menu label.', $domain),
 			'mobile_menu_desc' => __('This text is visible in mobile select menu.', $domain),
 			'mobile_menu_std' => __('Navigate to...', $domain),
+			'header_menu_face' => __('Header Menu Font', $domain),
+			'header_menu_color' => __('Header Menu Color', $domain),
 			
 			//Slider Settings options
 			'slider' => __('Slider Settings', $domain),
@@ -275,8 +289,12 @@
 			'posts_name' => __('Related Posts Title', $domain),
 			'posts_desc' => __('Enter Your Title used on Single Post page for related posts.', $domain),
 			'posts_std' => __('Related Posts', $domain),
-			'sidebar_name' => __('Sidebar position', $domain),
-			'sidebar_desc' => __('Choose sidebar position.', $domain),
+			'sidebar_name' => __('Blog layout', $domain),
+			'sidebar_option_desc' => __('Choose blog layout.', $domain),
+			'sidebar_left' => __('Aside left.', $domain),
+			'sidebar_right' => __('Aside right.', $domain),
+			'sidebar_hide' => __('Full width.', $domain),
+			'blog_masonry' => __('Masonry.', $domain),
 			'image_size_name' => __('Blog image size', $domain),
 			'image_size_desc' => __('Featured image size on the blog.', $domain),
 			'load_image_name' => __('Should images be uploaded on page scroll?', $domain),
@@ -358,6 +376,8 @@
 			'footer_menu_desc' => __('Do you want to display footer menu?', $domain),
 			'footer_menu_typography_name' => __('Footer Menu Typography', $domain),
 			'footer_menu_typography_desc' => __('Choose your prefered font for menu. <em>Note: fonts marked with <strong>*</strong> symbol will be loaded from the <a href="http://www.google.com/webfonts">Google Web Fonts</a> library.</em>', $domain),
+			'footer_menu_face' => __('Footer Menu Font', $domain),
+			'footer_menu_color' => __('Footer Menu Color', $domain),
 			
 			//Other cherry theme options
 			'no_repeat' => __('No Repeat', $domain),
@@ -1068,7 +1088,13 @@
 			'nofollow_desc' => __('This option will stop the search engines from going to other sites following the links in your site content.', $domain),
 
 			'' => '' // empty value
-			);
-		return $locals[$label];
+		);
+		$is_cherry_local_init = true;
+	};
+
+	function theme_locals($label) {
+		global $cherry_locals_arr;
+		theme_local_init();
+		return $cherry_locals_arr[$label];
 	};
 ?>

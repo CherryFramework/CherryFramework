@@ -9,7 +9,7 @@
 	$args = array(
 		'post_type'        => 'slider',
 		'posts_per_page'   => -1,
-		'post_status'      => 'publish', 
+		'post_status'      => 'publish',
 		'orderby'          => 'name',
 		'order'            => 'ASC',
 		'suppress_filters' => $suppress_filters
@@ -26,7 +26,7 @@
 				imagesCount     = sliderImg.length,
 				imagesLoaded    = 0,
 				startingSlide   = <?php echo of_get_option('acc_starting_slide')-1; ?>,
-				easing          = "<?php echo (of_get_option('acc_easing')!="") ? of_get_option('acc_easing') : 'easeOutCubic'; ?>",
+				easing          = "<?php echo (of_get_option('acc_easing')!='') ? of_get_option('acc_easing') : 'easeOutCubic'; ?>",
 				speed           = <?php echo (of_get_option('acc_animation_speed')!="") ? of_get_option('acc_animation_speed') : 700; ?>,
 				auto            = <?php echo (of_get_option('acc_slideshow')!="") ? of_get_option('acc_slideshow') : true; ?>;
 			if(auto && startingSlide<0){
@@ -38,7 +38,7 @@
 				function checkLoadImg(){
 					if(imagesLoaded>=imagesCount){
 						setTimeout(function(){
-							jQuery("ul", myAccordion).css({"visibility":"visible", "display":"none"}).stop(true, true).fadeIn(1000, function(){
+							jQuery("ul", myAccordion).stop(true, true).css({"visibility":"visible", "display":"none"}).fadeIn(1000, function(){
 								jQuery('.accordion_loader', myAccordion).remove();
 							});
 							resizeWindow();
@@ -62,15 +62,16 @@
 					}
 				}
 				sliderImg.each(function(){
-					if(jQuery(this)[0].complete){
+					var img = jQuery(this);
+					if(img[0].complete!=false){
 						imagesLoaded++;
 						checkLoadImg()
 					}else{
-						jQuery(this).on("load", function(){
+						img.on('load', function(){
 							imagesLoaded++;
-							checkLoadImg()
-							jQuery(this).off("load");
-						})
+							checkLoadImg();
+							jQuery(this).off();
+						});
 					}
 				})
 				myAccordionList.zAccordion({
@@ -80,7 +81,7 @@
 					slideWidth: "70%",
 					tabWidth: null,
 					startingSlide: startingSlide,
-					trigger: "<?php echo (of_get_option('acc_trigger')!="") ? of_get_option('acc_trigger') : 'click' ; ?>",
+					trigger: "<?php echo (of_get_option('acc_trigger')!='') ? of_get_option('acc_trigger') : 'click' ; ?>",
 					speed: speed,
 					easing: easing,
 					auto: auto,
