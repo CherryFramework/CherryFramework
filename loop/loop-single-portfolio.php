@@ -3,7 +3,7 @@
 	<!--BEGIN .hentry -->
 	<div <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 		<div class="row">
-			<div class="span7">
+			<div class="<?php echo cherry_get_layout_class( 'left_block' ); ?>">
 			<?php
 				// get the media elements
 				$mediaType = get_post_meta($post->ID, 'tz_portfolio_type', true);
@@ -45,7 +45,7 @@
 			</div>
 
 			<!-- BEGIN .entry-content -->
-			<div class="entry-content span5">
+			<div class="entry-content <?php echo cherry_get_layout_class( 'right_block' ); ?>">
 				<!-- BEGIN .entry-meta -->
 				<div class="entry-meta">
 					<?php
@@ -115,7 +115,7 @@
 			</div><!-- END .entry-content -->
 		</div><!-- .row -->
 		<div class="row">
-			<div class="span7">
+			<div class="<?php echo cherry_get_layout_class( 'left_block' ); ?>">
 				<?php
 					get_template_part( 'includes/post-formats/related-posts' );
 					comments_template('', true);

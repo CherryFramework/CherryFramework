@@ -46,7 +46,7 @@ function elegance_widgets_init() {
 	));
 	// Footer Widget Area 4
 	// Location: at the top of the footer, above the copyright
-		register_sidebar(array(
+	register_sidebar(array(
 		'name'          => theme_locals("footer_4"),
 		'id'            => 'footer-sidebar-4',
 		'description'   => theme_locals("footer_desc"),

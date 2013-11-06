@@ -1524,4 +1524,39 @@
 		}
 		return $result;
 	}
+
+	/**
+	*
+	* Layout class
+	*
+	**/
+	if ( !function_exists('cherry_get_layout_class') ) {
+		function cherry_get_layout_class($layout) {
+			switch ($layout) {
+
+				case 'full_width_content':
+					$layout_class = apply_filters( "cherry_layout_full_width_content_column", "span12" );
+					break;
+
+				case 'content':
+					$layout_class = apply_filters( "cherry_layout_content_column", "span8" );
+					$layout_class .= ' '.of_get_option('blog_sidebar_pos');
+					break;
+
+				case 'sidebar':
+					$layout_class = apply_filters( "cherry_layout_sidebar_column", "span4" );
+					break;
+
+				case 'left_block':
+					$layout_class = apply_filters( "cherry_layout_left_block_column", "span7" );
+					break;
+
+				case 'right_block':
+					$layout_class = apply_filters( "cherry_layout_right_block_column", "span5" );
+					break;
+			}
+
+			return $layout_class;
+		}
+	}
 ?>
