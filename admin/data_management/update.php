@@ -6,7 +6,7 @@
 // NOTE: All variables and functions will need to be prefixed properly to allow multiple plugins to be updated
 
 /******************Change this*******************/
-@define('API_URL', 'http://updates.cherry.template-help.com/cherrymoto/api/');
+@define('API_URL', 'http://updates.cherry.template-help.com/cherrymoto/v3/api/');
 /************************************************/
 
 /*******************Child Theme******************
