@@ -9,7 +9,7 @@
 	@define( 'CHILD_URL', get_stylesheet_directory_uri() );
 
 	@define( 'CURRENT_THEME', getCurrentTheme() );
-	@define( 'CHERRY_VER', get_cherry_current_version() );
+	@define( 'CHERRY_VER', cherry_get_theme_version('CherryFramework') );
 	@define( 'FILE_WRITEABLE', is_writeable(PARENT_DIR.'/style.css'));
 	
 	/**
@@ -65,17 +65,17 @@
 
 	/**
 	*
-	* Definition cherry current version
+	* Definition theme version
+	* @param string $theme_name Directory name for the theme
 	*
 	**/
-	function get_cherry_current_version() {
+	function cherry_get_theme_version($theme_name) {
 		if ( function_exists('wp_get_theme') ) {
-			$theme = wp_get_theme();
+			$theme = wp_get_theme($theme_name);
 			if ( $theme->exists() ) {
 				$theme_ver = $theme->Version;
 			}
 		} else {
-			$theme_name = 'CherryFramework';
 			$theme_data = get_theme_data( get_theme_root() . '/' . $theme_name . '/style.css' );
 			$theme_ver  = $theme_data['Version'];
 		}
