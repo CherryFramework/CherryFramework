@@ -1469,7 +1469,7 @@
 		add_action('after_switch_theme', 'cherry_plugin_hard_activation');
 	}
 	function cherry_plugin_hard_activation(){
-		$plugin = 'cherry-plugin-test/cherry_plugin.php';
+		$plugin = 'cherry-plugin/cherry_plugin.php';
 
 		if ( !function_exists('is_plugin_active') ) {
 			require_once(ABSPATH . 'wp-admin/includes/plugin.php');
@@ -1500,7 +1500,7 @@
 	**/
 	function cherry_plugin_unpack_package(){
 		$file   = PARENT_DIR . '/includes/plugins/cherry-plugin.zip';
-		$to     = WP_PLUGIN_DIR . '/cherry-plugin-test/';
+		$to     = WP_PLUGIN_DIR . '/cherry-plugin/';
 		$result = false;
 
 		if ( !file_exists($file) ) 

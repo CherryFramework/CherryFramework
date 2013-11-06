@@ -2465,11 +2465,7 @@ div.wpcf7-mail-sent-ok {
 	border:1px solid #DDD !important;
 	color:#468847 !important;
 }
-embed, iframe, object, video {
-	max-width:100%;
-	height:auto;
-}
-p embed, p iframe, p object, p video { height:506px; }
+embed, iframe, object, video { max-width:100%; }
 .video-wrap {
 	position:relative;
 	overflow:hidden;

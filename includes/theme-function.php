@@ -1,7 +1,7 @@
 <?php
 // Set the content width based on the theme's design and stylesheet.
 if ( ! isset( $content_width ) )
-	$content_width = 900;
+	$content_width = 604;
 
 // The excerpt based on words
 function my_string_limit_words($string, $word_limit){

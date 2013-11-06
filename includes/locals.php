@@ -58,7 +58,7 @@
 			'show_all' => __('Show All', $domain),
 			'search' => __('search', $domain),
 			'go' => __('Go', $domain),
-			'prev_post' => __('&laquo; Previous post.', $domain),
+			'prev_post' => __('&laquo; Previous post', $domain),
 			'next_post' => __('Next Post &raquo;', $domain),
 			'url' => __('URL', $domain),
 			'url_1' => __('URL #1', $domain),
