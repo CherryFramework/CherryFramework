@@ -9,7 +9,7 @@ get_header(); ?>
 	<div class="container">
 		<div class="row">
 			<?php do_action( 'cherry_before_home_page_content' ); ?>
-			<div class="<?php apply_filters( 'cherry_home_layot', 'span12' ); ?>" data-motopress-wrapper-file="page-home.php" data-motopress-wrapper-type="content">
+			<div class="<?php echo apply_filters( 'cherry_home_layout', 'span12' ); ?>" data-motopress-wrapper-file="page-home.php" data-motopress-wrapper-type="content">
 				<div class="row">
 					<div class="<?php echo cherry_get_layout_class( 'full_width_content' ); ?>" data-motopress-type="static" data-motopress-static-file="static/static-slider.php">
 						<?php get_template_part("static/static-slider"); ?>

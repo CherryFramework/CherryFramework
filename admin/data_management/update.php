@@ -33,16 +33,14 @@ if(function_exists('wp_get_theme')){
 	$theme_version = $theme_data['Version'];
 }
 $theme_base = get_option('template');
-$update_cherry = false;
 /**************************************************/
 
 //Uncomment below to find the theme slug that will need to be setup on the api server
-//var_dump($theme_base);
 
 add_filter('pre_set_site_transient_update_themes', 'check_for_update');
 
 function check_for_update($checked_data) {
-	global $wp_version, $theme_version, $theme_base, $update_cherry;
+	global $wp_version, $theme_version, $theme_base;
 
 	$request = array(
 		'slug' => $theme_base,
@@ -65,7 +63,8 @@ function check_for_update($checked_data) {
 	// Feed the update data into WP updater
 	if (!empty($response)){
 		$checked_data->response[$theme_base] = $response;
-		$update_cherry = $response;
+		update_option('cherry_new_version', $response["new_version"]);
+		update_option('cherry_url_info', $response["url"]);
 	}
 	return $checked_data;
 }
