@@ -52,15 +52,18 @@
 
 	function check_update(){	
 		global $wp_version, $framework_version, $framework_update;
-		$theme_base = get_theme_info(PARENT_NAME, 'Template');;
+		$theme_base = get_theme_info(PARENT_NAME, 'Template');
+		$response["new_version"] = $framework_version;
 		$request = array('slug' => $theme_base, 'version' => $framework_version);
 		$send_for_check = array( 'body' => array('action' => 'theme_update', 'request' => serialize($request), 'api-key' => md5(get_bloginfo('url'))), 'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url'));
 		$raw_response = wp_remote_post(API_URL, $send_for_check);
 		if (!is_wp_error($raw_response) && ($raw_response['response']['code'] == 200)){
 			$response= unserialize($raw_response['body']);
 		}
-		if($response["new_version"]=="" || !isset($response)){
-			$response["new_version"] = $framework_version;
+		if(!isset($response)){
+			if($response["new_version"]==""){
+				$response["new_version"] = $framework_version;
+			}
 		}
 		return $response["new_version"];
 	}
