@@ -116,7 +116,7 @@ body {
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
 	line-height:18px;
-	color:#ff0000;
+	color:#333333;
 	background-color:#fff;
 }
 a {
@@ -829,7 +829,7 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
 	line-height:0;
 }
 .form-actions:after { clear:both; }
-.help-block, .help-inline { color:#ff4d4d; }
+.help-block, .help-inline { color:#595959; }
 .help-block {
 	display:block;
 	margin-bottom:9px;
