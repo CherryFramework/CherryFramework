@@ -255,7 +255,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 }
 .breadcrumb__t li.divider:after {
 	content:' / ';
-	color:#ff0000;
+	color:#333333;
 	font:12px/18px Arial, Helvetica, sans-serif;
 }
 #sidebar { padding-top:40px; }
