@@ -1451,7 +1451,7 @@ add_action('customize_register', 'cherry_register');
 
 	function cherry_customizer_css() { ?>
 	<style type="text/css">
-		.cherry-fixed-layout .main-holder { background: <?php echo of_get_option( 'main_background' ); ?>; }
+		.cherry-fixed-layout .main-holder { background: <?php echo (of_get_option('main_background')!='') ? of_get_option('main_background') : 'transparent'; ?>; }
 	</style>
 	<?php }
 	add_action( 'wp_head', 'cherry_customizer_css' );
