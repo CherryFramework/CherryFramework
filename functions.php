@@ -1341,7 +1341,7 @@
 				if ($header_styling['color'] != '') {
 					$output .= "\n.header { background-color:".$header_styling['color']." }";
 				} else {
-					if (get_option('child_header_color')) {
+					if (get_option('child_header_color') && !is_array(get_option('child_header_color')) ) {
 						$output .= "\n.header { background-color:".get_option('child_header_color')." }";
 					}
 				}
