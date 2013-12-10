@@ -168,6 +168,15 @@ if ( !$category_value ) {
 }?>
 
 <?php
+	// http://codex.wordpress.org/Pagination#Adding_the_.22paged.22_parameter_to_a_query
+	if ( get_query_var('paged') ) {
+		$paged = get_query_var('paged');
+	} elseif ( get_query_var('page') ) {
+		$paged = get_query_var('page');
+	} else {
+		$paged = 1;
+	}
+
 	// The Query
 	$args = array(
 		'post_type'          => 'portfolio',
@@ -176,7 +185,6 @@ if ( !$category_value ) {
 		'portfolio_category' => $category_value,
 		'suppress_filters'   => $suppress_filters
 		);
-	
 	global $query_string;
 	query_posts($args);
 ?>
