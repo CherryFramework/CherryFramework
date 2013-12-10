@@ -506,33 +506,32 @@ if ( !function_exists( 'tz_video' ) ) {
 /*	Pagination
 /*-----------------------------------------------------------------------------------*/
 if ( !function_exists( 'pagination' ) ) {
-	function pagination($pages = '', $range = 1) { 
-		$showitems = ($range * 2)+1; 
-		global $paged;
-		
-		if(empty($paged)) $paged = 1;
+	function pagination( $pages = '', $range = 1 ) {
+		$showitems = ($range * 2) + 1;
 
-		if($pages == '') {
-			global $wp_query;
+		global $wp_query;
+		$paged = (int) $wp_query->query_vars['paged'];
+		if( empty($paged) || $paged == 0 ) $paged = 1;
+
+		if ( $pages == '' ) {
 			$pages = $wp_query->max_num_pages;
-			if(!$pages) {
+			if( !$pages ) {
 				$pages = 1;
 			}
 		}
-
-		if(1 != $pages) {
+		if ( 1 != $pages ) {
 			echo "<div class=\"pagination pagination__posts\"><ul>";
-			if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<li class='first'><a href='".get_pagenum_link(1)."'>".theme_locals("first")."</a></li>";
-			if($paged > 1 && $showitems < $pages) echo "<li class='prev'><a href='".get_pagenum_link($paged - 1)."'>".theme_locals("prev")."</a></li>";
+			if ( $paged > 2 && $paged > $range+1 && $showitems < $pages ) echo "<li class='first'><a href='".get_pagenum_link(1)."'>".theme_locals("first")."</a></li>";
+			if ( $paged > 1 && $showitems < $pages ) echo "<li class='prev'><a href='".get_pagenum_link($paged - 1)."'>".theme_locals("prev")."</a></li>";
 
-			for ($i=1; $i <= $pages; $i++) {
+			for ( $i = 1; $i <= $pages; $i++ ) {
 				if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems )) {
-					echo ($paged == $i)? "<li class=\"active\"><a href=''>".$i."</a></li>":"<li><a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a></li>";
+					echo ($paged == $i)? "<li class=\"active\"><a href='#'>".$i."</a></li>":"<li><a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a></li>";
 				}
 			}
 
-			if ($paged < $pages && $showitems < $pages) echo "<li class='next'><a href=\"".get_pagenum_link($paged + 1)."\">".theme_locals("next")."</a></li>"; 
-			if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<li class='last'><a href='".get_pagenum_link($pages)."'>".theme_locals("last")."</a></li>";
+			if ( $paged < $pages && $showitems < $pages ) echo "<li class='next'><a href=\"".get_pagenum_link($paged + 1)."\">".theme_locals("next")."</a></li>"; 
+			if ( $paged < $pages-1 && $paged+$range-1 < $pages && $showitems < $pages ) echo "<li class='last'><a href='".get_pagenum_link($pages)."'>".theme_locals("last")."</a></li>";
 			echo "</ul></div>\n";
 		}
 	}
