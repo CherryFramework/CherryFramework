@@ -9,17 +9,23 @@ endwhile; endif;
 // WPML filter
 $suppress_filters = get_option('suppress_filters');
 
-$temp     = $wp_query;
-$wp_query = null;
+// http://codex.wordpress.org/Pagination#Adding_the_.22paged.22_parameter_to_a_query
+if ( get_query_var('paged') ) {
+	$paged = get_query_var('paged');
+} elseif ( get_query_var('page') ) {
+	$paged = get_query_var('page');
+} else {
+	$paged = 1;
+}
 $args = array(
-		'post_type'        => 'testi',
-		'showposts'        => 4,
-		'paged'            => $paged,
-		'suppress_filters' => $suppress_filters
-		);
+	'post_type'        => 'testi',
+	'showposts'        => 2,
+	'paged'            => $paged,
+	'suppress_filters' => $suppress_filters
+	);
 $wp_query = new WP_Query($args);
 
-if (have_posts()) : while ($wp_query->have_posts()) : $wp_query->the_post();
+if ($wp_query->have_posts()) : while ($wp_query->have_posts()) : $wp_query->the_post();
 	$testiname = get_post_meta($post->ID, 'my_testi_caption', true);
 	$testiurl  = get_post_meta($post->ID, 'my_testi_url', true);
 	$testiinfo = get_post_meta($post->ID, 'my_testi_info', true);
@@ -60,18 +66,7 @@ if (have_posts()) : while ($wp_query->have_posts()) : $wp_query->the_post();
 </div><!--no-results-->
 <?php endif; ?>
 
-<?php if ( $wp_query->max_num_pages > 1 ) : ?>
-	<ul class="pager">
-		<li class="previous">
-		  <?php previous_post_link('%link', theme_locals("prev_post")) ?>
-		</li><!--.previous-->
-		<li class="next">
-		  <?php next_post_link('%link', theme_locals("next_post")) ?>
-		</li><!--.next-->
-	</ul><!--.pager-->
-<?php endif; ?>
-
 <?php 
-	$wp_query = null; 
-	$wp_query = $temp;
+	get_template_part('includes/post-formats/post-nav');
+	wp_reset_postdata();
 ?>
