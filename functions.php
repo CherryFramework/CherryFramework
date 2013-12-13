@@ -268,16 +268,18 @@
 	}
 	
 	/* 
-	 * Removes Trackbacks from the comment cout
+	 * Removes Trackbacks from the comment count
 	 *
 	 */
-	if (!function_exists('comment_count')) {
+	if ( !function_exists('comment_count') ) {
 		add_filter('get_comments_number', 'comment_count', 0);
 		
 		function comment_count( $count ) {
 			if ( ! is_admin() ) {
 				global $id;
-				$comments_by_type = &separate_comments(get_comments('status=approve&post_id=' . $id));
+				$args = 'status=approve&post_id=' . $id;
+				$comments = get_comments( $args, ARRAY_A );
+				$comments_by_type = separate_comments( $comments );
 				return count($comments_by_type['comment']);
 			} else {
 				return $count;

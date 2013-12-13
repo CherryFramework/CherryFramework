@@ -6,10 +6,10 @@
 
 <script>
 	jQuery(document).ready(function($) {
-		var $container = jQuery('#portfolio-grid'),
-			items_count = jQuery(".portfolio_item").size();
-		
-		$container.imagesLoaded( function(){
+		var $container = $('#portfolio-grid'),
+			items_count = $(".portfolio_item").size();
+
+		$(window).load(function(){
 			setColumnWidth();
 			$container.isotope({
 				itemSelector : '.portfolio_item',
@@ -21,17 +21,17 @@
 		});
 		
 		function getNumColumns(){
-			var $folioWrapper = jQuery('#portfolio-grid').data('cols');
+			var $folioWrapper = $('#portfolio-grid').data('cols');
 			
 			if($folioWrapper == '2cols') {
-				var winWidth = jQuery("#portfolio-grid").width(),
+				var winWidth = $("#portfolio-grid").width(),
 					column = 2;
 				if (winWidth<380) column = 1;
 				return column;
 			}
 			
 			else if ($folioWrapper == '3cols') {
-				var winWidth = jQuery("#portfolio-grid").width(),
+				var winWidth = $("#portfolio-grid").width(),
 					column = 3;
 				if (winWidth<380) column = 1;
 				else if(winWidth>=380 && winWidth<788) column = 2;
@@ -41,7 +41,7 @@
 			}
 			
 			else if ($folioWrapper == '4cols') {
-				var winWidth = jQuery("#portfolio-grid").width(),
+				var winWidth = $("#portfolio-grid").width(),
 					column = 4;
 				if (winWidth<380) column = 1;
 				else if(winWidth>=380 && winWidth<788) column = 2;
@@ -53,12 +53,12 @@
 		
 		function setColumnWidth(){
 			var columns = getNumColumns(),
-				containerWidth = jQuery("#portfolio-grid").width(),
+				containerWidth = $("#portfolio-grid").width(),
 				postWidth = containerWidth/columns;
 			postWidth = Math.floor(postWidth);
 
-			jQuery(".portfolio_item").each(function(index){
-				jQuery(this).css({"width":postWidth+"px"});
+			$(".portfolio_item").each(function(index){
+				$(this).css({"width":postWidth+"px"});
 			});
 		}
 
@@ -67,7 +67,7 @@
 			$container.isotope('reLayout');
 		}
 
-		jQuery(window).on("debouncedresize", function( event ) {
+		$(window).on("debouncedresize", function( event ) {
 			arrange();
 		});
 
@@ -89,17 +89,17 @@
 
 			var hiddenItems = 0,
 				showenItems = 0;
-			jQuery(".portfolio_item").each(function(){
-				if ( jQuery(this).hasClass('portfolio_hidden') ) {
+			$(".portfolio_item").each(function(){
+				if ( $(this).hasClass('portfolio_hidden') ) {
 					hiddenItems++;
 				};
 			});
 
 			showenItems = items_count - hiddenItems;
 			if ( ($(this).attr('data-count')) > showenItems ) {
-				jQuery(".pagination__posts").css({"display" : "block"});
+				$(".pagination__posts").css({"display" : "block"});
 			} else {
-				jQuery(".pagination__posts").css({"display" : "none"});
+				$(".pagination__posts").css({"display" : "none"});
 			}
 			return false;
 		});
