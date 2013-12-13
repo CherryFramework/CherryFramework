@@ -371,7 +371,7 @@ function of_recognized_font_faces() {
 		'times'     => 'Times New Roman',
 		'tahoma'    => 'Tahoma, Geneva',
 		'palatino'  => 'Palatino',
-		'helvetica' => 'Helvetica*'
+		'helvetica' => 'Helvetica'
 		);
 	return apply_filters( 'of_recognized_font_faces', $default );
 }
@@ -435,7 +435,7 @@ function options_typography_get_os_fonts() {
 		'"Times New Roman", Times, serif'                      => 'Times New Roman',
 		'Tahoma, Geneva, sans-serif'                           => 'Tahoma',
 		'"Palatino Linotype", "Book Antiqua", Palatino, serif' => 'Palatino',
-		'Helvetica*'                                           => 'Helvetica'
+		'Helvetica'                         => 'Helvetica'
 	);
 	return $os_faces;
 }
@@ -1058,7 +1058,16 @@ if ( !function_exists( 'options_typography_google_fonts' ) ) {
 		
 		if (isset($font_array)) {
 			foreach ($font_array as $key => $value) {
+				switch ($font_array[$key]) {
+					case 'Open+Sans+Condensed':
+						$font_array[$key]= $font_array[$key].':300';
+					break;
+					default:
+						//
+					break;
+				}
 				options_typography_enqueue_google_fonts($font_array[$key], $char_array[$key]);
+				
 			}
 		}
 	}

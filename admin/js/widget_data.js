@@ -1,12 +1,12 @@
 jQuery(function(a) {
 	function c() {
-		window.location.replace("export.php")
+			window.location.replace("export.php")
 	}
 	function d() {
-		window.location.replace("options-permalink.php")
+			window.location.replace("options-permalink.php")
 	}
 	a("form#widget-export-settings").submit(function() {
-		window.setTimeout(c, 4E3)
+			window.setTimeout(c, 4E3)
 	});
 	a("form#import-widget-data").submit(function(b) {
 		b.preventDefault();
