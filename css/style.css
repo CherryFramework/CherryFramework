@@ -23,7 +23,7 @@ a:focus { outline:none; }
 	margin:0 auto;
 	max-width:980px;
 	width:auto;
-	background:#ffffff;
+	background:#fafafa;
 }
 @media (min-width: 1200px) {
 	.cherry-fixed-layout .main-holder { max-width:1210px; }
@@ -256,7 +256,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 .breadcrumb__t li.divider:after {
 	content:' / ';
 	color:#333333;
-	font:12px/18px Arial, Helvetica, sans-serif;
+	font:12px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 #sidebar { padding-top:40px; }
 .testimonial {

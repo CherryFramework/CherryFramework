@@ -113,7 +113,7 @@ textarea {
 }
 body {
 	margin:0;
-	font-family:Arial, Helvetica, sans-serif;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size:12px;
 	line-height:18px;
 	color:#333333;
@@ -592,7 +592,7 @@ label, input, button, select, textarea {
 	font-weight:normal;
 	line-height:18px;
 }
-input, button, select, textarea { font-family:Arial, Helvetica, sans-serif; }
+input, button, select, textarea { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; }
 label {
 	display:block;
 	margin-bottom:5px;
