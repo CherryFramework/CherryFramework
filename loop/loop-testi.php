@@ -19,7 +19,7 @@ if ( get_query_var('paged') ) {
 }
 $args = array(
 	'post_type'        => 'testi',
-	'showposts'        => 2,
+	'showposts'        => 4,
 	'paged'            => $paged,
 	'suppress_filters' => $suppress_filters
 	);
