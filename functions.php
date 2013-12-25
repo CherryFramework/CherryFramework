@@ -11,21 +11,21 @@
 	@define( 'CURRENT_THEME', getCurrentTheme() );
 	@define( 'CHERRY_VER', cherry_get_theme_version('CherryFramework') );
 	@define( 'FILE_WRITEABLE', is_writeable(PARENT_DIR.'/style.css'));
-	
+
 	/**
 	*
 	* Variables array init
 	*
 	**/
 	$variablesArray = array(
-		'textColor'      =>	'#000000',
-		'bodyBackground' =>	'#000000',
-		'baseFontFamily' =>	'#000000',
-		'baseFontSize'   =>	'#000000',
-		'baseLineHeight' =>	'#000000',
-		'linkColor'      =>	'#000000',
-		'linkColorHover' =>	'#000000',
-		'mainBackground' =>	'#ffffff'
+		'textColor'      => '#000000',
+		'bodyBackground' => '#000000',
+		'baseFontFamily' => '#000000',
+		'baseFontSize'   => '#000000',
+		'baseLineHeight' => '#000000',
+		'linkColor'      => '#000000',
+		'linkColorHover' => '#000000',
+		'mainBackground' => '#ffffff'
 		);
 
 	/**
@@ -112,22 +112,22 @@
 	}
 
 	/**
-	 * Helper function to return the theme option value. 
+	 * Helper function to return the theme option value.
 	 * If no value has been saved, it returns $default.
 	 * Needed because options are saved as serialized strings.
 	 **/
 	if ( !function_exists( 'of_get_option' ) ) {
 		function of_get_option($name, $default = false) {
-			
+
 			$optionsframework_settings = get_option('optionsframework');
-			
+
 			// Gets the unique option id
 			$option_name = $optionsframework_settings['id'];
-			
+
 			if ( get_option($option_name) ) {
 				$options = get_option($option_name);
 			}
-			
+
 			if ( isset($options[$name]) ) {
 				return $options[$name];
 			} else {
@@ -142,7 +142,7 @@
 	*
 	**/
 	add_action('cherry_activation_hook', 'clean_less_cache');
-	
+
 	function clean_less_cache() {
 		if ( CURRENT_THEME == 'cherry' ) {
 			$bootstrapInput	= PARENT_DIR .'/less/bootstrap.less';
@@ -164,7 +164,7 @@
 
 	if ( !function_exists('cherry_theme_setup')) {
 		function cherry_theme_setup() {
-			
+
 			//Loading theme textdomain
 			load_theme_textdomain( CURRENT_THEME, PARENT_DIR . '/languages' );
 
@@ -203,34 +203,34 @@
 
 	//Loading jQuery and Scripts
 	include_once (PARENT_DIR . '/includes/theme-scripts.php');
-	
+
 	//Sidebar
 	include_once (CHILD_DIR . '/includes/sidebar-init.php');
 
 	//Theme initialization
 	include_once (CHILD_DIR . '/includes/theme-init.php');
-	
+
 	//Additional function
 	include_once (PARENT_DIR . '/includes/theme-function.php');
-	
+
 	//Aqua Resizer for image cropping and resizing on the fly
 	include_once (PARENT_DIR . '/includes/aq_resizer.php');
 
 	//Add the pagemeta
 	include_once (PARENT_DIR . '/includes/theme-pagemeta.php');
-	
+
 	//Add the postmeta
 	include_once (PARENT_DIR . '/includes/theme-postmeta.php');
-	
+
 	//Add the postmeta to Portfolio posts
 	include_once (PARENT_DIR . '/includes/theme-portfoliometa.php');
-	
+
 	//Add the postmeta to Slider posts
 	include_once (PARENT_DIR . '/includes/theme-slidermeta.php');
-	
+
 	//Add the postmeta to Testimonials
 	include_once (PARENT_DIR . '/includes/theme-testimeta.php');
-	
+
 	//Add the postmeta to Our Team posts
 	include_once (PARENT_DIR . '/includes/theme-teammeta.php');
 
@@ -243,7 +243,7 @@
 
 	//SEO Settings
 	include_once (PARENT_DIR . '/admin/seo/seo_settings_page.php');
-	
+
 	//WP Pointers
 	include_once (PARENT_DIR . '/includes/class.wp-help-pointers.php');
 
@@ -255,8 +255,8 @@
 
 	// removes detailed login error information for security
 	add_filter('login_errors',create_function('$a', "return null;"));
-	
-	/* 
+
+	/*
 	 * Loads the Options Panel
 	 *
 	 * If you're loading from a child theme use stylesheet_directory
@@ -266,14 +266,14 @@
 		define( 'OPTIONS_FRAMEWORK_DIRECTORY', PARENT_URL . '/admin/' );
 		include_once dirname( __FILE__ ) . '/admin/options-framework.php';
 	}
-	
-	/* 
+
+	/*
 	 * Removes Trackbacks from the comment count
 	 *
 	 */
 	if ( !function_exists('comment_count') ) {
 		add_filter('get_comments_number', 'comment_count', 0);
-		
+
 		function comment_count( $count ) {
 			if ( ! is_admin() ) {
 				global $id;
@@ -286,58 +286,58 @@
 			}
 		}
 	}
-	
+
 	/*
 	 * Post Formats
 	 *
 	 */
-	$formats = array( 
-				'aside', 
-				'gallery', 
-				'link', 
-				'image', 
-				'quote', 
+	$formats = array(
+				'aside',
+				'gallery',
+				'link',
+				'image',
+				'quote',
 				'audio',
 				'video');
-	add_theme_support( 'post-formats', $formats ); 
+	add_theme_support( 'post-formats', $formats );
 	add_post_type_support( 'post', 'post-formats' );
-	
+
 	/*
 	 * Custom excpert length
 	 *
 	 */
 	if(!function_exists('new_excerpt_length')) {
-		
+
 		function new_excerpt_length($length) {
 			return 60;
 		}
 		add_filter('excerpt_length', 'new_excerpt_length');
 	}
-	
+
 	// enable shortcodes in sidebar
 	add_filter('widget_text', 'do_shortcode');
-	
+
 	// custom excerpt ellipses for 2.9+
 	if(!function_exists('custom_excerpt_more')) {
-	
+
 		function custom_excerpt_more($more) {
 			return theme_locals("read_more").' &raquo;';
 		}
 		add_filter('excerpt_more', 'custom_excerpt_more');
 	}
-	
+
 	// no more jumping for read more link
 	if(!function_exists('no_more_jumping')) {
-		
+
 		function no_more_jumping($post) {
 			return '&nbsp;<a href="'.get_permalink().'" class="read-more">'.theme_locals("continue_reading").'</a>';
 		}
 		add_filter('excerpt_more', 'no_more_jumping');
 	}
-	
+
 	// category id in body and post class
 	if(!function_exists('category_id_class')) {
-		
+
 		function category_id_class($classes) {
 			global $post;
 			foreach((get_the_category()) as $category)
@@ -347,7 +347,7 @@
 		add_filter('post_class', 'category_id_class');
 		add_filter('body_class', 'category_id_class');
 	}
-	
+
 	// Threaded Comments
 	if(!function_exists('enable_threaded_comments')) {
 		function enable_threaded_comments() {
@@ -404,7 +404,7 @@
 
 				if (isset($append))
 					$item_output .= $append;
-				
+
 				$item_output .= $description.$args->link_after;
 				$item_output .= '</a>';
 				$item_output .= $args->after;
@@ -825,7 +825,7 @@
 												$updateErrors[] = 'Failed to read ' . $staticSlider;
 												writeLog('Failed to read ' . $staticSlider);
 											}
-										
+
 									}else {
 										$updateErrors[] = 'Failed to backup ' . $staticSliderPath;
 										writeLog('Failed to backup ' . $staticSliderPath);
@@ -926,13 +926,13 @@
 	if (!function_exists("my_post_type_slider")) {
 		function my_post_type_slider() {
 			register_post_type( 'slider',
-				array( 
+				array(
 					'label'               => theme_locals("slides"),
 					'singular_label'      => theme_locals("slides"),
 					'_builtin'            => false,
 					'exclude_from_search' => true, // Exclude from Search Results
 					'capability_type'     => 'page',
-					'public'              => true, 
+					'public'              => true,
 					'show_ui'             => true,
 					'show_in_nav_menus'   => false,
 					'rewrite' => array(
@@ -999,7 +999,7 @@
 				if($key != 'end_unite || start_unite'){
 				unset($args['meta_elements'][array_search($key, $args['meta_elements'])]);
 				}
-			}	
+			}
 		}
 
 		if($post_meta_type!='false' && $args['display_meta_data']){
@@ -1031,7 +1031,7 @@
 							if(of_get_option('post_author') != 'no'){ ?>
 								<div class="post_author">
 									<i class="icon-user"></i>
-									<?php 
+									<?php
 									echo $icon_tips_before;
 									the_author_posts_link();
 									echo $icon_tips_after;
@@ -1046,14 +1046,14 @@
 									<i class="icon-link"></i>
 									<?php echo $icon_tips_before.'<a href="'.get_permalink().'" title="'.get_the_title().'">'.theme_locals('permalink_to').'</a>'.$icon_tips_after; ?>
 								</div>
-								<?php 
+								<?php
 							}
 							break;
 						case 'categories':
 							if(of_get_option('post_category') != 'no'){ ?>
 								<div class="post_category">
 									<i class="icon-bookmark"></i>
-									<?php 
+									<?php
 										echo $icon_tips_before;
 										if($post_type != 'post'){
 											$custom_category = !is_wp_error(get_the_term_list($post_ID, $post_type.'_category','',', ')) ? get_the_term_list($post_ID, $post_type.'_category','',', ') : theme_locals('has_not_category');
@@ -1071,7 +1071,7 @@
 							if(of_get_option('post_tag') != 'no'){ ?>
 								<div class="post_tag">
 									<i class="icon-tag"></i>
-									<?php 
+									<?php
 										echo $icon_tips_before;
 										if(get_the_tags() || has_term('', $post_type.'_tag', $post_ID)){
 											echo ($post_type != 'post') ? the_terms($post_ID, $post_type.'_tag','',', ') : the_tags('', ', ');
@@ -1088,13 +1088,13 @@
 							if(of_get_option('post_comment') != 'no'){ ?>
 								<div class="post_comment">
 									<i class="icon-comments"></i>
-									<?php 
+									<?php
 										echo $icon_tips_before;
 										comments_popup_link(theme_locals('no_comments'), theme_locals('comment'), '% '.theme_locals('comments'), theme_locals('comments_link'), theme_locals('comments_closed'));
 										echo $icon_tips_after;
 									 ?>
 								</div>
-								<?php 
+								<?php
 							}
 							break;
 						case 'views':
@@ -1103,11 +1103,11 @@
 									<i class="icon-eye-open"></i>
 									<?php echo $icon_tips_before.cherry_getPostViews($post_ID).$icon_tips_after; ?>
 								</div>
-								<?php 
+								<?php
 							}
 							break;
 						case 'dislike':
-							if(of_get_option('post_dislike') != 'no'){ 
+							if(of_get_option('post_dislike') != 'no'){
 								$dislike_url = ($user_login && $user_voting=='none') ? 'href="'.$voting_url.'&amp;voting=dislike"' : '';
 								$dislike_count = $get_voting_array['dislike_count'];
 								$dislike_title = $user_login ? theme_locals('dislike') : theme_locals('not_voting');
@@ -1122,7 +1122,7 @@
 										<?php echo $icon_tips_before.'<span class="voting_count">'.$dislike_count.'</span>'.$icon_tips_after; ?>
 									</a>
 								</div>
-								<?php 
+								<?php
 							}
 							break;
 						case 'like':
@@ -1141,7 +1141,7 @@
 										<?php echo $icon_tips_before.'<span class="voting_count">'.$like_count.'</span>'.$icon_tips_after; ?>
 									</a>
 								</div>
-								<?php 
+								<?php
 							}
 						break;
 						case 'start_unite':
@@ -1168,7 +1168,7 @@
 			$count = 1;
 		}else{
 			$count++;
-		} 
+		}
 		update_post_meta($postID, $count_key, $count);
 	}
 //------------------------------------------------------
@@ -1351,7 +1351,7 @@
 
 			// custom CSS
 			$output .= "\n".htmlspecialchars_decode(of_get_option('custom_css'));
-			
+
 			$output .= "\n</style>";
 			echo $output;
 		}
@@ -1399,10 +1399,10 @@
 		elseif ( isset( $_POST['checked'] ) )
 			$themes = (array) $_POST['checked'];
 
-		if ( !isset($themes) ) 
+		if ( !isset($themes) )
 			return;
 
-		if ( array_search('CherryFramework', $themes) === FALSE ) 
+		if ( array_search('CherryFramework', $themes) === FALSE )
 			return;
 
 		if ( isset($_GET['action']) ) {
@@ -1476,7 +1476,7 @@
 		$to     = WP_PLUGIN_DIR . '/cherry-plugin/';
 		$result = false;
 
-		if ( !file_exists($file) ) 
+		if ( !file_exists($file) )
 			return $result;
 
 		if ( !function_exists('WP_Filesystem') ) {

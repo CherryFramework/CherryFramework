@@ -1,32 +1,29 @@
 <?php
-/*
+/**
  * Bootstrap I/O files
- * 
  */
-if (!FILE_WRITEABLE) return;
+if ( !FILE_WRITEABLE ) return;
 
 if ( CURRENT_THEME == 'cherry' ) {
-	$bootstrapInput		= PARENT_DIR .'/less/bootstrap.less';
+	$bootstrapInput = PARENT_DIR .'/less/bootstrap.less';
 } else {
-	$bootstrapInput		= CHILD_DIR .'/bootstrap/less/bootstrap.less';
+	$bootstrapInput = CHILD_DIR .'/bootstrap/less/bootstrap.less';
 }
-$bootstrapOutput	= CHILD_DIR .'/bootstrap/css/bootstrap.css';
+$bootstrapOutput = CHILD_DIR .'/bootstrap/css/bootstrap.css';
 
-/*
+/**
  * Current theme I/O files
- * 
  */
 if ( CURRENT_THEME == 'cherry' ) {
-	$themeInput		= PARENT_DIR .'/less/style.less';
-	$themeOutput	= PARENT_DIR .'/css/style.css';
+	$themeInput  = PARENT_DIR .'/less/style.less';
+	$themeOutput = PARENT_DIR .'/css/style.css';
 } else {
-	$themeInput		= CHILD_DIR .'/style.less';
-	$themeOutput	= CHILD_DIR .'/main-style.css';
+	$themeInput  = CHILD_DIR .'/style.less';
+	$themeOutput = CHILD_DIR .'/main-style.css';
 }
 
-/*
+/**
  * Get variables from Cherry Options
- *
  */
 function cherryVariables() {
 	global $variablesArray;
@@ -88,24 +85,25 @@ function cherryVariables() {
 	}
 }
 
-/*
+/**
  * Get variables from botstrap
- *
+ * @param  string $must Bootstrap variable's name
+ * @return string       Bootstrap variable's value
  */
-function bootstrapVariables($must) {
+function bootstrapVariables( $must ) {
 
 	$val = '';
 	$file = CHILD_DIR .'/bootstrap/less/variables.less';
 
 	if ( file_exists($file) ) {
-		$allVariablessArray = file($file);
+		$allVariablessArray = file( $file );
 
-		foreach ($allVariablessArray as $v) {
-			$pos = strpos($v, $must);
-			if ($pos) {
-				$start	= strpos($v, ':') + 1;
-				$finish = strpos($v, ';');
-				$val 	= trim(substr( $v, $start, ($finish-$start) ));
+		foreach ( $allVariablessArray as $v ) {
+			$pos = strpos( $v, $must );
+			if ( $pos ) {
+				$start  = strpos( $v, ':' ) + 1;
+				$finish = strpos( $v, ';' );
+				$val    = trim( substr( $v, $start, ( $finish - $start ) ) );
 				break;
 			}
 		}
@@ -116,22 +114,22 @@ function bootstrapVariables($must) {
 // Hook for clean less cache after save Cherry Options
 add_action('optionsframework_after_validate', 'clean_less_cache');
 
-/* 
+/**
  * Auto Compiling LESS files (cache)
- *
+ * @param  string $inputFile  path to the less (input) file
+ * @param  string $outputFile path to the css (output) file
  */
-function auto_less_compile($inputFile, $outputFile) {
+function auto_less_compile( $inputFile, $outputFile ) {
 	global $variablesArray;
 
 	cherryVariables();
-	if ( empty($variablesArray) )
-		return;
+	if ( empty( $variablesArray ) ) return;
 
 	// load the cache
 	$cacheFile = $inputFile.".cache";
 
-	if (file_exists($cacheFile)) {
-		$cache = unserialize(file_get_contents($cacheFile));
+	if ( file_exists( $cacheFile ) ) {
+		$cache = unserialize( file_get_contents( $cacheFile ) );
 	} else {
 		$cache = $inputFile;
 	}
@@ -149,7 +147,7 @@ function auto_less_compile($inputFile, $outputFile) {
 		$newCache = $less->cachedCompile($cache);
 
 		// the next time we run, write only if it has updated
-		if (!is_array($cache) || $newCache["updated"] > $cache["updated"]) {
+		if ( !is_array($cache) || $newCache["updated"] > $cache["updated"] ) {
 			file_put_contents($cacheFile, serialize($newCache));
 			file_put_contents($outputFile, $newCache['compiled']);
 		}
@@ -157,14 +155,15 @@ function auto_less_compile($inputFile, $outputFile) {
 		echo "lessphp fatal error: ".$ex->getMessage();
 	}
 }
-auto_less_compile($bootstrapInput, $bootstrapOutput);
-auto_less_compile($themeInput, $themeOutput);
+auto_less_compile( $bootstrapInput, $bootstrapOutput );
+auto_less_compile( $themeInput, $themeOutput );
 
-/* 
+/**
  * Simple Compiling LESS files
- *
+ * @param  string $inputFile  path to the less (input) file
+ * @param  string $outputFile path to the css (output) file
  */
-function simple_less_compile($inputFile, $outputFile) {
+function simple_less_compile( $inputFile, $outputFile ) {
 	global $variablesArray;
 
 	cherryVariables();
@@ -183,9 +182,9 @@ function simple_less_compile($inputFile, $outputFile) {
 		$less->compileFile($inputFile, $outputFile);
 	} catch (Exception $ex) {
 		echo "lessphp fatal error: ".$ex->getMessage();
-	}	
+	}
 }
 // TEMP: Enable compiling bootstrap.less and style.less on every refresh. Normally you don't need this! This is for developing only!
-// simple_less_compile($bootstrapInput, $bootstrapOutput);
-// simple_less_compile($themeInput, $themeOutput);
+// simple_less_compile( $bootstrapInput, $bootstrapOutput );
+// simple_less_compile( $themeInput, $themeOutput );
 ?>
