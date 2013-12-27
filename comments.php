@@ -11,7 +11,7 @@
 ?>
 <!-- BEGIN Comments -->	
 	<?php if ( have_comments() ) : ?>
-	<div class="comment-holder">
+	<div id="comments" class="comment-holder">
 		<h3 class="comments-h"><?php printf( _n( theme_locals("response"), theme_locals("responses"), get_comments_number(), CURRENT_THEME ),
 				number_format_i18n( get_comments_number() ), '' );?></h3>
 		<div class="pagination">
