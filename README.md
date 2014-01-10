@@ -1,5 +1,6 @@
 
-<h1>Cherry Framework <small>The most delicious WordPress framework</small></h1>
+<h1>Cherry Framework</h1>
+<h3>The most delicious WordPress framework</h3>
 
 <p>Fully responsive design, easy install, steady updates, great number of shortcodes and widgets, integration of Bootstrap functions. All brought to you by Cherry Framework for straightforward experience in website design. <a href="http://www.cherryframework.com/features/">View all features</a></p>
 
@@ -9,8 +10,8 @@
 
 <h2>Change log</h2>
 
-v3.0.1
-================================================================
+<h4>v3.0.1
+================================================================</h4>
 
 <ul><li>Fix portfolio loop</li>
 <li>change stylesheet and screenshot</li>
@@ -24,8 +25,8 @@ v3.0.1
 <li>fix header</li></ul>
 
 
-v3.0
-================================================================
+<h4>v3.0
+================================================================</h4>
 
 <ul><li>Add plugin</li>
 <li>fix header-styling and main-layout options</li>
@@ -35,8 +36,8 @@ v3.0
 <li>Deleted shortcodes and widgets in framework</li></ul>
 
 
-v2.4
-================================================================
+<h4>v2.4
+================================================================</h4>
 
 <ul><li>hotfix page-home.php</li>
 <li>hotfix file update.php</li>
@@ -65,8 +66,8 @@ v2.4
 <li>correct style for thumbnail hover state on Portfolio pages</li></ul>
 
 
-v2.3.1
-================================================================
+<h4>v2.3.1
+================================================================</h4>
 
 <ul><li>small fix custom fields (select) for blog's posts</li>
 <li>fix conflicts between 'up-localization' and 'develop'</li>
@@ -87,8 +88,8 @@ v2.3.1
 <li>add check for existing file</li></ul>
 
 
-v2.3
-================================================================
+<h4>v2.3
+================================================================</h4>
 
 <ul><li>small fix for slider (orderby = title)</li>
 <li>chenge date format, chenge $ on jQuery in JavaScript</li>
@@ -134,15 +135,15 @@ v2.3
 <li>fix output thumbnail for image post format</li></ul>
 
 
-v2.2.1
-================================================================
+<h4>v2.2.1
+================================================================</h4>
 
 <ul><li>add prefix 'cherry' for function name: getPostView, setPostViews, getPostVoting</li>
 <li>fix bug with widget settings import in WP > 3.4</li></ul>
 
 
-v2.2
-================================================================
+<h4>v2.2
+================================================================</h4>
 
 <ul><li>change including prettyphoto's script ans style</li>
 <li>change font-awesome's version</li>
