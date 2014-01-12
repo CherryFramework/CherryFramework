@@ -51,12 +51,12 @@
 
 	/* Quote Format Type */
 	& .format-quote {
-		
+
 	}
 
 	/* Link Format Type */
 	& .format-link {
-		
+
 	}
 
 	/* Audio Format Type */
@@ -74,10 +74,10 @@
 	}
 
 }
-	
-	
+
+
 /* Popular Posts Shortcode
----------------------------------------- */	
+---------------------------------------- */
 .popular-posts {
 
 	& li {
@@ -211,11 +211,11 @@
 .tagcloud a:hover,
 .post_footer a:hover {
 	}
-	
+
 /* Recent Comments Shortcode
----------------------------------------- */	
+---------------------------------------- */
 .recent-comments {
-	
+
 	& li {
 		margin:0;
 		padding: 0 0 .5em 0;
@@ -223,8 +223,8 @@
 	}
 
 }
-		
-		
+
+
 /* Services Box
 ---------------------------------------- */
 .service-box {
@@ -234,24 +234,24 @@
 	margin-bottom: 0;
 	background-color: #f5f5f5;
 	border: 1px solid @tableBorder;
-  	.border-radius(4px);
-  	.box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.05));
+	.border-radius(4px);
+	.box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.05));
 
-  	& .icon {
-  		float:left;
+	& .icon {
+		float:left;
 		margin:0 10px 10px 0;
-  	}
-  	& h2 {
-  		overflow:hidden;
+	}
+	& h2 {
+		overflow:hidden;
 		margin:0;
-  	}
-  	& h5 {
-  		overflow:hidden;
+	}
+	& h5 {
+		overflow:hidden;
 		margin:0 0 25px;
-  	}
-  	&_txt {margin-bottom:20px;}
-  	& .btn-align {text-align:right;}
-  	&__call {
+	}
+	&_txt {margin-bottom:20px;}
+	& .btn-align {text-align:right;}
+	&__call {
 		color: #fff;
 		#gradient > .vertical (#037cc7, #1950af);
 		h2 {
@@ -273,18 +273,18 @@
 ---------------------------------------- */
 .hero-unit {
 
-  	& h1 {
-  		
-  	}
-  	& p {
+	& h1 {
 
-  	}
-  	& .btn-align {
+	}
+	& p {
 
-  	}
+	}
+	& .btn-align {
+
+	}
 }
 /* /Hero Unit */
-	
+
 
 /* Post Cycle
 ---------------------------------------- */
@@ -329,7 +329,7 @@
 		display:inline-block;
 		width:9px;
 		height:9px;
-		background:#000;				
+		background:#000;
 		vertical-align:top;
 		text-decoration:none;
 		.border-radius(5px);
@@ -341,161 +341,7 @@
 	}
 	.post-controls_link__prev {float:left;}
 	.post-controls_link__next {float:right;}
-
 }
-	
-	
-/* Carousel
----------------------------------------- */
-.carousel-wrap {
-	position:relative;
-	margin:0 0 0px;
-}
-.es-carousel-wrapper {
-	position:relative;
-	padding:0;
-	
-}
-.es-carousel {
-	overflow:hidden;
-
-	&_list {
-		display:none;
-		margin-bottom: 0;
-	}
-	&_li {
-		display:block;
-		float:left;
-		margin:0;
-		padding:0;
-		color: #000;
-
-		& .featured-thumbnail {
-			float:none;
-			margin:0 0 20px;
-
-			& img {
-				display:block;
-				margin:0;
-				padding:0;
-				max-width:100%;
-				max-height:100%;
-				border:none;
-			}
-		}// Featured Thumb
-
-		& .desc {
-			padding: 0;
-			margin: 0;
-		}// Description
-
-		& h5 {
-			margin-bottom:.5em;
-			font-weight:bold;
-
-			& a {
-				text-decoration:underline;
-			}
-			& a:hover {
-				text-decoration:none;
-			}
-
-		}// Title
-
-		& time {
-
-		}// Date
-
-		& .author {
-
-		}// Author
-
-		& .excerpt {
-			margin-bottom:10px;
-		}
-
-	}// List item	
-		
-}
-/* Carousel OWL
----------------------------------------- */
-@import '../css/owl.carousel.css';
-.owl-carousel{
-	margin-bottom: 15px;
-	.item{
-		margin: 3px;
-		figure{
-			display: block;
-			width: 100%;
-			margin: 0 0 10px 0;
-			a{
-				display: block;
-				img{
-					display: block;
-					width: 100%;
-					height: auto;
-				}
-			}
-		}
-	}
-	.owl-wrapper-outer{
-		margin: 0 0 15px 0;
-	}
-	.owl-controls{
-		.owl-page{
-			margin: 0 6px; 
-			display: inline-block;
-			zoom: 1; 
-			*display: inline;
-		}
-		.owl-buttons{
-			position: absolute;
-			top: 30%;
-			margin: -15px 0 0 0;
-			width: 100%;
-			height: 30px;
-			.owl-prev, .owl-next{
-				border-radius: 50%;
-				background: url('../images/black-opacity-60.png');
-				color: #FFF;
-				font-size: 20px;
-			}
-			.owl-prev{
-				float: left;
-				padding: 6px 9px 4px 8px;
-			}
-			.owl-next{
-				float: right;
-				padding: 6px 8px 4px 9px;
-			}
-		}
-	}
-}
-
-
-/* End Carousel OWL
----------------------------------------- */
-.es-nav span {
-	position:absolute;
-	top:0;
-	right:32px;
-	margin-top: -35px;
-	width:14px;
-	height:26px;
-	background:transparent url(../images/nav.png) no-repeat top left;
-	text-indent:-9000px;
-	opacity:0.8;
-	cursor:pointer;
-}
-.es-nav span.es-nav-next {
-	right:12px;
-	left:auto;
-	background-position:top right;
-}
-.es-nav span:hover {
-	opacity:1.0;
-}
-
 
 /* Banner
 ---------------------------------------- */
@@ -580,15 +426,15 @@
 				content: "";
 			}
 			& > a {
-			 	position: relative;
-			 	z-index: 2;
+				position: relative;
+				z-index: 2;
 				color: #4e4e4e;
 				text-decoration: none;
 				overflow: hidden;
 				vertical-align: top;
 			}
 			& > a:hover {
-			 	color: #fff;
+				color: #fff;
 			}
 
 		}//blockquote tag
@@ -607,13 +453,13 @@
 			padding-top: 22px;
 			padding-left: 40px;
 		}
-		
+
 	}//Testimonial
 }
 /*/ Testimonials */
 
 
-/* Roundabout 
+/* Roundabout
 ---------------------------------------- */
 .roundabout-holder {
 	width: 100%;
