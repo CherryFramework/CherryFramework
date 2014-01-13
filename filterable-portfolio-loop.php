@@ -226,7 +226,7 @@
 
 			<div class="caption caption__portfolio">
 				<?php if($folio_title == "yes"){ ?>
-					<h3><a href="<?php the_permalink(); ?>"><?php $title = the_title('','',FALSE); echo substr($title, 0, 40); ?></a></h3>
+					<h3><a href="<?php the_permalink(); ?>"><?php $title = the_title('','',FALSE); echo mb_substr($title, 0, 40); ?></a></h3>
 				<?php } ?>
 
 				<?php if($folio_excerpt == "yes"){ ?>
