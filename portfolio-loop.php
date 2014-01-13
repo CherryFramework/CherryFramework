@@ -77,7 +77,7 @@ if ( !$category_value ) {
 
 							foreach ($filter_array as $key => $value)
 								if ( isset($value->count) ) {
-									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".term_id_'.$value->term_id.', .'.$key.'">' . $value->name . '</a></li>';
+									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".term_id_'.$value->term_id.'">' . $value->name . '</a></li>';
 								}
 							wp_reset_postdata();
 						?>
@@ -152,7 +152,7 @@ if ( !$category_value ) {
 
 							foreach ($filter_array as $key => $value)
 								if ( isset($value->count) ) {
-									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".term_id_'.$value->term_id.', .'.$key.'">' . $value->name . '</a></li>';
+									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".term_id_'.$value->term_id.'">' . $value->name . '</a></li>';
 								}
 							wp_reset_postdata();
 						?>
