@@ -1132,10 +1132,10 @@ function options_typography_styles() {
 		$input = of_get_option( 'h6_heading' );
 		$output .= options_typography_font_styles( of_get_option( 'h6_heading' ) , 'h6');
 	}
-	// if ( of_get_option( 'google_mixed_3' ) ) {
-	// 	$input = of_get_option( 'google_mixed_3' );
-	// 	$output .= options_typography_font_styles_body( of_get_option( 'google_mixed_3' ) , '.main-holder');
-	// }
+	if ( of_get_option( 'google_mixed_3' ) ) {
+		$input = of_get_option( 'google_mixed_3' );
+		$output .= options_typography_font_styles_body( $input , 'body');
+	}
 	if ( of_get_option( 'logo_typography' ) ) {
 		$input = of_get_option( 'logo_typography' );
 		$output .= options_typography_font_styles( of_get_option( 'logo_typography' ) , '.logo_h__txt, .logo_link');
@@ -1173,13 +1173,27 @@ function options_typography_font_styles($option, $selectors) {
  */
 function options_typography_font_styles_body($option, $selectors) {
 		$output = $selectors . ' { ';
-		$output .= 'font: ' . $option['style'] . ' ' . $option['size'] . '/'.$option['lineheight'].' ' . $option['face'] . '; ';
-		$output .= ' color:' . $option['color'] .'; ';
+		switch ( $option['style'] ) {
+			case 'normal':
+				$output .= 'font-weight: normal;';
+				break;
+			case 'italic':
+				$output .= 'font-style: italic;';
+				break;
+			case 'bold':
+				$output .= 'font-weight: bold;';
+				break;
+			case 'bold italic':
+				$output .= 'font-weight: bold; font-style: italic;';
+				break;
+			default:
+				$output .= 'font-weight: normal; font-style: normal;';
+				break;
+		}
 		$output .= '}';
 		$output .= "\n";
 		return $output;
 }
-
 
 
 /**
