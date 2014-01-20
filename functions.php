@@ -1485,10 +1485,6 @@
 		WP_Filesystem();
 		global $wp_filesystem;
 
-		// Clean up plugin directory
-		if ( $wp_filesystem->is_dir($to) )
-			$wp_filesystem->delete($to, true);
-
 		$result = unzip_file( $file, $to );
 		if ( is_wp_error($result) ) {
 			if ( 'incompatible_archive' == $result->get_error_code() ) {
