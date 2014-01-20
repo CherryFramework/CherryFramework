@@ -4,3 +4,5 @@
 css/style.css
 # ignore bootstrap.css
 bootstrap/css/bootstrap.css
+# ignore update.log
+update.log

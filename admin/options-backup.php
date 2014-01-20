@@ -46,8 +46,8 @@ class OptionsFramework {
 	 */
 	function register_admin_screen () {
 
-		$this->admin_page_import = add_submenu_page('options-framework', theme_locals("import"), theme_locals("import"), 'administrator', 'options-framework-import',  array(&$this, 'admin_screen_import'));
-		$this->admin_page_export = add_submenu_page('options-framework', theme_locals("export"), theme_locals("export"), 'administrator', 'options-framework-export',  array(&$this, 'admin_screen_export'));
+		//$this->admin_page_import = add_submenu_page('options-framework', theme_locals("import"), theme_locals("import"), 'administrator', 'options-framework-import',  array(&$this, 'admin_screen_import'));
+		//$this->admin_page_export = add_submenu_page('options-framework', theme_locals("export"), theme_locals("export"), 'administrator', 'options-framework-export',  array(&$this, 'admin_screen_export'));
 
 		// Adds actions to hook in the required css and javascript
 		add_action("admin_print_styles-$this->admin_page_import", 'optionsframework_load_adminstyles');

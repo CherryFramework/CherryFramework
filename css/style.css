@@ -306,6 +306,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 }
 #primary { padding-top:40px; }
 .entry-content { overflow:hidden; }
+.entry-meta.float-right { float:right; }
 .portfolio-meta {
 	margin:0;
 	padding:1em 0;

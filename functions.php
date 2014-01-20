@@ -1246,8 +1246,8 @@
 				'display_title' => true,
 				'display_link' => true,
 				'display_thumbnail' => true,
-				'width_thumbnail' => 200,
-				'height_thumbnail' => 120,
+				'width_thumbnail' => 250,
+				'height_thumbnail' => 150,
 				'before_title' => '<h3 class="related-posts_h">',
 				'after_title' => '</h3>',
 				'posts_count' => 4
