@@ -40,14 +40,6 @@ function optionsframework_rolescheck () {
 	}
 }
 
-/* Loads the file for option backup */
-
-add_action('init', 'optionsframework_load_backup' );
-
-function optionsframework_load_backup() {
-	require_once dirname( __FILE__ ) . '/options-backup.php';
-}
-
 /* Loads the file for option sanitization */
 
 add_action('init', 'optionsframework_load_sanitization' );
