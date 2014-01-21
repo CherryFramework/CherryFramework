@@ -22,7 +22,6 @@ function cherry_scripts() {
 
 		wp_enqueue_script('swfobject');
 		wp_enqueue_script('modernizr');
-		wp_enqueue_script('elastislide');
 		wp_enqueue_script('jflickrfeed');
 		wp_enqueue_script('superfish');
 		wp_enqueue_script('mobilemenu');
