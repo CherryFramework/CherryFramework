@@ -22,7 +22,6 @@ function cherry_scripts() {
 
 		wp_enqueue_script('swfobject');
 		wp_enqueue_script('modernizr');
-		wp_enqueue_script('elastislide');
 		wp_enqueue_script('jflickrfeed');
 		wp_enqueue_script('superfish');
 		wp_enqueue_script('mobilemenu');
@@ -74,14 +73,19 @@ add_action('wp_enqueue_scripts', 'cherry_scripts');
 /*	Register and load stylesheet
 /*-----------------------------------------------------------------------------------*/
 function cherry_stylesheets() {
-	wp_enqueue_style('font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', false, '3.2.1', 'all');
-	wp_register_style('magnific-popup', PARENT_URL.'/css/magnific-popup.css', false, '0.9.3', 'all');
-	wp_enqueue_style('magnific-popup');
-	// only child theme's when overwrite flickr widget
-	if ( (CURRENT_THEME!='cherry') && (file_exists(CHILD_DIR. '/includes/widgets/my-flickr-widget.php')) ) {
-		wp_register_style('prettyPhoto', PARENT_URL.'/css/prettyPhoto.css', false, '3.1.5', 'all');
-		wp_enqueue_style('prettyPhoto');
+	if ( CURRENT_THEME != 'cherry' ) {
+		if ( file_exists( CHILD_DIR . '/main-style.css' ) ) {
+			wp_enqueue_style( CURRENT_THEME, CHILD_URL . '/main-style.css', false, null, 'all' );
+		}
+
+		if ( file_exists( CHILD_DIR . '/includes/widgets/my-flickr-widget.php' ) ) {
+			wp_register_style( 'prettyPhoto', PARENT_URL.'/css/prettyPhoto.css', false, '3.1.5', 'all' );
+			wp_enqueue_style( 'prettyPhoto' );
+		}
 	}
+	wp_enqueue_style( 'font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', false, '3.2.1', 'all' );
+	wp_register_style( 'magnific-popup', PARENT_URL.'/css/magnific-popup.css', false, '0.9.3', 'all' );
+	wp_enqueue_style( 'magnific-popup' );
 }
 add_action('wp_enqueue_scripts', 'cherry_stylesheets');
 
