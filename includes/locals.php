@@ -357,6 +357,10 @@
 			'layout_desc' => __('Portfolio has different layout modes. You can set and change the layout mode via this option.', $domain),
 			'fit_rows' => __('Fit rows', $domain),
 			'masonry' => __('Masonry', $domain),
+			'single_folio_layout' => __('Single portfolio layout', $domain),
+			'single_folio_layout_desc' => __('Single portfolio layout.', $domain),
+			'fullwidth_sp' => __('Fullwidth', $domain),
+			'grid_sp' => __('Columns', $domain),
 			'portfolio_2_name' => __('Portfolio 2 columns items amount', $domain),
 			'portfolio_2_desc' => __('Portfolio items amount for Portfolio 2 columns template.', $domain),
 			'portfolio_3_name' => __('Portfolio 3 columns items amount', $domain),
@@ -1019,8 +1023,8 @@
 			'submit_permalink' => __('Submit Permalink Structure', $domain),
 			'submit_permalink_desc' => __("This way of links configuration can be used by not only our blog followers but will help in SEO-optimisation as well. The effectiveness and main features of this link configuration method are revealed <a href='http://codex.wordpress.org/Using_Permalinks'>here</a>", $domain),
 			'import_sample_data' => __('Import Sample Data', $domain),
-			'import_sample_data_desc' => __('If you want to install sample data from livedemo you need to go to <strong>Cherry Options</strong> > <strong>Import</strong> and follow the tips.', $domain),
-			'import_sample_data_desc_2' => __('If you want to install sample data from livedemo you need to go to <strong>Import</strong> and follow the tips.', $domain),
+			'import_sample_data_desc' => __('If you want to install sample data from livedemo you need to go to <strong><a href="admin.php?page=import-page">Import Content</a></strong> and follow the tips.', $domain),
+			'import_sample_data_desc_2' => __('If you want to install sample data from livedemo you need to go to <strong><a href="admin.php?page=import-page">Import Content</a></strong> and follow the tips.', $domain),
 			
 			//options-interface.php
 			'no_lable' => __('No lable.', $domain),

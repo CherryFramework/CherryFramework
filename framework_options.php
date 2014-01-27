@@ -733,6 +733,15 @@
 								"type" => "radio",
 								"options" => $yes_no_array);
 
+			$options['single_folio_layout'] = array( "name" => theme_locals("single_folio_layout"),
+								"desc" => theme_locals("single_folio_layout_desc"),
+								"id" => "single_folio_layout",
+								"type" => "radio",
+								"std" => "grid",
+								"options" => array(
+												"grid" => theme_locals("grid_sp"),
+												"fullwidth" => theme_locals("fullwidth_sp")));
+
 			$options['layout_mode'] = array( "name" => theme_locals("layout_name"),
 								"desc" => theme_locals("layout_desc"),
 								"id" => "layout_mode",

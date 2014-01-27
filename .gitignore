@@ -4,4 +4,6 @@
 css/style.css
 # ignore bootstrap.css
 bootstrap/css/bootstrap.css
+# ignore log files
+update.log
 log.log
