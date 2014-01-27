@@ -22,7 +22,7 @@ a:focus { outline:none; }
 	margin:0 auto;
 	max-width:980px;
 	width:auto;
-	background:#fafafa;
+	background:#ffffff;
 }
 @media (min-width: 1200px) {
 	.cherry-fixed-layout .main-holder { max-width:1210px; }
@@ -254,8 +254,8 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 }
 .breadcrumb__t li.divider:after {
 	content:' / ';
-	color:#333333;
-	font:12px/18px Arial, Helvetica, sans-serif;
+	color:#333;
+	font:"Helvetica Neue", Helvetica, Arial, sans-serif/"Helvetica Neue", Helvetica, Arial, sans-serif "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 #sidebar { padding-top:40px; }
 .testimonial {
@@ -290,7 +290,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-style:normal;
 	padding:12px 0 0;
-	font-size:10.2px;
+	font-size:"Helvetica Neue", Helvetica, Arial, sans-serif * 0.85;
 }
 @media (min-width: 768px) and (max-width: 979px) {
 	.testimonial {
@@ -1051,7 +1051,7 @@ html[xmlns] .slides { display:block; }
 .format-quote .post_meta { padding-top:25px; }
 .format-quote blockquote {
 	font-family:Georgia, "Times New Roman", Times, serif;
-	font-size:15px;
+	font-size:"Helvetica Neue", Helvetica, Arial, sans-serif * 1.25;
 	line-height:1.4em;
 	font-style:italic;
 	color:#999;
@@ -1360,14 +1360,14 @@ p.gravatar {
 #wp-calendar caption {
 	margin-bottom:5px;
 	padding:4px 0;
-	color:#0088cc;
+	color:#08c;
 	font-weight:bold;
 	font-size:16px;
 	text-align:center;
 }
 #wp-calendar thead th {
 	padding:7px 0;
-	color:#0088cc;
+	color:#08c;
 	text-align:center;
 	font-size:14px;
 }
@@ -2184,7 +2184,7 @@ figure.frame {
 	margin-bottom:7px;
 	width:50px;
 	height:50px;
-	background:#0088cc url(../images/up-arrow.png) no-repeat center center;
+	background:#08c url(../images/up-arrow.png) no-repeat center center;
 	-webkit-transition:1s;
 	-moz-transition:1s;
 	-o-transition:1s;
@@ -2858,7 +2858,7 @@ div.ajax-loader {
 .input-block-level {
 	display:block;
 	width:100%;
-	min-height:28px;
+	min-height:"Helvetica Neue", Helvetica, Arial, sans-serif + 10px;
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	box-sizing:border-box;

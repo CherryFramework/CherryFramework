@@ -1023,8 +1023,8 @@
 			'submit_permalink' => __('Submit Permalink Structure', $domain),
 			'submit_permalink_desc' => __("This way of links configuration can be used by not only our blog followers but will help in SEO-optimisation as well. The effectiveness and main features of this link configuration method are revealed <a href='http://codex.wordpress.org/Using_Permalinks'>here</a>", $domain),
 			'import_sample_data' => __('Import Sample Data', $domain),
-			'import_sample_data_desc' => __('If you want to install sample data from livedemo you need to go to <strong>Cherry plugin</strong> > <strong><a href="admin.php?page=plugin-main-page">Import</a></strong> and follow the tips.', $domain),
-			'import_sample_data_desc_2' => __('If you want to install sample data from livedemo you need to go to <strong><a href="admin.php?page=plugin-main-page">Import</a></strong> and follow the tips.', $domain),
+			'import_sample_data_desc' => __('If you want to install sample data from livedemo you need to go to <strong><a href="admin.php?page=import-page">Import Content</a></strong> and follow the tips.', $domain),
+			'import_sample_data_desc_2' => __('If you want to install sample data from livedemo you need to go to <strong><a href="admin.php?page=import-page">Import Content</a></strong> and follow the tips.', $domain),
 			
 			//options-interface.php
 			'no_lable' => __('No lable.', $domain),
