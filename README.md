@@ -1,4 +1,3 @@
-
 #Cherry Framework#
 ###The most delicious WordPress framework###
 
@@ -9,6 +8,23 @@ Fully responsive design, easy install, steady updates, great number of shortcode
 ###[Get Premium themes](http://www.cherryframework.com/themes/)###
 
 ##Change log##
+
+#### v3.1.0 ####
+
+* Added function for auto-setup cherry-plugin
+* Moved the help tips from child theme in the framework
+* Change help text and update cherry plugin zip
+* Added auto-replace current Cherry Plugin on new version
+* removed wp_enqueue_script for ElastiSlide
+* add including via func. wp_enqueue_style file main-style.css from child-theme
+* remove cleaning up plugin directory after switch cherry themes
+* remove old logic for import/export
+* add new options 'single portfolio layout'
+* added processing multibyte string (support cyrillic)
+* Cut style for carousel shortcodes and remove some files (css/js/images)
+* add comments ID attribute
+* fixed filter on portfolio pages
+
 
 #### v3.0.1 ####
 
