@@ -31,7 +31,6 @@ function optionsframework_rolescheck () {
 	if ( current_user_can( 'edit_theme_options' ) ) {
 		// If the user can edit theme options, let the fun begin!
 		add_action( 'admin_menu', 'optionsframework_add_page');
-		add_action( 'admin_menu', 'optionsframework_add_subpage1');
 		add_action( 'admin_menu', 'optionsframework_add_data_managment');
 		add_action( 'admin_menu', 'optionsframework_add_seo');
 		add_action( 'admin_init', 'optionsframework_init' );
@@ -173,19 +172,6 @@ if ( !function_exists( 'optionsframework_add_page' ) ) {
 		add_action("admin_print_styles-$of_page",'optionsframework_load_styles');
 	}
 }
-
-/* Add a subpage called "Store" to the Cherry Options. */
-
-if ( !function_exists( 'optionsframework_add_subpage1' ) ) {
-	function optionsframework_add_subpage1 () {
-		$of_page = add_submenu_page('options-framework', theme_locals("cherry_store"), theme_locals("cherry_store"), 'administrator', 'options-framework-store',  'admin_screen_store');
-
-		// Adds actions to hook in the required css and javascript
-		add_action("admin_print_scripts-$of_page", 'optionsframework_load_scripts_store');
-		add_action("admin_print_styles-$of_page",'optionsframework_load_styles_store');
-	}
-}
-
 /* Add a subpage called "Data Management" to the Cherry Options. */
 
 if ( !function_exists( 'optionsframework_add_data_managment' ) ) {
@@ -214,11 +200,6 @@ if ( !function_exists( 'optionsframework_add_seo' ) ) {
 function optionsframework_load_styles() {
 	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_DIRECTORY.'css/optionsframework.css');
 	wp_enqueue_style('color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'css/colorpicker.css');
-}
-
-function optionsframework_load_styles_store() {
-	wp_enqueue_style('style2', 'http://www.templatehelp.com/codes/jsbanner/a04/css/style2.css');
-	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_DIRECTORY.'css/optionsframework.css');
 }
 
 function optionsframework_load_styles_seo() {
@@ -472,78 +453,4 @@ if ( ! function_exists( 'of_get_option' ) ) {
 		return $default;
 	}
 }
-
-/*
- * Cherry Store
- */
-
-if ( ! function_exists( 'admin_screen_store' ) ) {
-	function admin_screen_store () { ?>
-		<div id="optionsframework-metabox" class="metabox-holder">
-			<div id="optionsframework" class="postbox store-holder">
-				<div class="wrap">
-					<h3><?php echo theme_locals("cherry_store"); ?></h3>
-					<div class="store">
-						<h4><?php echo theme_locals("latest_templates"); ?></h4>
-						<div id="jsbanner"></div>
-						<div class="align-right"><a class="button-primary" href="http://www.templatemonster.com/wordpress-themes.php" target="_blank"><?php echo theme_locals("all_templates"); ?></a></div>
-						<div class="info-holder clearfix">
-							<div class="col col-1">
-								<h4><?php echo theme_locals("news_and_updates"); ?></h4>
-
-								<?php // Get RSS Feed(s)
-								include_once( ABSPATH . WPINC . '/feed.php' );
-								// Get a SimplePie feed object from the specified feed source.
-								// $rss = fetch_feed( 'http://blog.templatemonster.com/category/cherry-wordpress-themes/feed/' );
-								$rss = fetch_feed( 'http://www.cherryframework.com/feed/' );
-								if ( ! is_wp_error( $rss ) ) : // Checks that the object is created correctly
-									// Figure out how many total items there are, but limit it to 5. 
-									$maxitems = $rss->get_item_quantity( 3 ); 
-									// Build an array of all the items, starting with element 0 (first element).
-									$rss_items = $rss->get_items( 0, $maxitems );
-								endif;
-								?>
-								<ul class="rss-list">
-								<?php if ( $maxitems == 0 ) : ?>
-									<li><?php echo theme_locals("no_items"); ?></li>
-								<?php else : ?>
-									<?php // Loop through each feed item and display each item as a hyperlink.
-									foreach ( $rss_items as $item ) : ?>
-									<li>
-										<a href="<?php echo esc_url( $item->get_permalink() ); ?>" title="<?php echo theme_locals("posted") . ' ' . $item->get_date('j F Y | g:i a'); ?>"  target="_blank"><?php echo esc_html( $item->get_title() ); ?></a>
-										<span class="time"><?php echo $item->get_date('m/d/Y'); ?></span>
-									</li>
-									<?php endforeach; ?>
-								<?php endif; ?>
-								</ul>
-							</div>
-							<div class="col col-2">
-								<h4><?php echo theme_locals("help_and_supports"); ?></h4>
-								<ul class="extern-list">
-									<?php
-										$locals	= "";
-										if(get_bloginfo("language")=="ru_RU" || get_bloginfo("language")=="es_ES" || get_bloginfo("language")=="de_DE"){
-											$locals = substr(get_bloginfo("language"), 0, 2)."/"; 
-										}
-										$doc_link = 'http://info.template-help.com/help/quick-start-guide/';
-										if (class_exists('Woocommerce')) {
-											$doc_link .= 'woocommerce/';
-										} elseif (function_exists('jigoshop_init')) {
-											$doc_link .= 'jigoshop-cherry-framework/';
-										} else {
-											$doc_link .= 'cherry-framework/';
-										}
-										echo '<li><a class="icon-a icon-support" href="http://info.template-help.com/help/'.$locals.'cms-blog-templates/wordpress/wordpress-tutorials/" target="_blank"><span class="icon"><span>'.theme_locals("support").'</span></span></a></li>';
-										echo "<li><a class='icon-a icon-documentation' href='$doc_link' target='_blank'><span class='icon'><span>".theme_locals('documentation')."</span></span></a></li>";
-									?>
-								</ul>
-							</div>
-						</div>
-						<iframe id="shop_tm" src="http://updates.cherry.template-help.com/cherrymoto/cherry-offer.html" frameborder="0" width="100%" height="60" marginwidth="0" marginheight="0" scrolling="no"></iframe>
-					</div>
-				</div><!--/.wrap-->
-			</div>
-		</div>
-	<?php	
-	}
-}
+?>
