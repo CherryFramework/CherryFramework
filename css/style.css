@@ -254,7 +254,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 }
 .breadcrumb__t li.divider:after {
 	content:' / ';
-	color:#6e6d6d;
+	color:#333333;
 	font:12px/18px Arial, Helvetica, sans-serif;
 }
 #sidebar { padding-top:40px; }
@@ -1360,14 +1360,14 @@ p.gravatar {
 #wp-calendar caption {
 	margin-bottom:5px;
 	padding:4px 0;
-	color:#08c;
+	color:#0088cc;
 	font-weight:bold;
 	font-size:16px;
 	text-align:center;
 }
 #wp-calendar thead th {
 	padding:7px 0;
-	color:#08c;
+	color:#0088cc;
 	text-align:center;
 	font-size:14px;
 }
@@ -2184,7 +2184,7 @@ figure.frame {
 	margin-bottom:7px;
 	width:50px;
 	height:50px;
-	background:#08c url(../images/up-arrow.png) no-repeat center center;
+	background:#0088cc url(../images/up-arrow.png) no-repeat center center;
 	-webkit-transition:1s;
 	-moz-transition:1s;
 	-o-transition:1s;
