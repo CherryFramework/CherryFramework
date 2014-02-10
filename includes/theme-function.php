@@ -84,10 +84,14 @@ add_action( 'manage_pages_custom_column', 'fb_AddThumbValue', 10, 2 );
 // Show filter by categories for custom posts
 function my_restrict_manage_posts() {
 	global $typenow;
+	if ( in_array( $typenow, array( 'product', 'shop_coupon', 'shop_order' ) ) ) {
+		return;
+	}
+
 	$args=array( 'public' => true, '_builtin' => false ); 
 	$post_types = get_post_types($args);
 	if ( in_array($typenow, $post_types) ) {
-	$filters = get_object_taxonomies($typenow);
+		$filters = get_object_taxonomies($typenow);
 		foreach ($filters as $tax_slug) {
 			$tax_obj = get_taxonomy($tax_slug);
 			wp_dropdown_categories(array(
@@ -103,16 +107,21 @@ function my_restrict_manage_posts() {
 		}
 	}
 }
+
 function my_convert_restrict($query) {
 	global $pagenow;
 	global $typenow;
+
+	if ( in_array( $typenow, array( 'product', 'shop_coupon', 'shop_order' ) ) ) {
+		return;
+	}
+
 	if ($pagenow=='edit.php') {
 		$filters = get_object_taxonomies($typenow);
 		foreach ($filters as $tax_slug) {
 			$var = &$query->query_vars[$tax_slug];
 			if ( isset($var) ) {
 				$term = get_term_by('id',$var,$tax_slug);
-				// $var = $term->slug;
 			}
 		}
 	}
