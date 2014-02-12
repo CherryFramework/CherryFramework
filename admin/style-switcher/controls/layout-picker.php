@@ -31,7 +31,30 @@ if ( !class_exists('Layout_Picker_Custom_Control') ) {
 		}
 
 		public function enqueue() {
-			wp_enqueue_style( 'custom_customizer_controls', OPTIONS_FRAMEWORK_DIRECTORY . 'style-switcher/assets/css/customizer-controls.css', false, '', 'all' );
+			wp_enqueue_style( 'custom_customizer_controls', $this->file_uri('admin/style-switcher/assets/css/customizer-controls.css'), false, '', 'all' );
+		}
+
+		/**
+		 * Function used to get the file URI - useful when child theme is used
+		 */
+		public function file_uri( $path = false ) {
+			if ( CURRENT_THEME != 'cherry' ) {
+				if ( $path == false ) {
+					return CHILD_URL;
+				} else {
+					if ( is_file( CHILD_DIR . '/' . $path ) ) {
+						return CHILD_URL . '/' . $path;
+					} else {
+						return PARENT_URL . '/' . $path;
+					}
+				}
+			} else {
+				if ( $path == false ) {
+					return PARENT_URL;
+				} else {
+					return PARENT_URL . '/' . $path;
+				}
+			}
 		}
 	}
 } ?>

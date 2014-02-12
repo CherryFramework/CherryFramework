@@ -132,6 +132,7 @@
 				$url          = get_post_meta($slide->ID, 'my_slider_url', true);
 				$caption      = get_post_meta($slide->ID, 'my_slider_caption', true);
 				$sl_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($slide->ID), 'slider-post-thumbnail');
+				$title        = get_the_title( $slide->ID );
 				$img_class    = "";
 
 				if($sl_image_url[0]==""){
@@ -145,7 +146,7 @@
 					$caption = stripslashes(htmlspecialchars_decode($caption));
 				}
 				echo '<li>';
-					echo '<img data-src="'.$sl_image_url[0].'" width="100%" height="auto" class="slider_img '.$img_class.'" alt="">';
+					echo '<img data-src="'.$sl_image_url[0].'" width="100%" height="auto" class="slider_img '.$img_class.'" alt="'.$title.'">';
 					if($caption!="" || $url!=""){
 						echo '<div class="accordion_caption">'.$caption.$url.'</div>';
 					}

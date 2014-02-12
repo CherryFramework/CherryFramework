@@ -5,7 +5,13 @@
 	margin-left: 0;
 }
 .wp-full-overlay.collapsed .wp-full-overlay-sidebar {
-	margin-left: -200px;
+	margin-left: -210px;
+}
+.wp-full-overlay-sidebar-content {
+	width: 100%;
+	height: 450px;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 .wp-full-overlay a.collapse-sidebar {
 	right: 17px !important;
@@ -45,12 +51,12 @@
 /* form */
 #customize-controls {
 	position: absolute;
-	top: 100px;
+	top: 180px;
 	bottom: auto;
 	overflow: inherit;
 	height: auto;
 	border: none;
-	width: 200px;
+	width: 210px;
 	font-family: 'Montserrat', sans-serif;
 	-webkit-box-shadow: 0 0 5px rgba(0,0,0,.15);
 	box-shadow: 0 0 5px rgba(0,0,0,.15);
@@ -68,7 +74,7 @@
 /* form title */
 #customize-header-actions {
 	display: block;
-	margin-right: -60px;
+	margin-right: -53px;
 	padding: 19px 0 17px 33px;
 	height: auto;
 	background: #404040;
@@ -96,11 +102,11 @@
 	background: #f2f4f5;
 }
 .customize-control {
-	margin-bottom: 0;
+	/*margin-bottom: 0;*/
 }
 /* ul li ul li span */
 .customize-control-title {
-	margin-bottom: 5px;
+	margin-bottom: 12px;
 	text-align: center;
 	font-weight: normal;
 	font-size: 13px;

@@ -106,6 +106,8 @@
 			}
 			if ( $sl_small_image_url[0]!='' ) {
 				$sl_small_image_url[0] = "data-thumb='$sl_small_image_url[0]'";
+			} else {
+				$sl_small_image_url[0] = "data-thumb='$sl_image_url[0]'";
 			}
 
 			echo "<div data-src='$sl_image_url[0]' $url $sl_small_image_url[0]>";

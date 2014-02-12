@@ -40,6 +40,7 @@ if ( !class_exists('Pattern_Custom_Control') ) {
 				<li class="pattern-control">
 					<input id="<?php echo esc_attr( $name ); ?>_<?php echo esc_attr( $key ); ?>" class="pattern-radio" type="radio" value="<?php echo esc_url( $pattern_url ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $pattern ); ?> />
 					<label for="<?php echo esc_attr( $name ); ?>_<?php echo esc_attr( $key ); ?>">
+						<span></span>
 						<img src="<?php echo esc_url( $pattern_url ); ?>" alt="" />
 					</label>
 				</li>
@@ -48,7 +49,8 @@ if ( !class_exists('Pattern_Custom_Control') ) {
 	<?php }
 
 		public function enqueue() {
-			wp_enqueue_style( 'custom_customizer_controls', OPTIONS_FRAMEWORK_DIRECTORY . 'style-switcher/assets/css/customizer-controls.css', false, '', 'all' );
+			// wp_enqueue_style( 'custom_customizer_controls', OPTIONS_FRAMEWORK_DIRECTORY . 'style-switcher/assets/css/customizer-controls.css', false, '', 'all' );
+			wp_enqueue_style( 'custom_customizer_controls', $this->file_uri('admin/style-switcher/assets/css/customizer-controls.css'), false, '', 'all' );
 		}
 
 		/**

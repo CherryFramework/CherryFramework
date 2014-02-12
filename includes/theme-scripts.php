@@ -32,23 +32,16 @@ function cherry_scripts() {
 		wp_enqueue_script('jplayer');
 		wp_enqueue_script('custom');
 
-		switch (of_get_option('slider_type')) {
-			case 'none_slider':
-				break;
-			case 'accordion_slider':
-				wp_register_script('zaccordion', PARENT_URL.'/js/jquery.zaccordion.min.js', array('jquery'), '2.1.0', true);
-				wp_enqueue_script('zaccordion');
-				break;
-			default:
-				wp_register_script('camera', PARENT_URL.'/js/camera.min.js', array('jquery'), '1.3.4', true);
-				wp_enqueue_script('camera');
-				break;
-		}
+		wp_register_script('zaccordion', PARENT_URL.'/js/jquery.zaccordion.min.js', array('jquery'), '2.1.0', true);
+		wp_enqueue_script('zaccordion');
+		wp_register_script('camera', PARENT_URL.'/js/camera.min.js', array('jquery'), '1.3.4', true);
+		wp_enqueue_script('camera');
+
 		// only Portfolio (2-*, 3-*, 4-Columns), Home and Front Pages
-		if ( (is_page_template('page-Portfolio2Cols-filterable.php')) 
-			|| (is_page_template('page-Portfolio3Cols-filterable.php')) 
-			|| (is_page_template('page-Portfolio4Cols-filterable.php')) 
-			|| is_home() 
+		if ( (is_page_template('page-Portfolio2Cols-filterable.php'))
+			|| (is_page_template('page-Portfolio3Cols-filterable.php'))
+			|| (is_page_template('page-Portfolio4Cols-filterable.php'))
+			|| is_home()
 			|| is_front_page()) {
 			wp_register_script('debouncedresize', PARENT_URL.'/js/jquery.debouncedresize.js', array('jquery'), '1.0', true);
 			wp_register_script('ba-resize', PARENT_URL.'/js/jquery.ba-resize.min.js', array('jquery'), '1.1', true);

@@ -44,20 +44,28 @@ class Cherry_Style_Switcher {
 	private function __construct() {
 
 		// This hook allows to define Style Switcher (Theme Customizer) sections, settings, and controls.
-		add_action( 'customize_register', array( $this, 'customize_manager_demo' ));
+		add_action( 'customize_register', array( $this, 'customize_manager_demo' ) );
 
 		// Hook for load customizer-facing stylesheet, script and others.
 		add_action( 'customize_preview_init', array( $this, 'preview_init' ) );
 
-		// Load main stylesheet and script.
+		// Load main stylesheet.
 		add_action( 'cherry_customize_enqueue_styles', array( $this, 'enqueue_styles' ) );
+		add_action( 'customize_controls_init', array( $this, 'delete_demo_css' ) );
 
-		// Hook for update option via ajax
+		// Hook for update option via ajax.
 		add_action( 'wp_ajax_custom_update_option', array( $this, 'custom_update_option' ) );
 		add_action( 'wp_ajax_nopriv_custom_update_option', array( $this, 'custom_update_option' ) );
 
-		// Hook for delete option
+		// Hook for delete option.
 		add_action( 'customize_controls_init', array( $this, 'custom_delete_option' ) );
+
+		// Hook for require template part via ajax.
+		add_action( 'wp_ajax_require_template_part', array( $this, 'require_template_part' ) );
+		add_action( 'wp_ajax_nopriv_require_template_part', array( $this, 'require_template_part' ) );
+
+		// Output CSS for Status Label
+		add_action( 'wp_footer', array( $this, 'add_loader' ), 999 );
 	}
 
 	/**
@@ -85,22 +93,50 @@ class Cherry_Style_Switcher {
 	 * @param     boolean   $path
 	 * @return    string    file absolute path (in the original theme or in the child theme if file exists)
 	 */
-	public static function cherry_file( $path = false ) {
+	public static function file_path( $path = false ) {
 		if ( is_child_theme() ) {
 			if ( $path == false ) {
-				return get_stylesheet_directory();
+				return CHILD_DIR;
 			} else {
-				if ( is_file( get_stylesheet_directory() . '/' . $path ) ) {
-					return get_stylesheet_directory() . '/' . $path;
+				if ( is_file( CHILD_DIR . '/' . $path ) ) {
+					return CHILD_DIR . '/' . $path;
 				} else {
-					return get_template_directory() . '/' . $path;
+					return PARENT_DIR . '/' . $path;
 				}
 			}
 		} else {
 			if ( $path == false ) {
-				return get_template_directory();
+				return PARENT_DIR;
 			} else {
-				return get_template_directory() . '/' . $path;
+				return PARENT_DIR . '/' . $path;
+			}
+		}
+	}
+
+	/**
+	 * Function used to get the file URI - useful when child theme is used
+	 *
+	 * @since     1.0.0
+	 *
+	 * @param     boolean   $path
+	 * @return    string    file absolute path (in the original theme or in the child theme if file exists)
+	 */
+	function file_uri( $path = false ) {
+		if ( CURRENT_THEME != 'cherry' ) {
+			if ( $path == false ) {
+				return CHILD_URL;
+			} else {
+				if ( is_file( CHILD_DIR . '/' . $path ) ) {
+					return CHILD_URL . '/' . $path;
+				} else {
+					return PARENT_URL . '/' . $path;
+				}
+			}
+		} else {
+			if( $path == false ) {
+				return PARENT_URL;
+			} else {
+				return PARENT_URL . '/' . $path;
 			}
 		}
 	}
@@ -111,7 +147,7 @@ class Cherry_Style_Switcher {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->preffix, PARENT_URL . '/admin/style-switcher/assets/css/style-switcher.css', array(), self::VERSION );
+		wp_enqueue_style( $this->preffix, $this->file_uri('admin/style-switcher/assets/css/style-switcher.css'), array(), self::VERSION );
 	}
 
 	/**
@@ -121,10 +157,11 @@ class Cherry_Style_Switcher {
 	 */
 	public function preview_init() {
 		// Register and enqueue main script.
-		wp_enqueue_script( $this->preffix, PARENT_URL . '/admin/style-switcher/assets/js/style-switcher.js', array( 'jquery', 'customize-preview' ), self::VERSION, true );
+		wp_enqueue_script( $this->preffix, $this->file_uri('admin/style-switcher/assets/js/style-switcher.js'), array( 'jquery', 'customize-preview' ), self::VERSION, true );
 
 		// Register and enqueue others stylesheets.
-		add_action( 'wp_head', array( $this, 'print_styles' ), 99 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_demo_style' ), 99 );
+		add_action( 'wp_head', array( $this, 'loader_styles' ), 99 );
 		add_action( 'wp_head', array( $this, 'enqueue_skin_style' ), 999);
 
 		// Include the Ajax library on the front end.
@@ -136,52 +173,73 @@ class Cherry_Style_Switcher {
 	}
 
 	/**
-	 * Read variables.less, compile its and output CSS
+	 * Read variables.less, compile it's and output CSS
 	 *
 	 * @since    1.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	public function print_styles() {
 		if ( !class_exists('lessc') )
 			include_once ( PARENT_DIR .'/includes/lessc.inc.php' );
 
+		$input_file  = '/style.less';
+		$output_file = '/demo-style.css';
+
 		if ( CURRENT_THEME == 'cherry' ) {
-			$variables_file = PARENT_DIR .'/less/variables.less';
-		} else {
-			$variables_file = CHILD_DIR .'/bootstrap/less/variables.less';
-		}
-
-		if ( !file_exists( $variables_file ) )
-			return;
-
-		$all_var_arr = file( $variables_file );
-		if ( $all_var_arr === FALSE )
-			return;
-
-		$other_var_arr = array();
-		foreach ( $all_var_arr as $v ) {
-			if ( $v[0] != '@' )
-				continue;
-
-			$start                    = strpos( $v, ':' );
-			$finish                   = strpos( $v, ';' );
-			$var_name                 = trim( substr($v, 0, $start) );
-			$var_value                = trim( substr($v, $start + 1, ( $finish - $start ) ) );
-			$other_var_arr[$var_name] = $var_value;
+			$input_file  = '/less' . $input_file;
+			$output_file = '/css' . $output_file;
 		}
 
 		global $variablesArray;
-		$links_color                 = of_get_option('links_color');
-		$variablesArray['linkColor'] = $links_color;
-		$all_var_arr                 = array_merge( $other_var_arr, $variablesArray );
-		$less                        = new lessc;
-		$less->setVariables($all_var_arr);
+		$links_color = ( get_option( 'cherry_color_schemes' ) == '' ) ? of_get_option('links_color') : get_option( 'cherry_color_schemes' );
+		$variablesArray['linkColor']      = $links_color;
+		$variablesArray['linkColorHover'] = $links_color;
 
-		$output = "<style type='text/css' id='cherry_customizer_css'>";
-		$output .= "a {color: $links_color;}";
-		$output .= "#back-top span {background-color: $links_color;}";
-		$output .= $less->compileFile( PARENT_DIR . '/admin/style-switcher/assets/less/custom-bootstrap.less' );
+		$formatter = new lessc_formatter_classic;
+		$formatter->indentChar = "\t";
+
+		$less = new lessc;
+		$less->setVariables($variablesArray);
+		$less->setFormatter($formatter);
+
+		try {
+			$less->compileFile( CHILD_DIR . $input_file, CHILD_DIR . $output_file );
+		} catch (Exception $ex) {
+			echo "lessphp fatal error: ".$ex->getMessage();
+		}
+	}
+
+	/**
+	 * Register and enqueue demo (color schemes) stylesheet.
+	 * 
+	 * @since    1.0.0
+	 */
+	public function enqueue_demo_style() {
+		$demo_file = '/demo-style.css';
+		$main_file = '/main-style.css';
+
+		if ( CURRENT_THEME == 'cherry' ) {
+			$demo_file = '/css' . $demo_file;
+			$main_file = '/css/style.css';
+		}
+		if ( file_exists( CHILD_DIR . $demo_file ) ) {
+			wp_enqueue_style( $this->preffix . '-schemes', CHILD_URL . $demo_file, array(), self::VERSION );
+		} else {
+			wp_enqueue_style( $this->preffix . '-schemes', CHILD_URL . $main_file, array(), self::VERSION );
+		}
+	}
+
+	/**
+	 * Output CSS for #style-switcher-status
+	 *
+	 * @since    1.0.0
+	 *
+	 * @return void
+	 */
+	public function loader_styles() {
+		$output = "<style type='text/css' id='cherry_loader_styles'>";
+		$output .= "#style-switcher-status {position: fixed; top: -35px; right: 0; z-index: 9999; display: block; padding: 5px 10px; color: #fff; background-color:#000; background-color: rgba(0,0,0,.8); font: 1em Arial,sans-serif;}";
 		$output .= "</style>";
 		echo $output;
 	}
@@ -193,9 +251,9 @@ class Cherry_Style_Switcher {
 	 */
 	public function enqueue_skin_style() {
 		if ( get_option( 'cherry_color_skin' ) ) {
-			wp_enqueue_style( $this->preffix . '-enqueue_skin', get_option( 'cherry_color_skin' ), array(), self::VERSION );
+			wp_enqueue_style( $this->preffix . '-skin', get_option( 'cherry_color_skin' ), array(), self::VERSION );
 		} else {
-			wp_enqueue_style( $this->preffix . '-enqueue_skin', PARENT_URL . '/css/skin/empty.css', array(), self::VERSION );
+			wp_enqueue_style( $this->preffix . '-skin', PARENT_URL . '/css/skin/empty.css', array(), self::VERSION );
 		}
 	}
 
@@ -248,7 +306,7 @@ class Cherry_Style_Switcher {
 		/* Layout Style */
 		// Custom control - Button
 		if ( ( of_get_option('visible_layout_style_opt') == 'true' ) && ( isset($options['main_layout']) ) ) {
-			require_once $this->cherry_file('admin/style-switcher/controls/button.php');
+			require_once $this->file_path('admin/style-switcher/controls/button.php');
 			$wp_customize->add_setting( CURRENT_THEME.'[main_layout]', array(
 				'type'      => 'option',
 				'transport' => 'postMessage'
@@ -266,7 +324,7 @@ class Cherry_Style_Switcher {
 		/* Color Skin */
 		// Custom control - Skin
 		if ( of_get_option('visible_color_skin_opt') == 'true' ) {
-			require_once $this->cherry_file('admin/style-switcher/controls/skin.php');
+			require_once $this->file_path('admin/style-switcher/controls/skin.php');
 			$wp_customize->add_setting( CURRENT_THEME.'[color_skin]', array(
 				'type'      => 'option',
 				'transport' => 'postMessage'
@@ -284,7 +342,7 @@ class Cherry_Style_Switcher {
 		/* Color Schemes */
 		// Custom control - Button
 		if ( ( of_get_option('visible_color_schemes_opt') == 'true' ) && ( isset($options['main_layout']) ) ) {
-			require_once $this->cherry_file('admin/style-switcher/controls/button.php');
+			require_once $this->file_path('admin/style-switcher/controls/button.php');
 			$wp_customize->add_setting( CURRENT_THEME.'[links_color]', array(
 				'default'   => $options['links_color']['std'],
 				'type'      => 'option',
@@ -312,7 +370,7 @@ class Cherry_Style_Switcher {
 		/* Patterns */
 		// Custom control - Pattern
 		if ( ( of_get_option('visible_patterns_opt') == 'true' ) && ( isset($options['body_background']) ) ) {
-			require_once $this->cherry_file('admin/style-switcher/controls/pattern.php');
+			require_once $this->file_path('admin/style-switcher/controls/pattern.php');
 			$wp_customize->add_setting( CURRENT_THEME.'[body_background][image]', array(
 				'default'   => $options['body_background']['std']['image'],
 				'type'      => 'option',
@@ -331,10 +389,11 @@ class Cherry_Style_Switcher {
 		/* Slider Type */
 		// Custom control - Layout Picker
 		if ( of_get_option('visible_slider_opt') == 'true' ) {
-			require_once $this->cherry_file('admin/style-switcher/controls/layout-picker.php');
+			require_once $this->file_path('admin/style-switcher/controls/layout-picker.php');
 			$wp_customize->add_setting( CURRENT_THEME.'[slider_type]', array(
-				'default' => $options['slider_type']['std'],
-				'type'    => 'option'
+				'default'   => $options['slider_type']['std'],
+				'type'      => 'option',
+				'transport' => 'postMessage'
 			) );
 			$wp_customize->add_control( new Layout_Picker_Custom_Control( $wp_customize, CURRENT_THEME.'_slider_type', array(
 				'label'    => __('Slider', CURRENT_THEME),
@@ -349,10 +408,10 @@ class Cherry_Style_Switcher {
 		/* Blog layout */
 		// Custom control - Layout Picker
 		if ( of_get_option('visible_blog_layout_opt') == 'true' ) {
-			require_once $this->cherry_file('admin/style-switcher/controls/layout-picker.php');
+			require_once $this->file_path('admin/style-switcher/controls/layout-picker.php');
 			$wp_customize->add_setting( CURRENT_THEME.'[blog_sidebar_pos]', array(
-				'default' => $options['blog_sidebar_pos']['std'],
-				'type'    => 'option'
+				'default'   => $options['blog_sidebar_pos']['std'],
+				'type'      => 'option'
 			) );
 			$wp_customize->add_control( new Layout_Picker_Custom_Control( $wp_customize, CURRENT_THEME.'_blog_sidebar_pos', array(
 				'label'    => $options['blog_sidebar_pos']['name'],
@@ -382,7 +441,9 @@ class Cherry_Style_Switcher {
 		if ( isset($option_name) && isset($option_value) ) {
 			update_option( $option_name, $option_value );
 		}
-
+		if ( $option_name == 'cherry_color_schemes' ) {
+			$this->print_styles();
+		}
 		exit;
 	}
 
@@ -395,6 +456,7 @@ class Cherry_Style_Switcher {
 	 */
 	public function custom_delete_option() {
 		delete_option('cherry_color_skin');
+		delete_option('cherry_color_schemes');
 	}
 
 	/**
@@ -408,5 +470,57 @@ class Cherry_Style_Switcher {
 		$output .= '</script>';
 
 		echo $output;
+	}
+
+	/**
+	 * Require template part requested via Ajax
+	 *
+	 * @since   1.0.0
+	 */
+	public function require_template_part() {
+		if ( !empty($_POST) && array_key_exists('template_part', $_POST) ) {
+			$template_part = $_POST['template_part'];
+
+			switch ( $template_part ) {
+				case 'camera_slider':
+					require_once $this->file_path( 'slider.php' );
+					break;
+				case 'accordion_slider':
+					require_once $this->file_path( 'accordion.php' );
+					break;
+				default:
+					break;
+			}
+		}
+		exit;
+	}
+
+	/**
+	 * Add tag div with loading...
+	 *
+	 * @since   1.0.0
+	 */
+	public function add_loader() {
+		$output = '<div id="style-switcher-status"></div>';
+		echo $output;
+	}
+
+	/**
+	 * Delete demo stylesheet
+	 * 
+	 * @since   1.0.0
+	 */
+	public function delete_demo_css() {
+		if ( FILE_WRITEABLE ) {
+			$demo_file = '/demo-style.css';
+
+			if ( CURRENT_THEME == 'cherry' ) {
+				$demo_file = '/css' . $demo_file;
+			}
+
+			if ( file_exists( CHILD_DIR . $demo_file ) ) {
+				unlink( CHILD_DIR . $demo_file );
+			}
+		}
 	}
 }

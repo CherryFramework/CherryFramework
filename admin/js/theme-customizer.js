@@ -29,18 +29,6 @@
 			$('.header').css({'background-color': to})
 		})
 	});
-	wp.customize(CURRENT_THEME + '[links_color]', function(value) {
-		value.bind(function(to) {
-			var option_arr = ['links_color', 'menu_typography'];
-			$('a')
-				.not('.btn')
-				.not('.sf-menu > li > a')
-				.not('.nav.footer-nav a')
-				.css({'color': to});
-			$('.btn-primary').css({'background': to});
-			$('#back-top span').css({'background-color': to});
-		})
-	});
 	wp.customize(CURRENT_THEME + '[g_breadcrumbs_id]', function(value) {
 		value.bind(function(to) {
 			if ('no' === to) {

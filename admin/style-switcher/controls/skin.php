@@ -51,7 +51,7 @@ if ( !class_exists('Skin_Custom_Control') ) {
 	<?php }
 
 		public function enqueue() {
-			wp_enqueue_style( 'custom_customizer_controls', OPTIONS_FRAMEWORK_DIRECTORY . 'style-switcher/assets/css/customizer-controls.css', false, '', 'all' );
+			wp_enqueue_style( 'custom_customizer_controls', $this->file_uri('admin/style-switcher/assets/css/customizer-controls.css'), false, '', 'all' );
 		}
 
 		/**
