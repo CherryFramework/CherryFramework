@@ -81,53 +81,59 @@ add_filter( 'manage_pages_columns', 'fb_AddThumbColumn' );
 add_action( 'manage_pages_custom_column', 'fb_AddThumbValue', 10, 2 );
 }
 
-// Show filter by categories for custom posts
-function my_restrict_manage_posts() {
-	global $typenow;
-	if ( in_array( $typenow, array( 'product', 'shop_coupon', 'shop_order' ) ) ) {
-		return;
-	}
+/**
+ * Add dropdowns for portfolio filters in admin
+ */
+function cherry_show_portfolio_filter() {
+	global $typenow, $wp_query;
 
-	$args=array( 'public' => true, '_builtin' => false ); 
-	$post_types = get_post_types($args);
-	if ( in_array($typenow, $post_types) ) {
-		$filters = get_object_taxonomies($typenow);
-		foreach ($filters as $tax_slug) {
-			$tax_obj = get_taxonomy($tax_slug);
+	if ($typenow=='portfolio') :
+		$portf_taxes = array( 'portfolio_category', 'portfolio_tag' );
+		foreach ($portf_taxes as $tax) {
+			$tax_obj = get_taxonomy($tax);
+
+			if ( isset($_GET[$tax]) ) {
+				$selected = $_GET[$tax];
+			} else {
+				$selected = '';
+			}
+
 			wp_dropdown_categories(array(
-				'show_option_all' => theme_locals("show_all").$tax_obj->label,
-				'taxonomy' => $tax_slug,
-				'name' => $tax_obj->name,
-				'orderby' => 'term_order',
-				// 'selected' => $_GET[$tax_obj->query_var],
-				'hierarchical' => $tax_obj->hierarchical,
-				'show_count' => false,
-				'hide_empty' => true
+				'show_option_all' => theme_locals("show_all") . $tax_obj->label,
+				'taxonomy'        => $tax,
+				'name'            => $tax_obj->name,
+				'orderby'         => 'term_order',
+				'selected'        => $selected,
+				'hierarchical'    => $tax_obj->hierarchical,
+				'show_count'      => false,
+				'hide_empty'      => true
 			));
 		}
-	}
+	endif;
 }
+add_action('restrict_manage_posts', 'cherry_show_portfolio_filter');
 
-function my_convert_restrict($query) {
-	global $pagenow;
-	global $typenow;
+/**
+ * Filter portfolio by cats and tags
+ */
+function cherry_portfolio_filter_query( $query ) {
+	global $typenow, $wp_query;
 
-	if ( in_array( $typenow, array( 'product', 'shop_coupon', 'shop_order' ) ) ) {
-		return;
-	}
+	if ( $typenow == 'portfolio' ) {
+		// By Categories
+		if ( isset($_GET['portfolio_category']) && ! empty( $_GET['portfolio_category'] ) && 0 != $_GET['portfolio_category'] ) {
+				$cat_term = get_term_by( 'id', $_GET['portfolio_category'], 'portfolio_category' );
+			$query->query_vars['portfolio_category'] = $cat_term->slug;
+		}
 
-	if ($pagenow=='edit.php') {
-		$filters = get_object_taxonomies($typenow);
-		foreach ($filters as $tax_slug) {
-			$var = &$query->query_vars[$tax_slug];
-			if ( isset($var) ) {
-				$term = get_term_by('id',$var,$tax_slug);
-			}
+		// By Tags
+		if ( isset($_GET['portfolio_tag']) && ! empty( $_GET['portfolio_tag'] ) && 0 != $_GET['portfolio_tag'] ) {
+				$tag_term = get_term_by( 'id', $_GET['portfolio_tag'], 'portfolio_tag' );
+			$query->query_vars['portfolio_tag'] = $tag_term->slug;
 		}
 	}
 }
-add_action('restrict_manage_posts', 'my_restrict_manage_posts' );
-add_filter('parse_query','my_convert_restrict');
+add_filter( 'parse_query', 'cherry_portfolio_filter_query' );
 
 // Add to admin_init function
 add_action('manage_portfolio_posts_custom_column' , 'custom_portfolio_columns', 10, 2);
