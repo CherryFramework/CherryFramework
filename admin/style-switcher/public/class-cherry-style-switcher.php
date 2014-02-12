@@ -168,7 +168,13 @@ class Cherry_Style_Switcher {
 		add_action( 'wp_head', array( $this, 'add_ajax_library' ) );
 
 		if ( of_get_option('main_layout') === 'fixed' ) {
-			add_filter( 'body_class', array( $this, 'layout_class' ) );
+			$body_class = get_body_class();
+
+			if ( !in_array('cherry-fixed-layout', $body_class) ) {
+				add_filter( 'body_class', array( $this, 'layout_class' ) );
+			}
+		} elseif ( of_get_option('main_layout') === 'fullwidth' ) {
+			add_filter('body_class', array( $this, 'remove_body_class' ), 20, 2);
 		}
 	}
 
@@ -270,6 +276,13 @@ class Cherry_Style_Switcher {
 		$classes[] = 'cherry-fixed-layout';
 
 		return $classes;
+	}
+
+	public function remove_body_class( $wp_classes ) {
+		foreach ( $wp_classes as $key => $value ) {
+			if ( $value == 'cherry-fixed-layout' ) unset( $wp_classes[$key] );
+		}
+		return $wp_classes;
 	}
 
 	/**

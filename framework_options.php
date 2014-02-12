@@ -1567,8 +1567,17 @@ add_action('customize_register', 'cherry_register');
 		}
 	}
 
+	add_action( 'customize_preview_init', 'cherry_customize_preview_js' );
 	function cherry_customize_preview_js() {
 		wp_enqueue_script( 'cherry-customizer', OPTIONS_FRAMEWORK_DIRECTORY . 'js/theme-customizer.min.js', array( 'customize-preview' ), CHERRY_VER, true );
 	}
-	add_action( 'customize_preview_init', 'cherry_customize_preview_js' );
+
+	if ( of_get_option('main_layout') === 'fixed' ) {
+		add_action( 'wp_head', 'cherry_customizer_css' );
+		function cherry_customizer_css() { ?>
+		<style type="text/css">
+			.cherry-fixed-layout .main-holder { background: <?php echo (of_get_option('main_background')!='') ? of_get_option('main_background') : 'transparent'; ?>; }
+		</style>
+		<?php }
+	}
 ?>

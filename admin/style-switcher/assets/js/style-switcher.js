@@ -69,7 +69,6 @@
 		} else {
 			css[i].href = css[i].href.replace(/\?.*|$/, query);
 		}
-		console.log(css[i]);
 	};
 	function get_slider_template_part(t){
 		var $data = {
