@@ -65,7 +65,7 @@ class Cherry_Style_Switcher {
 		add_action( 'wp_ajax_nopriv_require_template_part', array( $this, 'require_template_part' ) );
 
 		// Output CSS for Status Label
-		add_action( 'wp_footer', array( $this, 'add_loader' ), 999 );
+		add_action( 'wp_footer', array( $this, 'add_spiner' ), 999 );
 	}
 
 	/**
@@ -156,6 +156,8 @@ class Cherry_Style_Switcher {
 	 * @since    1.0.0
 	 */
 	public function preview_init() {
+		// Register and enqueue spin.js script.
+		wp_enqueue_script( 'spin', PARENT_URL . '/admin/style-switcher/assets/js/spin.min.js', array( 'jquery', 'customize-preview' ), '1.3.3', true );
 		// Register and enqueue main script.
 		wp_enqueue_script( $this->preffix, $this->file_uri('admin/style-switcher/assets/js/style-switcher.js'), array( 'jquery', 'customize-preview' ), self::VERSION, true );
 
@@ -164,8 +166,8 @@ class Cherry_Style_Switcher {
 		add_action( 'wp_head', array( $this, 'loader_styles' ), 99 );
 		add_action( 'wp_head', array( $this, 'enqueue_skin_style' ), 999);
 
-		// Include the Ajax library on the front end.
-		add_action( 'wp_head', array( $this, 'add_ajax_library' ) );
+		// Output JavaScript variables on the front end.
+		add_action( 'wp_head', array( $this, 'add_js_var' ) );
 
 		if ( of_get_option('main_layout') === 'fixed' ) {
 			$body_class = get_body_class();
@@ -244,8 +246,8 @@ class Cherry_Style_Switcher {
 	 * @return void
 	 */
 	public function loader_styles() {
-		$output = "<style type='text/css' id='cherry_loader_styles'>";
-		$output .= "#style-switcher-status {position: fixed; top: -35px; right: 0; z-index: 9999; display: block; padding: 5px 10px; color: #fff; background-color:#000; background-color: rgba(0,0,0,.8); font: 1em Arial,sans-serif;}";
+		$output = "<style type='text/css'>";
+		$output .= "#style-switcher-spin {position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 0; display: none; background-color: #000;}";
 		$output .= "</style>";
 		echo $output;
 	}
@@ -473,13 +475,14 @@ class Cherry_Style_Switcher {
 	}
 
 	/**
-	 * Adds the WordPress Ajax Library to the frontend.
+	 * Adds the JavaScript variables to the frontend.
 	 *
 	 * @since   1.0.0
 	 */
-	public function add_ajax_library() {
+	public function add_js_var() {
 		$output = '<script type="text/javascript">';
-			$output .= 'var ajaxurl = "' . admin_url( 'admin-ajax.php' ) . '"';
+			$output .= 'var ajaxurl = "' . admin_url( 'admin-ajax.php' ) . '", ';
+			$output .= 'curslider = "' . of_get_option( 'slider_type' ) . '"';
 		$output .= '</script>';
 
 		echo $output;
@@ -509,12 +512,12 @@ class Cherry_Style_Switcher {
 	}
 
 	/**
-	 * Add tag div with loading...
+	 * Add tag div for spiner
 	 *
 	 * @since   1.0.0
 	 */
-	public function add_loader() {
-		$output = '<div id="style-switcher-status"></div>';
+	public function add_spiner() {
+		$output = '<div id="style-switcher-spin"></div>';
 		echo $output;
 	}
 

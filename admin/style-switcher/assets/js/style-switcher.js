@@ -1,27 +1,27 @@
 (function($) {
+	// Main Layout Option (FullWidth or Fixed)
 	wp.customize(CURRENT_THEME + '[main_layout]', function(value) {
 		value.bind(function(to) {
-			var $body = $('body');
-			if (to === 'fullwidth') {
-				$body.removeClass('cherry-fixed-layout');
-			} else if (to === 'fixed') {
-				$body.addClass('cherry-fixed-layout');
-			};
+			get_slider_template_part(curslider, 'main_layout', to);
 		})
 	});
+	// Color Skin Option (ex. Dark or Light)
 	wp.customize(CURRENT_THEME + '[color_skin]', function(value) {
 		value.bind(function(to) {
 			update_option('cherry_color_skin', to);
 		})
 	});
+	// Color Schemes Option
 	wp.customize(CURRENT_THEME + '[links_color]', function(value) {
 		value.bind(function(to) {
 			update_option('cherry_color_schemes', to);
 		})
 	});
+	// Slider Type Option (Camera, Accardion or None)
 	wp.customize(CURRENT_THEME + '[slider_type]', function(value) {
 		value.bind(function(to) {
-			get_slider_template_part(to);
+			curslider = to;
+			get_slider_template_part(to, 'slider_type');
 		})
 	});
 	function update_option(n,v){
@@ -29,37 +29,32 @@
 				action: 'custom_update_option',
 				option_name: n,
 				option_value: v
-			},
-			$status = $('#style-switcher-status');
+			};
+
 		$.ajax({
 			type: 'POST',
 			url: ajaxurl,
 			data: $data,
+			dataType: 'html',
 			beforeSend: function(){
-				$status
-					.text('saving...')
-					.stop()
-					.animate({top:0});
+				fade_out();
 			},
-			success: function(x,t){
+			success: function(){
 				if (n === 'cherry_color_skin') {
-					reload_css(v);
+					change_css(v);
 				};
 				if (n === 'cherry_color_schemes') {
-					refresh_css(v);
+					reload_css();
 				};
-				$status
-					.text(t)
-					.delay(1000)
-					.animate({top:-$status.innerHeight()});
+				fade_in();
 			}
 		});
 	};
-	function reload_css(v){
+	function change_css(url){
 		var css = $('link#cherry-style-switcher-skin-css');
-		css[0].href = v;
+		css[0].href = url;
 	};
-	function refresh_css(v){
+	function reload_css(){
 		var query = '?reload=' + new Date().getTime(),
 			css = $('link#cherry-style-switcher-schemes-css'),
 			i = 0;
@@ -70,37 +65,42 @@
 			css[i].href = css[i].href.replace(/\?.*|$/, query);
 		}
 	};
-	function get_slider_template_part(t){
+	function get_slider_template_part(slider,option,value){
 		var $data = {
 				action: 'require_template_part',
-				template_part: t
-			},
-			$status = $('#style-switcher-status');
-		if ('none_slider' === t) {
+				template_part: slider
+			};
+
+		if ('none_slider' === slider) {
+
 			$('#slider-wrapper')
 				.parent()
 				.html('<div class="slider_off"></div>');
 		} else {
+
 			if ($('#slider-wrapper').length) {
-				$slider = $('#slider-wrapper');
-			} else{
-				$slider = $('.slider_off');
-			};
+				$slider_wrap = $('#slider-wrapper');
+			} else {
+				$slider_wrap = $('.slider_off');
+			}
+
 			$.ajax({
 				type: 'POST',
 				url: ajaxurl,
 				data: $data,
+				dataType: 'html',
 				beforeSend: function(){
-					$slider.css({'display': 'none'});
-					$status
-						.text('saving...')
-						.stop()
-						.animate({top:0});
+					fade_out();
 				},
-				success: function(x,t){
-					$slider
+				success: function(x){
+					if ('main_layout' === option) {
+						change_layout(value);
+					};
+					$slider_wrap
+						.hide()
 						.parent()
 						.html('<div id="slider-wrapper">' + x + '</div>');
+
 					var imgs = $('.accordion_wrap img');
 					if (imgs){
 						for (var i = 0; i < imgs.length; i++) {
@@ -108,13 +108,59 @@
 							img.attr({'src':img.attr('data-src')}).removeAttr('data-src');
 						};
 					}
-					$slider.css({'display': 'block'});
-					$status
-						.text(t)
-						.delay(1000)
-						.animate({top:-$status.innerHeight()});
+					$slider_wrap.show();
+					fade_in();
 				}
 			});
-		};
+		}
+	};
+	function change_layout(to) {
+		var $body = $('body');
+		if ('fullwidth' === to) {
+			$body.removeClass('cherry-fixed-layout');
+		} else if ('fixed' === to) {
+			$body.addClass('cherry-fixed-layout');
+		}
+	}
+	function fade_out(){
+		$('#style-switcher-spin').show();
+		spinner_init();
+		$('#style-switcher-spin')
+			.css('zIndex', 999)
+			.css('opacity', 0)
+			.stop()
+			.animate({opacity:0.75},
+					500,
+					'easeInQuad');
+	}
+	function fade_in(){
+		$('#style-switcher-spin')
+			.stop()
+			.animate(
+				{opacity:0},
+				1000,
+				'easeOutQuad',
+				function() {
+					$(this)
+						.css('zIndex', 0)
+						.hide()
+				}
+			)
+			.html('');
+	}
+	function spinner_init(){
+		var opts = {
+			lines: 11,
+			length: 10,
+			width: 5,
+			radius: 14,
+			direction: -1,
+			corners: 1,
+			color: '#fff',
+			speed: 1.0,
+			trail: 5,
+			shadow: true
+		},
+		spinner = new Spinner(opts).spin($('#style-switcher-spin')[0]);
 	}
 })(jQuery);
