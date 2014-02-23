@@ -58,7 +58,7 @@ class Cherry_Style_Switcher {
 		add_action( 'wp_ajax_nopriv_custom_update_option', array( $this, 'custom_update_option' ) );
 
 		// Hook for delete option.
-		add_action( 'customize_controls_init', array( $this, 'custom_delete_option' ) );
+		add_action( 'wp_footer', array( $this, 'custom_delete_option' ) );
 
 		// Hook for require template part via ajax.
 		add_action( 'wp_ajax_require_template_part', array( $this, 'require_template_part' ) );
@@ -411,7 +411,7 @@ class Cherry_Style_Switcher {
 				'transport' => 'postMessage'
 			) );
 			$wp_customize->add_control( new Layout_Picker_Custom_Control( $wp_customize, CURRENT_THEME.'_slider_type', array(
-				'label'    => __('Slider', CURRENT_THEME),
+				'label'    => __('Slider Type', CURRENT_THEME),
 				'section'  => CURRENT_THEME.'_style_switcher',
 				'settings' => CURRENT_THEME.'[slider_type]',
 				'choices'  => $options['slider_type']['options'],
@@ -446,7 +446,7 @@ class Cherry_Style_Switcher {
 	 *
 	 * @return   void
 	 */
-	public function custom_update_option() {
+	public function custom_update_option( $is_exit = true ) {
 		if ( !empty($_POST) && array_key_exists('option_name', $_POST) ) {
 			$option_name = $_POST['option_name'];
 		}
@@ -456,10 +456,12 @@ class Cherry_Style_Switcher {
 		if ( isset($option_name) && isset($option_value) ) {
 			update_option( $option_name, $option_value );
 		}
-		if ( $option_name == 'cherry_color_schemes' ) {
+		if ( isset($option_name) && ($option_name == 'cherry_color_schemes') ) {
 			$this->print_styles();
 		}
-		exit;
+		if ( $is_exit ) {
+			exit;
+		}
 	}
 
 	/**
@@ -472,6 +474,7 @@ class Cherry_Style_Switcher {
 	public function custom_delete_option() {
 		delete_option('cherry_color_skin');
 		delete_option('cherry_color_schemes');
+		delete_option(CURRENT_THEME . '_main_layout');
 	}
 
 	/**
@@ -497,6 +500,8 @@ class Cherry_Style_Switcher {
 		if ( !empty($_POST) && array_key_exists('template_part', $_POST) ) {
 			$template_part = $_POST['template_part'];
 
+			$this->custom_update_option( false );
+
 			switch ( $template_part ) {
 				case 'camera_slider':
 					require_once $this->file_path( 'slider.php' );
@@ -507,6 +512,8 @@ class Cherry_Style_Switcher {
 				default:
 					break;
 			}
+
+			$this->custom_delete_option();
 		}
 		exit;
 	}
