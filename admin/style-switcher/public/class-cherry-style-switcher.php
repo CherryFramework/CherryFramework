@@ -58,7 +58,7 @@ class Cherry_Style_Switcher {
 		add_action( 'wp_ajax_nopriv_custom_update_option', array( $this, 'custom_update_option' ) );
 
 		// Hook for delete option.
-		add_action( 'wp_footer', array( $this, 'custom_delete_option' ) );
+		add_action( 'customize_controls_init', array( $this, 'custom_delete_option' ) );
 
 		// Hook for require template part via ajax.
 		add_action( 'wp_ajax_require_template_part', array( $this, 'require_template_part' ) );
@@ -414,7 +414,10 @@ class Cherry_Style_Switcher {
 				'label'    => __('Slider Type', CURRENT_THEME),
 				'section'  => CURRENT_THEME.'_style_switcher',
 				'settings' => CURRENT_THEME.'[slider_type]',
-				'choices'  => $options['slider_type']['options'],
+				// 'choices'  => $options['slider_type']['options'],
+				'choices'  => array(
+									'camera_slider'    => PARENT_URL . '/includes/images/slider_type_1.png',
+									'accordion_slider' => PARENT_URL . '/includes/images/slider_type_2.png'),
 				'type'     => 'layout-picker',
 				'priority' => 5
 			) ) );
@@ -513,7 +516,7 @@ class Cherry_Style_Switcher {
 					break;
 			}
 
-			$this->custom_delete_option();
+			// $this->custom_delete_option();
 		}
 		exit;
 	}

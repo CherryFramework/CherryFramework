@@ -17,7 +17,7 @@
 			update_option('cherry_color_schemes', to);
 		})
 	});
-	// Slider Type Option (Camera, Accardion or None)
+	// Slider Type Option (Camera or Accardion)
 	wp.customize(CURRENT_THEME + '[slider_type]', function(value) {
 		value.bind(function(to) {
 			curslider = to;
@@ -49,11 +49,11 @@
 				fade_in();
 			}
 		});
-	};
+	}
 	function change_css(url){
 		var css = $('link#cherry-style-switcher-skin-css');
 		css[0].href = url;
-	};
+	}
 	function reload_css(){
 		var query = '?reload=' + new Date().getTime(),
 			css = $('link#cherry-style-switcher-schemes-css'),
@@ -64,58 +64,45 @@
 		} else {
 			css[i].href = css[i].href.replace(/\?.*|$/, query);
 		}
-	};
+	}
 	function get_slider_template_part(slider,option,value){
 		var $data = {
 				action: 'require_template_part',
 				template_part: slider,
 				option_name: CURRENT_THEME+'_main_layout',
 				option_value: value
-			};
+			},
+			$slider_wrap = $('#slider-wrapper');
 
-		if ('none_slider' === slider) {
+		$.ajax({
+			type: 'POST',
+			url: ajaxurl,
+			data: $data,
+			dataType: 'html',
+			beforeSend: function(){
+				fade_out();
+			},
+			success: function(x){
+				if ('main_layout' === option) {
+					change_layout(value);
+				};
+				$slider_wrap
+					.hide()
+					.parent()
+					.html('<div id="slider-wrapper" class="slider">' + x + '</div>');
 
-			$('#slider-wrapper')
-				.parent()
-				.html('<div class="slider_off"></div>');
-		} else {
-
-			if ($('#slider-wrapper').length) {
-				$slider_wrap = $('#slider-wrapper');
-			} else {
-				$slider_wrap = $('.slider_off');
-			}
-
-			$.ajax({
-				type: 'POST',
-				url: ajaxurl,
-				data: $data,
-				dataType: 'html',
-				beforeSend: function(){
-					fade_out();
-				},
-				success: function(x){
-					if ('main_layout' === option) {
-						change_layout(value);
+				var imgs = $('.accordion_wrap img');
+				if (imgs){
+					for (var i = 0; i < imgs.length; i++) {
+						img = $('.accordion_wrap img').eq(i);
+						img.attr({'src':img.attr('data-src')}).removeAttr('data-src');
 					};
-					$slider_wrap
-						.hide()
-						.parent()
-						.html('<div id="slider-wrapper">' + x + '</div>');
-
-					var imgs = $('.accordion_wrap img');
-					if (imgs){
-						for (var i = 0; i < imgs.length; i++) {
-							img = $('.accordion_wrap img').eq(i);
-							img.attr({'src':img.attr('data-src')}).removeAttr('data-src');
-						};
-					}
-					$slider_wrap.show();
-					fade_in();
 				}
-			});
-		}
-	};
+				$slider_wrap.show();
+				fade_in();
+			}
+		});
+	}
 	function change_layout(to){
 		var $body = $('body');
 		if ('fullwidth' === to) {
