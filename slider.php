@@ -8,7 +8,7 @@
 		'post_type'        => 'slider',
 		'posts_per_page'   => -1,
 		'post_status'      => 'publish',
-		'orderby'          => 'title',
+		'orderby'          => 'date',
 		'order'            => 'ASC',
 		'suppress_filters' => $suppress_filters
 		);
