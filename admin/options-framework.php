@@ -221,10 +221,10 @@ function optionsframework_load_scripts() {
 
 function optionsframework_load_scripts_store() {
 	// Enqueued scripts
-	wp_enqueue_script('core', 'http://www.templatehelp.com/codes/jsbanner/a04/js/core.js', array('jquery'));
-	wp_enqueue_script('jcarousel', 'http://www.templatehelp.com/codes/jsbanner/a04/js/jquery.jcarousel.min.js', array('jquery'));
-	wp_enqueue_script('ajaxbanner', 'http://www.templatehelp.com/codes/jsbanner/a04/js/ajaxbanner.js', array('jquery'));
-	wp_enqueue_script('ajaxbannerjquery', 'http://www.templatehelp.com/codes/jsbanner/a04/ajaxbanner.php?banner_id=jsbanner&features=cherry-framework&property[2553][0]=42645&type=17&category=&package=&types=17&orientation=horizontal&skin=blue&pr_code=yB4zGJx5Q0cY73K5N8GC8r3n6BI91a&unbranded=0&size=5&count=30&pr_code=4j5VV9LLkf2aUvBh1TnnTxwbf3xX1C', array('jquery'));
+	wp_enqueue_script('core', '//www.templatehelp.com/codes/jsbanner/a04/js/core.js', array('jquery'));
+	wp_enqueue_script('jcarousel', '//www.templatehelp.com/codes/jsbanner/a04/js/jquery.jcarousel.min.js', array('jquery'));
+	wp_enqueue_script('ajaxbanner', '//www.templatehelp.com/codes/jsbanner/a04/js/ajaxbanner.js', array('jquery'));
+	wp_enqueue_script('ajaxbannerjquery', '//www.templatehelp.com/codes/jsbanner/a04/ajaxbanner.php?banner_id=jsbanner&features=cherry-framework&property[2553][0]=42645&type=17&category=&package=&types=17&orientation=horizontal&skin=blue&pr_code=yB4zGJx5Q0cY73K5N8GC8r3n6BI91a&unbranded=0&size=5&count=30&pr_code=4j5VV9LLkf2aUvBh1TnnTxwbf3xX1C', array('jquery'));
 	
 	// Inline scripts from options-interface.php
 	add_action('admin_head', 'of_admin_head');
@@ -268,7 +268,7 @@ if ( !function_exists( 'optionsframework_page' ) ) {
 				if(get_bloginfo("language")=="ru_RU" || get_bloginfo("language")=="es_ES" || get_bloginfo("language")=="de_DE"){
 					$locals = substr(get_bloginfo("language"), 0, 2)."/";
 				}
-				$doc_link = 'http://info.template-help.com/help/quick-start-guide/';
+				$doc_link = '//info.template-help.com/help/quick-start-guide/';
 				if (class_exists('Woocommerce')) {
 					$doc_link .= 'woocommerce/';
 				} elseif (function_exists('jigoshop_init')) {
@@ -276,7 +276,7 @@ if ( !function_exists( 'optionsframework_page' ) ) {
 				} else {
 					$doc_link .= 'cherry-framework/';
 				}
-				echo '<a class="icon-a icon-support" href="http://info.template-help.com/help/'.$locals.'cms-blog-templates/wordpress/wordpress-tutorials/" target="_blank"><span class="icon"><span>'.theme_locals("support").'</span></span></a>';
+				echo '<a class="icon-a icon-support" href="//info.template-help.com/help/'.$locals.'cms-blog-templates/wordpress/wordpress-tutorials/" target="_blank"><span class="icon"><span>'.theme_locals("support").'</span></span></a>';
 				echo "<a class='icon-a icon-documentation' href='$doc_link' target='_blank'><span class='icon'><span>".theme_locals('documentation')."</span></span></a>";
 			?>
 		</div>

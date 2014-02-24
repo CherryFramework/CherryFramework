@@ -19,13 +19,13 @@
 <script type="text/javascript">
 	(function() {
 		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-		po.src = 'https://apis.google.com/js/plusone.js';
+		po.src = '//apis.google.com/js/plusone.js';
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 	})();
 </script>
 <ul class="share-buttons unstyled clearfix">
 	<li class="twitter">
-		<a href="http://twitter.com/share?url=<?php echo $permalink; ?>&amp;text=<?php echo get_the_title().' - '.$permalink; ?>" class="twitter-share-button" data-count="horizontal"><?php echo theme_locals("tweet_this_article") ?></a>
+		<a href="//twitter.com/share?url=<?php echo $permalink; ?>&amp;text=<?php echo get_the_title().' - '.$permalink; ?>" class="twitter-share-button" data-count="horizontal"><?php echo theme_locals("tweet_this_article") ?></a>
 		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	</li>
 	<li class="facebook">
@@ -35,7 +35,7 @@
 		<div class="g-plusone" data-size="medium" data-href="<?php echo $permalink; ?>"></div>
 	</li>
 	<li class="pinterest">
-		<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)})());"><img src='http://assets.pinterest.com/images/PinExt.png' alt=""/></a>
+		<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','//assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)})());"><img src='//assets.pinterest.com/images/PinExt.png' alt=""/></a>
 	</li>
 </ul><!-- //.share-buttons -->
 <?php } ?>
