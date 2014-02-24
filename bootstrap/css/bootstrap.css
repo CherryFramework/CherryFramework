@@ -117,7 +117,7 @@ body {
 	font-size:12px;
 	line-height:18px;
 	color:#333333;
-	background-color:#4dd646;
+	background-color:#fff;
 }
 a {
 	color:#0088cc;
@@ -1035,7 +1035,7 @@ table {
 .table thead th { vertical-align:bottom; }
 .table caption + thead tr:first-child th, .table caption + thead tr:first-child td, .table colgroup + thead tr:first-child th, .table colgroup + thead tr:first-child td, .table thead:first-child tr:first-child th, .table thead:first-child tr:first-child td { border-top:0; }
 .table tbody + tbody { border-top:2px solid #DDD; }
-.table .table { background-color:#4dd646; }
+.table .table { background-color:#fff; }
 .table-condensed th, .table-condensed td { padding:4px 5px; }
 .table-bordered {
 	border:1px solid #DDD;
@@ -1961,7 +1961,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 .nav-tabs > li > a:hover, .nav-tabs > li > a:focus { border-color:#eee #eee #ddd; }
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
 	color:#555;
-	background-color:#4dd646;
+	background-color:#fff;
 	border:1px solid #ddd;
 	border-bottom-color:transparent;
 	cursor:default;

@@ -68,7 +68,9 @@
 	function get_slider_template_part(slider,option,value){
 		var $data = {
 				action: 'require_template_part',
-				template_part: slider
+				template_part: slider,
+				option_name: CURRENT_THEME+'_main_layout',
+				option_value: value
 			};
 
 		if ('none_slider' === slider) {
@@ -114,7 +116,7 @@
 			});
 		}
 	};
-	function change_layout(to) {
+	function change_layout(to){
 		var $body = $('body');
 		if ('fullwidth' === to) {
 			$body.removeClass('cherry-fixed-layout');
