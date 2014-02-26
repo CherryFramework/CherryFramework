@@ -22,7 +22,7 @@ if ( !$category_value ) {
 							$args = array(
 								'post_type'        => 'portfolio',
 								'posts_per_page'   => -1,
-								'post_status'      => 'publish', 
+								'post_status'      => 'publish',
 								'orderby'          => 'name',
 								'order'            => 'ASC',
 								'suppress_filters' => $suppress_filters
@@ -30,22 +30,26 @@ if ( !$category_value ) {
 							$portfolio_posts = get_posts($args);
 
 							foreach( $portfolio_posts as $k => $portfolio ) {
-								// Unset not translated posts
-								if ( function_exists( 'wpml_get_language_information' ) ) {
+								//Check if WPML is activated
+								if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
 									global $sitepress;
 
-									$check               = wpml_get_language_information( $portfolio->ID );
-									$language_code = substr( $check['locale'], 0, 2 );
-									if ( $language_code != $sitepress->get_current_language() ) unset( $portfolio_posts[$k] );
-
+									$post_lang = $sitepress->get_language_for_element($portfolio->ID, 'portfolio');
+									$curr_lang = $sitepress->get_current_language();
+									// Unset not translated posts
+									if ( $post_lang != $curr_lang ) {
+										unset( $portfolio_posts[$k] );
+									}
 									// Post ID is different in a second language Solution
-									if ( function_exists( 'icl_object_id' ) ) $portfolio = get_post( icl_object_id( $portfolio->ID, 'portfolio', true ) );
+									if ( function_exists( 'icl_object_id' ) ) {
+										$portfolio = get_post( icl_object_id( $portfolio->ID, 'portfolio', true ) );
+									}
 								}
 							}
 							$count_posts = count($portfolio_posts);
 						?>
 						<li class="active"><a href="#" data-count="<?php echo $count_posts; ?>" data-filter><?php echo theme_locals("show_all"); ?></a></li>
-						<?php 
+						<?php
 							$filter_array = array();
 							$portfolio_categories = get_categories(array('taxonomy'=>'portfolio_category'));
 							foreach($portfolio_categories as $portfolio_category) {
@@ -58,7 +62,7 @@ if ( !$category_value ) {
 							// query
 							$args = array(
 								'post_type'        => 'portfolio',
-								'showposts'        => $items_count, 
+								'showposts'        => $items_count,
 								'offset'           => $custom_count,
 								'suppress_filters' => $suppress_filters
 								);
@@ -97,7 +101,7 @@ if ( !$category_value ) {
 							$args = array(
 								'post_type'        => 'portfolio',
 								'posts_per_page'   => -1,
-								'post_status'      => 'publish', 
+								'post_status'      => 'publish',
 								'orderby'          => 'name',
 								'order'            => 'ASC',
 								'suppress_filters' => $suppress_filters
@@ -120,7 +124,7 @@ if ( !$category_value ) {
 							$count_posts = count($portfolio_posts);
 						?>
 						<li class="active"><a href="#" data-count="<?php echo $count_posts; ?>" data-filter><?php echo theme_locals("show_all"); ?></a></li>
-						<?php 
+						<?php
 							$filter_array = array();
 							$portfolio_tags = get_terms('portfolio_tag');
 							foreach($portfolio_tags as $portfolio_tag) {
@@ -133,7 +137,7 @@ if ( !$category_value ) {
 							// query
 							$args = array(
 								'post_type'        => 'portfolio',
-								'showposts'        => $items_count, 
+								'showposts'        => $items_count,
 								'offset'           => $custom_count,
 								'suppress_filters' => $suppress_filters
 								);
@@ -203,7 +207,7 @@ if ( !$category_value ) {
 	<?php get_template_part('filterable-portfolio-loop'); ?>
 </ul>
 
-<?php 
+<?php
 	get_template_part('includes/post-formats/post-nav');
 	wp_reset_query();
 ?>
