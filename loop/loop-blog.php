@@ -1,7 +1,7 @@
 <?php /* Loop Name: Blog */ ?>
 <!-- displays the tag's description from the Wordpress admin -->
-<?php 
-	if (is_tag()) 
+<?php
+	if (is_tag())
 		echo tag_description();
 
 	if (have_posts()) : while (have_posts()) : the_post();
@@ -20,4 +20,8 @@
 			<p><?php echo theme_locals("we_apologize"); ?> <a href="<?php echo home_url(); ?>/" title="<?php bloginfo('description'); ?>"><?php echo theme_locals("return_to"); ?></a> <?php echo theme_locals("search_form"); ?></p>
 				<?php get_search_form(); /* outputs the default Wordpress search form */ ?>
 		</div><!--no-results-->
-	<?php endif; ?>
+	<?php endif;
+
+if ( !is_home() ) {
+	get_template_part('includes/post-formats/post-nav');
+} ?>

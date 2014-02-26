@@ -12,7 +12,6 @@
 				<div class="row">
 					<div class="<?php echo cherry_get_layout_class( 'content' ); ?> <?php echo of_get_option('blog_sidebar_pos'); ?>" id="content" data-motopress-type="loop" data-motopress-loop-file="loop/loop-blog.php">
 						<?php get_template_part("loop/loop-blog"); ?>
-						<?php get_template_part('includes/post-formats/post-nav'); ?>
 					</div>
 					<div class="<?php echo cherry_get_layout_class( 'sidebar' ); ?> sidebar" id="sidebar" data-motopress-type="static-sidebar"  data-motopress-sidebar-file="sidebar.php">
 						<?php get_sidebar(); ?>
