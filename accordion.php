@@ -110,7 +110,7 @@
 				if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
 					global $sitepress;
 
-					$post_lang = $sitepress->get_language_for_element($slide->ID, 'slider');
+					$post_lang = $sitepress->get_language_for_element($slide->ID, 'post_slider');
 					$curr_lang = $sitepress->get_current_language();
 					// Unset not translated posts
 					if ( $post_lang != $curr_lang ) {

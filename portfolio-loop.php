@@ -34,7 +34,7 @@ if ( !$category_value ) {
 								if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
 									global $sitepress;
 
-									$post_lang = $sitepress->get_language_for_element($portfolio->ID, 'portfolio');
+									$post_lang = $sitepress->get_language_for_element($portfolio->ID, 'post_portfolio');
 									$curr_lang = $sitepress->get_current_language();
 									// Unset not translated posts
 									if ( $post_lang != $curr_lang ) {
