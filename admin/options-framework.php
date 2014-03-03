@@ -264,20 +264,29 @@ if ( !function_exists( 'optionsframework_page' ) ) {
 	<div id="optionsframework-wrap" class="wrap">
 		<div class="extern-links">
 			<?php
-				$locals	= "";
-				if(get_bloginfo("language")=="ru_RU" || get_bloginfo("language")=="es_ES" || get_bloginfo("language")=="de_DE"){
-					$locals = substr(get_bloginfo("language"), 0, 2)."/";
-				}
-				$doc_link = '//info.template-help.com/help/quick-start-guide/';
+				$support_link = '//info.template-help.com/help/cms-blog-templates/wordpress/wordpress-tutorials/';
+				$doc_link = '//info.template-help.com/help/quick-start-guide/wordpress-themes/master/index_en.html';
 				if (class_exists('Woocommerce')) {
-					$doc_link .= 'woocommerce/';
+					$doc_link .= '//www.templatemonster.com/help/quick-start-guide/woocommerce-themes/master/index_en.html';
 				} elseif (function_exists('jigoshop_init')) {
-					$doc_link .= 'jigoshop-cherry-framework/';
-				} else {
-					$doc_link .= 'cherry-framework/';
+					$doc_link .= '//www.templatemonster.com/help/quick-start-guide/jigoshop-themes/master/index_en.html';
 				}
-				echo '<a class="icon-a icon-support" href="//info.template-help.com/help/'.$locals.'cms-blog-templates/wordpress/wordpress-tutorials/" target="_blank"><span class="icon"><span>'.theme_locals("support").'</span></span></a>';
-				echo "<a class='icon-a icon-documentation' href='$doc_link' target='_blank'><span class='icon'><span>".theme_locals('documentation')."</span></span></a>";
+
+				$language = get_bloginfo("language");
+				switch ($language) {
+					case 'ru-RU':
+						$support_link = '//info.template-help.com/help/ru/cms-blog-templates/wordpress/wordpress-tutorials/';
+						break;
+					case 'es-ES':
+						$support_link = '//info.template-help.com/help/es/cms-blog-templates/wordpress/wordpress-tutorials/';
+						break;
+					case 'de-DE':
+						$support_link = '//info.template-help.com/help/de/cms-blog-templates/wordpress/wordpress-tutorials/';
+					break;
+				}
+
+				echo '<a class="icon-a icon-support" href="'.$support_link.'" target="_blank"><span class="icon"><span>'.theme_locals("support").'</span></span></a>';
+				echo "<a class='icon-a icon-documentation' href='".$doc_link."' target='_blank'><span class='icon'><span>".theme_locals('documentation')."</span></span></a>";
 			?>
 		</div>
 		<div class="clear"></div>

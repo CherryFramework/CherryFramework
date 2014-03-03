@@ -400,28 +400,6 @@
 			's_n' => __('Scroll Normally', $domain),
 			'f_p' => __('Fixed in Place', $domain),
 			
-			//import & export options
-			'Step_1' => __('<span>Step <i>1</i></span>Theme Options Import', $domain),
-			'Select the file that contains Theme Options' => __('Select the file that contains Theme Options (e.g. <b>options.json</b> )', $domain),
-			'Upload File and Import' => __('Upload File and Import', $domain),
-			'Step_1_export' => __('<span>Step <i>1</i></span>Theme Options Export', $domain),
-			'Welcome to the OptionsFramework Backup Manager' => __('Welcome to the OptionsFramework Backup Manager.', $domain),
-			'problem_importing' => __('There was a problem importing your settings. Please Try again.', $domain),
-			'problem_exporting' => __('There was a problem exporting your settings. Please Try again.', $domain),
-			'provided_is_invalid.' => __('The import file you\'ve provided is invalid. Please try again.', $domain),
-			
-			'step_1_export_widget' => __('<span>Step <i>1</i></span> Widget Settings Export', $domain),
-			'step_3' => __('<span>Step <i>3</i></span> Widget Settings Import', $domain),
-			'step_4' => __('<span>Step <i>4</i></span> Widget Settings Import', $domain),
-			'import_settings' => __('Import Settings', $domain),
-			'please_try_again' => __("Incorrect file. Please, <a href='admin.php?page=options-framework-import&amp;step=1'>try again</a>.", $domain),
-			'select_the_file' => __('Select the file that contains Widget Settings (e.g. <b>your_template_package/sources/sample_data/widgets.json</b>)', $domain),
-			'show_widget_settings' => __('Show Widget Settings', $domain),
-			'no_widget' => __('Your have no widgets. Please, click next to go to the next step.', $domain),
-			'widget_import_warning' => __('Disable the widgets you don\'t need and click "Next". All the selected widgets will be imported into the theme by default.', $domain),
-			'go_to_widgets' => __('go to widgets', $domain),
-			'empty_widgets' => __('File widgets.json incorrect or empty. For this reason, none of the widget will be imported into your theme.', $domain),
-			
 			//wordpress-importer.php
 			'sorry' => __('Sorry, there has been an error.', $domain),
 			'not_exist' => __('The file does not exist, please ', $domain),

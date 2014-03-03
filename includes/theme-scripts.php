@@ -8,6 +8,8 @@ function cherry_scripts() {
 		wp_deregister_script('jquery');
 		wp_register_script('jquery', PARENT_URL.'/js/jquery-1.7.2.min.js', false, '1.7.2');
 		wp_enqueue_script('jquery');
+		wp_register_script('migrate', PARENT_URL.'/js/jquery-migrate-1.2.1.min.js', array('jquery'), '1.2.1');
+		wp_enqueue_script('migrate');
 
 		wp_register_script('modernizr', PARENT_URL.'/js/modernizr.js', array('jquery'), '2.0.6');
 		wp_register_script('jflickrfeed', PARENT_URL.'/js/jflickrfeed.js', array('jquery'), '1.0');
