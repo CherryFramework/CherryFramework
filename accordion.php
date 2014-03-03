@@ -106,16 +106,20 @@
 			$post_array = (of_get_option('acc_show_post')=="") ? array() : of_get_option('acc_show_post');
 
 			foreach( $slides as $k => $slide ) {
-				// Unset not translated posts
-				if ( function_exists( 'wpml_get_language_information' ) ) {
+				//Check if WPML is activated
+				if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
 					global $sitepress;
 
-					$check              = wpml_get_language_information( $slide->ID );
-					$language_code      = substr( $check['locale'], 0, 2 );
-					if ( $language_code != $sitepress->get_current_language() ) unset( $slides[$k] );
-
+					$post_lang = $sitepress->get_language_for_element($slide->ID, 'post_slider');
+					$curr_lang = $sitepress->get_current_language();
+					// Unset not translated posts
+					if ( $post_lang != $curr_lang ) {
+						unset( $slides[$k] );
+					}
 					// Post ID is different in a second language Solution
-					if ( function_exists( 'icl_object_id' ) ) $slide = get_post( icl_object_id( $slide->ID, 'slider', true ) );
+					if ( function_exists( 'icl_object_id' ) ) {
+						$slide = get_post( icl_object_id( $slide->ID, 'slider', true ) );
+					}
 				}
 
 				if(in_array("1", $post_array)){

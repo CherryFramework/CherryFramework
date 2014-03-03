@@ -52,6 +52,7 @@ class Cherry_Style_Switcher {
 		// Load main stylesheet.
 		add_action( 'cherry_customize_enqueue_styles', array( $this, 'enqueue_styles' ) );
 		add_action( 'customize_controls_init', array( $this, 'delete_demo_css' ) );
+		add_action( 'customize_controls_print_styles', array( $this, 'blog_favicon' ), 9 );
 
 		// Hook for update option via ajax.
 		add_action( 'wp_ajax_custom_update_option', array( $this, 'custom_update_option' ) );
@@ -151,6 +152,15 @@ class Cherry_Style_Switcher {
 	}
 
 	/**
+	 * Add favicon.
+	 *
+	 * @since    1.0.0
+	 */
+	public function blog_favicon() {
+		echo '<link rel="shortcut icon" href="'.CHILD_URL.'/favicon.ico" >';
+	}
+
+	/**
 	 * Register and enqueue customizer-facing stylesheet, script and others.
 	 *
 	 * @since    1.0.0
@@ -220,7 +230,7 @@ class Cherry_Style_Switcher {
 
 	/**
 	 * Register and enqueue demo (color schemes) stylesheet.
-	 * 
+	 *
 	 * @since    1.0.0
 	 */
 	public function enqueue_demo_style() {
@@ -422,24 +432,6 @@ class Cherry_Style_Switcher {
 				'priority' => 5
 			) ) );
 		}
-
-		/* Blog layout */
-		// Custom control - Layout Picker
-		if ( of_get_option('visible_blog_layout_opt') == 'true' ) {
-			require_once $this->file_path('admin/style-switcher/controls/layout-picker.php');
-			$wp_customize->add_setting( CURRENT_THEME.'[blog_sidebar_pos]', array(
-				'default'   => $options['blog_sidebar_pos']['std'],
-				'type'      => 'option'
-			) );
-			$wp_customize->add_control( new Layout_Picker_Custom_Control( $wp_customize, CURRENT_THEME.'_blog_sidebar_pos', array(
-				'label'    => $options['blog_sidebar_pos']['name'],
-				'section'  => CURRENT_THEME.'_style_switcher',
-				'settings' => CURRENT_THEME.'[blog_sidebar_pos]',
-				'choices'  => $options['blog_sidebar_pos']['options'],
-				'type'     => 'layout-picker',
-				'priority' => 6
-			) ) );
-		}
 	}
 
 	/**
@@ -533,7 +525,7 @@ class Cherry_Style_Switcher {
 
 	/**
 	 * Delete demo stylesheet
-	 * 
+	 *
 	 * @since   1.0.0
 	 */
 	public function delete_demo_css() {
