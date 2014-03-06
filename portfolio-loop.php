@@ -151,7 +151,7 @@ if ( !$category_value ) {
 								if ( $terms && ! is_wp_error( $terms ) ) {
 									foreach ( $terms as $term )
 										$filter_array[$term->slug] = $term;
-									ksort($filter_array);
+									$filter_array;
 								}
 							endwhile;
 
