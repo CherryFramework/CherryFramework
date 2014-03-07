@@ -9,6 +9,38 @@ Fully responsive design, easy install, steady updates, great number of shortcode
 
 ##Change log##
 
+#### v3.1.1 ####
+
+Plugin Updates
+
+* Fix: import errors
+* Add: blocking files on upload
+* Fix: sorting errors
+* Add: widgets rewrite 
+* Add: widgets custom classes 
+* Fix: shortcode Elastislide
+* Add: styleswitcher
+* Add: plugin-under-construction-content rewrite in child theme
+* Add: plugin updater
+* Add: intagram widget
+* Upd: social widget 
+* Fix: fixes in social network widget
+* Add: banner widget
+* Upd: improvements in wpml-compatibility
+
+Framework Updates
+
+* Fix: layout style
+* Fix: changed links format
+* Fix: robot.txt generate login
+* Fix: sitemap
+* Fix: slider posts sorting
+* Fix: style switcher
+* Add: add migrate.js
+* Upd: language files
+* Fix: pagination output* Upd: tags filter
+
+
 #### v3.1.0 ####
 
 * Added function for auto-setup cherry-plugin
