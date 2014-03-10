@@ -21,6 +21,7 @@
 										<div class="controls">
 										<?php
 											$index_settings = array(
+												'generate_robots' => array('title' => theme_locals("generate_robots"), 'checked' => true),
 												'admin_index' => array('title' => theme_locals("admin_index"), 'checked' => true),
 												'plagin_index' => array('title' => theme_locals("plagin_index"), 'checked' => true),
 												'theme_index' => array('title' => theme_locals("theme_index"), 'checked' => true),
@@ -64,6 +65,22 @@
 							</div>
 							<div id="sitemap-xml" class="group">
 								<h3><?php echo theme_locals("sitemap_xml"); ?></h3>
+								<div class="section">
+									<h4 class="heading"><?php echo theme_locals("generate_sitemap_title"); ?></h4>
+									<div class="option">
+										<div class="controls">
+											<?php
+												$sitemap_settings = array(
+													'do_generate_sitemap' => array('title' => theme_locals("generate_sitemap"), 'checked' => true),
+												);
+												foreach( $sitemap_settings as $key => $val ) {
+													$checked = (get_option($key) == "on" || $val['checked'] == true && get_option($key) != "off") ? 'checked' : '' ;
+													echo '<input id="'.$key.'" class="checkbox of-input" type="checkbox" '.$checked.' name="'.$key.'"><label class="explain checkbox_label" for="'.$key.'">'.$val['title'].'</label><br>';
+												}
+											?>
+										</div>
+									</div>
+								</div>
 								<div class="section">
 									<h4 class="heading"><?php echo theme_locals("post_types_settings"); ?></h4>
 									<div class="option">
@@ -132,12 +149,6 @@
 										</div>
 									</div>
 								</div>
-								<div class="section">
-									<hr>
-									<div class="button_wrapper" id="generator_sitemap">
-										<a href="#" id="generate_sitemap" class="button-primary">Generate Sitemap</a>
-									</div>
-								</div>
 							</div>
 							<div id="optionsframework-submit" class="clearfix">
 								<div class='button_wrapper fright'>
@@ -159,8 +170,10 @@
 			foreach ($post_data as $key => $val) {
 				update_option($key, $val);
 			}
+			//echo $post_data['do_generate_sitemap'];
 			robot_txt_generate();
-			exit; 
+			generate_sitemap();
+			exit;
 		} 
 	}
 
@@ -179,7 +192,7 @@
 							objects.css({visibility: "hidden"}).parent().css({background: 'url("images/wpspin_light.gif") center no-repeat', boxShadow: 'inset 0px 0px 10px 5px #E5E5E5', borderRadius: 3});
 						},
 						success: function(d) {
-							//console.log(d);
+							console.log(d);
 							objects.parent().css({background: 'url("images/yes.png") center no-repeat'});
 							setTimeout(function() {
 								objects.css({visibility: "visible"}).parent().css({background: "none", boxShadow: 'none'});
@@ -187,8 +200,9 @@
 						}
 					});
 				}
-				jQuery('#optionsframework-submit input[name="save_options"]').click(function(){
+				jQuery('#optionsframework-submit input[name="save_options"]').on('click', function (){
 					var data = {action: 'save_options'};
+
 					jQuery('#optionsframework-metabox input, #optionsframework-metabox select, #optionsframework-metabox textarea').not('input[type="submit"]').each(function(){
 						var item = jQuery(this),
 							value = item.val();
@@ -197,19 +211,11 @@
 						}
 						data[item[0].name] = value;
 					});
+
 					add_click_ajax(jQuery(this), data);
+
 					return !1;
-				})
-				jQuery('#generate_sitemap').click(function(){
-					var sitemap_data = {action: 'generate_sitemap'};
-					jQuery('#sitemap-xml input:checked, #sitemap-xml select').each(function(){
-						if(jQuery(this).parents('.group_options').find('input:checked')[0] || jQuery(this).context.checked){
-							sitemap_data[jQuery(this).attr('name')] = jQuery(this).val();
-						}
-					})
-					add_click_ajax(jQuery(this), sitemap_data);
-					return !1;
-				})	
+				});
 			</script>
 			<?php 
 		}

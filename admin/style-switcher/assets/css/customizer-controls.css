@@ -1,0 +1,240 @@
+/* Custom Controls CSS
+------------------------*/
+
+[id$='style_switcher'] label {
+	vertical-align: top;
+}
+
+/* Layout Picker */
+.layout-control {
+	display: block;
+	float: left;
+	width: 30%;
+	text-align: center;
+	margin-bottom: 10px;
+	margin-right: 3%;
+}
+	[id$='blog_sidebar_pos'] .layout-control {
+		width: 45%;
+		margin-right: 5%;
+	}
+	[id$='slider_type'] .layout-control {
+		width: 45%;
+		margin-right: 5%;
+	}
+.image-radio {
+	display: none !important;
+}
+.layout-control img {
+	display: block;
+	margin: 0;
+	max-width: 100%;
+	height: auto;
+	border: 3px solid #f9f9f9;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all 0.25s ease;
+	-moz-transition: all 0.25s ease;
+	-ms-transition: all 0.25s ease;
+	-o-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+.layout-control img:hover {
+	border-color: #ccc;
+	opacity: 0.8;
+}
+.layout-control .image-radio:checked + label img {
+	border-color: #ccc;
+	opacity: 1;
+}
+
+/* Button */
+.button-control-list {
+	margin: 0 0 0 -14px;
+	padding: 0;
+	list-style-type: none;
+}
+[id$='color'] .button-control-list {
+	margin: 0 0 0 -9px;
+}
+	.button-control {
+		display: block;
+		float: left;
+		padding: 0;
+		margin-bottom: 0;
+		text-align: center;
+	}
+		.button-radio {
+			display: none !important;
+		}
+		.button-control span {
+			display: block;
+			margin: 0;
+			padding: 0;
+			outline: none;
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			border-radius: 0;
+			text-align: center;
+			font-size: 13px;
+			line-height: 24px;
+			cursor: pointer;
+			-webkit-transition: all 0.25s ease;
+			-moz-transition: all 0.25s ease;
+			-ms-transition: all 0.25s ease;
+			-o-transition: all 0.25s ease;
+			transition: all 0.25s ease;
+		}
+		.button-control span[class*='layout'] {
+			margin: 0 0 14px 14px;
+			padding: 2px 0 3px;
+			width: 66px;
+			border: 2px solid #e1e4e5;
+			background: #FFF;
+			color: #404040;
+		}
+			.button-control span[class*='layout']:hover {
+				background-color: #e1e4e5;
+				background: #404040;
+				color: #fff;
+			}
+			.button-radio:checked + label span[class*='layout'] {
+				border-color: #ccc;
+				background: #FFF;
+				color: #404040;
+				opacity: 1;
+				cursor: default;
+			}
+		.button-control span[class*='color'] {
+			margin: 0 0 9px 9px;
+			width: 32px;
+			height: 32px;
+		}
+			.button-control span[class*='color']:hover {
+				opacity: 0.8;
+				-webkit-box-shadow: inset 0 0 0 3px #000;
+				-moz-box-shadow: inset 0 0 0 3px #000;
+				box-shadow: inset 0 0 0 3px #000;
+			}
+			.button-radio:checked + label span[class*='color'] {
+				opacity: 1;
+				cursor: default;
+				-webkit-box-shadow: inset 0 0 0 3px #000;
+				-moz-box-shadow: inset 0 0 0 3px #000;
+				box-shadow: inset 0 0 0 3px #000;
+			}
+
+/* Pattern */
+.pattern-control {
+	position: relative;
+	display: block;
+	float: left;
+	margin: 0 10px 10px 0;
+	width: 30px;
+	height: 30px;
+}
+.pattern-radio {
+	display: none !important;
+}
+	.pattern-control img {
+		position: relative;
+		z-index: 1;
+		display: block;
+		width: 100%;
+		height: 100%;
+		border: 1px solid #fff;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		-webkit-transition: all 0.25s ease;
+		-moz-transition: all 0.25s ease;
+		-ms-transition: all 0.25s ease;
+		-o-transition: all 0.25s ease;
+		transition: all 0.25s ease;
+	}
+	.pattern-control span {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 2;
+		display: block;
+		-webkit-transition: all 0.25s ease;
+		-moz-transition: all 0.25s ease;
+		-ms-transition: all 0.25s ease;
+		-o-transition: all 0.25s ease;
+		transition: all 0.25s ease;
+	}
+		.pattern-control span:hover {
+			-webkit-box-shadow: inset 0 0 0 3px #fff;
+			-moz-box-shadow: inset 0 0 0 3px #fff;
+			box-shadow: inset 0 0 0 3px #fff;
+		}
+	.pattern-control .pattern-radio:checked + label span {
+		-webkit-box-shadow: inset 0 0 0 3px #fff;
+		-moz-box-shadow: inset 0 0 0 3px #fff;
+		box-shadow: inset 0 0 0 3px #fff;
+	}
+	.pattern-control .pattern-radio:checked + label img {
+		opacity: 1;
+		cursor: default;
+	}
+
+/* Skin */
+.skin-control-list {
+	margin: 0 0 0 -14px;
+	padding: 0;
+	list-style-type: none;
+}
+	.skin-control {
+		display: block;
+		float: left;
+		padding: 0;
+		margin-bottom: 0;
+		text-align: center;
+	}
+		.skin-radio {
+			display: none !important;
+		}
+		.skin-control span {
+			display: block;
+			margin: 0;
+			padding: 0;
+			outline: none;
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			border-radius: 0;
+			text-align: center;
+			font-size: 13px;
+			line-height: 24px;
+			text-transform: capitalize;
+			overflow: hidden;
+			cursor: pointer;
+			-webkit-transition: all 0.25s ease;
+			-moz-transition: all 0.25s ease;
+			-ms-transition: all 0.25s ease;
+			-o-transition: all 0.25s ease;
+			transition: all 0.25s ease;
+		}
+		.skin-control span[class*='skin'] {
+			margin: 0 0 14px 14px;
+			padding: 2px 0 3px;
+			width: 66px;
+			border: 2px solid #e1e4e5;
+			background: #FFF;
+			color: #404040;
+		}
+			.skin-control span[class*='skin']:hover {
+				background-color: #e1e4e5;
+				background: #404040;
+				color: #fff;
+			}
+			.skin-radio:checked + label span[class*='skin'] {
+				border-color: #ccc;
+				background: #FFF;
+				color: #404040;
+				opacity: 1;
+				cursor: default;
+			}

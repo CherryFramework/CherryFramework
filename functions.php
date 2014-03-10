@@ -178,6 +178,11 @@
 			if ( file_exists(get_stylesheet_directory().'/shop.php') ) {
 				include_once (CHILD_DIR . '/shop.php');
 			}
+
+			//Style Switcher
+			if ( of_get_option('visible_style_switcher') == 'true' ) {
+				include_once (PARENT_DIR . '/admin/style-switcher/style-switcher.php');
+			}
 		}
 		add_action('after_setup_theme', 'cherry_theme_setup');
 	}
@@ -369,7 +374,7 @@
 		add_action('admin_enqueue_scripts', 'myHelpPointers');
 
 		function myHelpPointers() {
-			//First we define our pointers 
+			//First we define our pointers
 			$pointers = array(
 				array(
 					'id'       => 'xyz1', // unique id for this pointer
@@ -377,7 +382,7 @@
 					'target'   => '#toplevel_page_options-framework', // the css selector for the pointer to be tied to, best to use ID's
 					'title'    => theme_locals("import_sample_data"),
 					'content'  => theme_locals("import_sample_data_desc"),
-					'position' => array( 
+					'position' => array(
 										'edge'   => 'left', //top, bottom, left, right
 										'align'  => 'left', //top, bottom, left, right, middle
 										)
@@ -396,7 +401,7 @@
 				// more as needed
 			);
 
-			//Now we instantiate the class and pass our pointer array to the constructor 
+			//Now we instantiate the class and pass our pointer array to the constructor	
 			$myPointers = new WP_Help_Pointer($pointers);
 		};
 	}
