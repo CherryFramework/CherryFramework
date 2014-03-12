@@ -813,68 +813,6 @@
 								'options' => array(
 										'faces' => $typography_mixed_fonts )
 								);
-// ---------------------------------------------------------
-// Style Switcher
-// ---------------------------------------------------------
-
-			$options['style_switcher'] = array( "name" => __('Style Switcher', CURRENT_THEME),
-								"type" => "heading");
-
-			$options['visible_style_switcher'] = array( "name" => __('Display Style Switcher on front-end?', CURRENT_THEME),
-								"desc" => __('Do you want to display Style Switcher on front-end?', CURRENT_THEME),
-								"id" => "visible_style_switcher",
-								"std" => "true",
-								"type" => "radio",
-								"options" => $true_false_array);
-
-			$options['visible_layout_style_opt'] = array( "name" => __('Display Layout Style option?', CURRENT_THEME),
-								"desc" => __('Display Layout Style option on front-end?', CURRENT_THEME),
-								"id" => "visible_layout_style_opt",
-								"std" => "true",
-								"type" => "radio",
-								"options" => $true_false_array);
-
-			$options['visible_color_skin_opt'] = array( "name" => __('Display Color Skin option?', CURRENT_THEME),
-								"desc" => __('Display Color Skin option on front-end?', CURRENT_THEME),
-								"id" => "visible_color_skin_opt",
-								"std" => "true",
-								"type" => "radio",
-								"options" => $true_false_array);
-
-			$options['visible_color_schemes_opt'] = array( "name" => __('Display Color Schemes option?', CURRENT_THEME),
-								"desc" => __('Display Color Schemes option on front-end?', CURRENT_THEME),
-								"id" => "visible_color_schemes_opt",
-								"std" => "true",
-								"type" => "radio",
-								"options" => $true_false_array);
-
-			$options['visible_patterns_opt'] = array( "name" => __('Display Patterns option?', CURRENT_THEME),
-								"desc" => __('Display Patterns option on front-end?', CURRENT_THEME),
-								"id" => "visible_patterns_opt",
-								"std" => "true",
-								"type" => "radio",
-								"options" => $true_false_array);
-
-			$options['visible_slider_opt'] = array( "name" => __('Display Slider option?', CURRENT_THEME),
-								"desc" => __('Display Slider option on front-end?', CURRENT_THEME),
-								"id" => "visible_slider_opt",
-								"std" => "true",
-								"type" => "radio",
-								"options" => $true_false_array);
-
-			$options['visible_blog_layout_opt'] = array( "name" => __('Display Blog layout option?', CURRENT_THEME),
-								"desc" => __('Display Blog layout option on front-end?', CURRENT_THEME),
-								"id" => "visible_blog_layout_opt",
-								"std" => "true",
-								"type" => "radio",
-								"options" => $true_false_array);
-
-			$options['visible_blog_layout_opt'] = array( "name" => __('Display Blog layout option?', CURRENT_THEME),
-								"desc" => __('Display Blog layout option on front-end?', CURRENT_THEME),
-								"id" => "visible_blog_layout_opt",
-								"std" => "true",
-								"type" => "radio",
-								"options" => $true_false_array);
 
 			return $options;
 		}
