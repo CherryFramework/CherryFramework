@@ -1240,18 +1240,17 @@ add_action('customize_register', 'cherry_register');
 			/* Slider Type */
 			// Custom control - Layout Picker
 			if ( isset($options['slider_type'])) {
-				require_once dirname( __FILE__ ) . '/admin/style-switcher/controls/layout-picker.php';
 				$wp_customize->add_setting( $themename.'[slider_type]', array(
 					'default' => $options['slider_type']['std'],
 					'type'    => 'option'
 				) );
-				$wp_customize->add_control( new Layout_Picker_Custom_Control( $wp_customize, $themename.'_slider_type', array(
+				$wp_customize->add_control( $themename.'_slider_type', array(
 					'label'    => $options['slider_type']['name'],
 					'section'  => $themename.'_slider',
 					'settings' => $themename.'[slider_type]',
-					'choices'  => $options['slider_type']['options'],
-					'type'     => 'layout-picker',
-				) ) );
+					'choices'  => $options['slider_type']['title'],
+					'type'     => 'radio',
+				) );
 			}
 
 // ---------------------------------------------------------
@@ -1297,19 +1296,22 @@ add_action('customize_register', 'cherry_register');
 			/* Blog layout */
 			// Custom control - Layout Picker
 			if ( isset($options['blog_sidebar_pos'])) {
-				require_once dirname( __FILE__ ) . '/admin/style-switcher/controls/layout-picker.php';
 				$wp_customize->add_setting( $themename.'[blog_sidebar_pos]', array(
 					'default' => $options['blog_sidebar_pos']['std'],
 					'type'    => 'option'
 				) );
-				$wp_customize->add_control( new Layout_Picker_Custom_Control( $wp_customize, $themename.'_blog_sidebar_pos', array(
+				$wp_customize->add_control( $themename.'_blog_sidebar_pos', array(
 					'label'    => $options['blog_sidebar_pos']['name'],
 					'section'  => $themename.'_blog',
 					'settings' => $themename.'[blog_sidebar_pos]',
-					'choices'  => $options['blog_sidebar_pos']['options'],
-					'type'     => 'layout-picker',
+					'choices' => array(
+								'left' => theme_locals('sidebar_left'),
+								'right' => theme_locals('sidebar_right'),
+								'none' => theme_locals('sidebar_hide'),
+								'masonry' => theme_locals('blog_masonry')),
+					'type'     => 'radio',
 					'priority' => 3
-				) ) );
+				) );
 			}
 
 			/* Blog image size */
