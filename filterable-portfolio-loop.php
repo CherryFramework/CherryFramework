@@ -10,14 +10,21 @@
 			items_count = $(".portfolio_item").size();
 
 		$(window).load(function(){
+			var selector = window.location.hash.replace( /^#category/, '.term' );
+
 			setColumnWidth();
 			$container.isotope({
 				itemSelector : '.portfolio_item',
 				hiddenClass : 'portfolio_hidden',
 				resizable : false,
 				transformsEnabled : true,
-				layoutMode: '<?php echo $layout_mode; ?>'
-			});
+				layoutMode: '<?php echo $layout_mode; ?>',
+				filter: selector 
+			})
+
+			$('#filters .active').removeClass('active')
+			$('#filters li a[data-filter="'+selector+'"]').parent('li').addClass('active');
+			change_hash(selector)
 		});
 		
 		function getNumColumns(){
@@ -78,6 +85,7 @@
 			if ( $this.hasClass('active') ) {
 				return;
 			}
+			
 
 			var $optionSet = $this.parents('.filter');
 			// change active class
@@ -86,6 +94,7 @@
 
 			var selector = $(this).attr('data-filter');
 			$container.isotope({ filter: selector });
+			change_hash(selector)
 
 			var hiddenItems = 0,
 				showenItems = 0;
@@ -103,6 +112,19 @@
 			}
 			return false;
 		});
+		function change_hash(hash){
+			hash = hash.replace( /^.term/, 'category' );
+			window.location.href = '#'+hash;
+
+			$('.pagination a').each(function(){
+				var item = $(this),
+					href = item.attr('href'),
+					end_slice = href.indexOf('#')==-1 ? href.length : href.indexOf('#') ;
+
+				href = href.slice(0, end_slice);
+				item.attr({'href':href+'#'+hash})
+			})
+		}
 	});
 </script>
 

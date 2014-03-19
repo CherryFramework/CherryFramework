@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$motopress_cam_id = uniqid();
 
 	// WPML filter
@@ -8,7 +8,7 @@
 		'post_type'        => 'slider',
 		'posts_per_page'   => -1,
 		'post_status'      => 'publish',
-		'orderby'          => 'title',
+		'orderby'          => 'date',
 		'order'            => 'ASC',
 		'suppress_filters' => $suppress_filters
 		);
@@ -80,16 +80,20 @@
 
 <div id="camera<?php echo $motopress_cam_id; ?>" class="camera_wrap camera">
 	<?php foreach( $slides as $k => $slide ) {
-			// Unset not translated posts
-			if ( function_exists( 'wpml_get_language_information' ) ) {
+			//Check if WPML is activated
+			if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
 				global $sitepress;
 
-				$check              = wpml_get_language_information( $slide->ID );
-				$language_code      = substr( $check['locale'], 0, 2 );
-				if ( $language_code != $sitepress->get_current_language() ) unset( $slides[$k] );
-
+				$post_lang = $sitepress->get_language_for_element($slide->ID, 'post_slider');
+				$curr_lang = $sitepress->get_current_language();
+				// Unset not translated posts
+				if ( $post_lang != $curr_lang ) {
+					unset( $slides[$k] );
+				}
 				// Post ID is different in a second language Solution
-				if ( function_exists( 'icl_object_id' ) ) $slide = get_post( icl_object_id( $slide->ID, 'slider', true ) );
+				if ( function_exists( 'icl_object_id' ) ) {
+					$slide = get_post( icl_object_id( $slide->ID, 'slider', true ) );
+				}
 			}
 
 			$caption            = get_post_meta($slide->ID, 'my_slider_caption', true);
@@ -106,6 +110,8 @@
 			}
 			if ( $sl_small_image_url[0]!='' ) {
 				$sl_small_image_url[0] = "data-thumb='$sl_small_image_url[0]'";
+			} else {
+				$sl_small_image_url[0] = "data-thumb='$sl_image_url[0]'";
 			}
 
 			echo "<div data-src='$sl_image_url[0]' $url $sl_small_image_url[0]>";
