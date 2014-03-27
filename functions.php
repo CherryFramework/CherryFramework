@@ -178,11 +178,6 @@
 			if ( file_exists(get_stylesheet_directory().'/shop.php') ) {
 				include_once (CHILD_DIR . '/shop.php');
 			}
-
-			//Style Switcher
-			if ( of_get_option('visible_style_switcher') == 'true' ) {
-				include_once (PARENT_DIR . '/admin/style-switcher/style-switcher.php');
-			}
 		}
 		add_action('after_setup_theme', 'cherry_theme_setup');
 	}
@@ -401,7 +396,7 @@
 				// more as needed
 			);
 
-			//Now we instantiate the class and pass our pointer array to the constructor	
+			//Now we instantiate the class and pass our pointer array to the constructor
 			$myPointers = new WP_Help_Pointer($pointers);
 		};
 	}
