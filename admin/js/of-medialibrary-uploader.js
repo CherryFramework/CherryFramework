@@ -1,5 +1,79 @@
-(function(a){optionsframeworkMLU={removeFile:function(){a(".mlu_remove").live("click",function(){a(this).hide();a(this).parents().parents().children(".upload").attr("value","");a(this).parents(".screenshot").slideUp();a(this).parents(".screenshot").siblings(".of-background-properties").hide();return!1});a("a.delete-inline","#option-1").hide()},recreateFileField:function(){a("input.file").each(function(){a(this).wrap('<div class="file_wrap" />');a(this).addClass("file").css("opacity",0);a(this).parent().append(a('<div class="fake_file" />').append(a('<input type="text" class="upload" />').attr("id",
-a(this).attr("id")+"_file")).val(a(this).val()).append('<input class="upload_file_button" type="button" value="Upload" />'));a(this).bind("change",function(){a("#"+a(this).attr("id")+"_file").val(a(this).val())});a(this).bind("mouseout",function(){a("#"+a(this).attr("id")+"_file").val(a(this).val())})})},mediaUpload:function(){jQuery.noConflict();a("input.upload_button").removeAttr("style");var c,e,d=!0,f;a("input.upload_button").live("click",function(){c=a(this).prev("input").attr("id");e=a(this).attr("rel");
-f=setInterval(function(){jQuery("#TB_iframeContent").contents().find(".savesend .button").val("Use This Image")},2E3);var b="";a(this).parents(".section").find(".heading")&&(b=a(this).parents(".section").find(".heading").text());tb_show(b,"media-upload.php?post_id="+e+"&TB_iframe=1");return!1});window.original_send_to_editor=window.send_to_editor;window.send_to_editor=function(b){c?(clearInterval(f),0<a(b).html(b).find("img").length?itemurl=a(b).html(b).find("img").attr("src"):(b=b.split("'"),itemurl=
-b[1],b=b[2],b=b.replace(">",""),b.replace("</a>","")),itemurl.match(/(^.*\.jpg|jpeg|png|gif|ico*)/gi)?d='<img src="'+itemurl+'" alt="" /><a href="#" class="mlu_remove button">Remove Image</a>':(b='<a href="'+itemurl+'" target="_blank" rel="external">View File</a>',d='<div class="no_image"><span class="file_link">'+b+'</span><a href="#" class="mlu_remove button">Remove</a></div>'),a("#"+c).val(itemurl),a("#"+c).siblings(".screenshot").slideDown().html(d),a("#"+c).siblings(".of-background-properties").show(),
-tb_remove()):window.original_send_to_editor(b);c=""}}};a(document).ready(function(){optionsframeworkMLU.removeFile();optionsframeworkMLU.recreateFileField();optionsframeworkMLU.mediaUpload()})})(jQuery);
+jQuery(document).ready(function($){
+
+	var optionsframework_upload;
+	var optionsframework_selector;
+
+	function optionsframework_add_file(event, selector) {
+
+		var upload = $(".uploaded-file"), frame;
+		var $el = $(this);
+		optionsframework_selector = selector;
+
+		event.preventDefault();
+
+		// If the media frame already exists, reopen it.
+		if ( optionsframework_upload ) {
+			optionsframework_upload.open();
+		} else {
+			// Create the media frame.
+			optionsframework_upload = wp.media.frames.optionsframework_upload =  wp.media({
+				// Set the title of the modal.
+				title: $el.data('choose'),
+
+				// Customize the submit button.
+				button: {
+					// Set the text of the button.
+					text: $el.data('update'),
+					// Tell the button not to close the modal, since we're
+					// going to refresh the page when the image is selected.
+					close: false
+				}
+			});
+
+			// When an image is selected, run a callback.
+			optionsframework_upload.on( 'select', function() {
+				// Grab the selected attachment.
+				var attachment = optionsframework_upload.state().get('selection').first();
+				optionsframework_upload.close();
+				optionsframework_selector.find('.upload').val(attachment.attributes.url);
+				if ( attachment.attributes.type == 'image' ) {
+					optionsframework_selector.find('.screenshot').empty().hide().append('<img src="' + attachment.attributes.url + '">').slideDown('fast');
+				}
+				optionsframework_selector.find('.upload-button').unbind().addClass('remove-file').removeClass('upload-button').val(optionsframework_l10n.remove);
+				optionsframework_selector.find('.of-background-properties').slideDown();
+				optionsframework_selector.find('.remove-image, .remove-file').on('click', function() {
+					optionsframework_remove_file( $(this).parents('.section') );
+				});
+			});
+
+		}
+
+		// Finally, open the modal.
+		optionsframework_upload.open();
+	}
+
+	function optionsframework_remove_file(selector) {
+		selector.find('.remove-image').hide();
+		selector.find('.upload').val('');
+		selector.find('.of-background-properties').hide();
+		selector.find('.screenshot').slideUp();
+		selector.find('.remove-file').unbind().addClass('upload-button').removeClass('remove-file').val(optionsframework_l10n.upload);
+		// We don't display the upload button if .upload-notice is present
+		// This means the user doesn't have the WordPress 3.5 Media Library Support
+		if ( $('.section-upload .upload-notice').length > 0 ) {
+			$('.upload-button').remove();
+		}
+		selector.find('.upload-button').on('click', function(event) {
+			optionsframework_add_file(event, $(this).parents('.section'));
+		});
+	}
+
+	$('.remove-image, .remove-file').on('click', function() {
+		optionsframework_remove_file( $(this).parents('.section') );
+    });
+
+    $('.upload-button').click( function( event ) {
+    	optionsframework_add_file(event, $(this).parents('.section'));
+    });
+
+});
