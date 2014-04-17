@@ -46,7 +46,7 @@
 		 */
 		wp_head();
 	?>
-	<?php 
+	<?php
 	/* The HTML5 Shim is required for older browsers, mainly older versions IE */ ?>
 	<!--[if lt IE 8]>
 	<div style=' clear: both; text-align:center; position: relative;'>
@@ -57,7 +57,7 @@
 		<script src="<?php echo PARENT_URL; ?>/js/jquery.mobile.customized.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			jQuery(function(){
-				jQuery('.sf-menu').mobileMenu({defaultText: <?php echo '"'.of_get_option('mobile_menu_label').'"'; ?>});
+				jQuery('.sf-menu').mobileMenu({defaultText: <?php echo '"' . apply_filters( 'cherry_text_translate', of_get_option('mobile_menu_label'), 'mobile_menu_label' ) . '"'; ?>});
 			});
 		</script>
 	<!--<![endif]-->
@@ -71,7 +71,7 @@
 					opacity: "<?php echo (of_get_option('sf_f_animation')!='') ? of_get_option('sf_f_animation') : 'show'; ?>",
 					height: "<?php echo (of_get_option('sf_sl_animation')!='') ? of_get_option('sf_sl_animation') : 'show'; ?>"
 				}, // used to animate the sub-menu open
-				speed: "<?php echo (of_get_option('sf_speed')!='') ? of_get_option('sf_speed') : 'normal'; ?>", // animation speed 
+				speed: "<?php echo (of_get_option('sf_speed')!='') ? of_get_option('sf_speed') : 'normal'; ?>", // animation speed
 				autoArrows: <?php echo (of_get_option('sf_arrows')==false) ? 'false' : of_get_option('sf_arrows'); ?>, // generation of arrow mark-up (for submenu)
 				disableHI: true // to disable hoverIntent detection
 			});

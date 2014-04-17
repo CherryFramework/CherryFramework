@@ -260,7 +260,7 @@
 				<?php } ?>
 
 				<?php if($folio_btn == "yes"){
-					$button_text = of_get_option('folio_button_text') ? of_get_option('folio_button_text') : theme_locals("read_more") ;
+					$button_text = of_get_option('folio_button_text') ? apply_filters( 'cherry_text_translate', of_get_option('folio_button_text'), 'folio_button_text' ) : theme_locals("read_more") ;
 				?>
 					<p><a href="<?php the_permalink() ?>" class="btn btn-primary"><?php echo $button_text ?></a></p>
 				<?php } ?>
