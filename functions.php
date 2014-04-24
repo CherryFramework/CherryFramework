@@ -1478,6 +1478,15 @@
 	**/
 	add_action('after_cherry_theme_upgrade', 'cherry_plugin_unpack_package');
 	function cherry_plugin_unpack_package(){
+		$plugin = 'cherry-plugin/cherry-plugin.php';
+
+		if ( !function_exists('is_plugin_active') ) {
+			require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+		}
+
+		if ( is_plugin_active($plugin) )
+			return;
+
 		$file   = PARENT_DIR . '/includes/plugins/cherry-plugin.zip';
 		$to     = WP_PLUGIN_DIR . '/cherry-plugin/';
 		$result = false;
@@ -1588,41 +1597,4 @@
 			return $layout_class;
 		}
 	}
-
-	//////////////////////////////////
-	// TEMPING CODE begin
-	// the next update it's removed
-	//////////////////////////////////
-	add_action( 'init', 'clean_cherry_plugin_dir' );
-	function clean_cherry_plugin_dir() {
-		if ( is_admin() ) {
-
-			$old_plugin = 'cherry-plugin/cherry_plugin.php';
-
-			if ( file_exists( WP_PLUGIN_DIR . '/' . $old_plugin ) ) {
-
-				$current = get_option( 'active_plugins' );
-
-				if ( in_array( $old_plugin, $current ) ) {
-					foreach( $current as $key => $value ) {
-						if ( $value == $old_plugin ){
-							unset( $current[$key] );
-							sort( $current );
-							do_action( 'activate_plugin', trim($old_plugin) );
-							update_option( 'active_plugins', $current );
-							update_option( 'uninstall_plugins', array() );
-							do_action( 'activate_' . trim($old_plugin) );
-							do_action( 'activated_plugin', trim($old_plugin) );
-						}
-					}
-				}
-
-				// Fire unpack Cherry Plugin package
-				cherry_plugin_unpack_package();
-			}
-		}
-	}
-	//////////////////////////
-	// TEMPING CODE end //
-	//////////////////////////
 ?>
