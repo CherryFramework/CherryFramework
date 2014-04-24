@@ -10,6 +10,9 @@
 	<div class="clear"></div>
 </div>
 <?php
+if ( post_password_required() ) {
+	return;
+}
 if ( !$category_value ) {
 	switch ($folio_filter) {
 		case 'cat': ?>

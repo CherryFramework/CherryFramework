@@ -8,15 +8,15 @@
 		</header>
 		<?php endif; ?>
 		<?php get_template_part('includes/post-formats/post-thumb'); ?>
-		
+
 		<?php if(!is_singular()) : ?>
 		<!-- Post Content -->
 		<div class="post_content">
-			<?php 
+			<?php
 				if (of_get_option('post_excerpt')=="true" || of_get_option('post_excerpt')=='') { ?>
 					<div class="excerpt">
 					<?php
-						
+
 					if (has_excerpt()) {
 						the_excerpt();
 					} else {
@@ -29,8 +29,8 @@
 						}
 					} ?>
 				</div>
-			<?php } 
-				$button_text = of_get_option('blog_button_text') ? of_get_option('blog_button_text') : theme_locals("read_more") ;
+			<?php }
+				$button_text = of_get_option('blog_button_text') ? apply_filters( 'cherry_text_translate', of_get_option('blog_button_text'), 'blog_button_text' ) : theme_locals("read_more") ;
 			?>
 			<a href="<?php the_permalink() ?>" class="btn btn-primary"><?php echo $button_text; ?></a>
 			<div class="clear"></div>

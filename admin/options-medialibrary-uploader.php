@@ -69,11 +69,16 @@ if ( ! function_exists( 'optionsframework_mlu_css' ) ) {
 if ( ! function_exists( 'optionsframework_mlu_js' ) ) {
 
 	function optionsframework_mlu_js () {
-	
+		if ( function_exists( 'wp_enqueue_media' ) )
+			wp_enqueue_media();
 		// Registers custom scripts for the Media Library AJAX uploader.
-		wp_register_script( 'of-medialibrary-uploader', OPTIONS_FRAMEWORK_DIRECTORY .'js/of-medialibrary-uploader.js');
-		wp_enqueue_script( 'of-medialibrary-uploader' );
+		wp_register_script( 'of-media-uploader', OPTIONS_FRAMEWORK_DIRECTORY .'js/of-medialibrary-uploader.js', array( 'jquery' ));
+		wp_enqueue_script( 'of-media-uploader' );
 		wp_enqueue_script( 'media-upload' );
+		wp_localize_script( 'of-media-uploader', 'optionsframework_l10n', array(
+			'upload' => __( 'Upload', 'textdomain' ),
+			'remove' => __( 'Remove', 'textdomain' )
+		) );
 	}
 
 }
@@ -126,7 +131,15 @@ if ( ! function_exists( 'optionsframework_medialibrary_uploader' ) ) {
 		
 		if ( $value ) { $class = ' has-file'; }
 		$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="'.$name.'" value="' . $value . '" />' . "\n";
-		$output .= '<input id="upload_' . $id . '" class="upload_button button" type="button" value="'.theme_locals('upload').'" rel="' . $int . '" />' . "\n";
+		if ( function_exists( 'wp_enqueue_media' ) ) {
+			if ( ( $value == '' ) ) {
+				$output .= '<input id="upload-' . $id . '" class="upload-button button" type="button" value="' . __( 'Upload', 'textdomain' ) . '" />' . "\n";
+			} else {
+				$output .= '<input id="remove-' . $id . '" class="remove-file button" type="button" value="' . __( 'Remove', 'textdomain' ) . '" />' . "\n";
+			}
+		} else {
+			$output .= '<p><i>' . __( 'Upgrade your version of WordPress for full media support.', 'textdomain' ) . '</i></p>';
+		}
 		
 		if ( $_desc != '' ) {
 			$output .= '<span class="of_metabox_desc">' . $_desc . '</span>' . "\n";
@@ -135,10 +148,10 @@ if ( ! function_exists( 'optionsframework_medialibrary_uploader' ) ) {
 		$output .= '<div class="screenshot" id="' . $id . '_image">' . "\n";
 		
 		if ( $value != '' ) { 
-			$remove = '<a href="javascript:(void);" class="mlu_remove button">Remove</a>';
+			//$remove = '<a href="javascript:(void);" class="mlu_remove button">Remove</a>';
 			$image = preg_match( '/(^.*\.jpg|jpeg|png|gif|ico*)/i', $value );
 			if ( $image ) {
-				$output .= '<img src="' . $value . '" alt="" />'.$remove.'';
+				$output .= '<img src="' . $value . '" alt="" />';
 			} else {
 				$parts = explode( "/", $value );
 				for( $i = 0; $i < sizeof( $parts ); ++$i ) {

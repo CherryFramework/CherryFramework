@@ -189,13 +189,13 @@
 	} else {
 		update_option('suppress_filters', 1);
 	}
-	//Register Flickr and recent posts widgets link label for translation
-	function wpml_link_text_filter( $link_text, $widget_title ) {
-		icl_translate( 'cherry', 'link_text_' . $widget_title, $link_text );
+	//Register text for translation
+	function cherry_wpml_translate_filter( $value, $name ) {
+		return icl_translate( 'cherry', $name, $value );
 	}
 	//Check if WPML is activated
 	if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
-		add_filter( 'widget_linktext', 'wpml_link_text_filter', 10, 2 );
+		add_filter( 'cherry_text_translate', 'cherry_wpml_translate_filter', 10, 2 );
 	}
 
 	//Loading Custom function
@@ -1295,6 +1295,7 @@
 			$post_tags = wp_get_post_terms($post->ID, $post_type.'_tag', array("fields" => "slugs"));
 			$tags_type = $post_type=='post' ? 'tag' : $post_type.'_tag' ;
 			$suppress_filters = get_option('suppress_filters');// WPML filter
+			$blog_related = apply_filters( 'cherry_text_translate', of_get_option('blog_related'), 'blog_related' );
 			if ($post_tags && !is_wp_error($post_tags)) {
 				$args = array(
 					"$tags_type" => implode(',', $post_tags),
@@ -1308,7 +1309,7 @@
 				query_posts($args);
 				if ( have_posts() ) {
 					$output = '<div class="'.$class.'">';
-					$output .= $display_title ? $before_title.of_get_option('blog_related', theme_locals("posts_std")).$after_title : '' ;
+					$output .= $display_title ? $before_title.$blog_related.$after_title : '' ;
 					$output .= '<ul class="'.$class_list.' clearfix">';
 					while( have_posts() ) {
 						the_post();

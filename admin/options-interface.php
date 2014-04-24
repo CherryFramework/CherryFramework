@@ -156,21 +156,12 @@ function optionsframework_fields() {
 			$name = $option_name .'['. $value['id'] .']';
 			foreach ( $value['options'] as $key => $option ) {
 				$selected = '';
-				$checked = '';
-				if ( $val != '' ) {
-					if ( $val == $key ) {
-						$selected = ' of-radio-img-selected';
-						$checked = ' checked="checked"';
-					}
+				if ( $val != '' && ($val == $key) ) {
+					$selected = ' of-radio-img-selected';
 				}
-				$output .= '<div class="img_wrapper">';
-				$output .= '<input type="radio" id="' . esc_attr( $value['id'] .'_'. $key) . '" class="of-radio-img-radio" value="' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" '. $checked .' />';
+				$output .= '<input type="radio" id="' . esc_attr( $value['id'] .'_'. $key) . '" class="of-radio-img-radio" value="' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" '. checked( $val, $key, false ) .' />';
 				$output .= '<div class="of-radio-img-label">' . esc_html( $key ) . '</div>';
 				$output .= '<img src="' . esc_url( $option ) . '" alt="' . $option .'" class="of-radio-img-img' . $selected .'" onclick="document.getElementById(\''. esc_attr($value['id'] .'_'. $key) .'\').checked=true;" />';
-				if(array_key_exists('title', $value)){
-					$output .= '<div class="img_title">'.$value['title'][$key].'</div>';
-				}
-				$output .= '</div>';
 			}
 			break;
 
