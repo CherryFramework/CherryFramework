@@ -267,9 +267,9 @@ if ( !function_exists( 'optionsframework_page' ) ) {
 				$support_link = '//info.template-help.com/help/cms-blog-templates/wordpress/wordpress-tutorials/';
 				$doc_link = '//info.template-help.com/help/quick-start-guide/wordpress-themes/master/index_en.html';
 				if (class_exists('Woocommerce')) {
-					$doc_link .= '//www.templatemonster.com/help/quick-start-guide/woocommerce-themes/master/index_en.html';
+					$doc_link = '//www.templatemonster.com/help/quick-start-guide/woocommerce-themes/master/index_en.html';
 				} elseif (function_exists('jigoshop_init')) {
-					$doc_link .= '//www.templatemonster.com/help/quick-start-guide/jigoshop-themes/master/index_en.html';
+					$doc_link = '//www.templatemonster.com/help/quick-start-guide/jigoshop-themes/master/index_en.html';
 				}
 
 				$language = get_bloginfo("language");
