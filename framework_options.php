@@ -290,6 +290,14 @@
 								"class" => "tiny",
 								"type" => "text");
 
+			$options['stickup_menu'] = array(
+								"name" => __('Use stickUp menu.', CHERRY_PLUGIN_DOMAIN),
+								"desc" => __('Do you want to use stickUp menu?', CHERRY_PLUGIN_DOMAIN),
+								"id" => "stickup_menu",
+								"std" => "false",
+								"type" => "radio",
+								"options" => $true_false_array
+			);
 // ---------------------------------------------------------
 // Slider
 // ---------------------------------------------------------
