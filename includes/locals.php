@@ -368,13 +368,13 @@
 			'portfolio_4_name' => __('Portfolio 4 columns items amount', $domain),
 			'portfolio_4_desc' => __('Portfolio items amount for Portfolio 4 columns template.', $domain),
 			'folio_filter_orderby' => __('Sort filter by parameter (orderby)', $domain),
-			'folio_filter_orderby_desc' => __('Sort filter alphabetically or by unique category ID. The default is sort by "name".', $domain),
+			'folio_filter_orderby_desc' => __('Sort filter alphabetically or by unique category ID.', $domain),
 			'folio_filter_order' => __('Sort order for filter', $domain),
-			'folio_filter_order_desc' => __('Sort order for filter (either ascending or descending). The default is "ASC".', $domain),
+			'folio_filter_order_desc' => __('Sort order for filter (either ascending or descending).', $domain),
 			'folio_posts_orderby' => __('Sort retrieved posts by parameter (orderby)', $domain),
-			'folio_posts_orderby_desc' => __('Sort retrieved posts by parameter. Defaults to "date".', $domain),
-			'folio_posts_order' => __('Designates the ascending or descending order', $domain),
-			'folio_posts_order_desc' => __('Designates the ascending or descending order of the "orderby" parameter. Defaults to "DESC".', $domain),
+			'folio_posts_orderby_desc' => __('Sort retrieved posts by parameter.', $domain),
+			'folio_posts_order' => __('Sort order for posts', $domain),
+			'folio_posts_order_desc' => __('Designates the ascending or descending order of the "orderby" parameter.', $domain),
 
 			//Footer options
 			'footer' => __('Footer', $domain),

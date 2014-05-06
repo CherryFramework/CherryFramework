@@ -5,13 +5,17 @@
 	// WPML filter
 	$suppress_filters = get_option('suppress_filters');
 
+	// Get Order & Orderby Parameters
+	$orderby = ( of_get_option('slider_posts_orderby') ) ? of_get_option('slider_posts_orderby') : 'date';
+	$order   = ( of_get_option('slider_posts_order') ) ? of_get_option('slider_posts_order') : 'DESC';
+
 	// query
 	$args = array(
 		'post_type'        => 'slider',
 		'posts_per_page'   => -1,
 		'post_status'      => 'publish',
-		'orderby'          => 'name',
-		'order'            => 'ASC',
+		'orderby'          => $orderby,
+		'order'            => $order,
 		'suppress_filters' => $suppress_filters
 		);
 	$slides = get_posts($args);

@@ -342,6 +342,25 @@
 									'none_slider' => theme_locals('slider_off'),
 									'camera_slider' => theme_locals('camera_slider'),
 									'accordion_slider' => theme_locals('accordion_slider')));
+
+			$options['slider_posts_orderby'] = array(
+				"name"    => theme_locals("folio_posts_orderby"),
+				"desc"    => theme_locals("folio_posts_orderby_desc"),
+				"id"      => "slider_posts_orderby",
+				"std"     => "date",
+				"type"    => "select",
+				"options" => $orderby_array
+				);
+
+			$options['slider_posts_order'] = array(
+				"name"    => theme_locals("folio_posts_order"),
+				"desc"    => theme_locals("folio_posts_order_desc"),
+				"id"      => "slider_posts_order",
+				"std"     => "ASC",
+				"type"    => "select",
+				"options" => $order_array
+				);
+
 	// ---------------------------------------------------------*/
 	// Camera Slider
 	// ---------------------------------------------------------
