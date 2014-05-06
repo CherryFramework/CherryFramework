@@ -19,7 +19,7 @@ function cherry_scripts() {
 		wp_register_script('magnific-popup', PARENT_URL.'/js/jquery.magnific-popup.min.js', array('jquery'), '0.9.3', true);
 		wp_register_script('flexslider', PARENT_URL.'/js/jquery.flexslider.js', array('jquery'), '2.1', true);
 		wp_register_script('playlist', PARENT_URL.'/js/jplayer.playlist.min.js', array('jquery'), '2.3.0', true);
-		wp_register_script('jplayer', PARENT_URL.'/js/jquery.jplayer.min.js', array('jquery'), '2.4.0', true);
+		wp_register_script('jplayer', PARENT_URL.'/js/jquery.jplayer.min.js', array('jquery'), '2.6.0', true);
 		wp_register_script('tmstickup', PARENT_URL.'/js/tmstickup.js', array('jquery'), '1.0.0', true);
 		wp_register_script('device', PARENT_URL.'/js/device.min.js', array('jquery'), '1.0.0', true);
 		wp_register_script('custom', PARENT_URL.'/js/custom.js', array('jquery'), '1.0');
