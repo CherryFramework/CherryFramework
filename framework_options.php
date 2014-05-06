@@ -31,6 +31,29 @@
 				"yes" => theme_locals("yes"),
 				"no"  => theme_locals("no")
 			);
+	//filter orderby array
+			$filter_orderby_array = array(
+				'id'         => 'ID',
+				'name'       => 'Name',
+				'slug'       => 'Slug',
+				'count'      => 'Posts count',
+				);
+	//orderby array
+			$orderby_array = array(
+				'id'            => 'ID',
+				'author'        => 'Author',
+				'title'         => 'Title',
+				'name'          => 'Name (slug)',
+				'date'          => 'Date',
+				'modified'      => 'Modified',
+				'comment_count' => 'Comments',
+				'rand'          => 'Random',
+				);
+	//order array
+			$order_array = array(
+				'ASC'  => 'ASC',
+				'DESC' => 'DESC',
+				);
 	// If using image radio buttons, define a directory path
 			$imagepath = PARENT_URL . '/includes/images/';
 
@@ -692,6 +715,24 @@
 												"tag"	=>	theme_locals("by_tags"),
 												"none"	=>	theme_locals("none")));
 
+			$options['folio_filter_orderby'] = array(
+				"name"    => theme_locals("folio_filter_orderby"),
+				"desc"    => theme_locals("folio_filter_orderby_desc"),
+				"id"      => "folio_filter_orderby",
+				"std"     => "name",
+				"type"    => "select",
+				"options" => $filter_orderby_array
+				);
+
+			$options['folio_filter_order'] = array(
+				"name"    => theme_locals("folio_filter_order"),
+				"desc"    => theme_locals("folio_filter_order_desc"),
+				"id"      => "folio_filter_order",
+				"std"     => "ASC",
+				"type"    => "select",
+				"options" => $order_array
+				);
+
 			$options['folio_title'] = array( "name" => theme_locals("show_title_name"),
 								"desc" => theme_locals("show_title_desc"),
 								"id" => "folio_title",
@@ -759,6 +800,24 @@
 								"options" => array(
 												"fitRows" => theme_locals("fit_rows"),
 												"masonry" => theme_locals("masonry")));
+
+			$options['folio_posts_orderby'] = array(
+				"name"    => theme_locals("folio_posts_orderby"),
+				"desc"    => theme_locals("folio_posts_orderby_desc"),
+				"id"      => "folio_posts_orderby",
+				"std"     => "date",
+				"type"    => "select",
+				"options" => $orderby_array
+				);
+
+			$options['folio_posts_order'] = array(
+				"name"    => theme_locals("folio_posts_order"),
+				"desc"    => theme_locals("folio_posts_order_desc"),
+				"id"      => "folio_posts_order",
+				"std"     => "DESC",
+				"type"    => "select",
+				"options" => $order_array
+				);
 
 			$options['items_count2'] = array( "name" => theme_locals("portfolio_2_name"),
 								"desc" => theme_locals("portfolio_2_desc"),

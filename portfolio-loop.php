@@ -1,6 +1,8 @@
 <?php // Theme Options vars
-	$folio_filter   = of_get_option('folio_filter');
-	$category_value = get_post_meta($post->ID, 'tz_category_include', true);
+	$folio_filter         = of_get_option('folio_filter');
+	$category_value       = get_post_meta($post->ID, 'tz_category_include', true);
+	$folio_filter_orderby = ( of_get_option('folio_filter_orderby') ) ? of_get_option('folio_filter_orderby') : 'name';
+	$folio_filter_order   = ( of_get_option('folio_filter_order') ) ? of_get_option('folio_filter_order') : 'name';
 
 	// WPML filter
 	$suppress_filters = get_option('suppress_filters');
@@ -54,7 +56,12 @@ if ( !$category_value ) {
 						<li class="active"><a href="#" data-count="<?php echo $count_posts; ?>" data-filter><?php echo theme_locals("show_all"); ?></a></li>
 						<?php
 							$filter_array = array();
-							$portfolio_categories = get_categories(array('taxonomy'=>'portfolio_category'));
+							$portfolio_categories = get_categories( array(
+								'taxonomy' => 'portfolio_category',
+								'orderby'  => $folio_filter_orderby,
+								'order'    => $folio_filter_order,
+								)
+							);
 							foreach($portfolio_categories as $portfolio_category) {
 								$filter_array[$portfolio_category->name] = $portfolio_category->count;
 							}
@@ -67,7 +74,7 @@ if ( !$category_value ) {
 								'post_type'        => 'portfolio',
 								'showposts'        => $items_count,
 								'offset'           => $custom_count,
-								'suppress_filters' => $suppress_filters
+								'suppress_filters' => $suppress_filters,
 								);
 							$the_query = new WP_Query($args);
 
@@ -76,17 +83,17 @@ if ( !$category_value ) {
 								$post_id = $the_query->post->ID;
 								$terms = get_the_terms( $post_id, 'portfolio_category');
 								if ( $terms && ! is_wp_error( $terms ) ) {
-									foreach ( $terms as $term )
-										$filter_array[$term->slug] = $term;
-
-									$filter_array;
+									foreach ( $terms as $term ) {
+										$filter_array[$term->name] = $term;
+									}
 								}
 							endwhile;
 
-							foreach ($filter_array as $key => $value)
+							foreach ($filter_array as $key => $value) {
 								if ( isset($value->count) ) {
 									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".term_id_'.$value->term_id.'">' . $value->name . '</a></li>';
 								}
+							}
 							wp_reset_postdata();
 						?>
 					</ul>
@@ -130,7 +137,11 @@ if ( !$category_value ) {
 						<li class="active"><a href="#" data-count="<?php echo $count_posts; ?>" data-filter><?php echo theme_locals("show_all"); ?></a></li>
 						<?php
 							$filter_array = array();
-							$portfolio_tags = get_terms('portfolio_tag');
+							$portfolio_tags = get_terms( 'portfolio_tag', array(
+								'orderby'  => $folio_filter_orderby,
+								'order'    => $folio_filter_order,
+								)
+							);
 							foreach($portfolio_tags as $portfolio_tag) {
 								$filter_array[$portfolio_tag->slug] = $portfolio_tag->count;
 							}
@@ -152,16 +163,17 @@ if ( !$category_value ) {
 								$post_id = $the_query->post->ID;
 								$terms = get_the_terms( $post_id, 'portfolio_tag');
 								if ( $terms && ! is_wp_error( $terms ) ) {
-									foreach ( $terms as $term )
+									foreach ( $terms as $term ) {
 										$filter_array[$term->slug] = $term;
-									$filter_array;
+									}
 								}
 							endwhile;
 
-							foreach ($filter_array as $key => $value)
+							foreach ($filter_array as $key => $value) {
 								if ( isset($value->count) ) {
 									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".term_id_'.$value->term_id.'">' . $value->name . '</a></li>';
 								}
+							}
 							wp_reset_postdata();
 						?>
 					</ul>
@@ -185,13 +197,19 @@ if ( !$category_value ) {
 		$paged = 1;
 	}
 
+	// Get Order & Orderby Parameters
+	$orderby = ( of_get_option('folio_posts_orderby') ) ? of_get_option('folio_posts_orderby') : 'date';
+	$order   = ( of_get_option('folio_posts_order') ) ? of_get_option('folio_posts_order') : 'DESC';
+
 	// The Query
 	$args = array(
 		'post_type'          => 'portfolio',
 		'paged'              => $paged,
 		'showposts'          => $items_count,
 		'portfolio_category' => $category_value,
-		'suppress_filters'   => $suppress_filters
+		'suppress_filters'   => $suppress_filters,
+		'orderby'            => $orderby,
+		'order'              => $order,
 		);
 	global $query_string;
 	query_posts($args);
