@@ -20,6 +20,8 @@ function cherry_scripts() {
 		wp_register_script('flexslider', PARENT_URL.'/js/jquery.flexslider.js', array('jquery'), '2.1', true);
 		wp_register_script('playlist', PARENT_URL.'/js/jplayer.playlist.min.js', array('jquery'), '2.3.0', true);
 		wp_register_script('jplayer', PARENT_URL.'/js/jquery.jplayer.min.js', array('jquery'), '2.4.0', true);
+		wp_register_script('tmstickup', PARENT_URL.'/js/tmstickup.js', array('jquery'), '1.0.0', true);
+		wp_register_script('device', PARENT_URL.'/js/device.min.js', array('jquery'), '1.0.0', true);
 		wp_register_script('custom', PARENT_URL.'/js/custom.js', array('jquery'), '1.0');
 
 		wp_enqueue_script('swfobject');
@@ -32,6 +34,8 @@ function cherry_scripts() {
 		wp_enqueue_script('flexslider');
 		wp_enqueue_script('playlist');
 		wp_enqueue_script('jplayer');
+		wp_enqueue_script('tmstickup');
+		wp_enqueue_script('device');
 		wp_enqueue_script('custom');
 
 		wp_register_script('zaccordion', PARENT_URL.'/js/jquery.zaccordion.min.js', array('jquery'), '2.1.0', true);
