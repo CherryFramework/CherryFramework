@@ -157,7 +157,7 @@ if ( !$category_value ) {
 									$filter_array;
 								}
 							endwhile;
-							
+
 							foreach ($filter_array as $key => $value)
 								if ( isset($value->count) ) {
 									echo '<li><a href="#" data-count="'. $value->count .'" data-filter=".term_id_'.$value->term_id.'">' . $value->name . '</a></li>';
