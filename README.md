@@ -9,6 +9,60 @@ Fully responsive design, easy install, steady updates, great number of shortcode
 
 ##Change log##
 
+#### v3.1.3 ####
+
+Framework Updates
+
+* Add: Added rtl-language support
+* Upd: Updated audio/video library - jplayer
+* Add: Added new options: order & orderby for slider posts
+* Add: Added new options: order & orderby for portfolio posts and filter
+* ADD: device.js
+* Upd: replaced tmstickup.js
+* Add: Added MotoPress Content Editor plugin as the following recommended plugin
+* ADD: stickup option
+* Fix: Fixed API_URL constant
+
+Plugin Updates
+
+* Add: Added rtl-language support
+* Upd: Improved Cherry Recent Comments widget - get comment for posts, pages, attachments and porfolio custom post type
+* Add: Added compatibility audio shortcode with MotoPress plugin
+* UPD: get_the_date()
+* ADD: content_box shortcode
+* ADD: tag option to posts grid shortcode
+* ADD: tag option to posts-list shortcode
+* ADD: tag option to recent posts shortcode
+* UPD: Cherry recent posts (the_date(); -> the_time('F j, Y');)
+* UPD: widget banner
+* ADD: item counter class
+* Add: added custom-class option to row, span, shortcodes
+* Fix: Fixed outputing notice
+* Fix: Fixed outputing notice
+* Add: Added define API_URL constant
+
+
+#### v3.1.2 ####
+
+Framework Updates
+
+* Fix: hotfix issue
+* Upd: change upload images logic in framework options
+* Fix: fixed issue with French translation in plugin
+* Fix: fixed twitter share button
+* Fix: Fixed bug with portfolio gallery in IE
+* Upd: Improved wpml-plugin compatibility for Cherry Options
+
+Plugin Updates
+
+* Fix: Compatibility with WP 3.9: fix shortcode dialog
+* Upd: Exclude widgets manager on customize.php
+* Upd: Improved wpml-plugin compatibility for widgets
+* Fixed issue with french translation
+* Compatibility with old themes
+* fix instagram and banner widgets
+
+
 #### v3.1.1 ####
 
 Plugin Updates
