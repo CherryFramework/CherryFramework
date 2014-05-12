@@ -317,6 +317,7 @@
 		add_filter('excerpt_length', 'new_excerpt_length');
 	}
 
+	add_filter( 'the_excerpt', 'do_shortcode' );
 	// enable shortcodes in sidebar
 	add_filter('widget_text', 'do_shortcode');
 
