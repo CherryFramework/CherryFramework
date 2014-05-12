@@ -174,6 +174,9 @@
 			//Plugin Activation
 			include_once (CHILD_DIR . '/includes/register-plugins.php');
 
+			//Setup MotoPress
+			include_once (PARENT_DIR . '/includes/register-motopress.php');
+
 			//Include shop
 			if ( file_exists(get_stylesheet_directory().'/shop.php') ) {
 				include_once (CHILD_DIR . '/shop.php');

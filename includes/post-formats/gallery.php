@@ -3,7 +3,7 @@
 	<header class="post-header">
 		<h2 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
 	</header>
-	<?php 
+	<?php
 		}
 		$args = array(
 			'orderby'        => 'menu_order',
@@ -23,6 +23,9 @@
 				jQuery('#flexslider_<?php echo $random ?>').flexslider({
 					animation: "slide",
 					smoothHeight: true
+					<?php if ( is_rtl() ) { ?>
+						,rtl : true
+					<?php } ?>
 				});
 			});
 		</script>
@@ -39,7 +42,7 @@
 									$image          = aq_resize($url, 800, 400, true);
 							?>
 							<li><img src="<?php echo $image; ?>" alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>"/></li>
-							<?php 
+							<?php
 								};
 							};
 						?>
@@ -54,7 +57,7 @@
 				<div class="clear"></div>
 			</div>
 			<!-- //Post Content -->
-			<?php get_template_part('includes/post-formats/post-meta'); 
+			<?php get_template_part('includes/post-formats/post-meta');
 		}else{
 			get_template_part('includes/post-formats/post-thumb');
 		}; ?>

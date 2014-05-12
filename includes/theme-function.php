@@ -35,8 +35,8 @@ function gener_random($length){
 add_filter('the_content', 'shortcode_empty_paragraph_fix');
 function shortcode_empty_paragraph_fix($content) {
 	$array = array (
-			'<p>['    => '[', 
-			']</p>'   => ']', 
+			'<p>['    => '[',
+			']</p>'   => ']',
 			']<br />' => ']'
 	);
 	$content = strtr($content, $array);
@@ -208,7 +208,7 @@ if ( !function_exists( 'tz_grid_gallery' ) ) {
 		<!--BEGIN .slider -->
 		<div class="grid_gallery clearfix">
 			<div class="grid_gallery_inner">
-			<?php 
+			<?php
 				$args = array(
 						'orderby'        => 'menu_order',
 						'order'          => 'ASC',
@@ -226,7 +226,7 @@ if ( !function_exists( 'tz_grid_gallery' ) ) {
 				else
 					$lightbox = FALSE;
 				$src = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), array( '9999','9999' ), false, '' );
-			
+
 			if ($attachments) :
 				foreach ($attachments as $attachment) :
 					$attachment_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
@@ -243,7 +243,7 @@ if ( !function_exists( 'tz_grid_gallery' ) ) {
 						<img alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>" src="<?php echo $image ?>" width="260" height="160" />
 					<?php endif; ?>
 				</figure>
-			<?php 
+			<?php
 				endforeach;
 			endif; ?>
 			</div>
@@ -263,13 +263,16 @@ if ( !function_exists( 'tz_gallery' ) ) {
 					jQuery('#flexslider_<?php echo $random ?>').flexslider({
 						animation: "slide",
 						smoothHeight : true
+						<?php if ( is_rtl() ) { ?>
+							,rtl : true
+						<?php } ?>
 					});
 				});
 			</script>
 
-			<div id="flexslider_<?php echo $random ?>" class="flexslider thumbnail">
+			<div id="flexslider_<?php echo $random ?>" class="flexslider">
 				<ul class="slides">
-				<?php 
+				<?php
 					$args = array(
 						'orderby'        => 'menu_order',
 						'order'          => 'ASC',
@@ -287,14 +290,14 @@ if ( !function_exists( 'tz_gallery' ) ) {
 					else
 						$lightbox = FALSE;
 					$src = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), array( '9999','9999' ), false, '' );
-					
+
 					if ($attachments) :
 						foreach ($attachments as $attachment) :
 						$attachment_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
 						$url            = $attachment_url['0'];
 						$image          = aq_resize($url, 650, 400, true);
 					?>
-					
+
 					<li>
 						<?php if($lightbox) : ?>
 							<a href="<?php echo $attachment_url['0'] ?>" class="image-wrap" rel="prettyPhoto[gallery]">
@@ -326,7 +329,7 @@ if ( !function_exists( 'tz_audio' ) ) {
 		// get content URL
 		$content_url = content_url();
 		$content_str = 'wp-content';
-		
+
 		$pos = strpos($audio_url, $content_str);
 		if ($pos === false) {
 			$file = $audio_url;
@@ -362,7 +365,7 @@ if ( !function_exists( 'tz_audio' ) ) {
 				});
 			});
 		</script>
-		
+
 		<div id="jquery_jplayer_<?php the_ID(); ?>" class="jp-jplayer"></div>
 		<div id="jp_container_<?php the_ID(); ?>" class="jp-audio">
 			<div class="jp-type-single">
@@ -404,7 +407,7 @@ if ( !function_exists( 'tz_audio' ) ) {
 				</ul>
 			</div>
 		</div>
-		<?php 
+		<?php
 	}
 }
 
@@ -423,7 +426,7 @@ if ( !function_exists( 'tz_video' ) ) {
 		// get content URL
 		$content_url = content_url();
 		$content_str = 'wp-content';
-		
+
 		$pos1     = strpos($m4v_url, $content_str);
 		if ($pos1 === false) {
 			$file1 = $m4v_url;
@@ -439,7 +442,7 @@ if ( !function_exists( 'tz_video' ) ) {
 			$ogv_new  = substr($ogv_url, $pos2+strlen($content_str), strlen($ogv_url) - $pos2);
 			$file2    = $content_url.$ogv_new;
 		}
-		
+
 		// get thumb (poster image)
 		$thumb        = get_post_thumbnail_id( $postid );
 		$img_url      = wp_get_attachment_url( $thumb,'full'); //get img URL
@@ -545,7 +548,7 @@ if ( !function_exists( 'pagination' ) ) {
 				}
 			}
 
-			if ( $paged < $pages && $showitems < $pages ) echo "<li class='next'><a href=\"".get_pagenum_link($paged + 1)."\">".theme_locals("next")."</a></li>"; 
+			if ( $paged < $pages && $showitems < $pages ) echo "<li class='next'><a href=\"".get_pagenum_link($paged + 1)."\">".theme_locals("next")."</a></li>";
 			if ( $paged < $pages-1 && $paged+$range-1 < $pages && $showitems < $pages ) echo "<li class='last'><a href='".get_pagenum_link($pages)."'>".theme_locals("last")."</a></li>";
 			echo "</ul></div>\n";
 		}
@@ -601,7 +604,7 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 	$homeLink = home_url();
 
 	if (is_front_page()) {
-		if ($showOnHome == 1) 
+		if ($showOnHome == 1)
 			echo '<ul class="breadcrumb breadcrumb__t"><li><a href="' . $homeLink . '">' . $home . '</a><li></ul>';
 		} else {
 			echo '<ul class="breadcrumb breadcrumb__t"><li><a href="' . $homeLink . '">' . $home . '</a></li>' . $delimiter;
@@ -612,24 +615,24 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 					echo theme_locals("blog");
 				}
 				echo $before . $blog_text . $after;
-			} 
+			}
 			elseif ( is_category() ) {
 				$thisCat = get_category(get_query_var('cat'), false);
 				if ($thisCat->parent != 0) echo get_category_parents($thisCat->parent, TRUE, ' ' . $delimiter . ' ');
 				echo $before . theme_locals("category_archives").': "' . single_cat_title('', false) . '"' . $after;
-			} 
+			}
 			elseif ( is_search() ) {
 				echo $before . theme_locals("fearch_for") . ': "' . get_search_query() . '"' . $after;
-			} 
+			}
 			elseif ( is_day() ) {
 				echo '<li><a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a></li> ' . $delimiter . ' ';
 				echo '<li><a href="' . get_month_link(get_the_time('Y'),get_the_time('m')) . '">' . get_the_time('F') . '</a></li> ' . $delimiter . ' ';
 				echo $before . get_the_time('d') . $after;
-			} 
+			}
 			elseif ( is_month() ) {
 				echo '<li><a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a></li> ' . $delimiter . ' ';
 				echo $before . get_the_time('F') . $after;
-			} 
+			}
 			elseif ( is_year() ) {
 				echo $before . get_the_time('Y') . $after;
 			}
@@ -659,11 +662,11 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 					if (!empty($cat)) {
 						$cat  = $cat[0];
 						$cats = get_category_parents($cat, TRUE, '</li>' . $delimiter . '<li>');
-						if ($showCurrent == 0) 
+						if ($showCurrent == 0)
 							$cats = preg_replace("#^(.+)\s$delimiter\s$#", "$1", $cats);
 						echo '<li>' . substr($cats, 0, strlen($cats)-4);
 					}
-					if ($showCurrent == 1) 
+					if ($showCurrent == 1)
 						echo $before . get_the_title() . $after;
 				}
 			}
@@ -672,7 +675,7 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 				if ( isset($post_type) ) {
 					echo $before . $post_type->labels->singular_name . $after;
 				}
-			} 
+			}
 			elseif ( is_attachment() ) {
 				$parent = get_post($post->post_parent);
 				$cat    = get_the_category($parent->ID);
@@ -681,13 +684,13 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 					echo get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
 					echo '<li><a href="' . get_permalink($parent) . '">' . $parent->post_title . '</a></li>';
 				}
-				if ($showCurrent == 1) 
+				if ($showCurrent == 1)
 					echo $before . get_the_title() . $after;
-			} 
+			}
 			elseif ( is_page() && !$post->post_parent ) {
-				if ($showCurrent == 1) 
+				if ($showCurrent == 1)
 					echo $before . get_the_title() . $after;
-			} 
+			}
 			elseif ( is_page() && $post->post_parent ) {
 				$parent_id  = $post->post_parent;
 				$breadcrumbs = array();
@@ -701,17 +704,17 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 					echo $breadcrumbs[$i];
 					if ($i != count($breadcrumbs)-1) echo ' ' . $delimiter . ' ';
 				}
-				if ($showCurrent == 1) 
+				if ($showCurrent == 1)
 					echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
-			} 
+			}
 			elseif ( is_tag() ) {
 				echo $before . theme_locals("tag_archives") . ': "' . single_tag_title('', false) . '"' . $after;
-			} 
+			}
 			elseif ( is_author() ) {
 				global $author;
 				$userdata = get_userdata($author);
 				echo $before . theme_locals("by") . ' ' . $userdata->display_name . $after;
-			} 
+			}
 			elseif ( is_404() ) {
 				echo $before . '404' . $after;
 			}

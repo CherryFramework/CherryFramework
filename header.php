@@ -92,6 +92,15 @@
 			scaleFix();
 		})
 	</script>
+	<!-- stick up menu -->
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			jQuery('.header .nav__primary').tmStickUp({
+				correctionSelector: $('#wpadminbar')
+			,	active: <?php echo (of_get_option('stickup_menu')=="false") ? 'false' : 'true'; ?>
+			});
+		})
+	</script>
 </head>
 
 <body <?php body_class(); ?>>
