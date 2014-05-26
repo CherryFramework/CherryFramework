@@ -139,7 +139,7 @@
 			$options['h2_heading'] = array( 'name' => theme_locals('h2_name'),
 								'desc' => theme_locals('h2_desc'),
 								'id' => 'h2_heading',
-								'std' => array( 'size' => '22px', 'lineheight' => '22px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
+								'std' => array( 'size' => '22px', 'lineheight' => '26px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
 								'type' => 'typography',
 								'options' => array(
 										'faces' => $typography_mixed_fonts )
@@ -148,7 +148,7 @@
 			$options['h3_heading'] = array( 'name' => theme_locals('h3_name'),
 								'desc' => theme_locals('h3_desc'),
 								'id' => 'h3_heading',
-								'std' => array( 'size' => '18px', 'lineheight' => '18px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
+								'std' => array( 'size' => '18px', 'lineheight' => '22px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
 								'type' => 'typography',
 								'options' => array(
 										'faces' => $typography_mixed_fonts )
@@ -157,7 +157,7 @@
 			$options['h4_heading'] = array( 'name' => theme_locals('h4_name'),
 								'desc' => theme_locals('h4_desc'),
 								'id' => 'h4_heading',
-								'std' => array( 'size' => '14px', 'lineheight' => '18px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
+								'std' => array( 'size' => '14px', 'lineheight' => '20px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
 								'type' => 'typography',
 								'options' => array(
 										'faces' => $typography_mixed_fonts )
@@ -596,7 +596,7 @@
 								"desc" => theme_locals('image_size_desc'),
 								"id" => "post_image_size",
 								"type" => "select",
-								"std" => "normal",
+								"std" => "large",
 								"class" => "small", //mini, tiny, small
 								"options" => $post_image_size_array);
 	// Featured image size on the single page.
@@ -606,7 +606,7 @@
 								"desc" => theme_locals('single_post_image_desc'),
 								"id" => "single_image_size",
 								"type" => "select",
-								"std" => "normal",
+								"std" => "large",
 								"class" => "small", //mini, tiny, small
 								"options" => $single_image_size_array);
 

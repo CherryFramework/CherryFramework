@@ -219,10 +219,10 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 	float:right !important;
 	margin-bottom:40px;
 }
-.title-section { padding:20px 0 0; }
+.title-section { padding:70px 0 0; }
 .title-header {
 	overflow:hidden;
-	margin-bottom:1em;
+	margin-bottom:1.5em;
 	word-wrap:break-word;
 	-webkit-hyphens:auto;
 	-moz-hyphens:auto;
@@ -549,9 +549,10 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 	transition-duration:0s;
 }
 .post-author {
-	margin-bottom:2em;
-	padding:5px 20px 20px;
+	margin-bottom:70px;
+	padding:10px 20px 15px 20px;
 	border:1px solid #DDD;
+	background-color:#FAFAFA;
 }
 .post-author_link { margin-top:1.5em; }
 .post-author_gravatar {
@@ -563,6 +564,11 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 	border:1px solid #DDD;
 	background:#fff;
 }
+.post-author .post-author_desc {
+	overflow:hidden;
+	margin-top:1em;
+}
+.post-author .post-author_desc .post-author_link { font-size:18px; }
 #recent-author-posts { margin-bottom:3em; }
 @media (min-width: 768px) and (max-width: 979px) {
 	.team-holder .featured-thumbnail {
@@ -623,13 +629,18 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 }
 .post__holder {
 	overflow:hidden;
-	margin-bottom:35px;
+	margin-bottom:40px;
 }
 .post__holder.single-post {
 	overflow:hidden;
 	margin-bottom:30px;
 	width:100%;
 }
+.post__holder .post-header .post-title { margin-bottom:30px; }
+.post__holder .featured-thumbnail.large { margin-bottom:35px; }
+.post__holder .post_content { padding-bottom:20px; }
+.post__holder .post_content h1, .post__holder .post_content h2, .post__holder .post_content h3, .post__holder .post_content h4, .post__holder .post_content h5, .post__holder .post_content h6 { margin:5px 0 15px 0; }
+.post__holder .post_content p { margin:0 0 15px; }
 .post-title {
 	word-wrap:break-word;
 	-webkit-hyphens:auto;
@@ -943,7 +954,7 @@ p.gravatar {
 	.related-posts_item { width:46%; }
 }
 .share-buttons {
-	margin-bottom:2em;
+	margin-bottom:15px;
 	padding:10px 0;
 	width:100%;
 	height:21px;
@@ -1067,7 +1078,7 @@ p.gravatar {
 }
 .comment-holder {
 	padding:0;
-	margin:0 0 2em;
+	margin:0 0 4em;
 }
 .comments-h {
 	padding:0;
@@ -1090,7 +1101,7 @@ p.gravatar {
 .comment .comment-body {
 	position:relative;
 	overflow:hidden;
-	margin-top:10px;
+	margin-top:15px;
 	padding:20px;
 	border:1px solid #DDD;
 	background:#f5f5f5;
@@ -1103,17 +1114,27 @@ p.gravatar {
 }
 .comment-author .author {
 	display:block;
-	padding-top:6px;
+	padding-top:20px;
 	width:65px;
-	text-align:center;
+	text-align:left;
 	text-transform:capitalize;
 	font-weight:bold;
-	font-size:12px;
+	font-size:16px;
 }
-.comment-meta { float:right; }
+.comment-meta {
+	font-size:16px;
+	float:right;
+	padding:5px 0;
+}
 .reply {
 	float:right;
 	margin-left:28px;
+	font-size:16px;
+}
+.reply .comment-reply-link {
+	background:#c5c5c5;
+	color:#fff;
+	padding:5px 10px;
 }
 .reply a {
 	display:inline-block;
@@ -1128,6 +1149,11 @@ p.gravatar {
 }
 .allowed_tags strong { font-family:Tahoma, Geneva, sans-serif; }
 #respond { padding-top:25px; }
+#respond h3 { margin-bottom:30px; }
+#respond form .btn {
+	margin-top:20px;
+	float:right;
+}
 @media (min-width: 768px) and (max-width: 979px) {
 	.comment-list ul.children { margin:0; }
 }
@@ -1135,23 +1161,29 @@ p.gravatar {
 	.comment-list ul.children { margin:0; }
 }
 .nocomments { margin:0; }
-#commentform p.field { margin-bottom:10px; }
+#commentform p.field { margin-bottom:12px; }
 #commentform small { color:#8b8b8b; }
 #commentform label { display:block; }
 #commentform input[type="text"] {
 	margin:0;
-	padding:6px;
-	width:288px;
+	width:350px;
+	border-radius:0;
+	padding:10px;
 }
 #commentform textarea {
 	overflow:auto;
 	margin:0;
-	min-width:530px;
+	min-width:100%;
 	min-height:230px;
 	max-width:530px;
-	width:530px;
-	height:230px;
+	width:100%;
+	height:180px;
+	border-radius:0;
+	padding:10px;
 	border-color:#DDD;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
 }
 .children #commentform textarea {
 	-webkit-box-sizing:border-box;

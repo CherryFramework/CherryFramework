@@ -1,5 +1,7 @@
 <!-- Post Meta -->
 <?php
-	get_post_metadata();
+	if ( is_singular() ) {
+		get_post_metadata();
+	}
 ?>
 <!--// Post Meta -->

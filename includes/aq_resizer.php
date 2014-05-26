@@ -24,7 +24,7 @@
 function aq_resize( $url, $width = null, $height = null, $crop = null, $single = true, $upscale = false ) {
 
 	// Validate inputs.
-	if ( ! $url || ( ! $width && ! $height ) ) return false;
+	if ( ! $url || ( ! $width && ! $height ) ) return $url;
 
 	// Caipt'n, ready to hook.
 	if ( true === $upscale ) add_filter( 'image_resize_dimensions', 'aq_upscale', 10, 6 );
@@ -48,14 +48,14 @@ function aq_resize( $url, $width = null, $height = null, $crop = null, $single =
 	
 
 	// Check if $img_url is local.
-	if ( false === strpos( $url, $upload_url ) ) return false;
+	if ( false === strpos( $url, $upload_url ) ) return $url;
 
 	// Define path of image.
 	$rel_path = str_replace( $upload_url, '', $url );
 	$img_path = $upload_dir . $rel_path;
 
 	// Check if img path exists, and is an image indeed.
-	if ( ! file_exists( $img_path ) or ! getimagesize( $img_path ) ) return false;
+	if ( ! file_exists( $img_path ) or ! getimagesize( $img_path ) ) return $url;
 
 	// Get image info.
 	$info = pathinfo( $img_path );
@@ -95,7 +95,7 @@ function aq_resize( $url, $width = null, $height = null, $crop = null, $single =
 				$editor = wp_get_image_editor( $img_path );
 
 				if ( is_wp_error( $editor ) || is_wp_error( $editor->resize( $width, $height, $crop ) ) )
-					return false;
+					return $url;
 
 				$resized_file = $editor->save();
 
@@ -103,7 +103,7 @@ function aq_resize( $url, $width = null, $height = null, $crop = null, $single =
 					$resized_rel_path = str_replace( $upload_dir, '', $resized_file['path'] );
 					$img_url = $upload_url . $resized_rel_path;
 				} else {
-					return false;
+					return $url;
 				}
 
 			} else {
@@ -113,7 +113,7 @@ function aq_resize( $url, $width = null, $height = null, $crop = null, $single =
 					$resized_rel_path = str_replace( $upload_dir, '', $resized_img_path );
 					$img_url = $upload_url . $resized_rel_path;
 				} else {
-					return false;
+					return $url;
 				}
 
 			}
@@ -142,7 +142,7 @@ function aq_resize( $url, $width = null, $height = null, $crop = null, $single =
 
 
 function aq_upscale( $default, $orig_w, $orig_h, $dest_w, $dest_h, $crop ) {
-	if ( ! $crop ) return null; // Let the wordpress default function handle this.
+	if ( ! $crop ) return $url; // Let the wordpress default function handle this.
 
 	// Here is the point we allow to use larger image size than the original one.
 	$aspect_ratio = $orig_w / $orig_h;
