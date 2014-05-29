@@ -1083,7 +1083,7 @@
 							}
 							break;
 						case 'permalink':
-							if(of_get_option('post_permalink') != 'no'){ ?>
+							if(of_get_option('post_permalink') != 'no' && !is_singular()){ ?>
 								<div class="post_permalink">
 									<i class="icon-link"></i>
 									<?php echo $icon_tips_before.'<a href="'.get_permalink().'" title="'.get_the_title().'">'.theme_locals('permalink_to').'</a>'.$icon_tips_after; ?>
@@ -1190,6 +1190,12 @@
 							echo '<div class="post_meta_unite clearfix">';
 						break;
 						case 'end_unite':
+							echo '</div>';
+						break;
+						case 'start_group':
+							echo '<div class="meta_group clearfix">';
+						break;
+						case 'end_group':
 							echo '</div>';
 						break;
 					}

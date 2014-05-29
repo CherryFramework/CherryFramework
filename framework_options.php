@@ -645,6 +645,13 @@
 								"type" => "radio",
 								"options" => array('false' => theme_locals('hide'), 'line' => theme_locals('line'), 'icon' => theme_locals('icons')));
 
+			$options['post_meta_display'] = array( "name" => __('Display meta.', CHERRY_PLUGIN_DOMAIN),
+								"desc" => __('Select where to display meta block.', CHERRY_PLUGIN_DOMAIN),
+								"id" => "post_meta_display",
+								"std" => "only_post",
+								"type" => "radio",
+								"options" => array('only_blog' => __('Only blog', CHERRY_PLUGIN_DOMAIN), 'only_post' => __('Only post', CHERRY_PLUGIN_DOMAIN), 'blog_post' => __('Blog and post', CHERRY_PLUGIN_DOMAIN), 'hide' => __('Hide', CHERRY_PLUGIN_DOMAIN)));
+
 			$options['post_date'] = array( "name" => theme_locals('post_date_name'),
 								"desc" => theme_locals('post_date_desc'),
 								"id" => "post_date",
@@ -680,7 +687,7 @@
 			$options['post_tag'] = array( "name" => theme_locals('post_tag_name'),
 								"desc" => theme_locals('post_tag_desc'),
 								"id" => "post_tag",
-								"std" => "yes",
+								"std" => "no",
 								"class" => "post_meta_options",
 								"type" => "radio",
 								"options" => $yes_no_array);
@@ -696,7 +703,7 @@
 			$options['post_views'] = array( "name" => theme_locals('post_views_name'),
 								"desc" => theme_locals('post_views_desc'),
 								"id" => "post_views",
-								"std" => "yes",
+								"std" => "no",
 								"class" => "post_meta_options",
 								"type" => "radio",
 								"options" => $yes_no_array);
@@ -704,7 +711,7 @@
 			$options['post_like'] = array( "name" => theme_locals('post_like_name'),
 								"desc" => theme_locals('post_like_desc'),
 								"id" => "post_like",
-								"std" => "yes",
+								"std" => "no",
 								"class" => "post_meta_options",
 								"type" => "radio",
 								"options" => $yes_no_array);
@@ -712,7 +719,7 @@
 			$options['post_dislike'] = array( "name" => theme_locals('post_dislike_name'),
 								"desc" => theme_locals('post_dislike_desc'),
 								"id" => "post_dislike",
-								"std" => "yes",
+								"std" => "no",
 								"class" => "post_meta_options",
 								"type" => "radio",
 								"options" => $yes_no_array);
