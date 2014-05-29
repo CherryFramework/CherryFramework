@@ -645,12 +645,12 @@
 								"type" => "radio",
 								"options" => array('false' => theme_locals('hide'), 'line' => theme_locals('line'), 'icon' => theme_locals('icons')));
 
-			$options['post_meta_display'] = array( "name" => __('Display meta.', CHERRY_PLUGIN_DOMAIN),
-								"desc" => __('Select where to display meta block.', CHERRY_PLUGIN_DOMAIN),
+			$options['post_meta_display'] = array( "name" => theme_locals('meta_display_name'),
+								"desc" => theme_locals('meta_display_desc'),
 								"id" => "post_meta_display",
 								"std" => "only_post",
 								"type" => "radio",
-								"options" => array('only_blog' => __('Only blog', CHERRY_PLUGIN_DOMAIN), 'only_post' => __('Only post', CHERRY_PLUGIN_DOMAIN), 'blog_post' => __('Blog and post', CHERRY_PLUGIN_DOMAIN), 'hide' => __('Hide', CHERRY_PLUGIN_DOMAIN)));
+								"options" => array('only_blog' => theme_locals('only_blog'), 'only_post' => theme_locals('only_post'), 'blog_post' => theme_locals('blog_post'), 'hide' => theme_locals('hide')));
 
 			$options['post_date'] = array( "name" => theme_locals('post_date_name'),
 								"desc" => theme_locals('post_date_desc'),
