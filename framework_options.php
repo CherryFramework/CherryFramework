@@ -371,7 +371,7 @@
 			$options['sl_effect'] = array( "name" => theme_locals('effect_name'),
 								"desc" => theme_locals('effect_desc'),
 								"id" => "sl_effect",
-								"std" => "random",
+								"std" => "simpleFade",
 								"type" => "select",
 								"class" => "tiny slider_type_1", //mini, tiny, small
 								"options" => $sl_effect_array);
