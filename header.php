@@ -94,9 +94,10 @@
 	</script>
 	<!-- stick up menu -->
 	<script type="text/javascript">
+
 		jQuery(document).ready(function(){
 			if(!device.mobile() && !device.tablet()){
-				jQuery('.header .nav__primary').tmStickUp({
+				jQuery('<?php echo apply_filters( "cherry_stickmenu_selector", ".header .nav__primary" ); ?>').tmStickUp({
 					correctionSelector: jQuery('#wpadminbar')
 				,	active: <?php echo (of_get_option('stickup_menu')=="false") ? 'false' : 'true'; ?>
 				});
