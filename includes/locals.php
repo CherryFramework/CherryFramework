@@ -231,6 +231,8 @@
 			'hover_desc' => __('If true the navigation button (prev, next and play/stop buttons) will be visible on hover state only, if false they will be visible always', $domain),
 			'button_name' => __('Play/Pause button', $domain),
 			'button_desc' => __('Display Play/Pause button?', $domain),
+			'pause_on_hover_title' => __('Pause on hover', $domain),
+			'pause_on_hover_desc' => __('Stop slideshow on hover?', $domain),
 			'loader_name' => __('Loader', $domain),
 			'loader_desc' => __('Slider loader', $domain),
 			'pie' => __('Pie', $domain),

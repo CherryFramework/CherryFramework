@@ -467,6 +467,14 @@
 								"type" => "radio",
 								"class" => "slider_type_1",
 								"options" => $true_false_array);
+
+			$options['sl_pause_on_hover'] = array( "name" => theme_locals('pause_on_hover_title'),
+								"desc" => theme_locals('pause_on_hover_desc'),
+								"id" => "sl_pause_on_hover",
+								"std" => "true",
+								"type" => "radio",
+								"class" => "slider_type_1",
+								"options" => $true_false_array);
 	// Slider loader
 			$sl_loader_array = array("no" => theme_locals("none"), "pie" => theme_locals("pie"), "bar" => theme_locals("bar"));
 
