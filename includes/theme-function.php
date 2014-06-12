@@ -215,7 +215,6 @@ if ( !function_exists( 'tz_grid_gallery' ) ) {
 		$single_gallery_layout = of_get_option('single_gallery_layout');
 		?>
 
-		<!--BEGIN .slider -->
 		<script type="text/javascript">
 			jQuery(document).ready(function () {
 				var
