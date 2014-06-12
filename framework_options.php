@@ -825,6 +825,15 @@
 												"grid" => theme_locals("grid_sp"),
 												"fullwidth" => theme_locals("fullwidth_sp")));
 
+			$options['single_gallery_layout'] = array( "name" => theme_locals("single_gallery_layout"),
+								"desc" => theme_locals("single_gallery_layout_desc"),
+								"id" => "single_gallery_layout",
+								"type" => "radio",
+								"std" => "grid",
+								"options" => array(
+												"grid" => theme_locals("grid_gallery"),
+												"masonry" => theme_locals("masonry")));
+
 			$options['layout_mode'] = array( "name" => theme_locals("layout_name"),
 								"desc" => theme_locals("layout_desc"),
 								"id" => "layout_mode",

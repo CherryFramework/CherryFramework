@@ -361,6 +361,11 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 	overflow:hidden;
 	width:100%;
 }
+.grid_gallery_inner.isotope .gallery_item { padding:0; }
+.grid_gallery_inner.isotope .gallery_item a {
+	position:relative;
+	padding:1px;
+}
 .gallery_item {
 	float:left;
 	width:33%;

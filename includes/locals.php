@@ -368,6 +368,8 @@
 			'single_folio_layout_desc' => __('Single portfolio layout.', $domain),
 			'fullwidth_sp' => __('Fullwidth', $domain),
 			'grid_sp' => __('Columns', $domain),
+			'single_gallery_layout' => __('Gallery-format post portfolio layout', $domain),
+			'single_gallery_layout_desc' => __('Select portfolio layout for gallery-format post.', $domain),
 			'portfolio_2_name' => __('Portfolio 2 columns items amount', $domain),
 			'portfolio_2_desc' => __('Portfolio items amount for Portfolio 2 columns template.', $domain),
 			'portfolio_3_name' => __('Portfolio 3 columns items amount', $domain),
