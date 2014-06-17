@@ -2653,6 +2653,7 @@ a.jp-restore-screen:hover span { background-position:-84px -84px; }
 	width:100%;
 }
 .extra-wrap { overflow:hidden; }
+.row > br { display:none; }
 [class*="span"] { position:relative; }
 .clear {
 	clear:both;
