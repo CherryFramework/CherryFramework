@@ -166,6 +166,8 @@
 			'mobile_menu_std' => __('Navigate to...', $domain),
 			'header_menu_face' => __('Header Menu Font', $domain),
 			'header_menu_color' => __('Header Menu Color', $domain),
+			'stickup_menu' => __('Use stickUp menu', $domain),
+			'stickup_menu_desc' => __('Do you want to use stickUp menu?', $domain),
 
 			//Slider Settings options
 			'slider' => __('Slider Settings', $domain),

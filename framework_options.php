@@ -314,8 +314,8 @@
 								"type" => "text");
 
 			$options['stickup_menu'] = array(
-								"name" => __('Use stickUp menu.', CHERRY_PLUGIN_DOMAIN),
-								"desc" => __('Do you want to use stickUp menu?', CHERRY_PLUGIN_DOMAIN),
+								"name" => theme_locals('stickup_menu'),
+								"desc" => theme_locals('stickup_menu_desc'),
 								"id" => "stickup_menu",
 								"std" => "false",
 								"type" => "radio",
