@@ -99,7 +99,7 @@
 			if(!device.mobile() && !device.tablet()){
 				jQuery('<?php echo apply_filters( "cherry_stickmenu_selector", ".header .nav__primary" ); ?>').tmStickUp({
 					correctionSelector: jQuery('#wpadminbar')
-				,	active: <?php echo (of_get_option('stickup_menu')=="false") ? 'false' : 'true'; ?>
+				,	active: <?php echo (of_get_option('stickup_menu', 'false')=="false") ? 'false' : 'true'; ?>
 				});
 			}
 		})
