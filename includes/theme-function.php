@@ -339,7 +339,7 @@ if ( !function_exists( 'tz_gallery' ) ) {
 				});
 			</script>
 
-			<div id="flexslider_<?php echo $random ?>" class="flexslider">
+			<div id="flexslider_<?php echo $random ?>" class="flexslider thumbnail">
 				<ul class="slides">
 				<?php
 					$args = array(
