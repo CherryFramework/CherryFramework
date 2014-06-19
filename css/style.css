@@ -293,6 +293,8 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 	padding:12px 0 0;
 	font-size:10.2px;
 }
+.testimonial small span { display:inline; }
+.testimonial .testi-url, .testimonial .testi-email { font-style:normal; }
 @media (min-width: 768px) and (max-width: 979px) {
 	.testimonial {
 		padding:15px;

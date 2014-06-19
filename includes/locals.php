@@ -538,6 +538,8 @@
 			'icon_desc' => __('In icon field you need to specify the icon name that can be copied from the <a target="_blank" href="//fortawesome.github.io/Font-Awesome/3.2.1/icons/#brand">website</a>. E.g. "icon-facebook".', $domain),
 			'network_title' => __('Social Networks Title', $domain),
 			'network_title_desc' => __('Specify the heading for the social networks block.', $domain),
+			'team_email' => __('Email', $domain),
+			'team_email_desc' => __('Input email address.', $domain),
 
 			//theme-testimeta.php
 			'testimonial_options' => __('Testimonial Options', $domain),
@@ -546,6 +548,8 @@
 			'name_desc' => __('Input author\'s name.', $domain),
 			'url_desc_2' => __('Input author\'s URL.', $domain),
 			'info_desc_3' => __('Input author\'s additional info.', $domain),
+			'testi_email' => __('Email', $domain),
+			'testi_email_desc' => __('Input author\'s email address.', $domain),
 
 			//theme-postmeta.php
 			'quote_settings' => __('Quote Settings', $domain),
