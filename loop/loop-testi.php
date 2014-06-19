@@ -29,7 +29,7 @@ if ($wp_query->have_posts()) : while ($wp_query->have_posts()) : $wp_query->the_
 	$testiname  = get_post_meta( $post->ID, 'my_testi_caption', true );
 	$testiurl   = esc_url( get_post_meta( $post->ID, 'my_testi_url', true ) );
 	$testiinfo  = get_post_meta( $post->ID, 'my_testi_info', true );
-	$testiemail = sanitize_email( get_post_meta($post->ID, 'my_testi_email', true ) );
+	$testiemail = sanitize_email( get_post_meta( $post->ID, 'my_testi_email', true ) );
 ?>
 <article id="post-<?php the_ID(); ?>" class="testimonial clearfix">
 	<blockquote class="testimonial_bq">
@@ -53,10 +53,10 @@ if ($wp_query->have_posts()) : while ($wp_query->have_posts()) : $wp_query->the_
 					<span class="info"><?php echo $testiinfo; ?></span><br>
 				<?php } ?>
 				<?php if ( !empty( $testiurl ) ) { ?>
-					<a class="testi-url" href="<?php echo esc_url( $testiurl ); ?>" target="_blank"><?php echo esc_url( $testiurl ); ?></a><br>
+					<a class="testi-url" href="<?php echo $testiurl; ?>" target="_blank"><?php echo $testiurl; ?></a><br>
 				<?php } ?>
 				<?php if ( !empty( $testiemail ) && is_email( $testiemail ) ) {
-					echo '<a class="testi-email" href="mailto:' . antispambot( $testiemail, 1 ) . '" title="Click to e-mail me" >' . antispambot( $testiemail ) . ' </a>';
+					echo '<a class="testi-email" href="mailto:' . antispambot( $testiemail, 1 ) . '">' . antispambot( $testiemail ) . ' </a>';
 				} ?>
 			</small>
 		</div>

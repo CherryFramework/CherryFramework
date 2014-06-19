@@ -1,8 +1,8 @@
 <?php /* Loop Name: Single Team */ ?>
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-	$teampos    = get_post_meta($post->ID, 'my_team_pos', true);
-	$team_email = sanitize_email( get_post_meta($post->ID, 'my_team_email', true) );
-	$teaminfo   = get_post_meta($post->ID, 'my_team_info', true);
+	$teampos    = get_post_meta( $post->ID, 'my_team_pos', true );
+	$team_email = sanitize_email( get_post_meta( $post->ID, 'my_team_email', true ) );
+	$teaminfo   = get_post_meta( $post->ID, 'my_team_info', true );
 ?>
 <div id="post-<?php the_ID(); ?>" <?php post_class('post'); ?>>
 	<article class="team-holder single-post">
@@ -26,7 +26,7 @@
 			<div class="clear"></div>
 
 			<?php if ( !empty( $team_email ) && is_email( $team_email ) ) {
-				echo '<p><span class="team-email"><a href="mailto:' . antispambot( $team_email, 1 ) . '" title="Click to e-mail me" >' . antispambot( $team_email ) . ' </a></span></p>';
+				echo '<p><span class="team-email"><a href="mailto:' . antispambot( $team_email, 1 ) . '">' . antispambot( $team_email ) . ' </a></span></p>';
 			} ?>
 
 			<?php if ( !empty( $teaminfo ) ) {
