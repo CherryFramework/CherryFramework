@@ -1900,6 +1900,17 @@ nav.footer-nav ul li.current-menu-item a { text-decoration:underline; }
 	background:none;
 	margin-right:0.25em;
 }
+.label {
+	white-space:normal;
+	word-wrap:break-word;
+	-webkit-hyphens:auto;
+	-moz-hyphens:auto;
+	-ms-hyphens:auto;
+	-o-hyphens:auto;
+	hyphens:auto;
+}
+.label p { margin:0; }
+.alert p { margin:0; }
 .alignleft {
 	float:left;
 	margin:5px 20px 10px 0;
@@ -2655,7 +2666,7 @@ a.jp-restore-screen:hover span { background-position:-84px -84px; }
 	width:100%;
 }
 .extra-wrap { overflow:hidden; }
-.row > br { display:none; }
+.row > br, .row > p { display:none; }
 [class*="span"] { position:relative; }
 .clear {
 	clear:both;

@@ -20,6 +20,20 @@
 	background: none;
 	margin-right: 0.25em;
 }
+.label {
+	white-space: normal;
+	.hyphens(auto);
+	p {
+		margin: 0;
+	}
+}
+
+/* Alert */
+.alert {
+	p {
+		margin: 0;
+	}
+}
 
 /* Image styling */
 .alignleft {
@@ -952,7 +966,8 @@ a.jp-restore-screen:hover span {background-position:-84px -84px;}
 }
 
 .row {
-	> br {
+	> br,
+	> p {
 		display: none;
 	}
 }
