@@ -47,9 +47,13 @@
 					}
 				lastScrollValue = tmpScrolled;
 
-				correctionValue = getOptions.correctionSelector.outerHeight(true);
-				documentScroll = parseInt(_window.scrollTop());
+				if(getOptions.correctionSelector.length != 0){
+					correctionValue = getOptions.correctionSelector.outerHeight(true);
+				}else{
+					correctionValue = 0;
+				}
 
+				documentScroll = parseInt(_window.scrollTop());
 				if(thisOffsetTop - correctionValue < documentScroll){
 					_this.addClass('isStuck');
 					_this.css({position:"fixed", top:correctionValue});
