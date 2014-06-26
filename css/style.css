@@ -219,6 +219,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 	float:right !important;
 	margin-bottom:40px;
 }
+.isStuck { -webkit-transform:translateZ(0); }
 .title-section { padding:70px 0 0; }
 .title-header {
 	overflow:hidden;
