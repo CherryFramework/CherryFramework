@@ -163,6 +163,15 @@ jQuery(document).ready(function(){
 				},100);
 	})
 // ---------------------------------------------------------
+// Contact form notvalid tip fadeOut
+// ---------------------------------------------------------
+jQuery(function() {
+  // clear cf7 error msg on mouseover
+	jQuery(".wpcf7-form-control-wrap").on("mouseover", function(){
+		jQuery("span.wpcf7-not-valid-tip", this).fadeOut();
+	});
+});
+// ---------------------------------------------------------
 // OWL Carousel init
 // ---------------------------------------------------------
 	jQuery('div[id^="owl-carousel-"]').each(function(){
