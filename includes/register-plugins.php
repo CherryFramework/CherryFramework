@@ -6,13 +6,13 @@
  * It is expected that theme authors would copy and paste this code into their
  * functions.php file, and amend to suit.
  *
- * @package	   TGM-Plugin-Activation
+ * @package    TGM-Plugin-Activation
  * @subpackage Example
- * @version	   2.3.6
- * @author	   Thomas Griffin <thomas@thomasgriffinmedia.com>
- * @author	   Gary Jones <gamajo@gamajo.com>
- * @copyright  Copyright (c) 2012, Thomas Griffin
- * @license	   http://opensource.org/licenses/gpl-2.0.php GPL v2 or later
+ * @version    2.4.0
+ * @author     Thomas Griffin <thomasgriffinmedia.com>
+ * @author     Gary Jones <gamajo.com>
+ * @copyright  Copyright (c) 2014, Thomas Griffin
+ * @license    http://opensource.org/licenses/gpl-2.0.php GPL v2 or later
  * @link       https://github.com/thomasgriffin/TGM-Plugin-Activation
  */
 
@@ -35,31 +35,26 @@ add_action( 'tgmpa_register', 'cherry_register_required_plugins' );
  * TGM_Plugin_Activation class constructor.
  */
 function cherry_register_required_plugins() {
+
 	/**
 	 * Array of plugin arrays. Required keys are name and slug.
 	 * If the source is NOT from the .org repo, then source is also required.
 	 */
 	$plugins = array(
-		// This is an example of how to include a plugin pre-packaged with a theme
 		array(
-			'name'               => 'Contact Form 7', // The plugin name
-			'slug'               => 'contact-form-7', // The plugin slug (typically the folder name)
-			'source'             => CHILD_DIR . '/includes/plugins/contact-form-7.zip', // The plugin source
-			'required'           => true, // If false, the plugin is only 'recommended' instead of required
-			'version'            => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-			'force_activation'   => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-			'external_url'       => '', // If set, overrides default API URL and points to an external URL
+			'name'               => 'Cherry Plugin', // The plugin name.
+			'slug'               => 'cherry-plugin', // The plugin slug (typically the folder name).
+			'source'             => PARENT_DIR . '/includes/plugins/cherry-plugin.zip', // The plugin source.
+			'required'           => true, // If false, the plugin is only 'recommended' instead of required.
+			'version'            => '1.1', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented.
+			'force_activation'   => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
+			'external_url'       => '', // If set, overrides default API URL and points to an external URL.
 		),
 		array(
-			'name'               => 'Cherry Plugin', // The plugin name
-			'slug'               => 'cherry-plugin', // The plugin slug (typically the folder name)
-			'source'             => PARENT_DIR . '/includes/plugins/cherry-plugin.zip', // The plugin source
-			'required'           => true, // If false, the plugin is only 'recommended' instead of required
-			'version'            => '1.1', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-			'force_activation'   => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-			'external_url'       => '', // If set, overrides default API URL and points to an external URL
+			'name'      => 'Contact Form 7',
+			'slug'      => 'contact-form-7',
+			'required'  => true,
 		),
 	);
 
@@ -71,34 +66,36 @@ function cherry_register_required_plugins() {
 	 * end of each line for what each argument will be.
 	 */
 	$config = array(
-		'domain'           => CURRENT_THEME, // Text domain - likely want to be the same as your theme.
-		'default_path'     => '', // Default absolute path to pre-packaged plugins
-		'parent_menu_slug' => 'themes.php', // Default parent menu slug
-		'parent_url_slug'  => 'themes.php', // Default parent URL slug
-		'menu'             => 'install-required-plugins', // Menu slug
-		'has_notices'      => true, // Show admin notices or not
-		'is_automatic'     => true, // Automatically activate plugins after installation or not
-		'message'          => '', // Message to output right before the plugins table
-		'strings'          => array(
-			'page_title'                      => theme_locals("page_title"),
-			'menu_title'                      => theme_locals("menu_title"),
-			'installing'                      => theme_locals("installing"), // %1$s = plugin name
-			'oops'                            => theme_locals("oops_2"),
-			'notice_can_install_required'     => _n_noop( theme_locals("notice_can_install_required"), theme_locals("notice_can_install_required_2") ), // %1$s = plugin name(s)
-			'notice_can_install_recommended'  => _n_noop( theme_locals("notice_can_install_recommended"), theme_locals("notice_can_install_recommended_2") ), // %1$s = plugin name(s)
-			'notice_cannot_install'           => _n_noop( theme_locals("notice_cannot_install"), theme_locals("notice_cannot_install_2") ), // %1$s = plugin name(s)
-			'notice_can_activate_required'    => _n_noop( theme_locals("notice_can_activate_required"), theme_locals("notice_can_activate_required_2") ), // %1$s = plugin name(s)
-			'notice_can_activate_recommended' => _n_noop( theme_locals("notice_can_activate_recommended"), theme_locals("notice_can_activate_recommended_2") ), // %1$s = plugin name(s)
-			'notice_cannot_activate'          => _n_noop( theme_locals("notice_cannot_activate"), theme_locals("notice_cannot_activate_2") ), // %1$s = plugin name(s)
-			'notice_ask_to_update'            => _n_noop( theme_locals("notice_ask_to_update"), theme_locals("notice_ask_to_update_2") ), // %1$s = plugin name(s)
-			'notice_cannot_update'            => _n_noop( theme_locals("notice_cannot_update"), theme_locals("notice_cannot_update_2") ), // %1$s = plugin name(s)
-			'install_link'                    => _n_noop( theme_locals("install_link"), theme_locals("install_link_2") ),
-			'activate_link'                   => _n_noop( theme_locals("activate_link"), theme_locals("activate_link_2") ),
-			'return'                          => theme_locals("return"),
-			'plugin_activated'                => theme_locals("plugin_activated"),
-			'complete'                        => theme_locals("complete"), // %1$s = dashboard link
-			'nag_type'                        => theme_locals("updated") // Determines admin notice type - can only be 'updated' or 'error'
+		'id'           => 'cherry',                 // Unique ID for hashing notices for multiple instances of TGMPA.
+		'default_path' => '',                      // Default absolute path to pre-packaged plugins.
+		'menu'         => 'cherry-install-plugins', // Menu slug.
+		'has_notices'  => true,                    // Show admin notices or not.
+		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
+		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+		'message'      => '',                      // Message to output right before the plugins table.
+		'strings'      => array(
+			'page_title'                      => __( 'Install Required Plugins', 'cherry' ),
+			'menu_title'                      => __( 'Install Plugins', 'cherry' ),
+			'installing'                      => __( 'Installing Plugin: %s', 'cherry' ), // %s = plugin name.
+			'oops'                            => __( 'Something went wrong with the plugin API.', 'cherry' ),
+			'notice_can_install_required'     => _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.', 'cherry' ), // %1$s = plugin name(s).
+			'notice_can_install_recommended'  => _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.', 'cherry' ), // %1$s = plugin name(s).
+			'notice_cannot_install'           => _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.', 'cherry' ), // %1$s = plugin name(s).
+			'notice_can_activate_required'    => _n_noop( 'The following required plugin is currently inactive: %1$s.', 'The following required plugins are currently inactive: %1$s.', 'cherry' ), // %1$s = plugin name(s).
+			'notice_can_activate_recommended' => _n_noop( 'The following recommended plugin is currently inactive: %1$s.', 'The following recommended plugins are currently inactive: %1$s.', 'cherry' ), // %1$s = plugin name(s).
+			'notice_cannot_activate'          => _n_noop( 'Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated.', 'Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated.', 'cherry' ), // %1$s = plugin name(s).
+			'notice_ask_to_update'            => _n_noop( 'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.', 'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.', 'cherry' ), // %1$s = plugin name(s).
+			'notice_cannot_update'            => _n_noop( 'Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated.', 'Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.', 'cherry' ), // %1$s = plugin name(s).
+			'install_link'                    => _n_noop( 'Begin installing plugin', 'Begin installing plugins', 'cherry' ),
+			'activate_link'                   => _n_noop( 'Begin activating plugin', 'Begin activating plugins', 'cherry' ),
+			'return'                          => __( 'Return to Required Plugins Installer', 'cherry' ),
+			'plugin_activated'                => __( 'Plugin activated successfully.', 'cherry' ),
+			'complete'                        => __( 'All plugins installed and activated successfully. %s', 'cherry' ), // %s = dashboard link.
+			'nag_type'                        => 'updated' // Determines admin notice type - can only be 'updated', 'update-nag' or 'error'.
 		)
 	);
+
 	tgmpa( $plugins, $config );
+
 }
