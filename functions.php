@@ -510,7 +510,7 @@
 	}
 
 	function getCherryVersion(&$updateErrors) {
-		$style = TEMPLATEPATH . '/style.css';
+		$style = PARENT_DIR . '/style.css';
 		$themeVersion = 0;
 
 		if (function_exists('wp_get_theme')) {
@@ -588,7 +588,7 @@
 		$headerFooterCode = array('header' => null, 'footer' => null);
 
 		foreach ($headerFooter as $name) {
-			$filePath = TEMPLATEPATH . '/' . $name . '.php';
+			$filePath = PARENT_DIR . '/' . $name . '.php';
 			if (file_exists($filePath)) {
 				$content = file_get_contents($filePath);
 				if ($content) {
@@ -617,8 +617,8 @@
 	}
 
 	function writeLog($message) {
-		$logFile = TEMPLATEPATH . '/update.log';
-		if (is_writable(TEMPLATEPATH)) {
+		$logFile = PARENT_DIR . '/update.log';
+		if (is_writable(PARENT_DIR)) {
 			file_put_contents($logFile, $message . PHP_EOL, FILE_APPEND);
 		}
 	}
@@ -896,7 +896,7 @@
 		global $cherryTemplates;
 		global $headerFooterPattern;
 
-		$style = STYLESHEETPATH . '/style.css';
+		$style = CHILD_DIR . '/style.css';
 		$themeTemplate = false;
 
 		if (function_exists('wp_get_theme')) {
