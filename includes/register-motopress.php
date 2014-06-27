@@ -26,7 +26,7 @@ function theme_register_motopress_ce_lite_plugin() {
 			$message = TGM_Plugin_Activation::$instance->message;
 		}
 
-		$message .= '<div class="updated"><p>MotoPress Content Editor is a drag and drop visual builder for creating and editing your WordPress posts and pages.<br/>Note: MotoPress Content Editor <b>customizes the content created only by this plugin</b>. To edit previously created content you should use the default WordPress editor.</p></div>';
+		$message .= '<div class="updated"><p>' . __('MotoPress Content Editor is a drag and drop visual builder for creating and editing your WordPress posts and pages.<br/>Note: MotoPress Content Editor <b>customizes the content created only by this plugin</b>. To edit previously created content you should use the default WordPress editor.', 'cherry') . '</p></div>';
 
 		$config = array('message' => $message);
 		tgmpa( $plugins, $config );
