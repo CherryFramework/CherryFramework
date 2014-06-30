@@ -11,7 +11,7 @@ function theme_register_motopress_ce_lite_plugin() {
 		array(
 			'name'               => 'MotoPress Content Editor', // The plugin name
 			'slug'               => 'motopress-content-editor', // The plugin slug (typically the folder name)
-			'source'             => PARENT_DIR . '/includes/plugins/motopress-content-editor-lite.zip', // The plugin source
+			'source'             => PARENT_DIR . '/includes/plugins/motopress-content-editor.zip', // The plugin source
 			'required'           => false, // If false, the plugin is only 'recommended' instead of required
 			'version'            => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 			'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
