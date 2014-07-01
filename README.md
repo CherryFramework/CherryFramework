@@ -9,6 +9,88 @@ Fully responsive design, easy install, steady updates, great number of shortcode
 
 ##Change log##
 
+#### v3.1.4 ####
+
+Framework Updates
+
+* UPD: cherry plugin to version 1.2.2
+* UPD: Updated motopress-content-editor
+* UPD: screenshot.psd
+* ADD: Added default value for sl_pause_on_hover option
+* UPD: Removed deprecated in wordpress constants
+* UPD: Wrapped text in GetText call
+* ADD: fadeout effect for invalid tip to contact form field
+* UPD: Removed zip-archive with contact-form-7 plugin, because now it is installed from wordpress.org repository
+* UPD: Updated TGM-Plugin-Activation class
+* upd: stickUp.js
+* upd:css isStuck class
+* FIX: stickUp plugin
+* ADD: Added a misc style
+* UPD: Updated cherry-plugin
+* ADD: Added email custom field to the Team and Testimonail metabox
+* FIX: Fixed lightbox in portfolio slideshow
+* UPD: Updated cherry-plugin
+* ADD: Added unique prefix to the functions
+* ADD: Added style for <br> tag inner .row
+* UPD: Set dashicons for custom post type
+* FIX: Fixed enqueue script for Gallery-format post
+* FIX: Fixed localization for stickup_menu option
+* ADD: Added default value for stickup_menu. Set when option are desable.
+* ADD: new option Gallery-format post portfolio layout
+* FIX: https://github.com/CherryFramework/CherryFramework/issues/16
+* FIX: https://github.com/CherryFramework/CherryFramework/issues/11
+* ADD: new option Gallery-format post portfolio layout
+* ADD: pause on slider hover option
+* ADD: filter to stickmenu selector
+* UPD: post_meta_display option
+* UPD: change default slider effect
+* ADD: option meta display, UPD: blog page
+* UPD: Updated cherry-plugin
+* UPD: blog page? singlepost page
+* UDP: check device for stickUp menu
+* URD: Updated cherry-plugin
+* UPD: jQuery('#wpadminbar')
+* FIX: hotfix add add_filter( 'the_excerpt', 'do_shortcode' );
+* FIX: fix bug documentation
+* ADD: filter to stickmenu selector
+* UPD: Updated cherry-plugin
+* UDP: check device for stickUp menu
+* UPD: Updated cherry-plugin
+* UPD: Updated cherry-plugin
+* UPD: jQuery('#wpadminbar')
+* FIX: hotfix add add_filter( 'the_excerpt', 'do_shortcode' );
+* UPD: modified readme
+* FIX: Fixed after branch's merge
+
+Plugin Updates (v1.2.2)
+
+FIX: conflicts flexslider.css
+UPD: carousel.php
+ADD: Added style for under-construction page in mobile devices
+UPD: recent post shortcode(video post type)
+upd: my-social-widget widgets
+FIX: Fixed quotes
+ADD: Added clearfix class to the li item in recent_posts shortcode
+ADD: Added to the all shortcodes filters html-formatted data before return
+ADD: Added outputing value for email custom field in Team and Testimonails post type
+ADD: Added some style to the flex-slider
+Fix: Fixed https://github.com/CherryFramework/CherryFramework/issues/17
+Fix: Fixed display parametr in button shortcode
+UPD: ul counter for post grid shotcode
+FIX: https://github.com/CherryFramework/CherryFramework/issues/13
+FIX: https://github.com/CherryFramework/CherryFramework/issues/10
+UPD: recent testimonials shotcode
+ADD: category filter to mini post shotcode
+UPD: postcycle widget
+UPD: flex slider css
+UPD: Updated flexslider to version 2.2.2
+UPD: css .comments-custom
+Fix: hotfix: removed post-cycle's loader
+Fix: hotfix: Fixed rtl-support in post_cycle shortcode
+Fix: hotfix: removed post-cycle's loader
+Fix: hotfix: Fixed rlt-support in post_cycle shortcode
+
+
 #### v3.1.3 ####
 
 Framework Updates
