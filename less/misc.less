@@ -1,7 +1,7 @@
 /* #Misc
 ================================================== */
 /* Button */
-.btn [class^="icon-"], 
+.btn [class^="icon-"],
 .btn [class*=" icon-"] {
 	background: none;
 	margin-right: 0.25em;
@@ -15,10 +15,24 @@
 }
 
 /* Label */
-.label [class^="icon-"], 
+.label [class^="icon-"],
 .label [class*=" icon-"] {
 	background: none;
 	margin-right: 0.25em;
+}
+.label {
+	white-space: normal;
+	.hyphens(auto);
+	p {
+		margin: 0;
+	}
+}
+
+/* Alert */
+.alert {
+	p {
+		margin: 0;
+	}
 }
 
 /* Image styling */
@@ -118,7 +132,7 @@ article .post-content img {
 	&.large {
 		overflow:hidden;
 		margin-right:0;
-		margin-bottom:1.5em;
+		margin-bottom: 1.5em;
 		float: none;
 
 		& img {
@@ -201,16 +215,16 @@ figure.frame {
 /* Check List */
 .list.check-list > ul li:before {
 	content: "\f00c";
-	
+
 }
 /* Check2 List */
 .list.check2-list > ul li:before {
 	content: "\f078";
-}		
+}
 /* Arrow List */
 .list.arrow-list > ul li:before {
 	content: "\f054";
-}	
+}
 /* Arrow2 List */
 .list.arrow2-list > ul li:before {
 	content: "\f061";
@@ -301,13 +315,13 @@ figure.frame {
 	margin-bottom:20px;
 }
 .nav-tabs > li {
-	
+
 }
 .nav-tabs > li > a {
-	
+
 }
 .tab-content {
-	
+
 }
 
 
@@ -355,7 +369,7 @@ figure.frame {
 	font-size: 0;
 	line-height: 0;
 }
-	
+
 /* Diviver */
 .vertical-divider {
 	margin-left: 20px;
@@ -560,22 +574,22 @@ video {
 
 /* jPlayer
 -------------------------------------------------------------- */
-div.jp-audio, 
+div.jp-audio,
 div.jp-video {
 	width: 100%;
 	color: #a7a7a7;
 	line-height: 2.2em;
 }
 div.jp-video video,
-div.jp-video object { 
+div.jp-video object {
 	position: absolute;
 	top: 0;
-	left: 0; 
+	left: 0;
 	width: 100%;
 	height: 100%;
 	background-color: #000;
 }
-div.jp-audio { width:100%; } 
+div.jp-audio { width:100%; }
 div.jp-video.fullwidth .jp-type-list-parent {
 	position: relative;
 	overflow: hidden;
@@ -587,7 +601,7 @@ div.jp-video.fullwidth.playlist {
 	padding-bottom: 0;
 	height: auto;
 }
-div.jp-video.fullwidth .jp-type-single, 
+div.jp-video.fullwidth .jp-type-single,
 div.jp-video.fullwidth .jp-type-list {
 	position: absolute;
 	top: 0;
@@ -661,7 +675,7 @@ div.jp-interface ul.jp-controls {
 	padding: 0;
 	list-style-type: none;
 }
-ul.jp-controls, 
+ul.jp-controls,
 div.jp-interface ul.jp-controls li {
 	display: inline;
 	float: left;
@@ -678,7 +692,7 @@ div.jp-interface ul.jp-controls li {
 		}
 	}
 }
-a.jp-play span, 
+a.jp-play span,
 a.jp-pause span {
 	width:28px;
 	height:28px;
@@ -690,8 +704,8 @@ a.jp-pause span {
 	background: url(../images/jp_sprite.png) 0 -28px no-repeat;
 }
 a.jp-pause:hover span {background-position:-28px -28px;}
-a.jp-stop span, 
-a.jp-previous span, 
+a.jp-stop span,
+a.jp-previous span,
 a.jp-next span {
 	width:28px;
 	height:28px;
@@ -727,10 +741,10 @@ div.jp-play-bar {
 	#gradient > .vertical(#cecece, #9d9d9d);
 }
 div.jp-seeking-bg { background: url(../images/jp_load.gif) 0 0 repeat-x; }
-a.jp-mute, 
-a.jp-unmute, 
+a.jp-mute,
+a.jp-unmute,
 a.jp-volume-max { position: relative; }
-a.jp-mute, 
+a.jp-mute,
 a.jp-unmute {margin: 0 60px 0 0;}
 a.jp-mute span {background: url(../images/jp_sprite.png) 0 -84px no-repeat;}
 a.jp-mute:hover span {background-position: -28px -84px;}
@@ -759,8 +773,8 @@ div.jp-volume-bar-value {
 	.border-left-radius(3px);
 	#gradient > .vertical(#848484, #646464);
 }
-div.jp-current-time, 
-div.jp-time-sep, 
+div.jp-current-time,
+div.jp-time-sep,
 div.jp-duration {
 	margin-top: 6px;
 	font-size: 0.85em;
@@ -795,14 +809,14 @@ div.jp-title {
 	color: #fff;
 	text-align: center;
 }
-div.jp-title, 
+div.jp-title,
 div.jp-playlist {
 	width: 100%;
 }
-div.jp-type-single div.jp-title, 
-div.jp-type-playlist div.jp-title, 
+div.jp-type-single div.jp-title,
+div.jp-type-playlist div.jp-title,
 div.jp-type-single div.jp-playlist {border-top: none;}
-div.jp-title ul, 
+div.jp-title ul,
 div.jp-playlist ul {
 	margin: 0;
 	padding: 0;
@@ -886,7 +900,7 @@ a.jp-video-play-icon {
 div.jp-video-play:hover a.jp-video-play-icon {
 	opacity:1;
 }
-div.jp-jplayer audio, 
+div.jp-jplayer audio,
 div.jp-jplayer {
 	// width:0;
 	// height:0;
@@ -910,7 +924,7 @@ ul.jp-toggles li a {
 	padding-left:2px;
 	background:url(../images/jp_spacer.png) 0 1px no-repeat;
 }
-ul.jp-toggles li a, 
+ul.jp-toggles li a,
 ul.jp-toggles li a span {
 	display:block;
 	width:28px;
@@ -951,12 +965,17 @@ a.jp-restore-screen:hover span {background-position:-84px -84px;}
 	overflow:hidden;
 }
 
-	
+.row {
+	> br,
+	> p {
+		display: none;
+	}
+}
 /* Adding relative position for grid columns */
 [class*="span"] {
 	position:relative;
 }
-	
+
 .clear {
 	clear: both;
 	display: block;

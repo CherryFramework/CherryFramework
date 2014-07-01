@@ -8,33 +8,40 @@
 /*-----------------------------------------------------------------------------------*/
 $prefix = 'my_';
 $meta_box_team = array(
-	'id' => 'my-meta-box-team',
-	'title' => "personal_options",
-	'page' => 'team',
-	'context' => 'normal',
+	'id'       => 'my-meta-box-team',
+	'title'    => "personal_options",
+	'page'     => 'team',
+	'context'  => 'normal',
 	'priority' => 'high',
-	'fields' => array(
+	'fields'   => array(
 		array(
 			'name' => "position",
 			'desc' => "position_desc",
-			'id' => $prefix . 'team_pos',
+			'id'   => $prefix . 'team_pos',
 			'type' => 'text',
-			'std' => ''
+			'std'  => ''
+		),
+		array(
+			'name' => "team_email",
+			'desc' => "team_email_desc",
+			'id'   => $prefix . 'team_email',
+			'type' => 'text',
+			'std'  => ''
 		),
 		array(
 			'name' => "info",
 			'desc' => "info_desc_2",
-			'id' => $prefix . 'team_info',
+			'id'   => $prefix . 'team_info',
 			'type' => 'text',
-			'std' => ''
+			'std'  => ''
 		)
 	)
 );
 $team_networks = array(
-	'id' => 'team_networks',
-	'title' => "s_n",
-	'page' => 'team',
-	'context' => 'normal',
+	'id'       => 'team_networks',
+	'title'    => "s_n",
+	'page'     => 'team',
+	'context'  => 'normal',
 	'priority' => 'high'
 );
 /*-----------------------------------------------------------------------------------*/
@@ -42,7 +49,7 @@ $team_networks = array(
 /*-----------------------------------------------------------------------------------*/
 function my_add_box_team() {
 	global $meta_box_team, $team_networks;
-	
+
 	add_meta_box($meta_box_team['id'], theme_locals($meta_box_team['title']), 'my_show_box_team', $meta_box_team['page'], $meta_box_team['context'], $meta_box_team['priority']);
 	add_meta_box($team_networks['id'], theme_locals($team_networks['title']), 'my_social_networks', $team_networks['page'], $team_networks['context'], $team_networks['priority']);
 }
@@ -61,21 +68,21 @@ function my_show_box_team() {
 		// get current post meta data
 		$meta = get_post_meta($post->ID, $field['id'], true);
 		switch ($field['type']) {
-			//If Text		
+			//If Text
 			case 'text':
 				echo '<tr style="border-top:1px solid #eeeeee;">',
 					'<th style="width:25%"><label for="', $field['id'], '"><strong>', theme_locals($field['name']), '</strong><span style=" display:block; color:#999; margin:5px 0 0 0; line-height: 18px;">'. theme_locals($field['desc']).'</span></label></th>',
 					'<td>';
 				echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : stripslashes(htmlspecialchars(( $field['std']), ENT_QUOTES)), '" size="30" style="width:75%; margin-right: 20px; float:left;" />';
 			break;
-			//If textarea		
+			//If textarea
 			case 'textarea':
 				echo '<tr style="border-top:1px solid #eeeeee;">',
 					'<th style="width:25%"><label for="', $field['id'], '"><strong>', theme_locals($field['name']), '</strong><span style="line-height:18px; display:block; color:#999; margin:5px 0 0 0;">'. theme_locals($field['desc']).'</span></label></th>',
 					'<td>';
 				echo '<textarea name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : stripslashes(htmlspecialchars(( $field['std']), ENT_QUOTES)), '" rows="8" cols="5" style="width:100%; margin-right: 20px; float:left;">', $meta ? $meta : stripslashes(htmlspecialchars(( $field['std']), ENT_QUOTES)), '</textarea>';
 			break;
-			//If Select	
+			//If Select
 			case 'select':
 				echo '<tr>',
 				'<th style="width:25%"><label for="', $field['id'], '"><strong>', theme_locals($field['name']), '</strong><span style=" display:block; color:#999; margin:5px 0 0 0; line-height: 18px;">'. theme_locals($field['desc']).'</span></label></th>',
@@ -83,8 +90,8 @@ function my_show_box_team() {
 				echo'<select id="' . $field['id'] . '" name="'.$field['id'].'">';
 				foreach ($field['options'] as $option) {
 					echo'<option';
-					if ($meta == $option ) { 
-						echo ' selected="selected"'; 
+					if ($meta == $option ) {
+						echo ' selected="selected"';
 					}
 					echo'>'. $option .'</option>';
 				}

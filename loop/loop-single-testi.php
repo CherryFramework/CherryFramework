@@ -3,9 +3,10 @@
 	<h1><?php the_title(); ?></h1>
 </div>
 <?php if (have_posts()) : while (have_posts()) : the_post();
-	$testiname = get_post_meta($post->ID, 'my_testi_caption', true);
-	$testiurl  = get_post_meta($post->ID, 'my_testi_url', true);
-	$testiinfo = get_post_meta($post->ID, 'my_testi_info', true);
+	$testiname  = get_post_meta( $post->ID, 'my_testi_caption', true );
+	$testiurl   = esc_url( get_post_meta( $post->ID, 'my_testi_url', true ) );
+	$testiinfo  = get_post_meta( $post->ID, 'my_testi_info', true );
+	$testiemail = sanitize_email( get_post_meta( $post->ID, 'my_testi_email', true ) );
 ?>
 <article id="post-<?php the_ID(); ?>" class="testimonial">
 	<blockquote class="testimonial_bq">
@@ -17,20 +18,23 @@
 			<figure class="featured-thumbnail thumbnail hidden-phone">
 				<img src="<?php echo $image ?>" alt="<?php the_title(); ?>" />
 			</figure>
-		<?php } ?>  
+		<?php } ?>
 		<div class="testimonial_content">
 			<?php the_content(); ?>
 			<div class="clear"></div>
 			<small>
-			<?php if($testiname) { ?>
+			<?php if ( !empty( $testiname ) ) { ?>
 				<span class="user"><?php echo $testiname; ?></span><?php echo ', '; ?>
 			<?php } ?>
-			<?php if($testiinfo) { ?>
-				<span class="info"><?php echo $testiinfo; ?></span><br />
+			<?php if ( !empty( $testiinfo ) ) { ?>
+				<span class="info"><?php echo $testiinfo; ?></span><br>
 			<?php } ?>
-			<?php if($testiurl) { ?>
-				<a href="<?php echo $testiurl; ?>"><?php echo $testiurl; ?></a>
+			<?php if ( !empty( $testiurl ) ) { ?>
+				<a class="testi-url" href="<?php echo $testiurl; ?>" target="_blank"><?php echo $testiurl; ?></a><br>
 			<?php } ?>
+			<?php if ( !empty( $testiemail ) && is_email( $testiemail ) ) {
+				echo '<a class="testi-email" href="mailto:' . antispambot( $testiemail, 1 ) . '">' . antispambot( $testiemail ) . ' </a>';
+			} ?>
 			</small>
 		</div>
 	</blockquote>

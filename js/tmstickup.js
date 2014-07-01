@@ -3,7 +3,9 @@
 		
 		var getOptions = {
 			correctionSelector: $('.correctionSelector')
+		,	listenSelector: $('.listenSelector')
 		,	active: false
+		,	pseudo: true
 		}
 		$.extend(getOptions, options); 
 
@@ -28,9 +30,11 @@
 			thisMarginTop = parseInt(_this.css("margin-top"));
 			thisOuterHeight = parseInt(_this.outerHeight(true));
 
-			$('<div class="pseudoStickyBlock"></div>').insertAfter(_this);
-			pseudoBlock = $('.pseudoStickyBlock');
-			pseudoBlock.css({"position":"relative", "display":"block"});
+			if(getOptions.pseudo){
+				$('<div class="pseudoStickyBlock"></div>').insertAfter(_this);
+				pseudoBlock = $('.pseudoStickyBlock');
+				pseudoBlock.css({"position":"relative", "display":"block"});
+			}
 
 			if(getOptions.active){
 				addEventsFunction();
@@ -47,17 +51,31 @@
 					}
 				lastScrollValue = tmpScrolled;
 
-				correctionValue = getOptions.correctionSelector.outerHeight(true);
-				documentScroll = parseInt(_window.scrollTop());
+				if(getOptions.correctionSelector.length != 0){
+					correctionValue = getOptions.correctionSelector.outerHeight(true);
+				}else{
+					correctionValue = 0;
+				}
 
+				documentScroll = parseInt(_window.scrollTop());
 				if(thisOffsetTop - correctionValue < documentScroll){
 					_this.addClass('isStuck');
-					_this.css({position:"fixed", top:correctionValue});
-					pseudoBlock.css({"height":thisOuterHeight});
+					getOptions.listenSelector.addClass('isStuck');
+					if(getOptions.pseudo){
+						_this.css({position:"fixed", top:correctionValue});
+						pseudoBlock.css({"height":thisOuterHeight});
+					}else{
+						_this.css({position:"fixed", top:correctionValue});
+					}
 				}else{
 					_this.removeClass('isStuck');
-					_this.css({position:"relative", top:0});
-					pseudoBlock.css({"height":0});
+					getOptions.listenSelector.removeClass('isStuck');
+					if(getOptions.pseudo){
+						_this.css({position:"relative", top:0});
+						pseudoBlock.css({"height":0});
+					}else{
+						_this.css({position:"absolute", top:0});
+					}
 				}
 			}).trigger('scroll');
 		}

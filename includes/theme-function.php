@@ -174,28 +174,32 @@ function custom_portfolio_columns( $column, $post_id ) {
 /* Output image */
 /*-----------------------------------------------------------------------------------*/
 if ( !function_exists( 'tz_image' ) ) {
-	function tz_image($postid, $imagesize) {
-		if (has_post_thumbnail($postid) ):
-			$lightbox = get_post_meta(get_the_ID(), 'tz_image_lightbox', TRUE);
-			if($lightbox == 'yes')
+	function tz_image( $postid = null, $imagesize ) {
+
+		$post_id = ( null === $postid ) ? get_the_ID() : $postid;
+
+		if ( has_post_thumbnail( $postid ) ):
+
+			$lightbox = get_post_meta( $post_id, 'tz_image_lightbox', TRUE );
+
+			if ( $lightbox == 'yes' )
 				$lightbox = TRUE;
 			else
 				$lightbox = FALSE;
-			$src = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), array( '9999','9999' ), false, '' );
 
-			// get the featured image for the post
-			if( has_post_thumbnail($postid) ) {
-				$thumb   = get_post_thumbnail_id();
-				$img_url = wp_get_attachment_url( $thumb,'full'); //get img URL
-				$image   = aq_resize( $img_url, 700, 460, true ); //resize & crop img
+			$src     = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), array( '9999','9999' ), false, '' );
+			$thumb   = get_post_thumbnail_id();
+			$img_url = wp_get_attachment_url( $thumb, 'full' ); //get img URL
+			$image   = aq_resize( $img_url, 700, 460, true ); //resize & crop img
 
-				if ($lightbox) :
-					echo '<figure class="featured-thumbnail thumbnail large"><a class="image-wrap" rel="prettyPhoto" title="'. get_the_title() .'" href="'. $src[0] .'"><img src="'. $image .'" alt="'. get_the_title() .'" /><span class="zoom-icon"></span></a></figure><div class="clear"></div>';
-				else :
-					echo '<figure class="featured-thumbnail thumbnail large"><img src="'. $image .'" alt="'. get_the_title() .'" /></figure><div class="clear"></div>';
-				endif;
-			}
+			if ( $lightbox ) :
+				echo '<figure class="featured-thumbnail thumbnail large"><a class="image-wrap" rel="prettyPhoto" title="'. get_the_title() .'" href="'. $src[0] .'"><img src="'. $image .'" alt="'. get_the_title() .'" /><span class="zoom-icon"></span></a></figure><div class="clear"></div>';
+			else :
+				echo '<figure class="featured-thumbnail thumbnail large"><img src="'. $image .'" alt="'. get_the_title() .'" /></figure><div class="clear"></div>';
+			endif;
+
 		endif;
+
 	}
 }
 
@@ -204,11 +208,43 @@ if ( !function_exists( 'tz_image' ) ) {
 /* Output gallery */
 /*-----------------------------------------------------------------------------------*/
 if ( !function_exists( 'tz_grid_gallery' ) ) {
-	function tz_grid_gallery($postid, $imagesize) { ?>
-		<!--BEGIN .slider -->
+
+	function tz_grid_gallery($postid, $imagesize) {
+		$single_folio_layout = of_get_option('single_folio_layout');
+		$single_gallery_layout = of_get_option('single_gallery_layout');
+
+		if ( $single_gallery_layout == 'masonry' ) {
+
+			add_action( 'wp_footer', 'cherry_enqueue_isotope' );
+
+		} ?>
+
+		<script type="text/javascript">
+			jQuery(document).ready(function () {
+				var
+						masonrycontainer = jQuery('.grid_gallery_inner')
+					,	col = 3
+					,	layout = "<?php echo $single_gallery_layout ?>"
+					;
+				if( layout =='masonry'){
+					masonrycontainer.isotope({
+						itemSelector : '.gallery_item'
+					,	masonry: { columnWidth: Math.floor(masonrycontainer.width() / col) }
+					});
+
+					jQuery(window).resize(function(){
+						jQuery('.gallery_item', masonrycontainer).width(Math.floor(masonrycontainer.width() / col));
+						masonrycontainer.isotope({
+							masonry: { columnWidth: Math.floor(masonrycontainer.width() / col) }
+						});
+					}).trigger('resize');
+				}
+			});
+		</script>
 		<div class="grid_gallery clearfix">
 			<div class="grid_gallery_inner">
 			<?php
+
 				$args = array(
 						'orderby'        => 'menu_order',
 						'order'          => 'ASC',
@@ -230,26 +266,59 @@ if ( !function_exists( 'tz_grid_gallery' ) ) {
 			if ($attachments) :
 				foreach ($attachments as $attachment) :
 					$attachment_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
-					$url            = $attachment_url['0'];
-					$image          = aq_resize($url, 260, 160, true);
+					$url			= $attachment_url['0'];
+					$imgWidth		= $attachment_url['1'];
+					$imgHeight		= $attachment_url['2'];
+
+					switch ($single_gallery_layout) {
+						case 'grid':
+							if($single_folio_layout=='grid'){
+								$new_width	= 260;
+								$new_height	= 160;
+							}else{
+								$new_width	= 390;
+								$new_height	= 260;
+							}
+							break;
+						case 'masonry':
+							if($single_folio_layout=='grid'){
+								$new_width	= 260;
+								$new_height	= $imgHeight / $imgWidth * $new_width;
+							}else{
+								$new_width	= 390;
+								$new_height	= $imgHeight / $imgWidth * $new_width;
+							}
+							break;
+					}
+					$image	= aq_resize($url, $new_width, $new_height, true);
 				?>
 				<figure class="gallery_item featured-thumbnail thumbnail single-gallery-item">
 					<?php if($lightbox) : ?>
 					<a href="<?php echo $attachment_url['0'] ?>" class="image-wrap" rel="prettyPhoto[gallery]">
-						<img alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>" src="<?php echo $image ?>" width="260" height="160" />
+						<img alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>" src="<?php echo $image ?>" width="<?php echo $new_width ?>" height="<?php echo $new_height ?>" />
 						<span class="zoom-icon"></span>
 						</a>
 					<?php else : ?>
-						<img alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>" src="<?php echo $image ?>" width="260" height="160" />
+						<img alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>" src="<?php echo $image ?>" width="<?php echo $new_width ?>" height="<?php echo $new_height ?>" />
 					<?php endif; ?>
 				</figure>
-			<?php
-				endforeach;
-			endif; ?>
+			<?php endforeach;?>
+
+			<?php endif; ?>
+
 			</div>
 		<!--END .slider -->
 		</div>
 	<?php }
+}
+
+function cherry_enqueue_isotope() {
+
+	if ( !wp_script_is( 'isotope', 'enqueued' ) ) {
+
+		wp_enqueue_script( 'isotope', PARENT_URL . '/js/jquery.isotope.js', array( 'jquery' ), '1.5.25', true );
+
+	}
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -270,7 +339,7 @@ if ( !function_exists( 'tz_gallery' ) ) {
 				});
 			</script>
 
-			<div id="flexslider_<?php echo $random ?>" class="flexslider">
+			<div id="flexslider_<?php echo $random ?>" class="flexslider thumbnail">
 				<ul class="slides">
 				<?php
 					$args = array(

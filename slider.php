@@ -65,7 +65,7 @@
 					thumbnails          : <?php echo of_get_option('sl_thumbnails', 'false'); ?>,
 					time                : <?php echo of_get_option('sl_pausetime'); ?>, //milliseconds between the end of the sliding effect and the start of the next one
 					transPeriod         : <?php echo of_get_option('sl_animation_speed'); ?>, //lenght of the sliding effect in milliseconds
-
+					hover               : <?php echo of_get_option('sl_pause_on_hover', 'true'); ?>, //pause on state hover. Not available for mobile devices
 					<?php
 					//filtered params output
 					foreach ($slider_filtered_params as $param => $param_value) {
@@ -127,6 +127,7 @@
 				<?php }
 			echo "</div>";
 		}
+
 		wp_reset_postdata();
 	?>
 </div>

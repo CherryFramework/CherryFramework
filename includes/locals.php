@@ -166,6 +166,8 @@
 			'mobile_menu_std' => __('Navigate to...', $domain),
 			'header_menu_face' => __('Header Menu Font', $domain),
 			'header_menu_color' => __('Header Menu Color', $domain),
+			'stickup_menu' => __('Use stickUp menu', $domain),
+			'stickup_menu_desc' => __('Do you want to use stickUp menu?', $domain),
 
 			//Slider Settings options
 			'slider' => __('Slider Settings', $domain),
@@ -231,6 +233,8 @@
 			'hover_desc' => __('If true the navigation button (prev, next and play/stop buttons) will be visible on hover state only, if false they will be visible always', $domain),
 			'button_name' => __('Play/Pause button', $domain),
 			'button_desc' => __('Display Play/Pause button?', $domain),
+			'pause_on_hover_title' => __('Pause on hover', $domain),
+			'pause_on_hover_desc' => __('Stop slideshow on hover?', $domain),
 			'loader_name' => __('Loader', $domain),
 			'loader_desc' => __('Slider loader', $domain),
 			'pie' => __('Pie', $domain),
@@ -305,6 +309,11 @@
 			'single_post_image_desc' => __('Featured image size on the single page.', $domain),
 			'meta_name' => __('View meta of the blog.', $domain),
 			'meta_desc' => __('Select meta block type which will be displayed on blog and post pages.', $domain),
+			'meta_display_name' => __('Display meta.', $domain),
+			'meta_display_desc' => __('Select where to display meta block.', $domain),
+			'only_blog' => __('Only blog.', $domain),
+			'only_post' => __('Only post.', $domain),
+			'blog_post' => __('Blog and post.', $domain),
 			'excerpt_name' => __('Enable excerpt for blog posts?', $domain),
 			'excerpt_desc' => __('Enable or Disable excerpt for blog posts.', $domain),
 			'button_text_name' => __('Button text for blog posts.', $domain),
@@ -361,6 +370,8 @@
 			'single_folio_layout_desc' => __('Single portfolio layout.', $domain),
 			'fullwidth_sp' => __('Fullwidth', $domain),
 			'grid_sp' => __('Columns', $domain),
+			'single_gallery_layout' => __('Gallery-format post portfolio layout', $domain),
+			'single_gallery_layout_desc' => __('Select portfolio layout for gallery-format post.', $domain),
 			'portfolio_2_name' => __('Portfolio 2 columns items amount', $domain),
 			'portfolio_2_desc' => __('Portfolio items amount for Portfolio 2 columns template.', $domain),
 			'portfolio_3_name' => __('Portfolio 3 columns items amount', $domain),
@@ -527,6 +538,8 @@
 			'icon_desc' => __('In icon field you need to specify the icon name that can be copied from the <a target="_blank" href="//fortawesome.github.io/Font-Awesome/3.2.1/icons/#brand">website</a>. E.g. "icon-facebook".', $domain),
 			'network_title' => __('Social Networks Title', $domain),
 			'network_title_desc' => __('Specify the heading for the social networks block.', $domain),
+			'team_email' => __('Email', $domain),
+			'team_email_desc' => __('Input email address.', $domain),
 
 			//theme-testimeta.php
 			'testimonial_options' => __('Testimonial Options', $domain),
@@ -535,6 +548,8 @@
 			'name_desc' => __('Input author\'s name.', $domain),
 			'url_desc_2' => __('Input author\'s URL.', $domain),
 			'info_desc_3' => __('Input author\'s additional info.', $domain),
+			'testi_email' => __('Email', $domain),
+			'testi_email_desc' => __('Input author\'s email address.', $domain),
 
 			//theme-postmeta.php
 			'quote_settings' => __('Quote Settings', $domain),

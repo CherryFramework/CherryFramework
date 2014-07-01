@@ -46,4 +46,5 @@
 		<?php endif; ?>
 
 		<?php get_template_part('includes/post-formats/post-meta'); ?>
+
 </article>

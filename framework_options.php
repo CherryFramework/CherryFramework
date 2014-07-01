@@ -139,7 +139,7 @@
 			$options['h2_heading'] = array( 'name' => theme_locals('h2_name'),
 								'desc' => theme_locals('h2_desc'),
 								'id' => 'h2_heading',
-								'std' => array( 'size' => '22px', 'lineheight' => '22px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
+								'std' => array( 'size' => '22px', 'lineheight' => '26px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
 								'type' => 'typography',
 								'options' => array(
 										'faces' => $typography_mixed_fonts )
@@ -148,7 +148,7 @@
 			$options['h3_heading'] = array( 'name' => theme_locals('h3_name'),
 								'desc' => theme_locals('h3_desc'),
 								'id' => 'h3_heading',
-								'std' => array( 'size' => '18px', 'lineheight' => '18px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
+								'std' => array( 'size' => '18px', 'lineheight' => '22px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
 								'type' => 'typography',
 								'options' => array(
 										'faces' => $typography_mixed_fonts )
@@ -157,7 +157,7 @@
 			$options['h4_heading'] = array( 'name' => theme_locals('h4_name'),
 								'desc' => theme_locals('h4_desc'),
 								'id' => 'h4_heading',
-								'std' => array( 'size' => '14px', 'lineheight' => '18px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
+								'std' => array( 'size' => '14px', 'lineheight' => '20px', 'face' => 'Arial, Helvetica, sans-serif', 'style' => 'normal', 'character'  => 'latin', 'color' => '#333333'),
 								'type' => 'typography',
 								'options' => array(
 										'faces' => $typography_mixed_fonts )
@@ -314,8 +314,8 @@
 								"type" => "text");
 
 			$options['stickup_menu'] = array(
-								"name" => __('Use stickUp menu.', CHERRY_PLUGIN_DOMAIN),
-								"desc" => __('Do you want to use stickUp menu?', CHERRY_PLUGIN_DOMAIN),
+								"name" => theme_locals('stickup_menu'),
+								"desc" => theme_locals('stickup_menu_desc'),
 								"id" => "stickup_menu",
 								"std" => "false",
 								"type" => "radio",
@@ -371,7 +371,7 @@
 			$options['sl_effect'] = array( "name" => theme_locals('effect_name'),
 								"desc" => theme_locals('effect_desc'),
 								"id" => "sl_effect",
-								"std" => "random",
+								"std" => "simpleFade",
 								"type" => "select",
 								"class" => "tiny slider_type_1", //mini, tiny, small
 								"options" => $sl_effect_array);
@@ -463,6 +463,14 @@
 			$options['sl_play_pause_button'] = array( "name" => theme_locals('button_name'),
 								"desc" => theme_locals('button_desc'),
 								"id" => "sl_play_pause_button",
+								"std" => "true",
+								"type" => "radio",
+								"class" => "slider_type_1",
+								"options" => $true_false_array);
+
+			$options['sl_pause_on_hover'] = array( "name" => theme_locals('pause_on_hover_title'),
+								"desc" => theme_locals('pause_on_hover_desc'),
+								"id" => "sl_pause_on_hover",
 								"std" => "true",
 								"type" => "radio",
 								"class" => "slider_type_1",
@@ -596,7 +604,7 @@
 								"desc" => theme_locals('image_size_desc'),
 								"id" => "post_image_size",
 								"type" => "select",
-								"std" => "normal",
+								"std" => "large",
 								"class" => "small", //mini, tiny, small
 								"options" => $post_image_size_array);
 	// Featured image size on the single page.
@@ -606,7 +614,7 @@
 								"desc" => theme_locals('single_post_image_desc'),
 								"id" => "single_image_size",
 								"type" => "select",
-								"std" => "normal",
+								"std" => "large",
 								"class" => "small", //mini, tiny, small
 								"options" => $single_image_size_array);
 
@@ -645,6 +653,13 @@
 								"type" => "radio",
 								"options" => array('false' => theme_locals('hide'), 'line' => theme_locals('line'), 'icon' => theme_locals('icons')));
 
+			$options['post_meta_display'] = array( "name" => theme_locals('meta_display_name'),
+								"desc" => theme_locals('meta_display_desc'),
+								"id" => "post_meta_display",
+								"std" => "only_post",
+								"type" => "radio",
+								"options" => array('only_blog' => theme_locals('only_blog'), 'only_post' => theme_locals('only_post'), 'blog_post' => theme_locals('blog_post'), 'hide' => theme_locals('hide')));
+
 			$options['post_date'] = array( "name" => theme_locals('post_date_name'),
 								"desc" => theme_locals('post_date_desc'),
 								"id" => "post_date",
@@ -680,7 +695,7 @@
 			$options['post_tag'] = array( "name" => theme_locals('post_tag_name'),
 								"desc" => theme_locals('post_tag_desc'),
 								"id" => "post_tag",
-								"std" => "yes",
+								"std" => "no",
 								"class" => "post_meta_options",
 								"type" => "radio",
 								"options" => $yes_no_array);
@@ -696,7 +711,7 @@
 			$options['post_views'] = array( "name" => theme_locals('post_views_name'),
 								"desc" => theme_locals('post_views_desc'),
 								"id" => "post_views",
-								"std" => "yes",
+								"std" => "no",
 								"class" => "post_meta_options",
 								"type" => "radio",
 								"options" => $yes_no_array);
@@ -704,7 +719,7 @@
 			$options['post_like'] = array( "name" => theme_locals('post_like_name'),
 								"desc" => theme_locals('post_like_desc'),
 								"id" => "post_like",
-								"std" => "yes",
+								"std" => "no",
 								"class" => "post_meta_options",
 								"type" => "radio",
 								"options" => $yes_no_array);
@@ -712,7 +727,7 @@
 			$options['post_dislike'] = array( "name" => theme_locals('post_dislike_name'),
 								"desc" => theme_locals('post_dislike_desc'),
 								"id" => "post_dislike",
-								"std" => "yes",
+								"std" => "no",
 								"class" => "post_meta_options",
 								"type" => "radio",
 								"options" => $yes_no_array);
@@ -809,6 +824,15 @@
 								"options" => array(
 												"grid" => theme_locals("grid_sp"),
 												"fullwidth" => theme_locals("fullwidth_sp")));
+
+			$options['single_gallery_layout'] = array( "name" => theme_locals("single_gallery_layout"),
+								"desc" => theme_locals("single_gallery_layout_desc"),
+								"id" => "single_gallery_layout",
+								"type" => "radio",
+								"std" => "grid",
+								"options" => array(
+												"grid" => theme_locals("grid_gallery"),
+												"masonry" => theme_locals("masonry")));
 
 			$options['layout_mode'] = array( "name" => theme_locals("layout_name"),
 								"desc" => theme_locals("layout_desc"),
