@@ -1490,11 +1490,15 @@
 	function cherry_plugin_unpack_package(){
 		$plugin = 'cherry-plugin/cherry-plugin.php';
 
-		if ( !function_exists('is_plugin_active') ) {
-			require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+		if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin ) ) {
+			return;
 		}
 
-		if ( is_plugin_active($plugin) )
+		if ( !function_exists( 'is_plugin_active' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
+
+		if ( is_plugin_active( $plugin ) )
 			return;
 
 		$file   = PARENT_DIR . '/includes/plugins/cherry-plugin.zip';
@@ -1532,11 +1536,15 @@
 	function cherry_plugin_setup(){
 		$plugin = 'cherry-plugin/cherry-plugin.php';
 
-		if ( !function_exists('is_plugin_active') ) {
-			require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+		if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin ) ) {
+			return;
 		}
 
-		if ( is_plugin_active($plugin) )
+		if ( !function_exists( 'is_plugin_active' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
+
+		if ( is_plugin_active( $plugin ) )
 			return;
 
 		$file   = PARENT_DIR . '/includes/plugins/cherry-plugin.zip';
@@ -1558,19 +1566,7 @@
 				return new WP_Error( 'incompatible_archive', __('The package could not be installed.', CURRENT_THEME), $result->get_error_data() );
 			}
 		}
-
-		if ( $result ) {
-			$current = get_option( 'active_plugins' );
-
-			if ( !in_array( $plugin, $current ) ) {
-				$current[] = $plugin;
-				sort( $current );
-				do_action( 'activate_plugin', trim($plugin) );
-				update_option( 'active_plugins', $current );
-				do_action( 'activate_' . trim($plugin) );
-				do_action( 'activated_plugin', trim($plugin) );
-			}
-		}
+		return $result;
 	}
 
 	/**
