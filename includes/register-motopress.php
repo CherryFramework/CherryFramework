@@ -20,6 +20,10 @@ function theme_register_motopress_ce_lite_plugin() {
 		)
 	);
 
+	if ( !function_exists( 'is_plugin_active' ) ) {
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	}
+
 	if ( ! is_plugin_active( 'motopress-content-editor/motopress-content-editor.php') ) {
 		$message = '';
 		if ( isset(TGM_Plugin_Activation::$instance) && isset(TGM_Plugin_Activation::$instance->message) ) {
