@@ -790,4 +790,33 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 			echo '</ul>';
 		}
 	} // end breadcrumbs()
-}?>
+}
+
+/**
+ * Outputs the category/tax/page description.
+ *
+ * @since  3.1.5
+ * @return string
+ */
+add_action( 'cherry_get_title_desc', 'cherry_get_title_description' );
+function cherry_get_title_description() {
+	$desc = '';
+
+	if ( is_category() )
+		$desc = get_term_field( 'description', get_queried_object_id(), 'category', 'raw' );
+
+	elseif ( is_tax() )
+		$desc = get_term_field( 'description', get_queried_object_id(), get_query_var( 'taxonomy' ), 'raw' );
+
+	else {
+		$pagedesc = get_post_custom_values( 'title-desc' );
+
+		if ( $pagedesc != '' )
+			$desc = $pagedesc[0];
+	}
+
+	$desc = apply_filters( 'cherry_title_description', $desc );
+
+	printf( '<span class="title-desc">%s</span>', wp_strip_all_tags( $desc ) );
+
+} ?>

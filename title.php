@@ -17,7 +17,6 @@
 
 		<?php } elseif ( is_category() ) { ?>
 			<?php printf( theme_locals("category_archives").": %s", '<small>' . single_cat_title( '', false ) . '</small>' ); ?>
-			<?php echo category_description(); /* displays the category's description from the Wordpress admin */ ?>
 
 		<?php } elseif ( is_tax('portfolio_category') ) { ?>
 			<?php echo theme_locals("portfolio_category").": "; ?>
@@ -58,22 +57,24 @@
 				echo get_page($page_id)->post_title;
 		?>
 <!--End shop-->
-		<?php } else { ?>
-			<?php if (have_posts()) : while (have_posts()) : the_post();
-				$pagetitle = get_post_custom_values("page-title");
-				$pagedesc = get_post_custom_values("title-desc");
-					if($pagetitle == ""){
-						the_title();
-					} else {
-						echo $pagetitle[0];
-					}
-					if($pagedesc != ""){ ?>
-						<span class="title-desc"><?php echo $pagedesc[0];?></span>
-					<?php }
-				endwhile; endif;
-			wp_reset_query();
-		} ?>
+		<?php } else {
+			$pagetitle = get_post_custom_values( 'page-title' );
+
+			if ( empty( $pagetitle ) ) {
+				the_title();
+			} else {
+				echo $pagetitle[0];
+			}
+		}
+
+		/**
+		 * Fires before tag <h1> close.
+		 *
+		 * @since 3.1.5
+		 */
+		do_action( 'cherry_get_title_desc' ); ?>
 	</h1>
+
 	<?php
 		if (of_get_option('g_breadcrumbs_id') == 'yes') { ?>
 			<!-- BEGIN BREADCRUMBS-->
