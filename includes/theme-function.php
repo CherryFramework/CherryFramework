@@ -681,7 +681,7 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 			if ( is_home() ) {
 				$blog_text = of_get_option('blog_text');
 				if ($blog_text == '' || empty($blog_text)) {
-					echo theme_locals("blog");
+					echo get_post_field( 'post_title', get_queried_object_id() );
 				}
 				echo $before . $blog_text . $after;
 			}
@@ -707,7 +707,14 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 			}
 			elseif ( is_tax(get_post_type().'_category') ) {
 				$post_name = get_post_type();
-				echo $before . ucfirst($post_name) . ' ' . theme_locals('category') . ': ' . single_cat_title( '', false ) . $after;
+				echo $before . ucfirst($post_name) . ' ' . theme_locals('category_archives') . ': ' . single_cat_title( '', false ) . $after;
+			}
+			elseif ( is_tax(get_post_type().'_tag') ) {
+				$post_name = get_post_type();
+				echo $before . ucfirst($post_name) . ' ' . theme_locals('tag_archives') . ': ' . single_tag_title( '', false ) . $after;
+			}
+			elseif ( is_tax() ) {
+				echo $before . single_term_title( '', false ) . $after;
 			}
 			elseif ( is_single() && !is_attachment() ) {
 				if ( get_post_type() != 'post' ) {
@@ -805,7 +812,7 @@ function cherry_get_title_description() {
 	if ( is_category() )
 		$desc = get_term_field( 'description', get_queried_object_id(), 'category', 'raw' );
 
-	elseif ( is_tax() )
+	elseif ( is_tax() && !( is_tax( array( 'product_cat', 'product_tag' ) ) && get_query_var( 'paged' ) == 0 ) )
 		$desc = get_term_field( 'description', get_queried_object_id(), get_query_var( 'taxonomy' ), 'raw' );
 
 	else {
@@ -815,8 +822,86 @@ function cherry_get_title_description() {
 			$desc = $pagedesc[0];
 	}
 
+	/**
+	 * Filters description for category/tax/page.
+	 *
+	 * @since  3.1.5
+	 */
 	$desc = apply_filters( 'cherry_title_description', $desc );
 
 	printf( '<span class="title-desc">%s</span>', wp_strip_all_tags( $desc ) );
 
-} ?>
+}
+
+/**
+ * Retrieve the search results title.
+ *
+ * @since  3.1.5
+ * @param  string  $prefix
+ * @param  bool    $display
+ * @return string
+ */
+function cherry_search_title( $prefix = '', $display = true ) {
+
+	$title = sprintf( '%1$s: "%2$s"', $prefix, get_search_query() );
+
+	if ( false === $display )
+		return $title;
+
+	echo $title;
+}
+
+/**
+ * Retrieve the day archive title.
+ *
+ * @since  3.1.5
+ * @param  string  $prefix
+ * @param  bool    $display
+ * @return string
+ */
+function cherry_single_day_title( $prefix = '', $display = true ) {
+
+	$title = $prefix . ' ' . get_the_date();
+
+	if ( false === $display )
+		return $title;
+
+	echo $title;
+}
+
+/**
+ * Retrieve the year archive title.
+ *
+ * @since  3.1.5
+ * @param  string  $prefix
+ * @param  bool    $display
+ * @return string
+ */
+function cherry_single_year_title( $prefix = '', $display = true ) {
+
+	$title = $prefix . ' ' . get_the_date( 'Y' );
+
+	if ( false === $display )
+		return $title;
+
+	echo $title;
+}
+
+/**
+ * Retrieve the general archive title.
+ *
+ * @since  3.1.5
+ * @param  string  $prefix
+ * @param  bool    $display
+ * @return string
+ */
+function cherry_single_archive_title( $prefix = '', $display = true ) {
+
+	$title = $prefix;
+
+	if ( false === $display )
+		return $title;
+
+	echo $title;
+}
+?>
