@@ -210,8 +210,8 @@ if ( !function_exists( 'tz_image' ) ) {
 if ( !function_exists( 'tz_grid_gallery' ) ) {
 
 	function tz_grid_gallery($postid, $imagesize) {
-		$single_folio_layout = of_get_option('single_folio_layout');
-		$single_gallery_layout = of_get_option('single_gallery_layout');
+		$single_folio_layout = of_get_option('single_folio_layout','grid');
+		$single_gallery_layout = of_get_option('single_gallery_layout', 'grid');
 
 		if ( $single_gallery_layout == 'masonry' ) {
 
