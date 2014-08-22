@@ -251,9 +251,30 @@
 			} ?>
 
 			<div class="caption caption__portfolio">
-				<?php if($folio_title == "yes"){ ?>
-					<h3><a href="<?php the_permalink(); ?>"><?php $title = the_title('','',FALSE); echo mb_substr($title, 0, 40); ?></a></h3>
-				<?php } ?>
+
+				<?php if ( $folio_title == "yes" ) {
+
+					/**
+					 * Filter the arguments used to display a 'Portfolio' post title.
+					 *
+					 * @since 3.1.5
+					 * @param array $args     Array of arguments.
+					 * @param init  $post->ID Post ID.
+					 */
+					$args = apply_filters( 'cherry_filterable_portfolio_title_args', array(
+						'before_title' => '<h3>',
+						'after_title'  => '</h3>',
+						'title'        => mb_substr( get_the_title( $post->ID ), 0, 40 ),
+					), $post->ID );
+
+					printf( '%1$s<a href="%2$s" title="%3$s">%4$s</a>%5$s',
+						$args['before_title'],
+						esc_url( get_the_permalink() ),
+						esc_attr( $args['title'] ),
+						esc_html( $args['title'] ),
+						$args['after_title']
+					);
+				} ?>
 
 				<?php if($folio_excerpt == "yes"){ ?>
 					<p class="excerpt"><?php $excerpt = get_the_excerpt(); echo my_string_limit_words($excerpt,$folio_excerpt_count);?></p>
