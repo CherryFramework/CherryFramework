@@ -43,132 +43,225 @@ function shortcode_empty_paragraph_fix($content) {
 	return $content;
 }
 
-// Add Thumb Column
-if ( !function_exists('fb_AddThumbColumn') && function_exists('add_theme_support') ) {
-	// for post and page
-	add_theme_support('post-thumbnails', array( 'post', 'page' ) );
-	function fb_AddThumbColumn($cols) {
-	$cols['thumbnail'] = theme_locals("thumbnail");
+
+/**
+ * Adds the new column named 'Thumbnail'.
+ */
+
+// For posts.
+add_filter( 'manage_posts_columns',       'cherry_add_thumb_column' );
+add_action( 'manage_posts_custom_column', 'cherry_add_thumb_value', 10, 2 );
+
+// For pages.
+add_filter( 'manage_pages_columns',       'cherry_add_thumb_column' );
+add_action( 'manage_pages_custom_column', 'cherry_add_thumb_value', 10, 2 );
+
+function cherry_add_thumb_column( $cols ) {
+	$screen     = get_current_screen();
+	$post_type  = $screen->post_type;
+
+	/**
+	 * Filters the array of CPT who support thumbnail.
+	 *
+	 * @since 3.1.5
+	 * @param array $args
+	 */
+	$args = apply_filters( 'cherry_add_thumb_column_support', array(
+		'post', 'page', 'services', 'testi', 'portfolio', 'slider', 'team',
+	) );
+
+	if ( in_array( $post_type, $args ) ) {
+		$cols['thumbnail'] = theme_locals("thumbnail");
+	}
+
 	return $cols;
 }
-function fb_AddThumbValue($column_name, $post_id) {
-	$width = (int) 35;
-	$height = (int) 35;
-	if ( 'thumbnail' == $column_name ) {
-		// thumbnail of WP 2.9
-		$thumbnail_id = get_post_meta( $post_id, '_thumbnail_id', true );
-		// image from gallery
-		$attachments = get_children( array('post_parent' => $post_id, 'post_type' => 'attachment', 'post_mime_type' => 'image') );
-		if ($thumbnail_id)
-			$thumb = wp_get_attachment_image( $thumbnail_id, array($width, $height), true );
-		elseif ($attachments) {
+
+/**
+ * Add output for custom columns on the "menu items" screen.
+ *
+ * @param  string  $column
+ * @param  int     $post_id
+ * @return void
+ */
+function cherry_add_thumb_value( $column_name, $post_id ) {
+	$width  = (int) 50;
+	$height = (int) 50;
+
+	if ( 'thumbnail' == $column_name ) :
+
+		// Image from gallery.
+		$attachments = get_children( array(
+			'numberposts'    => 1,
+			'order'          => 'ASC',
+			'post_mime_type' => 'image',
+			'post_parent'    => $post_id,
+			'post_status'    => null,
+			'post_type'      => 'attachment',
+		) );
+
+		$thumb = get_the_post_thumbnail( $post_id, array( $width, $height ) );
+
+		if ( empty( $thumb ) ) {
+
 			foreach ( $attachments as $attachment_id => $attachment ) {
-				$thumb = wp_get_attachment_image( $attachment_id, array($width, $height), true );
+				$thumb = wp_get_attachment_image( $attachment_id, array( $width, $height ), true );
 			}
+
 		}
-		if ( isset($thumb) && $thumb ) {
+
+		if ( !empty( $thumb ) ) {
 			echo $thumb;
 		} else {
 			echo theme_locals("none");
 		}
-	}
-}
-// for posts
-add_filter( 'manage_posts_columns', 'fb_AddThumbColumn' );
-add_action( 'manage_posts_custom_column', 'fb_AddThumbValue', 10, 2 );
-// for pages
-add_filter( 'manage_pages_columns', 'fb_AddThumbColumn' );
-add_action( 'manage_pages_custom_column', 'fb_AddThumbValue', 10, 2 );
-}
 
-/**
- * Add dropdowns for portfolio filters in admin
- */
-function cherry_show_portfolio_filter() {
-	global $typenow, $wp_query;
-
-	if ($typenow=='portfolio') :
-		$portf_taxes = array( 'portfolio_category', 'portfolio_tag' );
-		foreach ($portf_taxes as $tax) {
-			$tax_obj = get_taxonomy($tax);
-
-			if ( isset($_GET[$tax]) ) {
-				$selected = $_GET[$tax];
-			} else {
-				$selected = '';
-			}
-
-			wp_dropdown_categories(array(
-				'show_option_all' => theme_locals("show_all") . $tax_obj->label,
-				'taxonomy'        => $tax,
-				'name'            => $tax_obj->name,
-				'orderby'         => 'term_order',
-				'selected'        => $selected,
-				'hierarchical'    => $tax_obj->hierarchical,
-				'show_count'      => false,
-				'hide_empty'      => true
-			));
-		}
 	endif;
 }
-add_action('restrict_manage_posts', 'cherry_show_portfolio_filter');
 
 /**
- * Filter portfolio by cats and tags
+ * Adds the new custom columns on the 'Portfolio' screen.
  */
-function cherry_portfolio_filter_query( $query ) {
-	global $typenow, $wp_query;
+add_filter( 'manage_edit-portfolio_columns', 'cherry_edit_portfolio_columns' );
+add_action( 'manage_portfolio_posts_custom_column' , 'cherry_portfolio_columns', 10, 2 );
 
-	if ( $typenow == 'portfolio' ) {
-		// By Categories
-		if ( isset($_GET['portfolio_category']) && ! empty( $_GET['portfolio_category'] ) && 0 != $_GET['portfolio_category'] ) {
-				$cat_term = get_term_by( 'id', $_GET['portfolio_category'], 'portfolio_category' );
-			$query->query_vars['portfolio_category'] = $cat_term->slug;
-		}
+function cherry_edit_portfolio_columns( $post_columns ) {
+	$screen     = get_current_screen();
+	$post_type  = $screen->post_type;
+	$columns    = array();
+	$taxonomies = array();
 
-		// By Tags
-		if ( isset($_GET['portfolio_tag']) && ! empty( $_GET['portfolio_tag'] ) && 0 != $_GET['portfolio_tag'] ) {
-				$tag_term = get_term_by( 'id', $_GET['portfolio_tag'], 'portfolio_tag' );
-			$query->query_vars['portfolio_tag'] = $tag_term->slug;
-		}
-	}
-}
-add_filter( 'parse_query', 'cherry_portfolio_filter_query' );
+	// Adds the checkbox column.
+	$columns['cb'] = $post_columns['cb'];
 
-// Add to admin_init function
-add_action('manage_portfolio_posts_custom_column' , 'custom_portfolio_columns', 10, 2);
-add_filter('manage_edit-portfolio_columns', 'my_portfolio_columns');
-//Add columns for portfolio posts
-function my_portfolio_columns($columns) {
-	$columns = array(
-		"cb" => "<input type=\"checkbox\" />",
-		"title" => theme_locals("title"),
-		"portfolio_categories" => theme_locals("categories"),
-		"portfolio_tags" => theme_locals("tags"),
-		"comments" => "<span><span class=\"vers\"><img src=\"".get_admin_url()."images/comment-grey-bubble.png\" alt=\"Comments\"></span></span>",
-		"date" => theme_locals("date"),
-		"thumbnail" => theme_locals("thumbnail")
-	);
+	// Add custom columns.
+	$columns['title']                = theme_locals("title");
+	$columns['portfolio_categories'] = theme_locals("categories");
+	$columns['portfolio_tags']       = theme_locals("tags");
+
+	// Add the comments column.
+	if ( !empty( $post_columns['comments'] ) )
+		$columns['comments'] = $post_columns['comments'];
+
+	$columns['date']      = $post_columns['date'];
+	$columns['thumbnail'] = $post_columns['thumbnail'];
+
 	return $columns;
 }
-function custom_portfolio_columns( $column, $post_id ) {
+
+function cherry_portfolio_columns( $column, $post_id ) {
+
 	switch ( $column ) {
-	case 'portfolio_categories':
-		$terms = get_the_term_list( $post_id , 'portfolio_category' , '' , ',' , '' );
-		if ( is_string( $terms ) ) {
-			echo $terms;
-		} else {
-			echo theme_locals('uncategorized');
-		}
-		break;
-	case 'portfolio_tags':
-		$terms = get_the_term_list( $post_id , 'portfolio_tag' , '' , ',' , '' );
-		if ( is_string( $terms ) ) {
-			echo $terms;
-		}
-		break;
+
+		case 'portfolio_categories':
+
+			$terms = get_the_term_list( $post_id , 'portfolio_category' , '' , ',' , '' );
+			echo !empty( $terms ) ? $terms : theme_locals('uncategorized');
+			break;
+
+		case 'portfolio_tags':
+
+			$terms = get_the_term_list( $post_id , 'portfolio_tag' , '' , ',' , '' );
+			echo !empty( $terms ) ? $terms : '&mdash;';
+			break;
+
+		// Just break out of the switch statement for everything else.
+		default :
+			break;
 	}
 }
+
+// Only run our customization on the 'edit.php' page in the admin.
+add_action( 'load-edit.php', 'cherry_portfolio_load_edit' );
+function cherry_portfolio_load_edit() {
+	$screen = get_current_screen();
+
+	if ( !empty( $screen->post_type ) && 'portfolio' === $screen->post_type ) {
+		add_filter( 'request', 'cherry_portfolio_request' );
+		add_action( 'restrict_manage_posts', 'cherry_show_portfolio_filter' );
+	}
+
+	add_action( 'admin_head', 'cherry_thumb_column_print_styles');
+}
+
+/**
+ * Filter on the 'request' hook to change the 'order' and 'orderby' query variables when
+ * viewing the "edit" screen in the admin.
+ *
+ * @param  array $vars
+ * @return array
+ */
+function cherry_portfolio_request( $vars ) {
+
+	if ( isset( $vars['orderby'] ) ) :
+
+		if ( isset( $_GET['orderby'] ) ) {
+			$vars['orderby'] = $_GET['orderby'];
+		} else {
+			$vars['orderby'] = 'date';
+		}
+
+	endif;
+
+	if ( isset( $vars['order'] ) ) :
+
+		if ( isset( $_GET['order'] ) && 'asc' == $_GET['order'] ) {
+			$vars['order'] = 'asc';
+		} else {
+			$vars['order'] = 'desc';
+		}
+
+	endif;
+
+	return $vars;
+}
+
+/**
+ * Renders a portfolio categories and tags dropdown on the table nav.
+ */
+function cherry_show_portfolio_filter() {
+	$category  = isset( $_GET['portfolio_category'] ) ? esc_attr( $_GET['portfolio_category'] ) : '';
+	$tag       = isset( $_GET['portfolio_tag'] ) ? esc_attr( $_GET['portfolio_tag'] ) : '';
+	$cat_terms = get_terms( 'portfolio_category' );
+	$tag_terms = get_terms( 'portfolio_tag' );
+
+	if ( !empty( $cat_terms ) ) {
+		echo '<select name="portfolio_category" class="postform">';
+
+		echo '<option value="" ' . selected( '', $category, false ) . '>' . theme_locals("view_all_") . ' ' . __( 'categories', CURRENT_THEME ) . '</option>';
+
+		foreach ( $cat_terms as $term )
+			printf( '<option value="%s"%s>%s (%s)</option>', esc_attr( $term->slug ), selected( $term->slug, $category, false ), esc_html( $term->name ), esc_html( $term->count ) );
+
+		echo '</select>';
+	}
+
+	if ( !empty( $tag_terms ) ) {
+		echo '<select name="portfolio_tag" class="postform">';
+
+		echo '<option value="" ' . selected( '', $category, false ) . '>' . theme_locals("view_all_") . ' ' . __( 'tags', CURRENT_THEME ) . '</option>';
+
+		foreach ( $tag_terms as $term )
+			printf( '<option value="%s"%s>%s (%s)</option>', esc_attr( $term->slug ), selected( $term->slug, $tag, false ), esc_html( $term->name ), esc_html( $term->count ) );
+
+		echo '</select>';
+	}
+}
+
+/**
+ * Style adjustments for the 'Thumbnail' column.
+ */
+function cherry_thumb_column_print_styles() { ?>
+	<style type="text/css">
+	.edit-php .wp-list-table td.thumbnail.column-thumbnail,
+	.edit-php .wp-list-table th.manage-column.column-thumbnail,
+	.edit-php .wp-list-table td.author_name.column-author_name,
+	.edit-php .wp-list-table th.manage-column.column-author_name {
+		text-align: center;
+	}
+	</style>
+<?php }
+
 
 /*-----------------------------------------------------------------------------------*/
 /* Output image */

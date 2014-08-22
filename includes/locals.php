@@ -39,7 +39,7 @@
 			'enable_lightbox_desc' => __('Check this to enable the lightbox.', $domain),
 			'permalink_to' => __('Permalink', $domain),
 			'read_more' => __('Read more', $domain),
-			'view_all' => __('View all', $domain),
+			'view_all_' => __('View all', $domain),
 			'width' => __('Width', $domain),
 			'height' => __('Height', $domain),
 			'excerpt_length' => __('Excerpt length (words):', $domain),
