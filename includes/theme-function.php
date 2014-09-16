@@ -424,6 +424,7 @@ if ( !function_exists( 'tz_gallery' ) ) {
 				jQuery(window).load(function() {
 					jQuery('#flexslider_<?php echo $random ?>').flexslider({
 						animation: "slide",
+						animationLoop: false,
 						smoothHeight : true
 						<?php if ( is_rtl() ) { ?>
 							,rtl : true
@@ -464,7 +465,7 @@ if ( !function_exists( 'tz_gallery' ) ) {
 						<?php if($lightbox) : ?>
 							<a href="<?php echo $attachment_url['0'] ?>" class="image-wrap" rel="prettyPhoto[gallery]">
 								<img src="<?php echo $image; ?>" alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>"/>
-								<span class="zoom-icon"></span>
+								<!-- <span class="zoom-icon"></span> -->
 							</a>
 						<?php else : ?>
 							<img src="<?php echo $image; ?>" alt="<?php echo apply_filters('the_title', $attachment->post_title); ?>"/>
