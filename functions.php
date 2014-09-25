@@ -1238,46 +1238,56 @@
 //------------------------------------------------------
 //  Get team social networks
 //------------------------------------------------------
-	function cherry_get_post_networks($args = array()){
+	function cherry_get_post_networks( $args = array() ) {
 		global $post;
-		extract(
-			wp_parse_args(
-				$args,
-				array(
-					'post_id' => get_the_ID(),
-					'class' => 'post_networks',
-					'before_title' => '<h4>',
-					'after_title' => '</h4>',
+		extract( wp_parse_args( $args, apply_filters( 'cherry_get_post_networks_args', array(
+					'post_id'       => get_the_ID(),
+					'class'         => 'post_networks',
+					'before_title'  => '<h4>',
+					'after_title'   => '</h4>',
 					'display_title' => true,
-					'output_type' => 'echo'
-				)
+					'output_type'   => 'echo',
+				) )
 			)
 		);
-		$networks_array = explode(" ", get_option('fields_id_value'.$post_id, ''));
 
-		if($networks_array[0]!=''){
-			$count = 0;
-			$network_title = get_post_meta($post_id, 'network_title', true);
+		$output         = '';
+		$fields_id      = get_post_meta( $post_id, 'fields_id', true );
+		$networks_title = get_post_meta( $post_id, 'networks_title', true );
+		$network_icons  = get_post_meta( $post_id, 'network_icon', true );
+		$network_titles = get_post_meta( $post_id, 'network_title', true );
+		$network_urls   = get_post_meta( $post_id, 'network_url', true ); 
 
-			$output = '<div class="'.$class.'">';
-			$output .= $network_title && $display_title ? $before_title.$network_title.$after_title : '';
-			$output .= '<ul class="clearfix unstyled">';
-			foreach ($networks_array as $networks_id) {
-				$network_array = explode(";", get_option('network_'.$post_id.'_'.$networks_id, array('','','')));
-				$output .= '<li class="network_'.$count.'">';
-				$output .= $network_array[2] ? '<a href="'.$network_array[2].'" title="'.$network_array[1].'">' : '' ;
-				$output .= $network_array[0] ? '<span class="'.$network_array[0].'"></span>' :'';
-				$output .= $network_array[1] ? '<span class="network_title">'.$network_array[1].'</span>' : '' ;
-				$output .= $network_array[2] ? '</a>' : '' ;
-				$output .= '</li>';
-				++$count;
-			}
-			$output .= '</ul></div>';
-			if($output_type == 'echo'){
-				echo $output;
-			}else{
-				return $output;
-			}
+		if ( empty( $fields_id ) || !is_array( $fields_id ) ) {
+			return $output;
+		}
+
+		$output .= '<div class="'.$class.'">';
+		$output .= $networks_title && $display_title ? $before_title . $networks_title . $after_title : '';
+		$output .= '<ul class="clearfix unstyled">';
+
+		foreach ( $fields_id as $key => $value ) {
+
+			$icon  = ( isset( $network_icons[ $value ] ) ) ? $network_icons[ $value ] : '';
+			$title = ( isset( $network_titles[ $value ] ) ) ? $network_titles[ $value ] : '';
+			$url   = ( isset( $network_urls[ $value ] ) ) ? $network_urls[ $value ] : '';
+
+			$output .= '<li class="network_'.$key.'">';
+				$output .= $url ? '<a href="'.esc_url( $url ).'" title="'.esc_attr( $title ).'">' : '' ;
+				$output .= $icon ? '<span class="'.esc_attr( $icon ).'"></span>' :'';
+				$output .= $title ? '<span class="network_title">'.$title.'</span>' : '' ;
+				$output .= $url ? '</a>' : '' ;
+			$output .= '</li>';
+		}
+
+		$output .= '</ul></div>';
+
+		$output = apply_filters( 'cherry_get_post_networks_html', $output );
+
+		if ( $output_type == 'echo' ) {
+			echo $output;
+		} else {
+			return $output;
 		}
 	}
 //------------------------------------------------------
