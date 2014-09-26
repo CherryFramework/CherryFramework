@@ -185,13 +185,25 @@
 		add_action('after_setup_theme', 'cherry_theme_setup');
 	}
 
-	//WPML compatibility
-	//WPML filter for correct posts IDs for the current language Solution
-	if ( function_exists( 'wpml_get_language_information' )) {
-		update_option('suppress_filters', 0);
+	/**
+	 * WPML compatibility.
+	 *
+	 * WPML filter for correct posts IDs for the current language Solution.
+	 *
+	 */
+	$cherry_suppress_filters = get_option( 'suppress_filters', false );
+	if ( function_exists( 'wpml_get_language_information' ) ) {
+
+		if ( $cherry_suppress_filters || false === $cherry_suppress_filters )
+			update_option( 'suppress_filters', 0 );
+		
 	} else {
-		update_option('suppress_filters', 1);
+
+		if ( !$cherry_suppress_filters || false === $cherry_suppress_filters ) 
+			update_option( 'suppress_filters', 1 );
+
 	}
+
 	//Register text for translation
 	function cherry_wpml_translate_filter( $value, $name ) {
 		return icl_translate( 'cherry', $name, $value );
