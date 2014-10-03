@@ -1164,9 +1164,10 @@ p.gravatar {
 .allowed_tags strong { font-family:Tahoma, Geneva, sans-serif; }
 #respond { padding-top:25px; }
 #respond h3 { margin-bottom:30px; }
-#respond form .btn {
-	margin-top:20px;
-	float:right;
+#respond form .btn { margin-top:20px; }
+#respond form .comment_submit {
+	text-align:right;
+	margin-bottom:30px;
 }
 @media (min-width: 768px) and (max-width: 979px) {
 	.comment-list ul.children { margin:0; }
