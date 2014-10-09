@@ -1,22 +1,4 @@
 // ---------------------------------------------------------
-// Magnific Popup Init
-// ---------------------------------------------------------
-function magnific_popup_init(item) {
-	item.magnificPopup({
-		delegate: 'a[rel^="prettyPhoto"]',
-		type: 'image',
-		removalDelay: 500,
-		mainClass: 'mfp-zoom-in',
-		callbacks: {
-			beforeOpen: function() {
-				// just a hack that adds mfp-anim class to markup 
-				this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
-			}
-		},
-		gallery: {enabled:true}
-	});
-}
-// ---------------------------------------------------------
 // !!!!!!!!!!!!!!!!!document ready!!!!!!!!!!!!!!!!!!!!!!!!!!
 // ---------------------------------------------------------
 jQuery(document).ready(function(){
@@ -166,7 +148,7 @@ jQuery(document).ready(function(){
 // Contact form notvalid tip fadeOut
 // ---------------------------------------------------------
 jQuery(function() {
-  // clear cf7 error msg on mouseover
+	// clear cf7 error msg on mouseover
 	jQuery(".wpcf7-form-control-wrap").on("mouseover", function(){
 		jQuery("span.wpcf7-not-valid-tip", this).fadeOut();
 	});
@@ -197,4 +179,43 @@ jQuery(function() {
 	})
 	jQuery('.owl-prev').addClass('icon-chevron-left');
 	jQuery('.owl-next').addClass('icon-chevron-right');
+// ---------------------------------------------------------
+// Cookie Banner
+// ---------------------------------------------------------
+	jQuery('#cf-cookie-banner .close').click(function() {
+		createCookie('cf-cookie-banner', 1, 365);
+	});
 });
+
+// ---------------------------------------------------------
+// Magnific Popup Init
+// ---------------------------------------------------------
+function magnific_popup_init(item) {
+	item.magnificPopup({
+		delegate: 'a[rel^="prettyPhoto"]',
+		type: 'image',
+		removalDelay: 500,
+		mainClass: 'mfp-zoom-in',
+		callbacks: {
+			beforeOpen: function() {
+				// just a hack that adds mfp-anim class to markup 
+				this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+			}
+		},
+		gallery: {enabled:true}
+	});
+}
+// ---------------------------------------------------------
+// Cookie utilities
+// ---------------------------------------------------------
+function createCookie(name, value, days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		var expires = "; expires=" + date.toGMTString()
+	} else var expires = "";
+	document.cookie = name + "=" + value + expires + "; path=/"
+}
+function deleteCookie(name) {
+	createCookie( name, "", { expires: -1 } );
+}
