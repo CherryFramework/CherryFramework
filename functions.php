@@ -1625,4 +1625,45 @@
 			return $layout_class;
 		}
 	}
+
+	/**
+	 * Cookie Banner option.
+	 */
+	add_action( 'wp_footer', 'cherry_cookie_banner', 999 );
+	function cherry_cookie_banner() {
+		$is_banner_visibility = of_get_option( 'cookie_banner', false );
+		$banner_text          = trim( of_get_option( 'cookie_banner_text', '' ) );
+		$banner_dismiss       = false;
+
+		if ( 'yes' != $is_banner_visibility ) { ?>
+			<script type="text/javascript">
+				deleteCookie('cf-cookie-banner');
+			</script>
+			<?php return;
+		}
+
+		if ( empty( $banner_text ) ) {
+			return;
+		}
+
+		if ( isset( $_COOKIE['cf-cookie-banner'] ) && '1' == $_COOKIE['cf-cookie-banner'] ) {
+			return;
+		}
+
+		ob_start(); ?>
+
+		<div id="cf-cookie-banner" class="cf-cookie-banner-wrap alert fade in">
+			<div class="container">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<?php echo htmlspecialchars_decode( $banner_text ); ?>
+			</div>
+		</div>
+
+		<?php $output = ob_get_contents();
+		ob_end_clean();
+
+		$output = apply_filters( 'cherry_cookie_banner', $output );
+
+		printf( '%s', $output );
+	}
 ?>

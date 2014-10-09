@@ -193,7 +193,7 @@
 								"id" => "g_breadcrumbs_id",
 								"type" => "radio",
 								"std" => "yes",
-								"options" => $yes_no_array);;
+								"options" => $yes_no_array);
 
 			$options['custom_css'] = array( "name" => theme_locals('css_name'),
 								"desc" => theme_locals('css_desc'),
@@ -923,6 +923,25 @@
 								'options' => array(
 										'faces' => $typography_mixed_fonts )
 								);
+
+// ---------------------------------------------------------
+// Cookie Banner
+// ---------------------------------------------------------
+			$options['cookie_banner_h'] = array( "name" => theme_locals("cookie_banner_h"),
+								"type" => "heading");
+
+			$options['cookie_banner'] = array( "name" => theme_locals('cookie_banner_name'),
+								"desc" => theme_locals('cookie_banner_desc'),
+								"id" => "cookie_banner",
+								"type" => "radio",
+								"std" => "no",
+								"options" => $yes_no_array);
+
+			$options['cookie_banner_text'] = array( "name" => theme_locals('cookie_banner_text'),
+								"desc" => theme_locals('cookie_banner_text_desc'),
+								"id" => "cookie_banner_text",
+								"std" => theme_locals('cookie_banner_text_std'),
+								"type" => "textarea");
 
 			return $options;
 		}

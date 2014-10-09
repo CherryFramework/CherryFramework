@@ -127,6 +127,12 @@
 			'breadcrumbs_desc' => __('Display breadcrumbs in the page?', $domain),
 			'css_name' => __('Custom CSS', $domain),
 			'css_desc' => __('Want to add any custom CSS code? Put in here, and the rest is taken care of. This overrides any other stylesheets. eg: a.button{color:green}', $domain),
+			'cookie_banner_h' => __('Cookie Banner', $domain),
+			'cookie_banner_name' => __('Display Cookie Banner?', $domain),
+			'cookie_banner_desc' => __('Display Cookie Banner in the bottom page?', $domain),
+			'cookie_banner_text' => __('Text', $domain),
+			'cookie_banner_text_desc' => __('Text for a Banner content', $domain),
+			'cookie_banner_text_std' => __('We use Cookies - By using this site or closing this you agree to our Cookies policy.', $domain),
 
 			//Logo & Favicon options
 			'logo' => __('Logo', $domain),

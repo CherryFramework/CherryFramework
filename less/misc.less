@@ -33,6 +33,48 @@
 	p {
 		margin: 0;
 	}
+	.close {
+		outline: none;
+	}
+	/* Cookie Banner */
+	&.cf-cookie-banner-wrap {
+		position: fixed;
+		z-index: 9999;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		display: block;
+		padding: 0;
+		margin: 0;
+		color: #fff;
+		background: rgba(0,0,0,.7);
+		border: none;
+		text-shadow: none;
+		.border-radius(0);
+		.no-rgba & {
+			background: #000;
+		}
+		.container {
+			padding: 10px 0;
+		}
+		.close {
+			color: #fff;
+			.opacity(70);
+			&:hover {
+				.opacity(100);
+			}
+			@media (max-width: 979px) and (min-width: 768px) {
+				right: 0;
+			}
+			@media (max-width: 767px) {
+				right: 0;
+			}
+		}
+		@media (max-width: 767px) {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
 }
 
 /* Image styling */

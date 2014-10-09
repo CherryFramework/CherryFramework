@@ -1912,6 +1912,47 @@ nav.footer-nav ul li.current-menu-item a { text-decoration:underline; }
 }
 .label p { margin:0; }
 .alert p { margin:0; }
+.alert .close { outline:none; }
+.alert.cf-cookie-banner-wrap {
+	position:fixed;
+	z-index:9999;
+	right:0;
+	left:0;
+	bottom:0;
+	display:block;
+	padding:0;
+	margin:0;
+	color:#fff;
+	background:rgba(0,0,0,0.7);
+	border:none;
+	text-shadow:none;
+	-webkit-border-radius:0;
+	-moz-border-radius:0;
+	border-radius:0;
+}
+.no-rgba .alert.cf-cookie-banner-wrap { background:#000; }
+.alert.cf-cookie-banner-wrap .container { padding:10px 0; }
+.alert.cf-cookie-banner-wrap .close {
+	color:#fff;
+	opacity:0.7;
+	filter:alpha(opacity=70);
+}
+.alert.cf-cookie-banner-wrap .close:hover {
+	opacity:1;
+	filter:alpha(opacity=100);
+}
+@media (max-width: 979px) and (min-width: 768px) {
+	.alert.cf-cookie-banner-wrap .close { right:0; }
+}
+@media (max-width: 767px) {
+	.alert.cf-cookie-banner-wrap .close { right:0; }
+}
+@media (max-width: 767px) {
+	.alert.cf-cookie-banner-wrap {
+		padding-left:20px;
+		padding-right:20px;
+	}
+}
 .alignleft {
 	float:left;
 	margin:5px 20px 10px 0;
