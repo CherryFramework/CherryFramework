@@ -4,20 +4,24 @@ if ( ! isset( $content_width ) )
 	$content_width = 604;
 
 // The excerpt based on words
-function my_string_limit_words($string, $word_limit){
-	$words = explode(' ', $string, ($word_limit + 1));
-	if( count($words) > $word_limit )
-		array_pop($words);
-	return implode(' ', $words).'... ';
+if ( !function_exists('my_string_limit_words') ) {
+	function my_string_limit_words($string, $word_limit){
+		$words = explode(' ', $string, ($word_limit + 1));
+		if( count($words) > $word_limit )
+			array_pop($words);
+		return implode(' ', $words).'... ';
+	}
 }
 
 // The excerpt based on character
-function my_string_limit_char($excerpt, $substr=0){
-	$string = strip_tags(str_replace('...', '...', $excerpt));
-	if ( $substr > 0 ) {
-		$string = substr($string, 0, $substr);
+if ( !function_exists('my_string_limit_char') ) {
+	function my_string_limit_char($excerpt, $substr=0){
+		$string = strip_tags(str_replace('...', '...', $excerpt));
+		if ( $substr > 0 ) {
+			$string = substr($string, 0, $substr);
+		}
+		return $string;
 	}
-	return $string;
 }
 
 // Generates a random string

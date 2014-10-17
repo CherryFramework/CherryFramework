@@ -256,7 +256,12 @@
 				<?php } ?>
 
 				<?php if($folio_excerpt == "yes"){ ?>
-					<p class="excerpt"><?php $excerpt = get_the_excerpt(); echo my_string_limit_words($excerpt,$folio_excerpt_count);?></p>
+					<p class="excerpt">
+						<?php
+							$excerpt = get_the_excerpt();
+							echo wp_trim_words( $excerpt, $folio_excerpt_count );
+						?>
+					</p>
 				<?php } ?>
 
 				<?php if($folio_btn == "yes"){
