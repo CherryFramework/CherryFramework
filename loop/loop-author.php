@@ -34,9 +34,9 @@
 	?>
 		<div class="no-results">
 			<?php echo '<p><strong>' . theme_locals("no_post_yet") . '</strong></p>'; ?>
-		</div><!--no-results-->
+		</div><!--.no-results-->
 	<?php endif; ?>
-</div><!--#recentPosts-->
+</div><!--recent-author-posts-->
 
 <?php get_template_part('includes/post-formats/post-nav'); ?>
 
@@ -49,18 +49,18 @@
 			global $sitepress;
 			$sql = "
 				SELECT * FROM {$wpdb->comments}
-				JOIN {$wpdb->prefix}icl_translations 
-				ON {$wpdb->comments}.comment_post_id = {$wpdb->prefix}icl_translations.element_id 
-				AND {$wpdb->prefix}icl_translations.element_type='post_post' 
-				WHERE comment_approved = '1' 
-				AND language_code = '".$sitepress->get_current_language()."' 
+				JOIN {$wpdb->prefix}icl_translations
+				ON {$wpdb->comments}.comment_post_id = {$wpdb->prefix}icl_translations.element_id
+				AND {$wpdb->prefix}icl_translations.element_type='post_post'
+				WHERE comment_approved = '1'
+				AND language_code = '".$sitepress->get_current_language()."'
 				ORDER BY comment_date_gmt DESC LIMIT {$number}";
 		} else {
 			$sql = "
-				SELECT * FROM $wpdb->comments 
-				WHERE comment_approved = '1' 
+				SELECT * FROM $wpdb->comments
+				WHERE comment_approved = '1'
 				AND comment_author_email='$curauth->user_email'
-				ORDER BY comment_date_gmt 
+				ORDER BY comment_date_gmt
 				DESC LIMIT {$number}";
 		}
 		$comments = $wpdb->get_results($sql);
@@ -75,4 +75,4 @@
 			</p>
 		<?php endif; ?>
 	</ul>
-</div><!--#recentAuthorComments-->
+</div><!--recent-author-comments-->

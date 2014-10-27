@@ -4,5 +4,5 @@
 		<?php the_content(); ?>
 		<div class="clear"></div>
 		<?php wp_link_pages('before=<div class="pagination">&after=</div>'); ?><!--.pagination-->
-	</div><!--#post-->
+	</div><!--post-->
 <?php endwhile; ?>
