@@ -424,10 +424,44 @@
 
 				$output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
 
-				$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
-				$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
-				$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-				$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+				// $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+				// $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+				// $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+				// $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+
+				$atts = array();
+				$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+				$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
+				$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
+				$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+
+				/**
+				 * Filter the HTML attributes applied to a menu item's <a>.
+				 *
+				 * @since 3.6.0
+				 *
+				 * @see wp_nav_menu()
+				 *
+				 * @param array $atts {
+				 *     The HTML attributes applied to the menu item's <a>, empty strings are ignored.
+				 *
+				 *     @type string $title  Title attribute.
+				 *     @type string $target Target attribute.
+				 *     @type string $rel    The rel attribute.
+				 *     @type string $href   The href attribute.
+				 * }
+				 * @param object $item The current menu item.
+				 * @param array  $args An array of wp_nav_menu() arguments.
+				 */
+				$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
+
+				$attributes = '';
+				foreach ( $atts as $attr => $value ) {
+					if ( ! empty( $value ) ) {
+						$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+						$attributes .= ' ' . $attr . '="' . $value . '"';
+					}
+				}
 
 				$description  = ! empty( $item->description ) ? '<span class="desc">'.esc_attr( $item->description ).'</span>' : '';
 
@@ -1603,7 +1637,7 @@
 			return $layout_class;
 		}
 	}
-	
+
 	/**
 	 * Cookie Banner option.
 	 */
