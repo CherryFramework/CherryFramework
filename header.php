@@ -46,18 +46,18 @@
 		 */
 		wp_head();
 	?>
-	<?php
-	/* The HTML5 Shim is required for older browsers, mainly older versions IE */ ?>
+	<?php /* The HTML5 Shim is required for older browsers, mainly older versions IE */ ?>
 	<!--[if lt IE 8]>
-	<div style=' clear: both; text-align:center; position: relative;'>
-		<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt="" /></a>
-	</div>
+		<div id="ie6-alert" style="width: 100%; text-align:center;">
+			<img src="http://beatie6.frontcube.com/images/ie6.jpg" alt="Upgrade IE 6" width="640" height="344" border="0" usemap="#Map" longdesc="http://die6.frontcube.com" /><map name="Map" id="Map"><area shape="rect" coords="496,201,604,329" href="http://www.microsoft.com/windows/internet-explorer/default.aspx" target="_blank" alt="Download Interent Explorer" /><area shape="rect" coords="380,201,488,329" href="http://www.apple.com/safari/download/" target="_blank" alt="Download Apple Safari" /><area shape="rect" coords="268,202,376,330" href="http://www.opera.com/download/" target="_blank" alt="Download Opera" /><area shape="rect" coords="155,202,263,330" href="http://www.mozilla.com/" target="_blank" alt="Download Firefox" /><area shape="rect" coords="35,201,143,329" href="http://www.google.com/chrome" target="_blank" alt="Download Google Chrome" />
+			</map>
+		</div>
 	<![endif]-->
 	<!--[if gte IE 9]><!-->
 		<script src="<?php echo PARENT_URL; ?>/js/jquery.mobile.customized.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			jQuery(function(){
-				jQuery('.sf-menu').mobileMenu({defaultText: <?php echo '"' . apply_filters( 'cherry_text_translate', of_get_option('mobile_menu_label'), 'mobile_menu_label' ) . '"'; ?>});
+				jQuery('.sf-menu').mobileMenu({defaultText: <?php echo '"' . apply_filters( 'cherry_text_translate', html_entity_decode( of_get_option('mobile_menu_label') ), 'mobile_menu_label' ) . '"'; ?>});
 			});
 		</script>
 	<!--<![endif]-->
@@ -100,7 +100,7 @@
 					correctionSelector: jQuery('#wpadminbar')
 				,	listenSelector: jQuery('<?php echo apply_filters( "cherry_stickmenu_listen_selector", ".listenSelector" ); ?>')
 				,	active: <?php echo (of_get_option('stickup_menu', 'false')=="false") ? 'false' : 'true'; ?>
-				,   pseudo: <?php echo apply_filters( "cherry_stickmenu_option_pseudo", "true" ); ?>
+				,	pseudo: <?php echo apply_filters( "cherry_stickmenu_option_pseudo", "true" ); ?>
 				});
 			}
 		})

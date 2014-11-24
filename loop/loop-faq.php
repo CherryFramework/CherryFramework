@@ -6,7 +6,7 @@
 		<div id="post-<?php the_ID(); ?>" <?php post_class('page'); ?>>
 			<?php the_content(); ?>
 			<div class="clear"></div>
-		</div><!--#post-->
+		</div><!--post-->
 	<?php endwhile;
 	//query
 	$temp     = $wp_query;
@@ -31,12 +31,12 @@
 		</dd>
 	<?php endwhile; ?>
 	</dl>
-<?php else: ?> 
+<?php else: ?>
 <div class="no-results">
 	<?php echo '<p><strong>' . theme_locals("there_has") . '</strong></p>'; ?>
 	<p><?php echo theme_locals("we_apologize"); ?> <a href="<?php echo home_url(); ?>/" title="<?php bloginfo('description'); ?>"><?php echo theme_locals("return_to"); ?></a> <?php echo theme_locals("search_form"); ?></p>
 	<?php get_search_form(); /* outputs the default Wordpress search form */ ?>
-</div><!--no-results-->
+</div><!--.no-results-->
 <?php endif;
 	$wp_query = null;
 	$wp_query = $temp;

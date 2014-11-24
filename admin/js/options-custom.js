@@ -51,8 +51,12 @@ jQuery(document).ready(function(a) {
                 a(c).next("input").attr("value", "#" + e)
             }})
     });
+
     var c = a(".nav-tab-wrapper");
     a("a", c).click(function() {
+        if (isLocalStorageAvailable()) {
+            localStorage.setItem('active-tab', a(this).attr("href") );
+        }
         window.location.hash = a(this).attr("href");
         return !1
     });
@@ -60,8 +64,32 @@ jQuery(document).ready(function(a) {
         var h = window.location.hash;
         a(".group").css({display: "none"});
         a("a", c).removeClass("nav-tab-active");
-        "" != h ? (a(h).css({display: "block"}), a("a[href=" + h + "]", c).addClass("nav-tab-active")) : (a(".group:first").css({display: "block"}), a("a:first", c).addClass("nav-tab-active"))
+        if (isLocalStorageAvailable()) {
+            active_tab = localStorage.getItem('active-tab');
+        }
+        if("" != h){
+            a(h).css({display: "block"});
+            a("a[href=" + h + "]", c).addClass("nav-tab-active");
+        }else{
+            if(active_tab != '' && active_tab != null){
+                a(active_tab).css({display: "block"});
+                a("a[href=" + active_tab + "]", c).addClass("nav-tab-active");
+            }else{
+                a(".group:first").css({display: "block"});
+                a("a:first", c).addClass("nav-tab-active");
+            }
+        }
+        //"" != h ? (a(h).css({display: "block"}), a("a[href=" + h + "]", c).addClass("nav-tab-active")) : (a(".group:first").css({display: "block"}), a("a:first", c).addClass("nav-tab-active"))
     }).trigger("hashchange");
+
+    //check localStorage browser support
+    function isLocalStorageAvailable() {
+        try {
+            return 'localStorage' in window && window['localStorage'] !== null;
+        } catch (e) {
+            return false;
+        }
+    }
     a(".of-radio-img-img").click(function() {
         a(this).parent().parent().find(".of-radio-img-img").removeClass("of-radio-img-selected");
         a(this).addClass("of-radio-img-selected")

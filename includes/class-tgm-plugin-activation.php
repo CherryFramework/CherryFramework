@@ -245,7 +245,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 					add_action( 'admin_notices', array( $this, 'notices' ) );
 					add_action( 'admin_init', array( $this, 'admin_init' ), 1 );
 					add_action( 'admin_enqueue_scripts', array( $this, 'thickbox' ) );
-					add_action( 'switch_theme', array( $this, 'update_dismiss' ) );
+					// add_action( 'switch_theme', array( $this, 'update_dismiss' ) );
 				}
 
 				// Setup the force activation hook.

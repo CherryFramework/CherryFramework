@@ -10,7 +10,7 @@
 #optionsframework .section{padding:10px 10px 0;}
 #optionsframework .group{padding-bottom:20px;display:none;}
 #optionsframework .section .heading{padding:10px 0px;margin:0 0 15px;border-bottom:1px solid #dfdfdf;}
-#optionsframework .section .controls{float:left;/*min-width:350px;*/width:70%;margin-right:2%;}
+#optionsframework .section .controls{float:left;/*min-width:350px;*/width:78%;margin-right:1%;}
 #optionsframework .section .explain{font-size:12px;/* vertical-align: top; */color:#929292;/* overflow:hidden; */ line-height: 16px;/* word-wrap: break-word; */-webkit-hyphens: auto;-moz-hyphens: auto;-ms-hyphens: auto;-o-hyphens: auto;hyphens: auto;}
 #optionsframework .section-checkbox .controls{width:98%;}
 #optionsframework .section-checkbox .explain{max-width:94%;}
@@ -20,14 +20,14 @@
 #optionsframework .section-multicheck .controls, #optionsframework .data_management .controls{max-height:150px;overflow-y:scroll;background:#fff;border:1px solid #DDD;padding-top:8px;padding-bottom:0 !important;}
 #optionsframework .section-radio label, #optionsframework .section-multicheck .controls label , #optionsframework .data_management label, .checkbox_label{float:left;max-width:90%;line-height:16px;margin-bottom:5px;}
 #optionsframework input.checkbox, #optionsframework input.of-radio{margin-top: 0px;float:left;clear:both;}
-#optionsframework .controls .of-color{float:left;width:60px;margin-left:5px;margin-right:5px;}
-#optionsframework .controls .field{overflow:hidden;float:left;margin-right:3px;padding:0 2px;}
+#optionsframework .controls .of-color{float:left;width:75px;margin-left:5px;margin-right:5px;}
+#optionsframework .controls .field{overflow:hidden;float:left;margin-right:3px;padding:0;}
 #optionsframework .controls .field label{display:inline-block;color:#929292;font-size:11px;margin-bottom:5px;font-style:normal;}
 #optionsframework .controls .field label[for="of-typography-color"]{display:block;margin-left:33px;}
-#optionsframework .controls .of-typography-character, #optionsframework .controls .of-typography-lineheight, #optionsframework .controls .of-typography-face, #optionsframework .controls .of-typography-size, #optionsframework .controls .of-typography-style, #optionsframework .controls .of-typography-unit{display:block;width:100%;max-width:105px;margin: 1px 0 10px 0;}
-#optionsframework .controls .of-typography-face{max-width:55px;}
-#optionsframework .controls .of-typography-style{max-width:79px;}
-#optionsframework .controls .of-typography-character{max-width:94px;}
+#optionsframework .controls .of-typography-character, #optionsframework .controls .of-typography-lineheight, #optionsframework .controls .of-typography-face, #optionsframework .controls .of-typography-size, #optionsframework .controls .of-typography-style, #optionsframework .controls .of-typography-unit{display:block;width:100%;max-width:70px;margin: 1px 0 10px 0;}
+#optionsframework .controls .of-typography-face{max-width:75px;}
+#optionsframework .controls .of-typography-style{max-width:95px;}
+#optionsframework .controls .of-typography-character{max-width:121px;}
 #optionsframework .of-background-properties{clear:both;margin-top:18px;}
 #optionsframework .controls .of-background-repeat{width:125px;margin-right:5px;float:left}
 #optionsframework .controls .of-background-position{width:125px;margin-right:5px;float:left}

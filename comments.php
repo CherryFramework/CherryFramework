@@ -72,7 +72,7 @@
 
 	<p><textarea name="comment" id="comment" cols="58" rows="10" tabindex="4" onfocus="if(this.value=='<?php echo theme_locals("your_comment"); ?>'){this.value=''}" onblur="if(this.value==''){this.value='<?php echo theme_locals("your_comment"); ?>'}"><?php echo theme_locals("your_comment"); ?></textarea></p>
 
-	<p><input name="submit" type="submit" class="btn btn-primary" id="submit" tabindex="5" value="<?php echo theme_locals("submit_comment"); ?>" />
+	<p class="comment_submit"><input name="submit" type="submit" class="btn btn-primary" id="submit" tabindex="5" value="<?php echo theme_locals("submit_comment"); ?>" />
 		<?php comment_id_fields(); ?>
 	</p>
 	<?php do_action('comment_form', $post->ID); ?>

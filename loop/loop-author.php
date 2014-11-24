@@ -34,9 +34,9 @@
 	?>
 		<div class="no-results">
 			<?php echo '<p><strong>' . theme_locals("no_post_yet") . '</strong></p>'; ?>
-		</div><!--no-results-->
+		</div><!--.no-results-->
 	<?php endif; ?>
-</div><!--#recentPosts-->
+</div><!--recent-author-posts-->
 
 <?php get_template_part('includes/post-formats/post-nav'); ?>
 
@@ -49,30 +49,39 @@
 			global $sitepress;
 			$sql = "
 				SELECT * FROM {$wpdb->comments}
-				JOIN {$wpdb->prefix}icl_translations 
-				ON {$wpdb->comments}.comment_post_id = {$wpdb->prefix}icl_translations.element_id 
-				AND {$wpdb->prefix}icl_translations.element_type='post_post' 
-				WHERE comment_approved = '1' 
-				AND language_code = '".$sitepress->get_current_language()."' 
+				JOIN {$wpdb->prefix}icl_translations
+				ON {$wpdb->comments}.comment_post_id = {$wpdb->prefix}icl_translations.element_id
+				AND {$wpdb->prefix}icl_translations.element_type='post_post'
+				WHERE comment_approved = '1'
+				AND language_code = '".$sitepress->get_current_language()."'
 				ORDER BY comment_date_gmt DESC LIMIT {$number}";
 		} else {
 			$sql = "
-				SELECT * FROM $wpdb->comments 
-				WHERE comment_approved = '1' 
+				SELECT * FROM $wpdb->comments
+				WHERE comment_approved = '1'
 				AND comment_author_email='$curauth->user_email'
-				ORDER BY comment_date_gmt 
+				ORDER BY comment_date_gmt
 				DESC LIMIT {$number}";
 		}
 		$comments = $wpdb->get_results($sql);
-	?>
-	<ul>
-		<?php
-			if ( $comments ) : foreach ( (array) $comments as $comment) :
-			echo  '<li class="recentcomments">' . sprintf( theme_locals("no_comments_author"), get_comment_date(), '<a href="'. get_comment_link($comment->comment_ID) . '">' . get_the_title($comment->comment_post_ID) . '</a>') . '</li>';
-		endforeach; else: ?>
-			<p>
-				<?php echo theme_locals("no_comments_by"); ?> <?php echo $curauth->display_name; ?> <?php echo theme_locals("yet");?>
-			</p>
+
+		if ( $comments ) : ?>
+
+			<ul>
+
+			<?php foreach ( (array) $comments as $comment) { ?>
+
+				<li class="recentcomments">
+					<?php printf( theme_locals("no_comments_author"), get_comment_date(), '<a href="'. get_comment_link( $comment->comment_ID ) . '">' . get_the_title( $comment->comment_post_ID ) . '</a>' ); ?>
+				</li>
+
+			<?php } ?>
+
+			</ul>
+
+		<?php else: ?>
+
+			<p><?php echo theme_locals("no_comments_by"); ?> <?php echo $curauth->display_name; ?> <?php echo theme_locals("yet");?></p>
+
 		<?php endif; ?>
-	</ul>
-</div><!--#recentAuthorComments-->
+</div><!--recent-author-comments-->

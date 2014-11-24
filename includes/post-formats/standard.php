@@ -22,10 +22,10 @@
 					} else {
 						if (!is_search()) {
 							$content = get_the_content();
-							echo my_string_limit_words($content,55);
+							echo wp_trim_words( $content, 55 );
 						} else {
 							$excerpt = get_the_excerpt();
-							echo my_string_limit_words($excerpt,55);
+							echo wp_trim_words( $excerpt, 55 );
 						}
 					} ?>
 				</div>

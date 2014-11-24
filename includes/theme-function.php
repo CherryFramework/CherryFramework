@@ -4,20 +4,24 @@ if ( ! isset( $content_width ) )
 	$content_width = 604;
 
 // The excerpt based on words
-function my_string_limit_words($string, $word_limit){
-	$words = explode(' ', $string, ($word_limit + 1));
-	if( count($words) > $word_limit )
-		array_pop($words);
-	return implode(' ', $words).'... ';
+if ( !function_exists('my_string_limit_words') ) {
+	function my_string_limit_words($string, $word_limit){
+		$words = explode(' ', $string, ($word_limit + 1));
+		if( count($words) > $word_limit )
+			array_pop($words);
+		return implode(' ', $words).'... ';
+	}
 }
 
 // The excerpt based on character
-function my_string_limit_char($excerpt, $substr=0){
-	$string = strip_tags(str_replace('...', '...', $excerpt));
-	if ( $substr > 0 ) {
-		$string = substr($string, 0, $substr);
+if ( !function_exists('my_string_limit_char') ) {
+	function my_string_limit_char($excerpt, $substr=0){
+		$string = strip_tags(str_replace('...', '...', $excerpt));
+		if ( $substr > 0 ) {
+			$string = substr($string, 0, $substr);
+		}
+		return $string;
 	}
-	return $string;
 }
 
 // Generates a random string
@@ -707,7 +711,7 @@ if ( !function_exists( 'pagination' ) ) {
 
 			for ( $i = 1; $i <= $pages; $i++ ) {
 				if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems )) {
-					echo ($paged == $i)? "<li class=\"active\"><a href='#'>".$i."</a></li>":"<li><a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a></li>";
+					echo ($paged == $i)? "<li class=\"active\"><span>".$i."</span></li>":"<li><a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a></li>";
 				}
 			}
 
