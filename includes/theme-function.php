@@ -617,7 +617,7 @@ if ( !function_exists( 'pagination' ) ) {
 
 			for ( $i = 1; $i <= $pages; $i++ ) {
 				if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems )) {
-					echo ($paged == $i)? "<li class=\"active\"><a href='#'>".$i."</a></li>":"<li><a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a></li>";
+					echo ($paged == $i)? "<li class=\"active\"><span>".$i."</span></li>":"<li><a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a></li>";
 				}
 			}
 

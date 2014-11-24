@@ -64,15 +64,24 @@
 				DESC LIMIT {$number}";
 		}
 		$comments = $wpdb->get_results($sql);
-	?>
-	<ul>
-		<?php
-			if ( $comments ) : foreach ( (array) $comments as $comment) :
-			echo  '<li class="recentcomments">' . sprintf( theme_locals("no_comments_author"), get_comment_date(), '<a href="'. get_comment_link($comment->comment_ID) . '">' . get_the_title($comment->comment_post_ID) . '</a>') . '</li>';
-		endforeach; else: ?>
-			<p>
-				<?php echo theme_locals("no_comments_by"); ?> <?php echo $curauth->display_name; ?> <?php echo theme_locals("yet");?>
-			</p>
+
+		if ( $comments ) : ?>
+
+			<ul>
+
+			<?php foreach ( (array) $comments as $comment) { ?>
+
+				<li class="recentcomments">
+					<?php printf( theme_locals("no_comments_author"), get_comment_date(), '<a href="'. get_comment_link( $comment->comment_ID ) . '">' . get_the_title( $comment->comment_post_ID ) . '</a>' ); ?>
+				</li>
+
+			<?php } ?>
+
+			</ul>
+
+		<?php else: ?>
+
+			<p><?php echo theme_locals("no_comments_by"); ?> <?php echo $curauth->display_name; ?> <?php echo theme_locals("yet");?></p>
+
 		<?php endif; ?>
-	</ul>
 </div><!--recent-author-comments-->

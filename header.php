@@ -57,7 +57,7 @@
 		<script src="<?php echo PARENT_URL; ?>/js/jquery.mobile.customized.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			jQuery(function(){
-				jQuery('.sf-menu').mobileMenu({defaultText: <?php echo '"' . apply_filters( 'cherry_text_translate', of_get_option('mobile_menu_label'), 'mobile_menu_label' ) . '"'; ?>});
+				jQuery('.sf-menu').mobileMenu({defaultText: <?php echo '"' . apply_filters( 'cherry_text_translate', html_entity_decode( of_get_option('mobile_menu_label') ), 'mobile_menu_label' ) . '"'; ?>});
 			});
 		</script>
 	<!--<![endif]-->
@@ -100,7 +100,7 @@
 					correctionSelector: jQuery('#wpadminbar')
 				,	listenSelector: jQuery('<?php echo apply_filters( "cherry_stickmenu_listen_selector", ".listenSelector" ); ?>')
 				,	active: <?php echo (of_get_option('stickup_menu', 'false')=="false") ? 'false' : 'true'; ?>
-				,   pseudo: <?php echo apply_filters( "cherry_stickmenu_option_pseudo", "true" ); ?>
+				,	pseudo: <?php echo apply_filters( "cherry_stickmenu_option_pseudo", "true" ); ?>
 				});
 			}
 		})
