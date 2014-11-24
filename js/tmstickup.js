@@ -1,13 +1,13 @@
 (function($){
-	$.fn.tmStickUp=function(options){ 
-		
+	$.fn.tmStickUp=function(options){
+
 		var getOptions = {
 			correctionSelector: $('.correctionSelector')
 		,	listenSelector: $('.listenSelector')
 		,	active: false
 		,	pseudo: true
 		}
-		$.extend(getOptions, options); 
+		$.extend(getOptions, options);
 
 		var
 			_this = $(this)
@@ -78,6 +78,11 @@
 					}
 				}
 			}).trigger('scroll');
+
+		_window.on('resize', function() {
+			thisOffsetTop = parseInt(_this.offset().top);
+		})
+
 		}
 	}//end tmStickUp function
 })(jQuery)
