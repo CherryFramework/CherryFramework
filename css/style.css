@@ -2764,10 +2764,12 @@ a.jp-restore-screen:hover span { background-position:-84px -84px; }
 }
 .post_networks >ul >li span { margin-right:10px; }
 .spinner_32, .thumbnail, .accordion_loader, .google-map, .flexslider, .camera_loader, .preloader {
+	min-height:36px;
 	background:url('../images/loading_32.gif') 50% 50% no-repeat;
 	background:url('../images/loading_32.gif') 50% 50% no-repeat, url('../images/loading_bg_32.png') 50% 50% no-repeat;
 }
 .spinner_16, div.ajax-loader, .thumbnail[rel^="prettyPhoto"] {
+	min-height:20px;
 	background:url('../images/loading_16.gif') 50% 50% no-repeat;
 	background:url('../images/loading_16.gif') 50% 50% no-repeat, url('../images/loading_bg_16.png') 50% 50% no-repeat;
 }
