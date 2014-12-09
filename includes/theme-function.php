@@ -647,7 +647,7 @@ if ( !function_exists( 'mytheme_comment' ) ) {
 					<em><?php echo theme_locals("your_comment") ?></em>
 				<?php endif; ?>
 				<div class="extra-wrap">
-					<?php comment_text() ?>
+					<?php echo esc_html( get_comment_text() ); ?>
 				</div>
 			</div>
 			<div class="wrapper">
