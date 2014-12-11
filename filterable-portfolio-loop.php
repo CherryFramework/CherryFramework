@@ -28,7 +28,11 @@
 
 			$('#filters .active').removeClass('active')
 			$('#filters li a[data-filter="'+selector+'"]').parent('li').addClass('active');
-			change_hash(selector)
+			change_hash(selector);
+
+			$(window).on("debouncedresize", function( event ) {
+				arrange();
+			});
 		});
 
 		function getNumColumns(){
@@ -77,10 +81,6 @@
 			setColumnWidth();
 			$container.isotope('reLayout');
 		}
-
-		$(window).on("debouncedresize", function( event ) {
-			arrange();
-		});
 
 		// Filter projects
 		$('.filter a').click(function(){
