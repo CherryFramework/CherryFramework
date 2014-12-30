@@ -42,7 +42,21 @@ $team_networks = array(
 	'title'    => "s_n",
 	'page'     => 'team',
 	'context'  => 'normal',
-	'priority' => 'high'
+	'priority' => 'high',
+	'fields'   => array(
+		array(
+			'id'  => 'network_icon',
+			'std' => '',
+		),
+		array(
+			'id'  => 'network_title',
+			'std' => '',
+		),
+		array(
+			'id'  => 'network_url',
+			'std' => '',
+		),
+	)
 );
 /*-----------------------------------------------------------------------------------*/
 /*	Add metabox to edit page
@@ -50,10 +64,25 @@ $team_networks = array(
 function my_add_box_team() {
 	global $meta_box_team, $team_networks;
 
-	add_meta_box($meta_box_team['id'], theme_locals($meta_box_team['title']), 'my_show_box_team', $meta_box_team['page'], $meta_box_team['context'], $meta_box_team['priority']);
-	add_meta_box($team_networks['id'], theme_locals($team_networks['title']), 'my_social_networks', $team_networks['page'], $team_networks['context'], $team_networks['priority']);
+	add_meta_box(
+		$meta_box_team['id'], 
+		theme_locals($meta_box_team['title']), 
+		'my_show_box_team', 
+		$meta_box_team['page'], 
+		$meta_box_team['context'], 
+		$meta_box_team['priority']
+	);
+
+	add_meta_box(
+		$team_networks['id'], 
+		theme_locals($team_networks['title']), 
+		'my_social_networks', 
+		$team_networks['page'], 
+		$team_networks['context'], 
+		$team_networks['priority']
+	);
 }
-add_action('admin_menu', 'my_add_box_team');
+add_action( 'add_meta_boxes', 'my_add_box_team' );
 
 /*-----------------------------------------------------------------------------------*/
 /*	Callback function to show fields in meta box
@@ -101,44 +130,52 @@ function my_show_box_team() {
 	}
 	echo '</table>';
 }
-function my_social_networks() {
-	global $post;
+function my_social_networks( $post, $metabox ) {
 	$post_id = $post->ID;
-	$fields_id_value = get_option('fields_id_value'.$post_id, '');
+
+	$fields_id       = get_post_meta( $post_id, 'fields_id', true );
+	$fields_id_value = ( is_array( $fields_id ) ) ? sort( $fields_id ) : $fields_id;
+	$fields_id_value = ( is_array( $fields_id ) ) ? join( ' ', $fields_id ) : $fields_id;
+	$networks_title  = get_post_meta( $post_id, 'networks_title', true );
+	$network_icons   = get_post_meta( $post_id, 'network_icon', true );
+	$network_titles  = get_post_meta( $post_id, 'network_title', true );
+	$network_urls    = get_post_meta( $post_id, 'network_url', true ); 
+	$item_count      = ( is_array( $fields_id ) ) ? end( $fields_id ) : 0;
 	?>
+
 	<p style="padding:10px 0 0 0;"><?php echo theme_locals('your_s_n') ?><br><em><?php echo theme_locals('icon_desc') ?></em></p>
 	<input type="hidden" name="my_team_networks_nonce" value="<?php echo wp_create_nonce(basename(__FILE__)) ?>" />
-	<input type="hidden" name="fields_id" value="<?php  echo $fields_id_value; ?>" />
-	<input type="hidden" name="old_fields_id" value="<?php  echo $fields_id_value; ?>" />
+	<input type="hidden" name="fields_id" value="<?php echo $fields_id_value; ?>" />
 	<table class="form-table">
 		<tr style="border-top:1px solid #eeeeee;">
 			<th style="width:25%">
-				<label for="#network_title">
+				<label for="#networks_title">
 					<strong><?php echo theme_locals('network_title'); ?></strong>
-					<span style=" display:block; color:#999; margin:5px 0 0 0; line-height: 18px;">'<?php echo theme_locals('network_title_desc'); ?></span>
+					<span style="display:block; color:#999; margin:5px 0 0 0; line-height: 18px;"><?php echo theme_locals('network_title_desc'); ?></span>
 				</label>
 			</th>
 			<td>
-				<input id='network_title' type="text" name="network_title" value="<?php  echo get_post_meta($post_id, 'network_title', true); ?>" style="width:100%;"/>
+				<input id='networks_title' type="text" name="networks_title" value="<?php echo $networks_title; ?>" style="width:100%;"/>
 			</td>
 		</tr>
 	</table>
 	<table class="form-table" id='social_network'>
-		<?php
-			$fields_array = explode(" ", $fields_id_value);
-			$item_count = $fields_array[0]=='' ? 0 : $fields_array[count($fields_array)-1] ;
-			$title_added = false;
-			if($item_count != 0){
-				foreach ($fields_array as $field) {
-					$network_array = explode(";", get_option('network_'.$post_id.'_'.$field, array('','','')));
-						if($title_added == false){
-							echo '<tr style="border-top:1px solid #eeeeee;" id="titles_social_network"><th style="width:15%"><strong>'.theme_locals("icon").'</strong></th><th style="width:20%"><strong>'.theme_locals("title").'</strong></th><th style="width:65%"><strong>'.theme_locals("page_url").'</strong></th><th style="width:5%"></th></tr>';
-						}
-						echo '<tr style="border-top:1px solid #eeeeee;"  id="network_'.$field.'"><th style="width:15%"><input type="text" name="network_icon_'.$field.'" id="network_icon_'.$field.'" value="'.$network_array[0].'"style="width:100%; margin-right: 20px; float:left;" /></th>';
-						echo '<th style="width:20%"><input type="text" name="network_title_'.$field.'" id="network_title_'.$field.'" value="'.$network_array[1].'" style="width:100%; margin-right: 20px; float:left;" /></th>';
-						echo '<th style="width:60%"><input type="text" name="network_url_'.$field.'" id="network_url_'.$field.'" value="'.$network_array[2].'" style="width:100%; margin-right: 20px; float:left;" /></th>';
-						echo '<th style="width:5%"><a name="network_'.$field.'" class="button delete_network" href="#">'.theme_locals("delete").'</a></th></tr>';
-						$title_added = true;
+		<?php if ( !empty( $fields_id ) && is_array( $fields_id ) ) {
+
+				foreach ( $fields_id as $key => $value ) {
+
+					$icon  = ( isset( $network_icons[ $value ] ) ) ? $network_icons[ $value ] : '';
+					$title = ( isset( $network_titles[ $value ] ) ) ? $network_titles[ $value ] : '';
+					$url   = ( isset( $network_urls[ $value ] ) ) ? $network_urls[ $value ] : '';
+					
+					echo '<tr style="border-top:1px solid #eeeeee;" id="network_'.$value.'"><th style="width:15%"><input type="text" name="network_icon['.$value.']" id="network_icon_'.$value.'" value="'.$icon.'"style="width:100%; margin-right: 20px; float:left;" /></th>';
+
+					echo '<th style="width:20%"><input type="text" name="network_title['.$value.']" id="network_title_'.$value.'" value="'.$title.'" style="width:100%; margin-right: 20px; float:left;" /></th>';
+
+					echo '<th style="width:60%"><input type="text" name="network_url['.$value.']" id="network_url_'.$value.'" value="'.$url.'" style="width:100%; margin-right: 20px; float:left;" /></th>';
+
+					echo '<th style="width:5%"><a name="network_'.$value.'" class="button delete_network" href="#">'.theme_locals("delete").'</a></th></tr>';
+
 				}
 			}
 		?>
@@ -152,15 +189,16 @@ function my_social_networks() {
 	<script>
 		jQuery(function(){
 			var add_item = parseInt('<?php echo $item_count ?>');
+			console.log(add_item);
 
 			jQuery('#add_network').click(function(){
 				var html_item = (add_item == 0) ? '<tr style="border-top:1px solid #eeeeee;" id="titles_social_network"><th style="width:15%"><strong><?php echo theme_locals("icon") ?></strong></th><th style="width:20%"><strong><?php echo theme_locals("title") ?></strong></th><th style="width:65%"><strong><?php echo theme_locals("page_url") ?></strong></th><th style="width:5%"></th></tr>' : '',
 					fields_id_value;
 				++add_item;
 				fields_id_value = jQuery('input[name="fields_id"]').val()+' '+add_item;
-				html_item += '<tr style="border-top:1px solid #eeeeee;"  id="network_'+add_item+'"><th style="width:15%"><input type="text" name="network_icon_'+add_item+'" id="network_icon_'+add_item+'" style="width:100%; margin-right: 20px; float:left;" /></th>';
-				html_item += '<th style="width:20%"><input type="text" name="network_title_'+add_item+'" id="network_title_'+add_item+'" style="width:100%; margin-right: 20px; float:left;" /></th>';
-				html_item += '<th style="width:60%"><input type="text" name="network_url_'+add_item+'" id="network_url_'+add_item+'" style="width:100%; margin-right: 20px; float:left;" /></th>';
+				html_item += '<tr style="border-top:1px solid #eeeeee;"  id="network_'+add_item+'"><th style="width:15%"><input type="text" name="network_icon['+add_item+']" id="network_icon_'+add_item+'" style="width:100%; margin-right: 20px; float:left;" /></th>';
+				html_item += '<th style="width:20%"><input type="text" name="network_title['+add_item+']" id="network_title_'+add_item+'" style="width:100%; margin-right: 20px; float:left;" /></th>';
+				html_item += '<th style="width:60%"><input type="text" name="network_url['+add_item+']" id="network_url_'+add_item+'" style="width:100%; margin-right: 20px; float:left;" /></th>';
 				html_item += '<th style="width:5%"><a name="network_'+add_item+'" class="button delete_network" href="#"><?php echo theme_locals("delete") ?></a></th></tr>';
 				jQuery('#tr_add_network').before(html_item);
 
@@ -168,17 +206,18 @@ function my_social_networks() {
 				return !1;
 			});
 			jQuery('.delete_network').live('click', function(){
-				var item_name = jQuery(this).attr('name'),
-					fields_id_value_array = jQuery('input[name="fields_id"]').val().split(" "),
-					delete_id = Number(item_name.replace(/\D+/g,""));
+				var item_name = jQuery(this).attr('name')
+				,	fields_id_value_array = jQuery('input[name="fields_id"]').val().split(" ")
+				,	delete_id = Number(item_name.replace(/\D+/g,""))
+				;
 
 				jQuery(this).die('click');
 				fields_id_value_array.splice(find(fields_id_value_array, delete_id), 1);
 				jQuery('input[name="fields_id"]').val(fields_id_value_array.join(' '));
-				if(jQuery('input[name="fields_id"]').val()==''){
-					jQuery('#titles_social_network').remove();
-					add_item = 0;
-				}
+				// if(jQuery('input[name="fields_id"]').val()==''){
+				// 	jQuery('#titles_social_network').remove();
+				// 	add_item = 0;
+				// }
 				jQuery('#'+item_name).remove();
 				return !1;
 			});
@@ -198,7 +237,8 @@ function my_social_networks() {
 /*	Save data when post is edited
 /*-----------------------------------------------------------------------------------*/
 function my_save_data_team($post_id) {
-	global $meta_box_team;
+	global $meta_box_team, $team_networks;
+
 	// verify nonce
 	if (!isset($_POST['my_meta_box_nonce']) || !wp_verify_nonce($_POST['my_meta_box_nonce'], basename(__FILE__))) {
 		return $post_id;
@@ -215,38 +255,59 @@ function my_save_data_team($post_id) {
 	} elseif (!current_user_can('edit_post', $post_id)) {
 		return $post_id;
 	}
-	foreach ($meta_box_team['fields'] as $field) {
-		$old = get_post_meta($post_id, $field['id'], true);
-		$new = $_POST[$field['id']];
-		if ($new && $new != $old) {
-			update_post_meta($post_id, $field['id'], stripslashes(htmlspecialchars($new)));
-		} elseif ('' == $new && $old) {
-			delete_post_meta($post_id, $field['id'], $old);
+
+	// Personal Options.
+	foreach ( $meta_box_team['fields'] as $field ) :
+		$old = get_post_meta( $post_id, $field['id'], true );
+		$new = $_POST[ $field['id'] ];
+
+		if ( $new && $new != $old ) {
+			update_post_meta( $post_id, $field['id'], stripslashes( htmlspecialchars( $new ) ) );
+
+		} elseif ( '' == $new && $old ) {
+
+			delete_post_meta( $post_id, $field['id'], $old );
 		}
-	}
-	$post_fields_id = trim($_POST['fields_id']) ;
-	$old_fields_id = explode(" ", trim($_POST['old_fields_id']));
-	$save_fields_array = explode(" ", $post_fields_id);
-	$unite_fields_array = array_unique(array_merge($save_fields_array, $old_fields_id));
-	$network_title = $_POST['network_title'];
-	if($network_title){
-		update_post_meta($post_id, 'network_title', stripslashes(htmlspecialchars($network_title)));
-	}else{
-		delete_post_meta($post_id, 'network_title');
-	}
-	if($post_fields_id){
-		update_option('fields_id_value'.$post_id, $post_fields_id);
-	}else{
-		delete_option('fields_id_value'.$post_id, $post_fields_id);
-	}
-	foreach ($unite_fields_array as $fields_id) {
-		if(in_array($fields_id, $save_fields_array)){
-			if($fields_id){
-				update_option('network_'.$post_id.'_'.$fields_id, $_POST['network_icon_'.$fields_id].';'.$_POST['network_title_'.$fields_id].';'.$_POST['network_url_'.$fields_id]);
+	endforeach;
+
+	// Social Networks.
+	foreach ( $team_networks['fields'] as $key => $field ) :
+		$old = get_post_meta( $post_id, $field['id'], true );
+		$new = $_POST[ $field['id'] ];
+
+		if ( $new && $new != $old ) {
+
+			foreach ( $new as $key => $value ) {
+				$new[ $key ] = sanitize_text_field( $value );
 			}
-		}else{
-			delete_option('network_'.$post_id.'_'.$fields_id);
+			update_post_meta( $post_id, $field['id'], $new );
+
+		} elseif ( '' == $new && $old ) {
+
+			delete_post_meta( $post_id, $field['id'], $old );
 		}
+	endforeach;
+
+	// Networks Title.
+	$old_networks_title = get_post_meta( $post_id, 'networks_title', true );
+	$new_networks_title = $_POST['networks_title'];
+
+	if ( $new_networks_title && $new_networks_title != $old_networks_title ) {
+		update_post_meta( $post_id, 'networks_title', sanitize_text_field( $new_networks_title ) );
+	} elseif ( '' == $new_networks_title && $old_networks_title ) {
+		delete_post_meta( $post_id, 'networks_title', $old_networks_title );
+	}
+
+	// Fields ids.
+	$old_fields_id     = get_post_meta( $post_id, 'fields_id', true );
+	$old_fields_id_str = ( is_array( $old_fields_id ) ) ? implode( ' ', $old_fields_id ) : $old_fields_id;
+	$new_fields_id     = trim( $_POST['fields_id'] );
+
+	if ( $new_fields_id && $new_fields_id != $old_fields_id_str ) {
+		$new_fields_id = explode( ' ', sanitize_text_field( $new_fields_id ) );
+		update_post_meta( $post_id, 'fields_id', $new_fields_id );
+	} elseif ( '' == $new_fields_id && $old_fields_id_str ) {
+		delete_post_meta( $post_id, 'fields_id', $old_fields_id );
 	}
 }
 add_action('save_post', 'my_save_data_team');
