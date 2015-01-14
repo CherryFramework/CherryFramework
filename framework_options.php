@@ -201,6 +201,13 @@
 								"std" => "",
 								"type" => "textarea");
 
+			$options['live_chat_id'] = array( "name" => theme_locals('live_chat_name'),
+					"desc"  => sprintf( theme_locals('live_chat_desc'), "<a href='http://www.olark.com/?r=ad8fbsj2'>Get own account ID.</a>" ),
+					"id"    => "live_chat_id",
+					"std"   => "",
+					"class" => "tiny",
+					"type"  => "text" );
+
 // ---------------------------------------------------------
 // Logo & Favicon
 // ---------------------------------------------------------

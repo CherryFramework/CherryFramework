@@ -133,6 +133,8 @@
 			'cookie_banner_text' => __('Text', $domain),
 			'cookie_banner_text_desc' => __('Text for a Banner content', $domain),
 			'cookie_banner_text_std' => __('We use Cookies - By using this site or closing this you agree to our Cookies policy.', $domain),
+			'live_chat_name' => __('Live Chat account ID', $domain),
+			'live_chat_desc' => __('To enable Olark live chat enter your live chat account ID here. %s', $domain),
 
 			//Logo & Favicon options
 			'logo' => __('Logo', $domain),
