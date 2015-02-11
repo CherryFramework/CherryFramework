@@ -1,9 +1,12 @@
 <?php
+	include_once (PARENT_DIR . '/admin/data_management/backup.php');
+	include_once (PARENT_DIR . '/admin/data_management/restore.php');
+	include_once (PARENT_DIR . '/admin/data_management/download_backup.php');
 	include_once (PARENT_DIR . '/admin/data_management/update.php');
 
 	@define('PARENT_NAME', 'CherryFramework');
 
-	$framework_version = get_theme_info(PARENT_NAME, 'Version'); 
+	$framework_version = get_theme_info(PARENT_NAME, 'Version');
 	function get_theme_info($theme_name, $data_type=''){
 		if ( function_exists('wp_get_theme') ) {
 			$theme = wp_get_theme($theme_name);
@@ -50,7 +53,7 @@
 		echo $input_radio;
 	}
 
-	function check_update(){	
+	function check_update(){
 		global $wp_version, $framework_version, $framework_update;
 		$theme_base = get_theme_info(PARENT_NAME, 'Template');
 		$response["new_version"] = $framework_version;
@@ -97,7 +100,7 @@
 								<?php if ( FILE_WRITEABLE ) { ?>
 								<div class="buttons_controls">
 									<div class="button_wrapper">
-										<?php 
+										<?php
 											$update_url = wp_nonce_url('update.php?action=upgrade-theme&amp;theme=' . urlencode(PARENT_NAME), 'upgrade-theme_'.urlencode(PARENT_NAME));
 											$disable_class= "";
 											$cap= "";
@@ -106,7 +109,7 @@
 												$disable_class = "disable_button";
 											}
 											echo "<a id=\"update_framework\" class=\"button-primary ".$disable_class."\" href=\"".$update_url."\" onclick=\"if ( confirm('Updating this theme will lose any customizations you have made. \'Cancel\' to stop, \'OK\' to update.') ) {return true;}return false;\">".theme_locals("update")."</a>".$cap;
-											
+
 										?>
 									</div>
 									<div class="button_wrapper">

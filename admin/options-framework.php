@@ -214,6 +214,7 @@ function optionsframework_load_scripts() {
 	wp_enqueue_script('jquery-ui-core');
 	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'js/colorpicker.js', array('jquery'));
 	wp_enqueue_script('options-custom', OPTIONS_FRAMEWORK_DIRECTORY.'js/options-custom.js', array('jquery'));
+	wp_localize_script( 'options-custom', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
 
 	// Inline scripts from options-interface.php
 	add_action('admin_head', 'of_admin_head');
