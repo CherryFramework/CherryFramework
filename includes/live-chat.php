@@ -35,3 +35,15 @@ if ( !function_exists( 'tm_live_chat_code' ) ) {
 	}
 
 }
+
+add_filter( 'body_class', 'tm_live_chat_body_class', 99 );
+function tm_live_chat_body_class( $classes ) {
+	$chat_id = of_get_option( 'live_chat_id' );
+	if ( !$chat_id ) {
+		return $classes;
+	}
+
+	$classes[] = 'olrk-live-chat';
+
+	return $classes;
+}

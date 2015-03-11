@@ -2107,6 +2107,7 @@ figure.frame {
 	overflow:hidden;
 	z-index:99;
 }
+.olrk-live-chat #back-top-wrapper { bottom:40px; }
 #back-top a {
 	display:block;
 	width:50px;
