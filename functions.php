@@ -197,7 +197,7 @@
 		return icl_translate( 'cherry', $name, $value );
 	}
 	//Check if WPML is activated
-	if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
+	if ( function_exists( 'icl_translate' ) ) {
 		add_filter( 'cherry_text_translate', 'cherry_wpml_translate_filter', 10, 2 );
 	}
 
