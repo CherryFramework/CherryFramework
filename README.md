@@ -9,6 +9,28 @@ Fully responsive design, easy install, steady updates, great number of shortcode
 
 ##Change log##
 
+#### v3.1.5 ####
+
+Framework Updates
+
+* ADD: Live Chat in a dashboard
+* ADD: Cookie banner options
+* FIX: Security bug
+* FIX: Bug with duplication images in a slider lightbox
+* FIX: Check for WMPL-plugin extension
+* FIX: Bug with a social networks custom fields in a Our Team posts after the import sample data
+* FIX: Bug with thumbs in slider
+* FIX: Query variable in a FAQ and Testimonials pages
+* FIX: JS-error on Portfolio page
+* UPD: cherry plugin to version 1.2.6
+* UPD: motopress-content-editor plugin to version 1.5.8
+* UPD: Localization files
+* UPD: Conditional comments for older IE (if lt IE 9)
+* UPD: Class `description_walker`
+* UPD: Replace using function for trims text
+* DEL: Init for `owl-carousel` script
+* DEL: `#` - symbol from comments
+
 #### v3.1.4 ####
 
 Framework Updates
@@ -152,14 +174,14 @@ Plugin Updates
 * Fix: import errors
 * Add: blocking files on upload
 * Fix: sorting errors
-* Add: widgets rewrite 
-* Add: widgets custom classes 
+* Add: widgets rewrite
+* Add: widgets custom classes
 * Fix: shortcode Elastislide
 * Add: styleswitcher
 * Add: plugin-under-construction-content rewrite in child theme
 * Add: plugin updater
 * Add: intagram widget
-* Upd: social widget 
+* Upd: social widget
 * Fix: fixes in social network widget
 * Add: banner widget
 * Upd: improvements in wpml-compatibility
