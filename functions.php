@@ -263,6 +263,9 @@
 		include_once ( PARENT_DIR . '/includes/live-chat.php' );
 	}
 
+	// TM Chat.
+	include_once ( PARENT_DIR . '/includes/tm-chat/class-cherry-tm-chat.php' );
+
 	// removes detailed login error information for security
 	add_filter('login_errors',create_function('$a', "return null;"));
 
