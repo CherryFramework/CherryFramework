@@ -9,7 +9,7 @@
 		<?php endif; ?>
 		<?php get_template_part('includes/post-formats/post-thumb'); ?>
 
-		<?php if(!is_singular()) : ?>
+		<?php if ( !is_singular() ) : ?>
 		<!-- Post Content -->
 		<div class="post_content">
 			<?php
@@ -22,10 +22,10 @@
 					} else {
 						if (!is_search()) {
 							$content = get_the_content();
-							echo wp_trim_words( $content, 55 );
+							echo apply_filters( 'cherry_standard_post_content_list', wp_trim_words( $content, 55 ) );
 						} else {
 							$excerpt = get_the_excerpt();
-							echo wp_trim_words( $excerpt, 55 );
+							echo apply_filters( 'cherry_standard_post_content_search', wp_trim_words( $excerpt, 55 ) );
 						}
 					} ?>
 				</div>
