@@ -24,7 +24,10 @@
 		,	tmpScrolled
 		;
 
-		init();
+		if (_this.length != 0) {
+			init();
+		}
+
 		function init(){
 			thisOffsetTop = parseInt(_this.offset().top);
 			thisMarginTop = parseInt(_this.css("margin-top"));
