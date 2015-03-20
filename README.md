@@ -15,6 +15,7 @@ Framework Updates
 
 * ADD: Live Chat in a dashboard
 * ADD: Cookie banner options
+* ADD: Filters in the post content
 * FIX: Security bug
 * FIX: Bug with duplication images in a slider lightbox
 * FIX: Check for WMPL-plugin extension
@@ -22,6 +23,7 @@ Framework Updates
 * FIX: Bug with thumbs in slider
 * FIX: Query variable in a FAQ and Testimonials pages
 * FIX: JS-error on Portfolio page
+* FIX: Stick menu script
 * UPD: cherry plugin to version 1.2.6
 * UPD: motopress-content-editor plugin to version 1.5.8
 * UPD: Localization files
