@@ -133,8 +133,10 @@
 			'cookie_banner_text' => __('Text', $domain),
 			'cookie_banner_text_desc' => __('Text for a Banner content', $domain),
 			'cookie_banner_text_std' => __('We use Cookies - By using this site or closing this you agree to our Cookies policy.', $domain),
-			'live_chat_name' => __('Live Chat account ID', $domain),
+			'live_chat_name' => __('Olark live chat ID', $domain),
 			'live_chat_desc' => __('To enable Olark live chat enter your live chat account ID here. %s', $domain),
+			'tm_live_chat_name' => __('Enable Cherry Framework support chat', $domain),
+			'tm_live_chat_desc' => __('Enable support chat (backend only)', $domain),
 
 			//Logo & Favicon options
 			'logo' => __('Logo', $domain),

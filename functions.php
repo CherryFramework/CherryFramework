@@ -256,15 +256,17 @@
 	}
 	include_once (PARENT_DIR .'/includes/less-compile.php');
 
-	// Live Chat.
+	// Olark Live Chat.
 	if ( is_child_theme() && file_exists( CHILD_DIR . '/includes/live-chat.php' ) ) {
 		include_once ( CHILD_DIR . '/includes/live-chat.php' );
 	} else {
 		include_once ( PARENT_DIR . '/includes/live-chat.php' );
 	}
 
-	// TM Chat.
-	include_once ( PARENT_DIR . '/includes/tm-chat/class-cherry-tm-chat.php' );
+	// TM Live Chat.
+	if ( 'yes' == of_get_option( 'tm_live_chat', 'yes' ) ) {
+		include_once ( PARENT_DIR . '/includes/tm-chat/class-cherry-tm-chat.php' );
+	}
 
 	// removes detailed login error information for security
 	add_filter('login_errors',create_function('$a', "return null;"));
