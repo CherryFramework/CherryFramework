@@ -40,6 +40,7 @@ a:focus { outline:none; }
 .logo {
 	position:relative;
 	z-index:99;
+	max-width: 100%;
 }
 @media (min-width: 768px) and (max-width: 979px) {
 	.logo { width:60%; }
