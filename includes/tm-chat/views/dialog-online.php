@@ -4,7 +4,7 @@ if ( !defined( 'WPINC' ) ) {
 	die;
 } ?>
 
-<div id="tm-chat-dialog" class="tm-chat chat_box_wrap online">
+<div id="tm-chat-dialog" class="tm-chat chat_box_wrap online order">
 
 	<div class="chat_box_heading chat_out">
 		<a href="#" class="tm-chat-control"><i class="dashicons dashicons-arrow-up-alt2"></i></a>
@@ -64,6 +64,9 @@ if ( !defined( 'WPINC' ) ) {
 			</div>
 		</div>
 
+		<div class="chat-settings-wrap">
+			<a class="chat-settings" href="<?php echo add_query_arg( array( 'page' => 'options-framework#of-option-1##section-tm_live_chat' ), admin_url('admin.php') ); ?> "><i class="dashicons dashicons-admin-generic"></i><span><?php _e( 'Chat settings', CURRENT_THEME ); ?></span></a>
+		</div>
 		<div class="status-group">
 			<i class="status-marker"></i><span class="chat_operator_status"><?php _e( 'operator is online', CURRENT_THEME ); ?></span>
 		</div>

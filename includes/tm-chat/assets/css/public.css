@@ -34,7 +34,7 @@
 		font: bold 14px/1.2 "Open Sans",sans-serif;
 	}
 	.tm-chat.offline legend {
-		margin-bottom: 20px;
+		margin-bottom: 15px;
 	}
 		.form-order-id .legend {
 			display: none;
@@ -130,7 +130,9 @@
 		.start_chat_order.enabled:hover {
 			background: #5bbafd;
 		}
-
+.tm-chat-accordion {
+	margin-bottom: 30px;
+}
 .form-group {
 	position: relative;
 	padding-bottom: 24px;
@@ -241,6 +243,7 @@
 		}
 
 .chat_box_body {
+	overflow: hidden;
 	padding: 25px;
 	border: 1px solid #c7c7c7;
 }
@@ -248,7 +251,7 @@
 
 /* Status */
 .status-group {
-	padding-top: 30px;
+	float: left;
 }
 .status-marker {
 	display:inline-block;
@@ -269,6 +272,27 @@
 	line-height: 1.2;
 	color: #6c6c6c;
 }
+
+/* Settings */
+.chat-settings-wrap {
+	float: right;
+}
+	.chat-settings {
+		color: #0074a2;
+		font-size: 14px;
+		text-decoration: none;
+	}
+		.chat-settings i {
+			color: #333;
+			margin-right: 5px;
+		}
+		.chat-settings span {
+			display: inline-block;
+			border-bottom: 1px dashed #6099b7;
+		}
+	.chat-settings:hover span {
+		border-bottom-color: transparent;
+	}
 
 .request-msg {
 	margin-top: 0.5em;
@@ -302,6 +326,19 @@
 		text-align: center;
 		margin-right: 15px;
 		border-radius: 25px;
+	}
+
+.message-after-send {
+	display: none;
+}
+.message-before-send {
+	display: block;
+}
+	.ticket-send .message-after-send {
+		display: block;
+	}
+	.ticket-send .message-before-send {
+		display: none;
 	}
 
 .optional {

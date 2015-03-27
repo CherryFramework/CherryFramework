@@ -88,6 +88,7 @@
 							$('.chat_out').show();
 
 						} else {
+							_this.addClass('ticket-send');
 							$('.tm-chat-msg-success').show();
 						}
 					}
@@ -116,6 +117,7 @@
 					$('.tm-chat-msg').hide();
 					_this
 						.removeClass('active')
+						.removeClass('ticket-send')
 						.animate( {bottom: -( $chat_body.outerHeight() )}, 200 );
 					$('.chat_in').hide();
 					$('.chat_out').show();

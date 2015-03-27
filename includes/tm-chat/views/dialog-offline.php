@@ -5,7 +5,6 @@ if ( !defined( 'WPINC' ) ) {
 } ?>
 
 <div id="tm-chat-dialog" class="tm-chat chat_box_wrap form-order-id offline">
-
 	<div class="chat_box_heading chat_out">
 		<a href="#" class="tm-chat-control"><i class="dashicons dashicons-arrow-up-alt2"></i></a>
 		<span class="tm-chat-title"><i class="dashicons dashicons-editor-help"></i><?php _e( 'Ask Your Question', CURRENT_THEME ); ?></span>
@@ -29,7 +28,13 @@ if ( !defined( 'WPINC' ) ) {
 			</div>
 		</div>
 		<form action="" method="POST" role="form" class="tm-chat-form">
-			<legend class="form-group"><?php _e( 'Please feel free to ask another question', CURRENT_THEME ); ?></legend>
+			<div class="message-after-send">
+				<legend class="form-group"><?php _e( 'Please feel free to ask another question', CURRENT_THEME ); ?></legend>
+			</div>
+			<div class="message-before-send">
+				<legend class="form-group"><?php _e( 'Thanks for contacting us!', CURRENT_THEME ); ?></legend>
+				<p><?php _e( 'To better serve you, please fill out the short form.', CURRENT_THEME ); ?></p>
+			</div>
 			<div class="form-group">
 				<input type="text" name="chat-nick" id="chat-nick" value="" placeholder="<?php _e( 'Name', CURRENT_THEME ); ?>" required tabindex="1">
 			</div>
@@ -49,6 +54,10 @@ if ( !defined( 'WPINC' ) ) {
 			</div>
 			<div class="form-group">
 				<input type="button" name="chat-start" value="<?php _e( 'Submit', CURRENT_THEME ); ?>" class="start_chat disabled" tabindex="6" disabled>
+			</div>
+
+			<div class="chat-settings-wrap">
+				<a class="chat-settings" href="<?php echo add_query_arg( array( 'page' => 'options-framework#of-option-1##section-tm_live_chat' ), admin_url('admin.php') ); ?> "><i class="dashicons dashicons-admin-generic"></i><span><?php _e( 'Chat settings', CURRENT_THEME ); ?></span></a>
 			</div>
 			<div class="status-group">
 				<i class="status-marker"></i><span class="chat_operator_status"><?php _e( 'operator is offline', CURRENT_THEME ); ?></span>
