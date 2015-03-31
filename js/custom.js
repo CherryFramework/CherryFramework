@@ -7,15 +7,17 @@ jQuery(document).ready(function(){
 // ---------------------------------------------------------
 	if(jQuery('body.blog')[0]){
 		var isotope_holder = jQuery('.isotope');
-		isotope_holder.isotope({
-			itemSelector : '.post_wrapper',
-			hiddenClass : 'hidden',
-			resizable : true,
-			transformsEnabled : false,
-			layoutMode: 'masonry'
-		}).bind("resize.rainbows", function(){
-			isotope_holder.isotope('reLayout');
-		}).trigger("resize.rainbows").css({'visibility':'visible'});
+		isotope_holder.imagesLoaded( function() {
+			isotope_holder.isotope({
+				itemSelector : '.post_wrapper',
+				hiddenClass : 'hidden',
+				resizable : true,
+				transformsEnabled : false,
+				layoutMode: 'masonry'
+			}).bind("resize.rainbows", function(){
+				isotope_holder.isotope('reLayout');
+			}).trigger("resize.rainbows").css({'visibility':'visible'});
+		});
 	}
 // ---------------------------------------------------------
 // Call Magnific Popup
