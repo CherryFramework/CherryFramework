@@ -145,7 +145,7 @@ if ( !class_exists( 'Cherry_TM_Chat_Class' ) ) {
 					'email'            => $email,
 					'contents'         => $message,
 					'departmentid'     => 3,   // support
-					'ticketstatusid'   => 4,   // open
+					'ticketstatusid'   => 1,   // open
 					'ticketpriorityid' => '1', // issue
 					'tickettypeid'     => 1,
 					'orderid'          => $order_id,
