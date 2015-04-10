@@ -16,7 +16,7 @@ function cherry_restore_callback() {
 	$themes_folder = str_replace('\\', '/', get_theme_root()).'/'.$theme_folder;
 
 	if ( file_exists( $file ) ) {
-		removeDir( $themes_folder );
+		chery_remove_dir( $themes_folder );
 		cherry_unzip_backup( $file, $themes_folder );
 	} else {
 		echo theme_locals("unfortunately").$theme_folder.theme_locals("please_try");
@@ -33,6 +33,6 @@ function cherry_unzip_backup( $file, $themes_folder ) {
 	echo get_option( PARENT_NAME . "_version_backup" );
 }
 
-function removeDir( $path ) {
-	return is_file( $path ) ? @unlink( $path ) : array_map( 'removeDir', glob( $path."/*" ) ) == @rmdir( $path );
+function chery_remove_dir( $path ) {
+	return is_file( $path ) ? @unlink( $path ) : array_map( 'chery_remove_dir', glob( $path."/*" ) ) == @rmdir( $path );
 } ?>
