@@ -1,4 +1,4 @@
-<?php 
+<?php
 	include_once (PARENT_DIR . '/admin/seo/sitemap-generator.php');
 	include_once (PARENT_DIR . '/admin/seo/seo-function.php');
 
@@ -47,7 +47,7 @@
 										<div class="controls">
 										<?php
 											$content_settings = array(
-												'add_nofollow' => array('title' => theme_locals("nofollow_name"), 'checked' => false), 
+												'add_nofollow' => array('title' => theme_locals("nofollow_name"), 'checked' => false),
 											);
 											foreach( $content_settings as $key => $val ) {
 												$checked = (get_option($key) == "on" || $val['checked'] == true && get_option($key) != "off") ? 'checked' : '' ;
@@ -95,7 +95,7 @@
 												$priority_array = array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1);
 												$changefreq_array = array('always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never');
 												unset($post_types['wpcf7_contact_form'], $post_types['optionsframework'], $post_types['attachment']);
-												
+
 												foreach( $post_types as $post_type ) {
 													if(!empty($post_type)){
 														$checked = (get_option('checked_'.$post_type->name) == "on") ? 'checked' : '' ;
@@ -172,9 +172,9 @@
 			}
 			//echo $post_data['do_generate_sitemap'];
 			robot_txt_generate();
-			generate_sitemap();
+			cherry_generate_sitemap();
 			exit;
-		} 
+		}
 	}
 
 	// page java script
@@ -217,6 +217,6 @@
 					return !1;
 				});
 			</script>
-			<?php 
+			<?php
 		}
 	}
