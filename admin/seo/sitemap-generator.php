@@ -32,7 +32,7 @@ if ( !function_exists('cherry_generate_sitemap') ) {
 				$lastmod_xml = "\r\n\t\t\t<lastmod>" . $_lastmod[0] . "</lastmod>";
 			}
 
-			$sitemap_code = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\t<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\r\n\t\t<url>\r\n\t\t\t<loc>" . $site_link . "</loc>" . $lastmod_xml . "\r\n\t\t\t<changefreq>" . $main_changefreq . "</changefreq>\r\n\t\t\t<priority>" . $main_priority . "</priority>\r\n\t\t</url>";
+			$sitemap_code = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\t<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\r\n\t\t<url>\r\n\t\t\t<loc>" . esc_url( $site_link ) . "</loc>" . $lastmod_xml . "\r\n\t\t\t<changefreq>" . $main_changefreq . "</changefreq>\r\n\t\t\t<priority>" . $main_priority . "</priority>\r\n\t\t</url>";
 
 			$post_types = get_post_types( array(
 				'public'   => true,
@@ -52,7 +52,7 @@ if ( !function_exists('cherry_generate_sitemap') ) {
 					$post_changefreq = isset( $_POST['changefreq_'.get_post_type() ] ) ? "\r\n\t\t\t<changefreq>" . $_POST['changefreq_' . get_post_type() ] . "</changefreq>" : "";
 					$post_priority = isset( $_POST['priority_' . get_post_type() ] ) ? "\r\n\t\t\t<priority>" . $_POST['priority_' . get_post_type() ] . "</priority>": "";
 
-					$sitemap_code .= "\r\n\t\t<url>\r\n\t\t\t<loc>" . get_permalink() . "</loc>\r\n\t\t\t<lastmod>" . get_the_modified_date('Y-m-d') . "</lastmod>" . $post_changefreq . $post_priority . "\r\n\t\t</url>";
+					$sitemap_code .= "\r\n\t\t<url>\r\n\t\t\t<loc>" . esc_url( get_permalink() ) . "</loc>\r\n\t\t\t<lastmod>" . get_the_modified_date('Y-m-d') . "</lastmod>" . $post_changefreq . $post_priority . "\r\n\t\t</url>";
 				}
 			}
 			wp_reset_query();
