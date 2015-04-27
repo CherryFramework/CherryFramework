@@ -176,12 +176,10 @@
 				else
 					$prettyType = "prettyPhoto[gallery".$i."]";
 				$link_href  = $img_url;
-				$link_title = get_the_title($post->ID);
 				$link_rel   = 'rel="'.$prettyType.'"';
 				$zoom_icon  = '<span class="zoom-icon"></span>';
 			else :
 				$link_href  = get_permalink($post->ID);
-				$link_title = theme_locals("permanent_link_to").' '.get_the_title($post->ID);
 				$link_rel   = '';
 				unset($zoom_icon);
 			endif;
@@ -189,14 +187,13 @@
 			// in any for Video and Audio posts no lightbox
 			if ( ($mediaType == 'Video') || ($mediaType == 'Audio') ) {
 				$link_href  = get_permalink($post->ID);
-				$link_title = theme_locals("permanent_link_to").' '.get_the_title($post->ID);
 				$link_rel   = '';
 				unset($zoom_icon);
 			} ?>
 
 			<?php if (has_post_thumbnail()) { ?>
 			<figure class="thumbnail thumbnail__portfolio">
-				<a href="<?php echo $link_href; ?>" class="image-wrap" title="<?php echo $link_title; ?>" <?php echo $link_rel; ?>>
+				<a href="<?php echo esc_url( $link_href ); ?>" class="image-wrap" title="<?php echo esc_attr( get_the_title( $post->ID ) ); ?>" <?php echo $link_rel; ?>>
 					<img src="<?php echo $image ?>" alt="<?php the_title(); ?>" />
 					<?php if (isset($zoom_icon)) echo $zoom_icon; ?>
 				</a>
@@ -235,7 +232,7 @@
 								$figure_before = '<figure class="thumbnail thumbnail__portfolio">';
 								$figure_after  = '</figure><!--/.thumbnail__portfolio-->';
 								$link_style    = 'display:block';
-								$img_tag       = '<img src="'.$image.'" alt="'.$image_title.'" />';
+								$img_tag       = '<img src="'. esc_url( $image ).'" alt="'. esc_attr( $image_title ).'" />';
 							} else {
 								$figure_before = '';
 								$figure_after  = '';
@@ -244,7 +241,7 @@
 								unset($img_tag);
 								unset($zoom_icon);
 							} ?>
-					<?php echo $figure_before; ?><a href="<?php echo $link_href; ?>" class="image-wrap" title="<?php the_title(); ?>" style="<?php echo $link_style; ?>" <?php echo $link_rel; ?>><?php if (isset($img_tag)) echo $img_tag; if (isset($zoom_icon)) echo $zoom_icon; ?></a><?php echo $figure_after; ?>
+					<?php echo $figure_before; ?><a href="<?php echo esc_url( $link_href ); ?>" class="image-wrap" title="<?php the_title(); ?>" style="<?php echo $link_style; ?>" <?php echo $link_rel; ?>><?php if (isset($img_tag)) echo $img_tag; if (isset($zoom_icon)) echo $zoom_icon; ?></a><?php echo $figure_after; ?>
 					<?php $attachment_counter++;
 					}
 				}
