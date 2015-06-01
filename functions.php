@@ -264,7 +264,7 @@
 	}
 
 	// TM Live Chat.
-	if ( 'yes' == of_get_option( 'tm_live_chat', 'yes' ) ) {
+	if ( is_admin() && ( 'yes' == of_get_option( 'tm_live_chat', 'yes' ) ) ) {
 		include_once ( PARENT_DIR . '/includes/tm-chat/class-cherry-tm-chat.php' );
 	}
 
@@ -1699,20 +1699,5 @@ function cherry_get_post_networks( $args = array() ) {
 		$output = apply_filters( 'cherry_cookie_banner', $output );
 
 		printf( '%s', $output );
-	}
-
-
-	/**
-	 * Remove inline CSS and JS from WP emoji support (IE only).
-	 */
-	global $is_IE;
-	if ( $is_IE ) {
-		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-		remove_action( 'wp_print_styles', 'print_emoji_styles' );
-		remove_action( 'admin_print_styles', 'print_emoji_styles' );
-		remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 	}
 ?>
