@@ -12,8 +12,9 @@
 		$(window).load(function(){
 			var selector = window.location.hash.replace( /^#category/, '.term' );
 
-			if(selector == "#"){
+			if ( selector == "#all" ) {
 				selector = '';
+				change_hash(selector);
 			}
 
 			setColumnWidth();
@@ -28,7 +29,6 @@
 
 			$('#filters .active').removeClass('active')
 			$('#filters li a[data-filter="'+selector+'"]').parent('li').addClass('active');
-			change_hash(selector);
 
 			$(window).on("debouncedresize", function( event ) {
 				arrange();
@@ -87,18 +87,22 @@
 			var $this = $(this).parent('li');
 			// don't proceed if already active
 			if ( $this.hasClass('active') ) {
-				return;
+				return false;
 			}
-
 
 			var $optionSet = $this.parents('.filter');
 			// change active class
 			$optionSet.find('.active').removeClass('active');
 			$this.addClass('active');
 
-			var selector = $(this).attr('data-filter');
-			$container.isotope({ filter: selector });
-			change_hash(selector)
+			var selector = $(this).attr('data-filter'),
+				filter_selector = '';
+
+			if ( selector != 'all' ) {
+				filter_selector = selector;
+			}
+			$container.isotope({ filter: filter_selector });
+			change_hash(selector);
 
 			var hiddenItems = 0,
 				showenItems = 0;
@@ -118,6 +122,9 @@
 		});
 		function change_hash(hash){
 			hash = hash.replace( /^.term/, 'category' );
+			if ( hash.length == 0 ) {
+				hash = 'all';
+			}
 			window.location.href = '#'+hash;
 
 			$('.pagination a').each(function(){
