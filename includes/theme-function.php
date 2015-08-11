@@ -144,15 +144,10 @@ add_action('manage_portfolio_posts_custom_column' , 'custom_portfolio_columns', 
 add_filter('manage_edit-portfolio_columns', 'my_portfolio_columns');
 //Add columns for portfolio posts
 function my_portfolio_columns($columns) {
-	$columns = array(
-		"cb" => "<input type=\"checkbox\" />",
-		"title" => theme_locals("title"),
+	$columns = array_merge( $columns, array(
 		"portfolio_categories" => theme_locals("categories"),
 		"portfolio_tags" => theme_locals("tags"),
-		"comments" => "<span><span class=\"vers\"><img src=\"".get_admin_url()."images/comment-grey-bubble.png\" alt=\"Comments\"></span></span>",
-		"date" => theme_locals("date"),
-		"thumbnail" => theme_locals("thumbnail")
-	);
+	) );
 	return $columns;
 }
 function custom_portfolio_columns( $column, $post_id ) {
