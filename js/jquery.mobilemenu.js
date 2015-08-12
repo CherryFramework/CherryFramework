@@ -1,11 +1,11 @@
 /**
- * jQuery Mobile Menu 
+ * jQuery Mobile Menu
  * Turn unordered list menu into dropdown select menu
  * version 1.0(31-OCT-2011)
- * 
+ *
  * Built on top of the jQuery library
  *   http://jquery.com
- * 
+ *
  * Documentation
  *   http://github.com/mambows/mobilemenu
  */
@@ -19,23 +19,24 @@
 				},
 			settings = $.extend( defaults, options ),
 			el = $(this);
-			
+
 		$("head").append('<style type="text/css">@media(max-width: 767px){.sf-menu{display:none;} .select-menu{display: block;}}</style>')
-		
+
 		this.each(function(){
 			// ad class to submenu list
 			el.find('ul').addClass(settings.subMenuClass);
-			
+
 			// Create base menu
 			$('<select />',{'class':settings.className}).insertAfter(el);
-			
+
 			// Create default option
 			$('<option />', {"value":'#', "text":settings.defaultText}).appendTo( '.' + settings.className );
-			
+
 			// Create select option from menu
 			el.find('a,.separator').each(function(){
 				var $this  = $(this),
-					optText = $this.context.firstChild.textContent,
+					// optText = $this.context.firstChild.textContent,
+					optText = $this.text(),
 					optSub = $this.parents( '.' + settings.subMenuClass ),
 					len   = optSub.length,
 					dash;
@@ -52,7 +53,7 @@
 					$('<option />', {"value":this.href, "html":optText, "selected":(this.href == window.location.href)}).appendTo( '.' + settings.className );
 				}
 			}); // End el.find('a').each
-			
+
 			// Change event on select element
 			$('.' + settings.className).change(function(){
 				var locations = $(this).val();
