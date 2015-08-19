@@ -23,6 +23,10 @@ if ( !class_exists( 'Cherry_TM_Chat_Class' ) ) {
 
 		private function __construct() {
 
+			if ( function_exists( 'is_customize_preview' ) && is_customize_preview() ) {
+				return;
+			}
+
 			define( 'CHERRY_TM_CHAT_URL', trailingslashit( get_template_directory_uri() ) . 'includes/tm-chat/' );
 
 			$this->chat_url   = esc_url( 'http://www.cherryframework.com/chat/' );
