@@ -12,6 +12,12 @@ body { position:relative; }
 		padding-right:20px;
 	}
 }
+body[class*="span"] {
+	position:static;
+	float:none;
+	min-height:inherit;
+	margin-left:inherit;
+}
 a { outline:none; }
 a:focus { outline:none; }
 .main-holder {
