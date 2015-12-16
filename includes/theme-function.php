@@ -219,7 +219,7 @@ if ( !function_exists( 'tz_grid_gallery' ) ) {
 		} ?>
 
 		<script type="text/javascript">
-			jQuery(document).ready(function () {
+			jQuery(window).load(function(){
 				var
 						masonrycontainer = jQuery('.grid_gallery_inner')
 					,	col = 3
