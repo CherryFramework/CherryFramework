@@ -22,7 +22,7 @@
 			$figure_class = '';
 		}
 
-		$img_attr = ( of_get_option('load_image') == 'false' || of_get_option('load_image') == '' ) ? 'src="' : 'src="//" data-src="';
+		$img_attr = ( of_get_option('load_image') == 'false' || of_get_option('load_image') == '' ) ? 'src="' : 'src="#post-' . get_the_ID() . '" data-src="';
 		$post_image_before = ( !is_singular() || $post_format == 'image' ) ? '<a ' . $module_box_atter . 'href="' . $post_href . '" title="' . get_the_title() . '" >' : '';
 		$post_image_after  = ( !is_singular() || $post_format == 'image' ) ? '</a>' : '';
 
