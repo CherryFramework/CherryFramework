@@ -82,8 +82,8 @@ function my_theme_api_call($def, $action, $args) {
 
 	// Get the current version
 	$args->version = $theme_version;
-	$request_string = prepare_request($action, $args);
-	$request = wp_remote_post(API_URL, $request_string);
+	$request_string = wp_parse_args($args); //prepare_request($action, $args);
+	$request = wp_remote_post(API_URL, $action . $request_string);
 
 	if (is_wp_error($request)) {
 		$res = new WP_Error('themes_api_failed', theme_locals("themes_api_failed"), $request->get_error_message());
