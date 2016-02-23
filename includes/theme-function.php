@@ -707,7 +707,8 @@ if ( !function_exists( 'breadcrumbs' ) ) {
 			}
 			elseif ( is_tax(get_post_type().'_category') ) {
 				$post_name = get_post_type();
-				echo $before . ucfirst($post_name) . ' ' . theme_locals('category') . ': ' . single_cat_title( '', false ) . $after;
+
+				echo $before . sprintf( _x( '%1$s %2$s: %3$s', 'breadcrumbs: portfolio category', CURRENT_THEME ), ucfirst( theme_locals( $post_name ) ), theme_locals('category'), single_cat_title( '', false ) ) . $after;
 			}
 			elseif ( is_single() && !is_attachment() ) {
 				if ( get_post_type() != 'post' ) {
