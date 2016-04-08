@@ -96,11 +96,11 @@ jQuery(document).ready(function(a) {
 		}
 		if("" != h){
 			a(h).css({display: "block"});
-			a("a[href=" + h + "]", c).addClass("nav-tab-active");
+			a("a[href='" + h + "']", c).addClass("nav-tab-active");
 		}else{
 			if(active_tab != '' && active_tab != null){
 				a(active_tab).css({display: "block"});
-				a("a[href=" + active_tab + "]", c).addClass("nav-tab-active");
+				a("a[href='" + active_tab + "']", c).addClass("nav-tab-active");
 			}else{
 				a(".group:first").css({display: "block"});
 				a("a:first", c).addClass("nav-tab-active");
