@@ -264,9 +264,9 @@
 	}
 
 	// TM Live Chat.
-	if ( is_admin() && ( 'yes' == of_get_option( 'tm_live_chat', 'yes' ) ) ) {
-		include_once ( PARENT_DIR . '/includes/tm-chat/class-cherry-tm-chat.php' );
-	}
+	// if ( is_admin() && ( 'yes' == of_get_option( 'tm_live_chat', 'yes' ) ) ) {
+	// 	include_once ( PARENT_DIR . '/includes/tm-chat/class-cherry-tm-chat.php' );
+	// }
 
 	/*
 	 * Loads the Options Panel

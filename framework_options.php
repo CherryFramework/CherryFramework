@@ -208,12 +208,12 @@
 					"class" => "tiny",
 					"type"  => "text" );
 
-			$options['tm_live_chat'] = array( "name" => theme_locals('tm_live_chat_name'),
-					"desc"    => theme_locals('tm_live_chat_desc'),
-					"id"      => "tm_live_chat",
-					"type"    => "radio",
-					"std"     => "yes",
-					"options" => $yes_no_array );
+			// $options['tm_live_chat'] = array( "name" => theme_locals('tm_live_chat_name'),
+			// 		"desc"    => theme_locals('tm_live_chat_desc'),
+			// 		"id"      => "tm_live_chat",
+			// 		"type"    => "radio",
+			// 		"std"     => "yes",
+			// 		"options" => $yes_no_array );
 
 // ---------------------------------------------------------
 // Logo & Favicon
