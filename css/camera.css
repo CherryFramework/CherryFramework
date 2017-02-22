@@ -3,10 +3,10 @@
 *	GENERAL
 *
 **************************/
-.camera_wrap a, .camera_wrap img, 
+.camera_wrap a, .camera_wrap img,
 .camera_wrap ol, .camera_wrap ul, .camera_wrap li,
 .camera_wrap table, .camera_wrap tbody, .camera_wrap tfoot, .camera_wrap thead, .camera_wrap tr, .camera_wrap th, .camera_wrap td
-.camera_thumbs_wrap a, .camera_thumbs_wrap img, 
+.camera_thumbs_wrap a, .camera_thumbs_wrap img,
 .camera_thumbs_wrap ol, .camera_thumbs_wrap ul, .camera_thumbs_wrap li,
 .camera_thumbs_wrap table, .camera_thumbs_wrap tbody, .camera_thumbs_wrap tfoot, .camera_thumbs_wrap thead, .camera_thumbs_wrap tr, .camera_thumbs_wrap th, .camera_thumbs_wrap td {
 	background: none;
@@ -400,36 +400,6 @@
 *	COLORS & SKINS
 *
 **************************/
-.pattern_1 .camera_overlayer {
-	background: url(../images/patterns/overlay1.png) repeat;
-}
-.pattern_2 .camera_overlayer {
-	background: url(../images/patterns/overlay2.png) repeat;
-}
-.pattern_3 .camera_overlayer {
-	background: url(../images/patterns/overlay3.png) repeat;
-}
-.pattern_4 .camera_overlayer {
-	background: url(../images/patterns/overlay4.png) repeat;
-}
-.pattern_5 .camera_overlayer {
-	background: url(../images/patterns/overlay5.png) repeat;
-}
-.pattern_6 .camera_overlayer {
-	background: url(../images/patterns/overlay6.png) repeat;
-}
-.pattern_7 .camera_overlayer {
-	background: url(../images/patterns/overlay7.png) repeat;
-}
-.pattern_8 .camera_overlayer {
-	background: url(../images/patterns/overlay8.png) repeat;
-}
-.pattern_9 .camera_overlayer {
-	background: url(../images/patterns/overlay9.png) repeat;
-}
-.pattern_10 .camera_overlayer {
-	background: url(../images/patterns/overlay10.png) repeat;
-}
 .camera_caption {
 	color: #fff;
 }
