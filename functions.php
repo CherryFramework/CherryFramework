@@ -1697,4 +1697,14 @@ function cherry_get_post_networks( $args = array() ) {
 
 		printf( '%s', $output );
 	}
+
+	/**
+	 * Add a pingback url auto-discovery header for singularly identifiable articles.
+	 */
+	add_action( 'wp_head', 'cherry3_pingback_header' );
+	function cherry3_pingback_header() {
+		if ( is_singular() && pings_open() ) {
+			printf( '<link rel="pingback" href="%s">' . "\n", get_bloginfo( 'pingback_url' ) );
+		}
+	}
 ?>
