@@ -1707,4 +1707,44 @@ function cherry_get_post_networks( $args = array() ) {
 			printf( '<link rel="pingback" href="%s">' . "\n", get_bloginfo( 'pingback_url' ) );
 		}
 	}
+
+// Modify a comment form.
+add_filter( 'comment_form_defaults', 'cherry3_comment_form_defaults' );
+function cherry3_comment_form_defaults( $args ) {
+	$args = wp_parse_args( $args );
+
+	if ( ! isset( $args['format'] ) ) {
+		$args['format'] = current_theme_supports( 'html5', 'comment-form' ) ? 'html5' : 'xhtml';
+	}
+
+	$req       = get_option( 'require_name_email' );
+	$aria_req  = ( $req ? " aria-required='true'" : '' );
+	$html_req  = ( $req ? " required='required'" : '' );
+	$html5     = 'html5' === $args['format'];
+	$commenter = wp_get_current_commenter();
+
+	$args['title_reply']  = theme_locals( 'leave_a_reply' );
+	$args['label_submit'] = theme_locals( 'submit_comment' );
+	$args['class_submit'] = 'submit btn btn-primary';
+	$args['submit_field'] = '<p class="comment_submit">%1$s %2$s</p>';
+
+	$args['fields']['author'] = '<p class="comment-form-author field"><input id="author" class="comment-form__field" name="author" type="text" placeholder="' . theme_locals( 'name_comment' ) . ( $req ? ' *' : '' ) . '" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . $html_req . ' /></p>';
+
+	$args['fields']['email'] = '<p class="comment-form-email field"><input id="email" class="comment-form__field" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' placeholder="' . theme_locals( 'email_comment' ) . ( $req ? ' *' : '' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" aria-describedby="email-notes"' . $aria_req . $html_req  . ' /></p>';
+
+	$args['fields']['url'] = '<p class="comment-form-url field"><input id="url" class="comment-form__field" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' placeholder="' . theme_locals( 'website_comment' ) . '" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></p>';
+
+	$args['comment_field'] = '<p class="comment-form-comment"><textarea id="comment" class="comment-form__field" name="comment" placeholder="' . theme_locals( 'your_comment' ) . '" cols="45" rows="8" aria-required="true" required="required"></textarea></p>';
+
+	return $args;
+}
+
+// Set the texarea to the bottom of comment form.
+add_filter( 'comment_form_fields', 'cherry3_comment_form_fields' );
+function cherry3_comment_form_fields( $fields ) {
+	$comment_field = $fields['comment'];
+	unset( $fields['comment'] );
+
+	return $fields + array( 'comment' => $comment_field );
+}
 ?>
