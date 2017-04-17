@@ -1,13 +1,13 @@
-#Cherry Framework#
-###The most delicious WordPress framework###
+# Cherry Framework #
+### The most delicious WordPress framework ###
 
 Fully responsive design, easy install, steady updates, great number of shortcodes and widgets, integration of Bootstrap functions. All brought to you by Cherry Framework for straightforward experience in website design. [View all features](http://www.cherryframework.com/features/)</a>
 
 [Official Cherry Framework website](http://www.cherryframework.com/)</a>
 
-###[Get Premium themes](http://www.cherryframework.com/themes/)###
+### [Get Premium themes](http://www.cherryframework.com/themes/) ###
 
-##Change log##
+## Change log ##
 
 #### v3.1.5 ####
 
