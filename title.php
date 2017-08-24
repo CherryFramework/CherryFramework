@@ -51,7 +51,11 @@
 <!--Begin shop-->
 		<?php } elseif ($shop_page) {
 				if (class_exists( 'Woocommerce' ) && !is_single()){
-					$page_id = woocommerce_get_page_id('shop');
+					if ( function_exists( 'wc_get_page_id' ) ) {
+						$page_id = wc_get_page_id( 'shop' );
+					} else {
+						$page_id = woocommerce_get_page_id( 'shop' );
+					}
 				} elseif (function_exists( 'jigoshop_init' ) && !is_singular()){
 					$page_id = jigoshop_get_page_id('shop');
 				}
