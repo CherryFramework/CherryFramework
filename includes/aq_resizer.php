@@ -75,7 +75,7 @@ function aq_resize( $url, $width = null, $height = null, $crop = null, $single =
 	} else {
 		// Use this to check if cropped image already exists, so we can return that instead.
 		$suffix = "{$dst_w}x{$dst_h}";
-		$dst_rel_path = str_replace( '.' . $ext, '', $rel_path );
+		$dst_rel_path = substr($rel_path, 0, strrpos($rel_path, '.'));
 		$destfilename = "{$upload_dir}{$dst_rel_path}-{$suffix}.{$ext}";
 
 		if ( ! $dims || ( true == $crop && false == $upscale && ( $dst_w < $width || $dst_h < $height ) ) ) {
