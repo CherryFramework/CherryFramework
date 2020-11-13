@@ -1,6 +1,6 @@
 (function($) {
 
-	$(window).load(function(){
+	$(window).on('load', function(){
 
 		var _this    = $('#tm-chat-dialog'),
 			$heading = $('.chat_box_heading'),
