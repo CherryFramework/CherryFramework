@@ -1,6 +1,6 @@
 jQuery(document).ready(function(a) {
 	function g() {
-		"checked" == a("#slider_type_camera_slider").attr("checked") ? (a(".slider_type_1").css({display: "block"}), a(".slider_type_2").css({display: "none"})) : "checked" == a("#slider_type_accordion_slider").attr("checked") ? (a(".slider_type_1").css({display: "none"}), a(".slider_type_2").css({display: "block"})) : "checked" == a("#slider_type_none_slider").attr("checked") && (a(".slider_type_1").css({display: "none"}), a(".slider_type_2").css({display: "none"}))
+		"checked" == a("#slider_type_camera_slider").prop("checked") ? (a(".slider_type_1").css({display: "block"}), a(".slider_type_2").css({display: "none"})) : "checked" == a("#slider_type_accordion_slider").prop("checked") ? (a(".slider_type_1").css({display: "none"}), a(".slider_type_2").css({display: "block"})) : "checked" == a("#slider_type_none_slider").prop("checked") && (a(".slider_type_1").css({display: "none"}), a(".slider_type_2").css({display: "none"}))
 	}
 	function j() {
 		var a = jQuery(this),
