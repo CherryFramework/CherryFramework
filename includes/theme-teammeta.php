@@ -205,7 +205,7 @@ function my_social_networks( $post, $metabox ) {
 				jQuery('input[name="fields_id"]').val(fields_id_value);
 				return !1;
 			});
-			jQuery('.delete_network').live('click', function(){
+			jQuery('.delete_network').on('click', function(){
 				var item_name = jQuery(this).attr('name')
 				,	fields_id_value_array = jQuery('input[name="fields_id"]').val().split(" ")
 				,	delete_id = Number(item_name.replace(/\D+/g,""))
